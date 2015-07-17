@@ -18,6 +18,7 @@ cppToKLTypeMapping = {
     'AtArray': 'TODOArray',
     'AtBBox': 'BBox',
     'AtRGB': 'Vec3',
+    'AtColor': 'Vec3',
     'AtRGBA': 'Vec4',
     'AtEnum': 'String[]',
     'AtUInt64' : 'UInt64',
@@ -144,19 +145,15 @@ def process_define(defineNode):
 
 
 # Create a regular expression  from the dictionary keys
-s_rex = re.compile("(\\b%s\\b)" % "\\b|\\b".join(map(re.escape, cppToKLTypeMapping.keys())))
+s_rex = re.compile(r"(\b%s(?=\Z|\s|\*|\&))" % r"(?=\Z|\s|\*|\&)|\b".join(map(re.escape, cppToKLTypeMapping.keys())))
 def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
     # Now compact any pointer declarations, so that char * becomes char*
     # We maintain these values as part of the type mainly to differentiat char* from char
     kl_type = cpp_arg_type.replace(" *", "*")
     # Just remove &, as it does not change type
     kl_type = kl_type.replace("&", "")
-    # Remove any extra declarations, we are only interested in the last word (the return type)
-    #kl_type = kl_type.split(' ')[-1]
-    # now switch types from C++ to KL
-    #for key in cppToKLTypeMapping:
-    #    fnReturns = fnReturns.replace(key, cppToKLTypeMapping[key])
-    #kl_type = cppToKLTypeMapping.get(kl_type, kl_type)
+    # convert to the KL version of this type
+    str = r"(\b%s(?=\Z|\s|\*|\&))" % r"(?=\Z|\s|\*|\&)|\b".join(map(re.escape, cppToKLTypeMapping.keys()))
     sub_type = s_rex.sub(lambda mo: cppToKLTypeMapping[mo.string[mo.start():mo.end()]], kl_type)
 
     # If our replacement is an empty string (for example, void->''), then simply empty the string

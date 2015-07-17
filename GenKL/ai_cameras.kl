@@ -42,7 +42,7 @@ API Methods for Camera Writers
 
 */
 
-function AiCameraInitialize(io AtNode node, io  data) = '_fe_AiCameraInitialize'
+function AiCameraInitialize(io AtNode node, io Data data) = '_fe_AiCameraInitialize'
 function AiCameraUpdate(io AtNode node, Boolean plane_distance) = '_fe_AiCameraUpdate'
 function AiCameraDestroy(io AtNode node) = '_fe_AiCameraDestroy'
-function AiCameraGetLocalData(AtNode node) = '_fe_AiCameraGetLocalData'
+function Data AiCameraGetLocalData(AtNode node) = '_fe_AiCameraGetLocalData'

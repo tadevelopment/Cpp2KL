@@ -16,8 +16,8 @@ struct AtMetaDataIterator {
 };
 /**  */
 struct AtMetaDataEntry {
-  char name; //  
-  char param; //  
+  String name; //  
+  String param; //  
   AtByte type; //  
   AtParamValue value; //  
 }
@@ -43,20 +43,20 @@ AtNodeEntry Methods
 */
 
 function AtNodeEntry AiNodeEntryLookUpAtString(String name) = '_fe_AiNodeEntryLookUpAtString'
-function char AiNodeEntryGetName(AtNodeEntry nentry) = '_fe_AiNodeEntryGetName'
+function String AiNodeEntryGetName(AtNodeEntry nentry) = '_fe_AiNodeEntryGetName'
 function SInt32 AiNodeEntryGetType(AtNodeEntry nentry) = '_fe_AiNodeEntryGetType'
-function char AiNodeEntryGetTypeName(AtNodeEntry nentry) = '_fe_AiNodeEntryGetTypeName'
+function String AiNodeEntryGetTypeName(AtNodeEntry nentry) = '_fe_AiNodeEntryGetTypeName'
 function SInt32 AiNodeEntryGetOutputType(AtNodeEntry nentry) = '_fe_AiNodeEntryGetOutputType'
-function char AiNodeEntryGetFilename(AtNodeEntry nentry) = '_fe_AiNodeEntryGetFilename'
-function char AiNodeEntryGetVersion(AtNodeEntry nentry) = '_fe_AiNodeEntryGetVersion'
+function String AiNodeEntryGetFilename(AtNodeEntry nentry) = '_fe_AiNodeEntryGetFilename'
+function String AiNodeEntryGetVersion(AtNodeEntry nentry) = '_fe_AiNodeEntryGetVersion'
 function SInt32 AiNodeEntryGetCount(AtNodeEntry nentry) = '_fe_AiNodeEntryGetCount'
 function SInt32 AiNodeEntryGetNumParams(AtNodeEntry nentry) = '_fe_AiNodeEntryGetNumParams'
 function AtParamEntry AiNodeEntryGetParameter(AtNodeEntry nentry, SInt32 i) = '_fe_AiNodeEntryGetParameter'
 function AtParamEntry AiNodeEntryLookUpParameterAtString(AtNodeEntry nentry, String param) = '_fe_AiNodeEntryLookUpParameterAtString'
 function AtParamIterator AiNodeEntryGetParamIterator(AtNodeEntry nentry) = '_fe_AiNodeEntryGetParamIterator'
-function AtMetaDataIterator AiNodeEntryGetMetaDataIterator(AtNodeEntry nentry, char param/*=NULL*/) = '_fe_AiNodeEntryGetMetaDataIterator'
-function AiNodeEntryInstall(SInt32 type, AtByte output_type, char name, char filename, io AtNodeMethods methods, char version) = '_fe_AiNodeEntryInstall'
-function AiNodeEntryUninstall(char name) = '_fe_AiNodeEntryUninstall'
+function AtMetaDataIterator AiNodeEntryGetMetaDataIterator(AtNodeEntry nentry, String param/*=NULL*/) = '_fe_AiNodeEntryGetMetaDataIterator'
+function AiNodeEntryInstall(SInt32 type, AtByte output_type, String name, String filename, io AtNodeMethods methods, String version) = '_fe_AiNodeEntryInstall'
+function AiNodeEntryUninstall(String name) = '_fe_AiNodeEntryUninstall'
 /**
 AtParamIterator Methods
 
