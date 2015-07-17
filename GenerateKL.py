@@ -24,7 +24,7 @@ cppToKLTypeMapping = {
     'AtString' : 'String'
 }
 
-xmlRootDir = './ParsedOutput/xml/'
+xmlRootDir = './DoxygenXML/xml/'
 
 filesToProcess = [
     "ai_cameras.h",
