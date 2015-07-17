@@ -1,0 +1,7 @@
+/**
+    API for reading and writing the .ass scene file format 
+  
+*/
+
+function SInt32 AiASSWrite(char filename, SInt32 mask/*=AI_NODE_ALL*/, Boolean open_procs/*=false*/, Boolean binary/*=true*/) = '_fe_AiASSWrite'
+function SInt32 AiASSLoad(char filename, SInt32 mask/*=AI_NODE_ALL*/) = '_fe_AiASSLoad'
