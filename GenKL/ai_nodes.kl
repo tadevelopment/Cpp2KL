@@ -47,7 +47,7 @@ Parameter Writers
 
 */
 
-function AiNodeSetByteAtString(io AtNode node, String param, AtByte val) = '_fe_AiNodeSetByteAtString'
+function AiNodeSetByteAtString(io AtNode node, String param, UInt8 val) = '_fe_AiNodeSetByteAtString'
 function AiNodeSetIntAtString(io AtNode node, String param, SInt32 val) = '_fe_AiNodeSetIntAtString'
 function AiNodeSetUIntAtString(io AtNode node, String param, UInt32 val) = '_fe_AiNodeSetUIntAtString'
 function AiNodeSetBoolAtString(io AtNode node, String param, Boolean val) = '_fe_AiNodeSetBoolAtString'
@@ -67,7 +67,7 @@ Parameter Readers
 
 */
 
-function AtByte AiNodeGetByteAtString(AtNode node, String param) = '_fe_AiNodeGetByteAtString'
+function UInt8 AiNodeGetByteAtString(AtNode node, String param) = '_fe_AiNodeGetByteAtString'
 function SInt32 AiNodeGetIntAtString(AtNode node, String param) = '_fe_AiNodeGetIntAtString'
 function UInt32 AiNodeGetUIntAtString(AtNode node, String param) = '_fe_AiNodeGetUIntAtString'
 function Boolean AiNodeGetBoolAtString(AtNode node, String param) = '_fe_AiNodeGetBoolAtString'

@@ -18,7 +18,7 @@ struct AtMetaDataIterator {
 struct AtMetaDataEntry {
   String name; //  
   String param; //  
-  AtByte type; //  
+  UInt8 type; //  
   AtParamValue value; //  
 }
 
@@ -55,7 +55,7 @@ function AtParamEntry AiNodeEntryGetParameter(AtNodeEntry nentry, SInt32 i) = '_
 function AtParamEntry AiNodeEntryLookUpParameterAtString(AtNodeEntry nentry, String param) = '_fe_AiNodeEntryLookUpParameterAtString'
 function AtParamIterator AiNodeEntryGetParamIterator(AtNodeEntry nentry) = '_fe_AiNodeEntryGetParamIterator'
 function AtMetaDataIterator AiNodeEntryGetMetaDataIterator(AtNodeEntry nentry, String param/*=NULL*/) = '_fe_AiNodeEntryGetMetaDataIterator'
-function AiNodeEntryInstall(SInt32 type, AtByte output_type, String name, String filename, io AtNodeMethods methods, String version) = '_fe_AiNodeEntryInstall'
+function AiNodeEntryInstall(SInt32 type, UInt8 output_type, String name, String filename, io AtNodeMethods methods, String version) = '_fe_AiNodeEntryInstall'
 function AiNodeEntryUninstall(String name) = '_fe_AiNodeEntryUninstall'
 /**
 AtParamIterator Methods

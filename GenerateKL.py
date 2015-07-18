@@ -16,6 +16,7 @@ cppToKLTypeMapping = {
     'char*': 'String',
 
     'AtArray': 'TODOArray',
+    'AtByte' : 'UInt8',
     'AtBBox': 'BBox',
     'AtRGB': 'Vec3',
     'AtColor': 'Vec3',
@@ -26,7 +27,8 @@ cppToKLTypeMapping = {
     'AtPoint' : 'Vec3',
     'AtVector' : 'Vec3',
     'AtPoint2' : 'Vec2',
-    'AtVector2' : 'Vec2'
+    'AtVector2' : 'Vec2',
+    'AtBucket': 'Data'
 }
 
 # Specify the root of the doxygen output directory
@@ -43,7 +45,13 @@ filesToProcess = [
     'ai_msg.h',
     'ai_node_entry.h',
     'ai_nodes.h',
-    "ai_render.h"
+    'ai_render.h',
+    'ai_params.h',
+    'ai_plugins.h',
+    'ai_ray.h',
+    'ai_texture.h',
+    'ai_universe.h'
+
 ]
 
 # Any elements named in this list will not be exported
@@ -72,7 +80,22 @@ custom_add_to_file = {
     'ai_nodes.h' :      '// This represents a node in Arnold\n'
                         'struct AtNode {\n'
                         '  Data internal;\n'
+                        '};\n',
+    'ai_texture.h' : 'struct AtTextureHandle {\n'
+                        '  Data handle;\n'
+                        '};\n',
+    'ai_universe.h' : 'struct AtNodeIterator {\n'
+                        '  Data iterator;\n'
                         '};\n'
+                        '\n'
+                        'struct AtNodeEntryIterator {\n'
+                        '  Data iterator;\n'
+                        '};\n'
+                        '\n'
+                        'struct AtAOVIterator {\n'
+                        '  Data iterator;\n'
+                        '};\n'
+                        '\n'
 }
 # Define this value to true to not expose inline functions
 skipInlineFunctions = True
