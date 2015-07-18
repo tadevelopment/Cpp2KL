@@ -23,6 +23,7 @@ cppToKLTypeMapping = {
     'AtRGBA': 'Vec4',
     'AtEnum': 'String[]',
     'AtUInt16' : 'UInt16',
+    'AtUInt32' : 'UInt32',
     'AtUInt64' : 'UInt64',
     'AtString' : 'String',
     'AtPoint' : 'Vec3',
