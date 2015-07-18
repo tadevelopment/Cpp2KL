@@ -79,5 +79,5 @@ function Vec3 AiNodeGetPntAtString(AtNode node, String param) = '_fe_AiNodeGetPn
 function Vec2 AiNodeGetPnt2AtString(AtNode node, String param) = '_fe_AiNodeGetPnt2AtString'
 function Data AiNodeGetPtrAtString(AtNode node, String param) = '_fe_AiNodeGetPtrAtString'
 function TODOArray AiNodeGetArrayAtString(AtNode node, String param) = '_fe_AiNodeGetArrayAtString'
-function AiNodeGetStrAtString(AtNode node, String param) = '_fe_AiNodeGetStrAtString'
+function String AiNodeGetStrAtString(AtNode node, String param) = '_fe_AiNodeGetStrAtString'
 function AiNodeGetMatrixAtString(AtNode node, String param, AtMatrix matrix) = '_fe_AiNodeGetMatrixAtString'

@@ -22,13 +22,15 @@ cppToKLTypeMapping = {
     'AtColor': 'Vec3',
     'AtRGBA': 'Vec4',
     'AtEnum': 'String[]',
+    'AtUInt16' : 'UInt16',
     'AtUInt64' : 'UInt64',
     'AtString' : 'String',
     'AtPoint' : 'Vec3',
     'AtVector' : 'Vec3',
     'AtPoint2' : 'Vec2',
     'AtVector2' : 'Vec2',
-    'AtBucket': 'Data'
+    'AtBucket': 'Data',
+    'AtList' : 'Data'
 }
 
 # Specify the root of the doxygen output directory
@@ -51,7 +53,6 @@ filesToProcess = [
     'ai_ray.h',
     'ai_texture.h',
     'ai_universe.h'
-
 ]
 
 # Any elements named in this list will not be exported
@@ -77,14 +78,17 @@ custom_add_to_file = {
                         'struct AtMetaDataIterator {\n'
                         '  Data internal;\n'
                         '};\n',
+
     'ai_nodes.h' :      '// This represents a node in Arnold\n'
                         'struct AtNode {\n'
                         '  Data internal;\n'
                         '};\n',
-    'ai_texture.h' : 'struct AtTextureHandle {\n'
+
+    'ai_texture.h' :    'struct AtTextureHandle {\n'
                         '  Data handle;\n'
                         '};\n',
-    'ai_universe.h' : 'struct AtNodeIterator {\n'
+
+    'ai_universe.h' :   'struct AtNodeIterator {\n'
                         '  Data iterator;\n'
                         '};\n'
                         '\n'
@@ -94,6 +98,25 @@ custom_add_to_file = {
                         '\n'
                         'struct AtAOVIterator {\n'
                         '  Data iterator;\n'
+                        '};\n',
+
+    'ai_params.h' :     'struct AtParamValue {\n'
+                        '  Data atParamValue;\n'
+                        '};\n'
+                        '\n'
+                        'UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8"\n'
+                        'UInt32 AtParamValue.asUInt32() = "_fe_AtParamValueAsUInt32"\n'
+                        'Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32"\n'
+                        'Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3"\n'
+                        'Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44"\n'
+                        'String AtParamValue.asString() = "_fe_AtParamValueAsString"\n'
+                        '\n'
+                        'struct AtParamEntry {\n'
+                        '  Data handle;\n'
+                        '};\n'
+                        '\n'
+                        'struct AtUserParamEntry {\n'
+                        '  Data handle;\n'
                         '};\n'
                         '\n'
 }
@@ -131,14 +154,6 @@ def get_str(node):
     res = ET.tostring(ET.XML(res), encoding="us-ascii", method="text")
     #res = ET.tostring(node, encoding="us-ascii", method="text")
     return res
-
-
-#def get_type(oriType):
-#    oriType.replace('const ', '')
-#    if (oriType in cppToKLTypeMapping):
-#        return cppToKLTypeMapping[oriType]
-#    return oriType
-
 
 def process_define(defineNode):
     # Write out an equivalent define to the output file
@@ -179,12 +194,8 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
     str = r"(\b%s(?=\Z|\s|\*|\&))" % r"(?=\Z|\s|\*|\&)|\b".join(map(re.escape, cppToKLTypeMapping.keys()))
     sub_type = s_rex.sub(lambda mo: cppToKLTypeMapping[mo.string[mo.start():mo.end()]], kl_type)
 
-    # If our replacement is an empty string (for example, void->''), then simply empty the string
-    # else, we pick the last word as representing our KL type
-    if sub_type in kl_type and sub_type != kl_type:
-      kl_type = ''
-    else:
-      kl_type = sub_type.strip().split(' ')[-1]
+    # we pick the last word as representing our KL type
+    kl_type = sub_type.strip().split(' ')[-1]
 
     # Could this be used to return a value?  If so, mark it as IO
     prefix = ''
