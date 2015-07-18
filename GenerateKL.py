@@ -34,6 +34,8 @@ cppToKLTypeMapping = {
     'AtList' : 'Data'
 }
 
+# Name of this project
+project_name = 'Fabric2Arnold'
 # Specify the root of the doxygen output directory
 xmlRootDir = './DoxygenXML/xml/'
 # Specify where the output files are written: NOTE - this dir must exist
@@ -378,6 +380,23 @@ def process_file(override_name, infilename, outputfile):
     # add in auto-translated KL contents
     f.writelines(file_contents)
 
+#
+# Generate an FPM file that KL2EDK can use to generate the
+# CPP bindings to call back into our wrapped SDK's library
+#
+def generate_fpm(processed_files):
+    f = open(outputRootDir + project_name + '.fpm.json', 'w')
+    f.write(
+        '{\n'
+        '  "libs": [\n'
+        '    "' + project_name + '"\n'
+        '  ],\n'
+        '  "code" : [\n'
+    )
+    for pf in processed_files:
+        f.write('    "' + pf + '",\n')
+    f.write('  ]\n')
+    f.write('}')
 
 # first, load in the index, get the file list.
 
@@ -391,8 +410,13 @@ for doxyElement in root.iter('compound'):
         fileTuple = [doxyElement.find('name').text, doxyElement.attrib['refid']]
         allFiles.append(fileTuple)
 
+processed_files = []
 for aFile in allFiles:
     if aFile[0] in filesToProcess:
         print('Processing: ' + aFile[0])
-        outFileName = outputRootDir + aFile[0].split('.')[0] + '.kl'
-        process_file(aFile[0], xmlRootDir + aFile[1] + '.xml', outFileName)
+        out_file_name = aFile[0].split('.')[0] + '.kl'
+        processed_files.append(out_file_name)
+        process_file(aFile[0], xmlRootDir + aFile[1] + '.xml', outputRootDir + out_file_name)
+
+# Our last step, generate the FPM file from the converted files.
+generate_fpm(processed_files)
