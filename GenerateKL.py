@@ -78,16 +78,16 @@ custom_add_to_file = {
                         '\n'
                         'struct AtMetaDataIterator {\n'
                         '  Data internal;\n'
-                        '};\n',
+                        '};\n\n',
 
     'ai_nodes.h' :      '// This represents a node in Arnold\n'
                         'struct AtNode {\n'
                         '  Data internal;\n'
-                        '};\n',
+                        '};\n\n',
 
     'ai_texture.h' :    'struct AtTextureHandle {\n'
                         '  Data handle;\n'
-                        '};\n',
+                        '};\n\n',
 
     'ai_universe.h' :   'struct AtNodeIterator {\n'
                         '  Data iterator;\n'
@@ -99,7 +99,7 @@ custom_add_to_file = {
                         '\n'
                         'struct AtAOVIterator {\n'
                         '  Data iterator;\n'
-                        '};\n',
+                        '};\n\n',
 
     'ai_params.h' :     'struct AtParamValue {\n'
                         '  Data atParamValue;\n'
