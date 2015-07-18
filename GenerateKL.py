@@ -171,12 +171,12 @@ def process_define(defineNode):
     comment = comment.replace('\n', '')
 
     if (is_int(value)):
-        klLine = "const Integer " + name + ' = ' + value + '\t // ' + comment
+        klLine = "const Integer " + name + ' = ' + value + ';\t // ' + comment
         print(klLine)
         return klLine + '\n'
 
     elif (is_float(value)):
-        klLine = "const Float32 " + name + ' = ' + value + '\t // ' + comment
+        klLine = "const Float32 " + name + ' = ' + value + ';\t // ' + comment
         print(klLine)
         return klLine + '\n'
 

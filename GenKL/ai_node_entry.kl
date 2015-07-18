@@ -28,16 +28,16 @@ Node Types
 
 */
 
-const Integer AI_NODE_UNDEFINED = 0x0000	 //  Undefined type  
-const Integer AI_NODE_OPTIONS = 0x0001	 //  Options node (following the "singleton" pattern, there is only one options node)  
-const Integer AI_NODE_CAMERA = 0x0002	 //  Camera nodes (persp_camera, fisheye_camera, etc)  
-const Integer AI_NODE_LIGHT = 0x0004	 //  Light source nodes (spot_light, etc)  
-const Integer AI_NODE_SHAPE = 0x0008	 //  Geometry nodes (sphere, polymesh, etc)  
-const Integer AI_NODE_SHADER = 0x0010	 //  Shader nodes (lambert, etc)  
-const Integer AI_NODE_OVERRIDE = 0x0020	 //  EXPERIMENTAL: override nodes support "delayed parameter overrides" for procedural nodes  
-const Integer AI_NODE_DRIVER = 0x0040	 //  Output driver nodes (driver_tiff, etc)  
-const Integer AI_NODE_FILTER = 0x0080	 //  Pixel sample filter nodes (box_filter, etc  
-const Integer AI_NODE_ALL = 0xFFFF	 //  Bitmask including all node types, used by AiASSWrite()  
+const Integer AI_NODE_UNDEFINED = 0x0000;	 //  Undefined type  
+const Integer AI_NODE_OPTIONS = 0x0001;	 //  Options node (following the "singleton" pattern, there is only one options node)  
+const Integer AI_NODE_CAMERA = 0x0002;	 //  Camera nodes (persp_camera, fisheye_camera, etc)  
+const Integer AI_NODE_LIGHT = 0x0004;	 //  Light source nodes (spot_light, etc)  
+const Integer AI_NODE_SHAPE = 0x0008;	 //  Geometry nodes (sphere, polymesh, etc)  
+const Integer AI_NODE_SHADER = 0x0010;	 //  Shader nodes (lambert, etc)  
+const Integer AI_NODE_OVERRIDE = 0x0020;	 //  EXPERIMENTAL: override nodes support "delayed parameter overrides" for procedural nodes  
+const Integer AI_NODE_DRIVER = 0x0040;	 //  Output driver nodes (driver_tiff, etc)  
+const Integer AI_NODE_FILTER = 0x0080;	 //  Pixel sample filter nodes (box_filter, etc  
+const Integer AI_NODE_ALL = 0xFFFF;	 //  Bitmask including all node types, used by AiASSWrite()  
 /**
 AtNodeEntry Methods
 

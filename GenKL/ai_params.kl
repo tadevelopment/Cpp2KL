@@ -28,34 +28,34 @@ See AtParamValue for the actual primitive data types that these macros refer to.
 
 */
 
-const Integer AI_TYPE_BYTE = 0x00	 //  Byte (an 8-bit sized unsigned integer)  
-const Integer AI_TYPE_INT = 0x01	 //  Integer  
-const Integer AI_TYPE_UINT = 0x02	 //  Unsigned integer  
-const Integer AI_TYPE_BOOLEAN = 0x03	 //  Boolean (either true or false)  
-const Integer AI_TYPE_FLOAT = 0x04	 //  Single-precision floating point number  
-const Integer AI_TYPE_RGB = 0x05	 //  RGB struct  
-const Integer AI_TYPE_RGBA = 0x06	 //  RGBA struct  
-const Integer AI_TYPE_VECTOR = 0x07	 //  XYZ vector  
-const Integer AI_TYPE_POINT = 0x08	 //  XYZ point  
-const Integer AI_TYPE_POINT2 = 0x09	 //  XY point  
-const Integer AI_TYPE_STRING = 0x0A	 //  C-style character string  
-const Integer AI_TYPE_POINTER = 0x0B	 //  Arbitrary pointer  
-const Integer AI_TYPE_NODE = 0x0C	 //  Pointer to an Arnold node  
-const Integer AI_TYPE_ARRAY = 0x0D	 //  AtArray  
-const Integer AI_TYPE_MATRIX = 0x0E	 //  4x4 matrix  
-const Integer AI_TYPE_ENUM = 0x0F	 //  Enumeration (see AtEnum)  
-const Integer AI_TYPE_UNDEFINED = 0xFF	 //  Undefined, you should never encounter a parameter of this type  
-const Integer AI_TYPE_NONE = 0xFF	 //  No type  
+const Integer AI_TYPE_BYTE = 0x00;	 //  Byte (an 8-bit sized unsigned integer)  
+const Integer AI_TYPE_INT = 0x01;	 //  Integer  
+const Integer AI_TYPE_UINT = 0x02;	 //  Unsigned integer  
+const Integer AI_TYPE_BOOLEAN = 0x03;	 //  Boolean (either true or false)  
+const Integer AI_TYPE_FLOAT = 0x04;	 //  Single-precision floating point number  
+const Integer AI_TYPE_RGB = 0x05;	 //  RGB struct  
+const Integer AI_TYPE_RGBA = 0x06;	 //  RGBA struct  
+const Integer AI_TYPE_VECTOR = 0x07;	 //  XYZ vector  
+const Integer AI_TYPE_POINT = 0x08;	 //  XYZ point  
+const Integer AI_TYPE_POINT2 = 0x09;	 //  XY point  
+const Integer AI_TYPE_STRING = 0x0A;	 //  C-style character string  
+const Integer AI_TYPE_POINTER = 0x0B;	 //  Arbitrary pointer  
+const Integer AI_TYPE_NODE = 0x0C;	 //  Pointer to an Arnold node  
+const Integer AI_TYPE_ARRAY = 0x0D;	 //  AtArray  
+const Integer AI_TYPE_MATRIX = 0x0E;	 //  4x4 matrix  
+const Integer AI_TYPE_ENUM = 0x0F;	 //  Enumeration (see AtEnum)  
+const Integer AI_TYPE_UNDEFINED = 0xFF;	 //  Undefined, you should never encounter a parameter of this type  
+const Integer AI_TYPE_NONE = 0xFF;	 //  No type  
 /**
 Parameter Categories for User-Data
 
 */
 
-const Integer AI_USERDEF_UNDEFINED = 0	 //  Undefined, you should never encounter a parameter of this category  
-const Integer AI_USERDEF_CONSTANT = 1	 //  User-defined: per-object parameter  
-const Integer AI_USERDEF_UNIFORM = 2	 //  User-defined: per-face parameter  
-const Integer AI_USERDEF_VARYING = 3	 //  User-defined: per-vertex parameter  
-const Integer AI_USERDEF_INDEXED = 4	 //  User-defined: per-face-vertex parameter  
+const Integer AI_USERDEF_UNDEFINED = 0;	 //  Undefined, you should never encounter a parameter of this category  
+const Integer AI_USERDEF_CONSTANT = 1;	 //  User-defined: per-object parameter  
+const Integer AI_USERDEF_UNIFORM = 2;	 //  User-defined: per-face parameter  
+const Integer AI_USERDEF_VARYING = 3;	 //  User-defined: per-vertex parameter  
+const Integer AI_USERDEF_INDEXED = 4;	 //  User-defined: per-face-vertex parameter  
 /**
 AtParamEntry Methods
 
