@@ -1,0 +1,15 @@
+{
+  "header": "#include \"ai.h\"",
+  "parameterprefix": "f2a",
+  "functionentry": "F2A_TRY_STATEMENT", 
+  "functionexit": "F2A_CATCH_STATEMENT", 
+  "functionexitreturn": "F2A_CATCH_STATEMENT_RETURN",
+  "typemapping": {
+
+  },
+  "functionbodies": {
+  },
+  "parameterconversionstoskip": [
+  ]
+}
+

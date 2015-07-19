@@ -1,0 +1,36 @@
+#
+# Fabric Engine 2.1.0-alpha
+# EDKObjects EDK Sample
+#
+# Copyright 2010-2015 Fabric Software Inc. All rights reserved.
+#
+
+import os, sys, glob
+
+try:
+  fabricPath = os.environ['FABRIC_DIR']
+except:
+  print "You must set FABRIC_DIR in your environment."
+  print "Refer to README.txt for more information."
+  sys.exit(1)
+SConscript('SConscript')
+Import('fabricBuildEnv')
+
+fabricBuildEnv.Append(CPPPATH = [
+  'E:/dev/Arnold SDK/Arnold-4.2.7.5/include',
+  'GenCPP/h'
+  ])
+
+# fabricBuildEnv.Append(LIBPATH = [
+#   os.path.join(kinectSDKPath, 'lib/amd64'),
+#   ])
+
+# fabricBuildEnv.Append(LIBS = [
+#   "kinect10.lib",
+#   ])
+
+cppFiles = glob.glob('./GenCPP/cpp/*.cpp')
+fabricBuildEnv.Extension(
+  'Fabric2Arnold',
+  cppFiles
+  )

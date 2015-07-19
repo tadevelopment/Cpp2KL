@@ -19,9 +19,9 @@ cppToKLTypeMapping = {
 
     'AtByte' : 'UInt8',
     'AtBBox': 'Box3',
-    'AtRGB': 'Vec3',
+    'AtRGB': 'RGB',
     'AtColor': 'Vec3',
-    'AtRGBA': 'Vec4',
+    'AtRGBA': 'Color',
     'AtEnum': 'String[]',
     'AtUInt16' : 'UInt16',
     'AtUInt32' : 'UInt32',
@@ -38,10 +38,10 @@ cppToKLTypeMapping = {
 
 # Name of this project
 project_name = 'Fabric2Arnold'
-# Specify the root of the doxygen output directory
-xmlRootDir = './DoxygenXML/xml/'
-# Specify where the output files are written: NOTE - this dir must exist
-outputRootDir = 'E:/dev/OpusTech/Cpp2KL/GenKL/'
+# Specify the root of the doxygen output directory.  This dir is relative to this file
+xml_dir = '../DoxygenXML/xml/'
+# Specify where the output files are written.  This dir is relative to this file
+output_dir = 'GenKL'
 
 filesToProcess = [
     'ai_params.h',
@@ -163,3 +163,15 @@ custom_add_to_file = {
 }
 # Define this value to true to not expose inline functions
 skipInlineFunctions = True
+
+#####
+# The following parameters deal with creating a codegen file
+
+# Specify a file to be merged with the auto-generated codegen file
+# Items in this file will override the auto-generated items
+# This file should be specified relative to this file
+merge_codegen_file = "Fabric2Arnold.codegen.json"
+
+# The parameter prefix is used to fill in the auto-generated
+# codegen.json file.  It is required to auto-generate function bodies
+parameter_prefix = 'f2a'
