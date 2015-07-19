@@ -20,11 +20,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetName")
 
-
-  #pragma message("_fe_AiParamGetName is missing its implementation.")
-
-  // Type 'AtParamEntry' could not be converted.
-
+const char * f2a_result = AiParamGetName(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetName")
 }
 
@@ -35,11 +31,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetType(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetType")
 
-
-  #pragma message("_fe_AiParamGetType is missing its implementation.")
-
-  // Type 'AtParamEntry' could not be converted.
-
+int f2a_result = AiParamGetType(f2apentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetType", )
 }
 
@@ -51,11 +43,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetDefault(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetDefault")
 
-
-  #pragma message("_fe_AiParamGetDefault is missing its implementation.")
-
-  // Type 'AtParamEntry' could not be converted.
-
+const AtParamValue * f2a_result = AiParamGetDefault(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetDefault")
 }
 
@@ -67,11 +55,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetEnum(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetEnum")
 
-
-  #pragma message("_fe_AiParamGetEnum is missing its implementation.")
-
-  // Type 'AtParamEntry' could not be converted.
-
+AtEnum f2a_result = AiParamGetEnum(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetEnum")
 }
 
@@ -88,9 +72,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetTypeName(
     setError("Error in _fe_AiParamGetTypeName. unable to convert: type");
     return;
   }
-  char* f2a_result = fe(f2aType);
-  char_to_String(f2a_result, _result);
-
+const char * f2a_result = AiParamGetTypeName(f2atype);
   F2A_CATCH_STATEMENT("_fe_AiParamGetTypeName")
 }
 
@@ -106,11 +88,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetTypeSize(
     setError("Error in _fe_AiParamGetTypeSize. unable to convert: type");
     return ;
   }
-  int f2a_result = fe(f2aType);
-  KL::SInt32 _result;
-  int_to_SInt32(f2a_result, _result);
-  return _result;
-
+AI_CONST int f2a_result = AiParamGetTypeSize(f2atype);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetTypeSize", )
 }
 
@@ -122,11 +100,7 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetName")
 
-
-  #pragma message("_fe_AiUserParamGetName is missing its implementation.")
-
-  // Type 'AtUserParamEntry' could not be converted.
-
+const char * f2a_result = AiUserParamGetName(f2aupentry);
   F2A_CATCH_STATEMENT("_fe_AiUserParamGetName")
 }
 
@@ -137,11 +111,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetType(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetType")
 
-
-  #pragma message("_fe_AiUserParamGetType is missing its implementation.")
-
-  // Type 'AtUserParamEntry' could not be converted.
-
+int f2a_result = AiUserParamGetType(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetType", )
 }
 
@@ -152,11 +122,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetArrayType(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetArrayType")
 
-
-  #pragma message("_fe_AiUserParamGetArrayType is missing its implementation.")
-
-  // Type 'AtUserParamEntry' could not be converted.
-
+int f2a_result = AiUserParamGetArrayType(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetArrayType", )
 }
 
@@ -167,11 +133,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetCategory(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetCategory")
 
-
-  #pragma message("_fe_AiUserParamGetCategory is missing its implementation.")
-
-  // Type 'AtUserParamEntry' could not be converted.
-
+int f2a_result = AiUserParamGetCategory(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetCategory", )
 }
 
@@ -182,11 +144,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetIndex(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetIndex")
 
-
-  #pragma message("_fe_AiUserParamGetIndex is missing its implementation.")
-
-  // Type 'AtUserParamEntry' could not be converted.
-
+AI_CONST int f2a_result = AiUserParamGetIndex(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetIndex", )
 }
 
@@ -220,8 +178,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
     setError("Error in _fe_AiNodeParamByte. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamByte(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamByte")
 }
@@ -256,8 +213,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
     setError("Error in _fe_AiNodeParamInt. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamInt(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamInt")
 }
@@ -292,8 +248,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
     setError("Error in _fe_AiNodeParamUInt. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamUInt(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamUInt")
 }
@@ -328,8 +283,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
     setError("Error in _fe_AiNodeParamBool. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamBool(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamBool")
 }
@@ -364,8 +318,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
     setError("Error in _fe_AiNodeParamFlt. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamFlt(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamFlt")
 }
@@ -412,8 +365,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
     setError("Error in _fe_AiNodeParamRGB. unable to convert: b");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aR, f2aG, f2aB);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamRGB(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamRGB")
 }
@@ -466,8 +418,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
     setError("Error in _fe_AiNodeParamRGBA. unable to convert: a");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aR, f2aG, f2aB, f2aA);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamRGBA(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab, f2aa);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamRGBA")
 }
@@ -514,8 +465,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
     setError("Error in _fe_AiNodeParamVec. unable to convert: z");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aX, f2aY, f2aZ);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamVec(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamVec")
 }
@@ -562,8 +512,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
     setError("Error in _fe_AiNodeParamPnt. unable to convert: z");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aX, f2aY, f2aZ);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamPnt(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPnt")
 }
@@ -604,8 +553,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
     setError("Error in _fe_AiNodeParamPnt2. unable to convert: y");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aX, f2aY);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamPnt2(f2aparams, f2avaroffset, f2apname, f2ax, f2ay);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPnt2")
 }
@@ -640,8 +588,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
     setError("Error in _fe_AiNodeParamStr. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamStr(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamStr")
 }
@@ -676,8 +623,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
     setError("Error in _fe_AiNodeParamPtr. unable to convert: pdefault");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamPtr(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
   AtList_to_Data(f2aPdefault, pdefault);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPtr")
@@ -708,11 +654,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
     setError("Error in _fe_AiNodeParamNode. unable to convert: pname");
     return;
   }
-
-  #pragma message("_fe_AiNodeParamNode is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  AtList_to_Data(f2aParams, params);
+AiNodeParamNode(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamNode")
 }
@@ -742,11 +684,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
     setError("Error in _fe_AiNodeParamArray. unable to convert: pname");
     return;
   }
-
-  #pragma message("_fe_AiNodeParamArray is missing its implementation.")
-
-  // Type 'AtArray' could not be converted.
-  AtList_to_Data(f2aParams, params);
+AiNodeParamArray(f2aparams, f2avaroffset, f2apname, f2apdefault);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamArray")
 }
@@ -781,8 +719,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
     setError("Error in _fe_AiNodeParamMtx. unable to convert: matrix");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aMatrix);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamMtx(f2aparams, f2avaroffset, f2apname, f2amatrix);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamMtx")
 }
@@ -823,8 +760,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamEnum(
     setError("Error in _fe_AiNodeParamEnum. unable to convert: enum_type");
     return;
   }
-  fe(f2aParams, f2aVaroffset, f2aPname, f2aPdefault, f2aEnum_type);
-  AtList_to_Data(f2aParams, params);
+AiNodeParamEnum(f2aparams, f2avaroffset, f2apname, f2apdefault, f2aenum_type);  AtList_to_Data(f2aParams, params);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamEnum")
 }
@@ -842,11 +778,7 @@ FABRIC_EXT_EXPORT void _fe_AiCameraInitialize(
     setError("Error in _fe_AiCameraInitialize. unable to convert: data");
     return;
   }
-
-  #pragma message("_fe_AiCameraInitialize is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  AtList_to_Data(f2aData, data);
+AiCameraInitialize(f2anode, f2adata);  AtList_to_Data(f2aData, data);
 
   F2A_CATCH_STATEMENT("_fe_AiCameraInitialize")
 }
@@ -864,11 +796,7 @@ FABRIC_EXT_EXPORT void _fe_AiCameraUpdate(
     setError("Error in _fe_AiCameraUpdate. unable to convert: plane_distance");
     return;
   }
-
-  #pragma message("_fe_AiCameraUpdate is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiCameraUpdate(f2anode, f2aplane_distance);
   F2A_CATCH_STATEMENT("_fe_AiCameraUpdate")
 }
 
@@ -879,11 +807,7 @@ FABRIC_EXT_EXPORT void _fe_AiCameraDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraDestroy")
 
-
-  #pragma message("_fe_AiCameraDestroy is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiCameraDestroy(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiCameraDestroy")
 }
 
@@ -894,11 +818,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiCameraGetLocalData(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraGetLocalData")
 
-
-  #pragma message("_fe_AiCameraGetLocalData is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+void * f2a_result = AiCameraGetLocalData(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiCameraGetLocalData", )
 }
 
@@ -932,11 +852,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSWrite(
     setError("Error in _fe_AiASSWrite. unable to convert: binary");
     return ;
   }
-  int f2a_result = fe(f2aFilename, f2aMask, f2aOpen_procs, f2aBinary);
-  KL::SInt32 _result;
-  int_to_SInt32(f2a_result, _result);
-  return _result;
-
+int f2a_result = AiASSWrite(f2afilename, f2amask/*=AI_NODE_ALL*/, f2aopen_procs/*=false*/, f2abinary/*=true*/);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiASSWrite", )
 }
 
@@ -958,11 +874,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSLoad(
     setError("Error in _fe_AiASSLoad. unable to convert: mask");
     return ;
   }
-  int f2a_result = fe(f2aFilename, f2aMask);
-  KL::SInt32 _result;
-  int_to_SInt32(f2a_result, _result);
-  return _result;
-
+int f2a_result = AiASSLoad(f2afilename, f2amask/*=AI_NODE_ALL*/);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiASSLoad", )
 }
 
@@ -984,11 +896,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiEnumGetValue(
     setError("Error in _fe_AiEnumGetValue. unable to convert: string");
     return ;
   }
-  int f2a_result = fe(f2aEnum_type, f2aString);
-  KL::SInt32 _result;
-  int_to_SInt32(f2a_result, _result);
-  return _result;
-
+int f2a_result = AiEnumGetValue(f2aenum_type, f2astring);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiEnumGetValue", )
 }
 
@@ -1011,9 +919,7 @@ FABRIC_EXT_EXPORT void _fe_AiEnumGetString(
     setError("Error in _fe_AiEnumGetString. unable to convert: index");
     return;
   }
-  char* f2a_result = fe(f2aEnum_type, f2aIndex);
-  char_to_String(f2a_result, _result);
-
+const char * f2a_result = AiEnumGetString(f2aenum_type, f2aindex);
   F2A_CATCH_STATEMENT("_fe_AiEnumGetString")
 }
 
@@ -1035,11 +941,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseSetServer(
     setError("Error in _fe_AiLicenseSetServer. unable to convert: port");
     return ;
   }
-  bool f2a_result = fe(f2aHost, f2aPort);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiLicenseSetServer(f2ahost, f2aport);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseSetServer", )
 }
 
@@ -1061,12 +963,8 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseGetServer(
     setError("Error in _fe_AiLicenseGetServer. unable to convert: port");
     return ;
   }
-  bool f2a_result = fe(f2aHost, f2aPort);
-  char_to_String(f2aHost, host);
+bool f2a_result = AiLicenseGetServer(f2ahost, f2aport);  char_to_String(f2aHost, host);
   AtUInt32_to_UInt32(f2aPort, port);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetServer", )
 }
@@ -1083,8 +981,7 @@ FABRIC_EXT_EXPORT void _fe_AiLicenseSetAttempts(
     setError("Error in _fe_AiLicenseSetAttempts. unable to convert: attempts");
     return;
   }
-  fe(f2aAttempts);
-
+AiLicenseSetAttempts(f2aattempts);
   F2A_CATCH_STATEMENT("_fe_AiLicenseSetAttempts")
 }
 
@@ -1094,11 +991,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiLicenseGetAttempts(
 {
   F2A_TRY_STATEMENT("_fe_AiLicenseGetAttempts")
 
-  AtUInt32 f2a_result = fe();
-  KL::UInt32 _result;
-  AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
-
+unsigned int f2a_result = AiLicenseGetAttempts();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetAttempts", )
 }
 
@@ -1114,8 +1007,7 @@ FABRIC_EXT_EXPORT void _fe_AiLicenseSetAttemptDelay(
     setError("Error in _fe_AiLicenseSetAttemptDelay. unable to convert: msecs");
     return;
   }
-  fe(f2aMsecs);
-
+AiLicenseSetAttemptDelay(f2amsecs);
   F2A_CATCH_STATEMENT("_fe_AiLicenseSetAttemptDelay")
 }
 
@@ -1125,11 +1017,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiLicenseGetAttemptDelay(
 {
   F2A_TRY_STATEMENT("_fe_AiLicenseGetAttemptDelay")
 
-  AtUInt32 f2a_result = fe();
-  KL::UInt32 _result;
-  AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
-
+unsigned int f2a_result = AiLicenseGetAttemptDelay();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetAttemptDelay", )
 }
 
@@ -1146,11 +1034,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiLicenseGetInfo(
     setError("Error in _fe_AiLicenseGetInfo. unable to convert: n");
     return ;
   }
-
-  #pragma message("_fe_AiLicenseGetInfo is missing its implementation.")
-
-  // Type 'AtLicenseInfo' could not be converted.
-  AtUInt32_to_UInt32(f2aN, n);
+int f2a_result = AiLicenseGetInfo(f2alicenses, f2an);  AtUInt32_to_UInt32(f2aN, n);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetInfo", )
 }
@@ -1180,11 +1064,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBool(
     setError("Error in _fe_AiMetaDataSetBool. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetBool is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetBool(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetBool")
 }
 
@@ -1213,11 +1093,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBoolAtString(
     setError("Error in _fe_AiMetaDataSetBoolAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetBoolAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetBoolAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetBoolAtString")
 }
 
@@ -1246,11 +1122,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetInt(
     setError("Error in _fe_AiMetaDataSetInt. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetInt is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetInt(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetInt")
 }
 
@@ -1279,11 +1151,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetIntAtString(
     setError("Error in _fe_AiMetaDataSetIntAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetIntAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetIntAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetIntAtString")
 }
 
@@ -1312,11 +1180,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFlt(
     setError("Error in _fe_AiMetaDataSetFlt. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetFlt is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetFlt(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetFlt")
 }
 
@@ -1345,11 +1209,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFltAtString(
     setError("Error in _fe_AiMetaDataSetFltAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetFltAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetFltAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetFltAtString")
 }
 
@@ -1378,11 +1238,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGB(
     setError("Error in _fe_AiMetaDataSetRGB. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetRGB is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetRGB(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetRGB")
 }
 
@@ -1411,11 +1267,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGBAtString(
     setError("Error in _fe_AiMetaDataSetRGBAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetRGBAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetRGBAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetRGBAtString")
 }
 
@@ -1444,11 +1296,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVec(
     setError("Error in _fe_AiMetaDataSetVec. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetVec is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetVec(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetVec")
 }
 
@@ -1477,11 +1325,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVecAtString(
     setError("Error in _fe_AiMetaDataSetVecAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetVecAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetVecAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetVecAtString")
 }
 
@@ -1510,11 +1354,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt(
     setError("Error in _fe_AiMetaDataSetPnt. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetPnt is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetPnt(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt")
 }
 
@@ -1543,11 +1383,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPntAtString(
     setError("Error in _fe_AiMetaDataSetPntAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetPntAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetPntAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPntAtString")
 }
 
@@ -1576,11 +1412,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2(
     setError("Error in _fe_AiMetaDataSetPnt2. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetPnt2 is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetPnt2(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt2")
 }
 
@@ -1609,11 +1441,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2AtString(
     setError("Error in _fe_AiMetaDataSetPnt2AtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetPnt2AtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetPnt2AtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt2AtString")
 }
 
@@ -1642,11 +1470,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStr(
     setError("Error in _fe_AiMetaDataSetStr. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetStr is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetStr(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetStr")
 }
 
@@ -1675,11 +1499,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStrAtString(
     setError("Error in _fe_AiMetaDataSetStrAtString. unable to convert: value");
     return;
   }
-
-  #pragma message("_fe_AiMetaDataSetStrAtString is missing its implementation.")
-
-  // Type 'AtMetaDataStore' could not be converted.
-
+AiMetaDataSetStrAtString(f2amds, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetStrAtString")
 }
 
@@ -1708,11 +1528,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetBoolAtString(
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetBoolAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  bool_to_Boolean(f2aValue, value);
+bool f2a_result = AiMetaDataGetBoolAtString(f2aentry, f2aparam, f2aname, f2avalue);  bool_to_Boolean(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetBoolAtString", )
 }
@@ -1742,11 +1558,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetIntAtString(
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetIntAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  int_to_SInt32(f2aValue, value);
+bool f2a_result = AiMetaDataGetIntAtString(f2aentry, f2aparam, f2aname, f2avalue);  int_to_SInt32(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetIntAtString", )
 }
@@ -1776,11 +1588,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetFltAtString(
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetFltAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  float_to_Float32(f2aValue, value);
+bool f2a_result = AiMetaDataGetFltAtString(f2aentry, f2aparam, f2aname, f2avalue);  float_to_Float32(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetFltAtString", )
 }
@@ -1810,11 +1618,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetRGBAtString(
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetRGBAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  AtPoint_to_Vec3(f2aValue, value);
+bool f2a_result = AiMetaDataGetRGBAtString(f2aentry, f2aparam, f2aname, f2avalue);  AtPoint_to_Vec3(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetRGBAtString", )
 }
@@ -1844,11 +1648,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetVecAtString(
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetVecAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  AtPoint_to_Vec3(f2aValue, value);
+bool f2a_result = AiMetaDataGetVecAtString(f2aentry, f2aparam, f2aname, f2avalue);  AtPoint_to_Vec3(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetVecAtString", )
 }
@@ -1878,11 +1678,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPntAtString(
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetPntAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  AtPoint_to_Vec3(f2aValue, value);
+bool f2a_result = AiMetaDataGetPntAtString(f2aentry, f2aparam, f2aname, f2avalue);  AtPoint_to_Vec3(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetPntAtString", )
 }
@@ -1912,11 +1708,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPnt2AtString(
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetPnt2AtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-  AtPoint2_to_Vec2(f2aValue, value);
+bool f2a_result = AiMetaDataGetPnt2AtString(f2aentry, f2aparam, f2aname, f2avalue);  AtPoint2_to_Vec2(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetPnt2AtString", )
 }
@@ -1946,11 +1738,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: value");
     return ;
   }
-
-  #pragma message("_fe_AiMetaDataGetStrAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+bool f2a_result = AiMetaDataGetStrAtString(f2aentry, f2aparam, f2aname, f2avalue);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetStrAtString", )
 }
 
@@ -1966,11 +1754,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataLoadFile(
     setError("Error in _fe_AiMetaDataLoadFile. unable to convert: filename");
     return ;
   }
-  bool f2a_result = fe(f2aFilename);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiMetaDataLoadFile(f2afilename);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataLoadFile", )
 }
 
@@ -1986,8 +1770,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgSetLogFileName(
     setError("Error in _fe_AiMsgSetLogFileName. unable to convert: filename");
     return;
   }
-  fe(f2aFilename);
-
+AiMsgSetLogFileName(f2afilename);
   F2A_CATCH_STATEMENT("_fe_AiMsgSetLogFileName")
 }
 
@@ -2003,8 +1786,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgSetLogFileFlags(
     setError("Error in _fe_AiMsgSetLogFileFlags. unable to convert: flags");
     return;
   }
-  fe(f2aFlags);
-
+AiMsgSetLogFileFlags(f2aflags);
   F2A_CATCH_STATEMENT("_fe_AiMsgSetLogFileFlags")
 }
 
@@ -2020,8 +1802,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgSetConsoleFlags(
     setError("Error in _fe_AiMsgSetConsoleFlags. unable to convert: flags");
     return;
   }
-  fe(f2aFlags);
-
+AiMsgSetConsoleFlags(f2aflags);
   F2A_CATCH_STATEMENT("_fe_AiMsgSetConsoleFlags")
 }
 
@@ -2037,8 +1818,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgSetMaxWarnings(
     setError("Error in _fe_AiMsgSetMaxWarnings. unable to convert: max_warnings");
     return;
   }
-  fe(f2aMax_warnings);
-
+AiMsgSetMaxWarnings(f2amax_warnings);
   F2A_CATCH_STATEMENT("_fe_AiMsgSetMaxWarnings")
 }
 
@@ -2048,8 +1828,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgResetCallback(
 {
   F2A_TRY_STATEMENT("_fe_AiMsgResetCallback")
 
-  fe();
-
+AiMsgResetCallback();
   F2A_CATCH_STATEMENT("_fe_AiMsgResetCallback")
 }
 
@@ -2065,8 +1844,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgInfo(
     setError("Error in _fe_AiMsgInfo. unable to convert: format");
     return;
   }
-  fe(f2aFormat);
-
+AiMsgInfo(f2aformat);
   F2A_CATCH_STATEMENT("_fe_AiMsgInfo")
 }
 
@@ -2082,8 +1860,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgDebug(
     setError("Error in _fe_AiMsgDebug. unable to convert: format");
     return;
   }
-  fe(f2aFormat);
-
+AiMsgDebug(f2aformat);
   F2A_CATCH_STATEMENT("_fe_AiMsgDebug")
 }
 
@@ -2099,8 +1876,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgWarning(
     setError("Error in _fe_AiMsgWarning. unable to convert: format");
     return;
   }
-  fe(f2aFormat);
-
+AiMsgWarning(f2aformat);
   F2A_CATCH_STATEMENT("_fe_AiMsgWarning")
 }
 
@@ -2116,8 +1892,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgError(
     setError("Error in _fe_AiMsgError. unable to convert: format");
     return;
   }
-  fe(f2aFormat);
-
+AiMsgError(f2aformat);
   F2A_CATCH_STATEMENT("_fe_AiMsgError")
 }
 
@@ -2133,8 +1908,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgFatal(
     setError("Error in _fe_AiMsgFatal. unable to convert: format");
     return;
   }
-  fe(f2aFormat);
-
+AiMsgFatal(f2aformat);
   F2A_CATCH_STATEMENT("_fe_AiMsgFatal")
 }
 
@@ -2150,8 +1924,7 @@ FABRIC_EXT_EXPORT void _fe_AiMsgTab(
     setError("Error in _fe_AiMsgTab. unable to convert: tabinc");
     return;
   }
-  fe(f2aTabinc);
-
+AiMsgTab(f2atabinc);
   F2A_CATCH_STATEMENT("_fe_AiMsgTab")
 }
 
@@ -2161,11 +1934,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt64 _fe_AiMsgUtilGetUsedMemory(
 {
   F2A_TRY_STATEMENT("_fe_AiMsgUtilGetUsedMemory")
 
-  AtUInt64 f2a_result = fe();
-  KL::UInt64 _result;
-  AtUInt64_to_UInt64(f2a_result, _result);
-  return _result;
-
+AtUInt64 f2a_result = AiMsgUtilGetUsedMemory();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMsgUtilGetUsedMemory", )
 }
 
@@ -2175,11 +1944,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiMsgUtilGetElapsedTime(
 {
   F2A_TRY_STATEMENT("_fe_AiMsgUtilGetElapsedTime")
 
-  AtUInt32 f2a_result = fe();
-  KL::UInt32 _result;
-  AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
-
+AtUInt32 f2a_result = AiMsgUtilGetElapsedTime();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMsgUtilGetElapsedTime", )
 }
 
@@ -2196,12 +1961,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryLookUpAtString(
     setError("Error in _fe_AiNodeEntryLookUpAtString. unable to convert: name");
     return;
   }
-  f2a_result = fe(f2aName);
-
-  #pragma message("_fe_AiNodeEntryLookUpAtString is missing its implementation.")
-
-  // ReturnType 'AtNodeEntry' could not be conveted.
-
+const AtNodeEntry * f2a_result = AiNodeEntryLookUpAtString(f2aname);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryLookUpAtString")
 }
 
@@ -2213,11 +1973,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetName")
 
-
-  #pragma message("_fe_AiNodeEntryGetName is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const char * f2a_result = AiNodeEntryGetName(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetName")
 }
 
@@ -2228,11 +1984,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetType(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetType")
 
-
-  #pragma message("_fe_AiNodeEntryGetType is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+int f2a_result = AiNodeEntryGetType(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetType", )
 }
 
@@ -2244,11 +1996,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetTypeName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetTypeName")
 
-
-  #pragma message("_fe_AiNodeEntryGetTypeName is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const char * f2a_result = AiNodeEntryGetTypeName(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetTypeName")
 }
 
@@ -2259,11 +2007,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetOutputType(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetOutputType")
 
-
-  #pragma message("_fe_AiNodeEntryGetOutputType is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+int f2a_result = AiNodeEntryGetOutputType(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetOutputType", )
 }
 
@@ -2275,11 +2019,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetFilename(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetFilename")
 
-
-  #pragma message("_fe_AiNodeEntryGetFilename is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const char * f2a_result = AiNodeEntryGetFilename(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetFilename")
 }
 
@@ -2291,11 +2031,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetVersion(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetVersion")
 
-
-  #pragma message("_fe_AiNodeEntryGetVersion is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const char * f2a_result = AiNodeEntryGetVersion(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetVersion")
 }
 
@@ -2306,11 +2042,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetCount(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetCount")
 
-
-  #pragma message("_fe_AiNodeEntryGetCount is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+int f2a_result = AiNodeEntryGetCount(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetCount", )
 }
 
@@ -2321,11 +2053,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetNumParams(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetNumParams")
 
-
-  #pragma message("_fe_AiNodeEntryGetNumParams is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+int f2a_result = AiNodeEntryGetNumParams(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetNumParams", )
 }
 
@@ -2343,11 +2071,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetParameter(
     setError("Error in _fe_AiNodeEntryGetParameter. unable to convert: i");
     return;
   }
-
-  #pragma message("_fe_AiNodeEntryGetParameter is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const AtParamEntry * f2a_result = AiNodeEntryGetParameter(f2anentry, f2ai);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetParameter")
 }
 
@@ -2365,11 +2089,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryLookUpParameterAtString(
     setError("Error in _fe_AiNodeEntryLookUpParameterAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeEntryLookUpParameterAtString is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+const AtParamEntry * f2a_result = AiNodeEntryLookUpParameterAtString(f2anentry, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryLookUpParameterAtString")
 }
 
@@ -2381,11 +2101,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetParamIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetParamIterator")
 
-
-  #pragma message("_fe_AiNodeEntryGetParamIterator is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+AtParamIterator * f2a_result = AiNodeEntryGetParamIterator(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetParamIterator")
 }
 
@@ -2403,11 +2119,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetMetaDataIterator(
     setError("Error in _fe_AiNodeEntryGetMetaDataIterator. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeEntryGetMetaDataIterator is missing its implementation.")
-
-  // Type 'AtNodeEntry' could not be converted.
-
+AtMetaDataIterator * f2a_result = AiNodeEntryGetMetaDataIterator(f2anentry, f2aparam/*=NULL*/);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetMetaDataIterator")
 }
 
@@ -2448,11 +2160,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryInstall(
     setError("Error in _fe_AiNodeEntryInstall. unable to convert: version");
     return;
   }
-
-  #pragma message("_fe_AiNodeEntryInstall is missing its implementation.")
-
-  // Type 'AtNodeMethods' could not be converted.
-
+AiNodeEntryInstall(f2atype, f2aoutput_type, f2aname, f2afilename, f2amethods, f2aversion);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryInstall")
 }
 
@@ -2468,8 +2176,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryUninstall(
     setError("Error in _fe_AiNodeEntryUninstall. unable to convert: name");
     return;
   }
-  fe(f2aName);
-
+AiNodeEntryUninstall(f2aname);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryUninstall")
 }
 
@@ -2480,11 +2187,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorDestroy")
 
-
-  #pragma message("_fe_AiParamIteratorDestroy is missing its implementation.")
-
-  // Type 'AtParamIterator' could not be converted.
-
+AiParamIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiParamIteratorDestroy")
 }
 
@@ -2496,11 +2199,7 @@ FABRIC_EXT_EXPORT void _fe_AiParamIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorGetNext")
 
-
-  #pragma message("_fe_AiParamIteratorGetNext is missing its implementation.")
-
-  // Type 'AtParamIterator' could not be converted.
-
+const AtParamEntry * f2a_result = AiParamIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiParamIteratorGetNext")
 }
 
@@ -2511,11 +2210,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiParamIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorFinished")
 
-
-  #pragma message("_fe_AiParamIteratorFinished is missing its implementation.")
-
-  // Type 'AtParamIterator' could not be converted.
-
+bool f2a_result = AiParamIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamIteratorFinished", )
 }
 
@@ -2526,11 +2221,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorDestroy")
 
-
-  #pragma message("_fe_AiMetaDataIteratorDestroy is missing its implementation.")
-
-  // Type 'AtMetaDataIterator' could not be converted.
-
+AiMetaDataIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataIteratorDestroy")
 }
 
@@ -2542,11 +2233,7 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorGetNext")
 
-
-  #pragma message("_fe_AiMetaDataIteratorGetNext is missing its implementation.")
-
-  // Type 'AtMetaDataIterator' could not be converted.
-
+const AtMetaDataEntry * f2a_result = AiMetaDataIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiMetaDataIteratorGetNext")
 }
 
@@ -2557,11 +2244,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorFinished")
 
-
-  #pragma message("_fe_AiMetaDataIteratorFinished is missing its implementation.")
-
-  // Type 'AtMetaDataIterator' could not be converted.
-
+bool f2a_result = AiMetaDataIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataIteratorFinished", )
 }
 
@@ -2578,12 +2261,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeAtString(
     setError("Error in _fe_AiNodeAtString. unable to convert: name");
     return;
   }
-  f2a_result = fe(f2aName);
-
-  #pragma message("_fe_AiNodeAtString is missing its implementation.")
-
-  // ReturnType 'AtNode' could not be conveted.
-
+AtNode * f2a_result = AiNodeAtString(f2aname);
   F2A_CATCH_STATEMENT("_fe_AiNodeAtString")
 }
 
@@ -2600,12 +2278,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeLookUpByNameAtString(
     setError("Error in _fe_AiNodeLookUpByNameAtString. unable to convert: name");
     return;
   }
-  f2a_result = fe(f2aName);
-
-  #pragma message("_fe_AiNodeLookUpByNameAtString is missing its implementation.")
-
-  // ReturnType 'AtNode' could not be conveted.
-
+AtNode * f2a_result = AiNodeLookUpByNameAtString(f2aname);
   F2A_CATCH_STATEMENT("_fe_AiNodeLookUpByNameAtString")
 }
 
@@ -2616,11 +2289,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeReset(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeReset")
 
-
-  #pragma message("_fe_AiNodeReset is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeReset(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeReset")
 }
 
@@ -2637,11 +2306,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeResetParameter(
     setError("Error in _fe_AiNodeResetParameter. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeResetParameter is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeResetParameter(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeResetParameter")
 }
 
@@ -2653,11 +2318,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeClone(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeClone")
 
-
-  #pragma message("_fe_AiNodeClone is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtNode * f2a_result = AiNodeClone(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeClone")
 }
 
@@ -2668,11 +2329,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeDestroy")
 
-
-  #pragma message("_fe_AiNodeDestroy is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeDestroy(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDestroy", )
 }
 
@@ -2689,11 +2346,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIs(
     setError("Error in _fe_AiNodeIs. unable to convert: str");
     return ;
   }
-
-  #pragma message("_fe_AiNodeIs is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeIs(f2anode, f2astr);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIs", )
 }
 
@@ -2716,11 +2369,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDeclareAtString(
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: declaration");
     return ;
   }
-
-  #pragma message("_fe_AiNodeDeclareAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeDeclareAtString(f2anode, f2aparam, f2adeclaration);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDeclareAtString", )
 }
 
@@ -2738,12 +2387,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLink(
     setError("Error in _fe_AiNodeLink. unable to convert: input");
     return ;
   }
-
-  #pragma message("_fe_AiNodeLink is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeLink(f2asrc, f2ainput, f2atarget);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLink", )
 }
 
@@ -2767,12 +2411,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLinkOutput(
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: input");
     return ;
   }
-
-  #pragma message("_fe_AiNodeLinkOutput is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeLinkOutput(f2asrc, f2aoutput, f2atarget, f2ainput);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLinkOutput", )
 }
 
@@ -2789,11 +2428,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeUnlink(
     setError("Error in _fe_AiNodeUnlink. unable to convert: input");
     return ;
   }
-
-  #pragma message("_fe_AiNodeUnlink is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeUnlink(f2anode, f2ainput);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeUnlink", )
 }
 
@@ -2810,11 +2445,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsLinked(
     setError("Error in _fe_AiNodeIsLinked. unable to convert: input");
     return ;
   }
-
-  #pragma message("_fe_AiNodeIsLinked is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeIsLinked(f2anode, f2ainput);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIsLinked", )
 }
 
@@ -2838,11 +2469,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetLink(
     setError("Error in _fe_AiNodeGetLink. unable to convert: comp");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetLink is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  int_to_SInt32(f2aComp, comp);
+AtNode * f2a_result = AiNodeGetLink(f2anode, f2ainput, f2acomp/*=NULL*/);  int_to_SInt32(f2aComp, comp);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeGetLink")
 }
@@ -2855,11 +2482,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetName")
 
-
-  #pragma message("_fe_AiNodeGetName is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+const char * f2a_result = AiNodeGetName(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetName")
 }
 
@@ -2871,11 +2494,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetNodeEntry(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetNodeEntry")
 
-
-  #pragma message("_fe_AiNodeGetNodeEntry is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+const AtNodeEntry * f2a_result = AiNodeGetNodeEntry(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetNodeEntry")
 }
 
@@ -2887,11 +2506,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetParams(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetParams")
 
-
-  #pragma message("_fe_AiNodeGetParams is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtParamValue * f2a_result = AiNodeGetParams(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetParams")
 }
 
@@ -2902,11 +2517,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetLocalData(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetLocalData")
 
-
-  #pragma message("_fe_AiNodeGetLocalData is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+void * f2a_result = AiNodeGetLocalData(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetLocalData", )
 }
 
@@ -2923,11 +2534,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetLocalData(
     setError("Error in _fe_AiNodeSetLocalData. unable to convert: data");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetLocalData is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  AtList_to_Data(f2aData, data);
+AiNodeSetLocalData(f2anode, f2adata);  AtList_to_Data(f2aData, data);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeSetLocalData")
 }
@@ -2945,11 +2552,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetDisabled(
     setError("Error in _fe_AiNodeSetDisabled. unable to convert: disabled");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetDisabled is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetDisabled(f2anode, f2adisabled);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetDisabled")
 }
 
@@ -2960,11 +2563,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsDisabled(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIsDisabled")
 
-
-  #pragma message("_fe_AiNodeIsDisabled is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeIsDisabled(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIsDisabled", )
 }
 
@@ -2982,11 +2581,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeLookUpUserParameterAtString(
     setError("Error in _fe_AiNodeLookUpUserParameterAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeLookUpUserParameterAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+const AtUserParamEntry * f2a_result = AiNodeLookUpUserParameterAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeLookUpUserParameterAtString")
 }
 
@@ -2998,11 +2593,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetUserParamIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetUserParamIterator")
 
-
-  #pragma message("_fe_AiNodeGetUserParamIterator is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtUserParamIterator * f2a_result = AiNodeGetUserParamIterator(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetUserParamIterator")
 }
 
@@ -3013,11 +2604,7 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorDestroy")
 
-
-  #pragma message("_fe_AiUserParamIteratorDestroy is missing its implementation.")
-
-  // Type 'AtUserParamIterator' could not be converted.
-
+AiUserParamIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiUserParamIteratorDestroy")
 }
 
@@ -3029,11 +2616,7 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorGetNext")
 
-
-  #pragma message("_fe_AiUserParamIteratorGetNext is missing its implementation.")
-
-  // Type 'AtUserParamIterator' could not be converted.
-
+const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiUserParamIteratorGetNext")
 }
 
@@ -3044,11 +2627,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUserParamIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorFinished")
 
-
-  #pragma message("_fe_AiUserParamIteratorFinished is missing its implementation.")
-
-  // Type 'AtUserParamIterator' could not be converted.
-
+bool f2a_result = AiUserParamIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamIteratorFinished", )
 }
 
@@ -3071,11 +2650,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetByteAtString(
     setError("Error in _fe_AiNodeSetByteAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetByteAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetByteAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetByteAtString")
 }
 
@@ -3098,11 +2673,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetIntAtString(
     setError("Error in _fe_AiNodeSetIntAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetIntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetIntAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetIntAtString")
 }
 
@@ -3125,11 +2696,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetUIntAtString(
     setError("Error in _fe_AiNodeSetUIntAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetUIntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetUIntAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetUIntAtString")
 }
 
@@ -3152,11 +2719,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetBoolAtString(
     setError("Error in _fe_AiNodeSetBoolAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetBoolAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetBoolAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetBoolAtString")
 }
 
@@ -3179,11 +2742,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetFltAtString(
     setError("Error in _fe_AiNodeSetFltAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetFltAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetFltAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetFltAtString")
 }
 
@@ -3206,11 +2765,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPtrAtString(
     setError("Error in _fe_AiNodeSetPtrAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetPtrAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  AtList_to_Data(f2aVal, val);
+AiNodeSetPtrAtString(f2anode, f2aparam, f2aval);  AtList_to_Data(f2aVal, val);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPtrAtString")
 }
@@ -3229,12 +2784,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetArrayAtString(
     setError("Error in _fe_AiNodeSetArrayAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetArrayAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-  // Type 'AtArray' could not be converted.
-
+AiNodeSetArrayAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetArrayAtString")
 }
 
@@ -3257,11 +2807,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetMatrixAtString(
     setError("Error in _fe_AiNodeSetMatrixAtString. unable to convert: val");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetMatrixAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetMatrixAtString(f2anode, f2aparam, f2aval);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetMatrixAtString")
 }
 
@@ -3284,11 +2830,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetStrAtString(
     setError("Error in _fe_AiNodeSetStrAtString. unable to convert: str");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetStrAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetStrAtString(f2anode, f2aparam, f2astr);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetStrAtString")
 }
 
@@ -3323,11 +2865,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAtString(
     setError("Error in _fe_AiNodeSetRGBAtString. unable to convert: b");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetRGBAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetRGBAtString(f2anode, f2aparam, f2ar, f2ag, f2ab);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetRGBAtString")
 }
 
@@ -3368,11 +2906,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAAtString(
     setError("Error in _fe_AiNodeSetRGBAAtString. unable to convert: a");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetRGBAAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetRGBAAtString(f2anode, f2aparam, f2ar, f2ag, f2ab, f2aa);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetRGBAAtString")
 }
 
@@ -3407,11 +2941,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetVecAtString(
     setError("Error in _fe_AiNodeSetVecAtString. unable to convert: z");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetVecAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetVecAtString(f2anode, f2aparam, f2ax, f2ay, f2az);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetVecAtString")
 }
 
@@ -3446,11 +2976,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPntAtString(
     setError("Error in _fe_AiNodeSetPntAtString. unable to convert: z");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetPntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetPntAtString(f2anode, f2aparam, f2ax, f2ay, f2az);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPntAtString")
 }
 
@@ -3479,11 +3005,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPnt2AtString(
     setError("Error in _fe_AiNodeSetPnt2AtString. unable to convert: y");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetPnt2AtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetPnt2AtString(f2anode, f2aparam, f2ax, f2ay);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPnt2AtString")
 }
 
@@ -3500,11 +3022,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetAttributes(
     setError("Error in _fe_AiNodeSetAttributes. unable to convert: attributes");
     return;
   }
-
-  #pragma message("_fe_AiNodeSetAttributes is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeSetAttributes(f2anode, f2aattributes);
   F2A_CATCH_STATEMENT("_fe_AiNodeSetAttributes")
 }
 
@@ -3521,11 +3039,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiNodeGetByteAtString(
     setError("Error in _fe_AiNodeGetByteAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetByteAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtByte f2a_result = AiNodeGetByteAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetByteAtString", )
 }
 
@@ -3542,11 +3056,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeGetIntAtString(
     setError("Error in _fe_AiNodeGetIntAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetIntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+int f2a_result = AiNodeGetIntAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetIntAtString", )
 }
 
@@ -3563,11 +3073,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiNodeGetUIntAtString(
     setError("Error in _fe_AiNodeGetUIntAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetUIntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+unsigned int f2a_result = AiNodeGetUIntAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetUIntAtString", )
 }
 
@@ -3584,11 +3090,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeGetBoolAtString(
     setError("Error in _fe_AiNodeGetBoolAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetBoolAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+bool f2a_result = AiNodeGetBoolAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetBoolAtString", )
 }
 
@@ -3605,11 +3107,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiNodeGetFltAtString(
     setError("Error in _fe_AiNodeGetFltAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetFltAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+float f2a_result = AiNodeGetFltAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetFltAtString", )
 }
 
@@ -3627,11 +3125,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetRGBAtString(
     setError("Error in _fe_AiNodeGetRGBAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetRGBAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtRGB f2a_result = AiNodeGetRGBAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetRGBAtString")
 }
 
@@ -3649,11 +3143,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetRGBAAtString(
     setError("Error in _fe_AiNodeGetRGBAAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetRGBAAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtRGBA f2a_result = AiNodeGetRGBAAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetRGBAAtString")
 }
 
@@ -3671,11 +3161,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetVecAtString(
     setError("Error in _fe_AiNodeGetVecAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetVecAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtVector f2a_result = AiNodeGetVecAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetVecAtString")
 }
 
@@ -3693,11 +3179,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetPntAtString(
     setError("Error in _fe_AiNodeGetPntAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetPntAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtPoint f2a_result = AiNodeGetPntAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetPntAtString")
 }
 
@@ -3715,11 +3197,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetPnt2AtString(
     setError("Error in _fe_AiNodeGetPnt2AtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetPnt2AtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtPoint2 f2a_result = AiNodeGetPnt2AtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetPnt2AtString")
 }
 
@@ -3736,11 +3214,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetPtrAtString(
     setError("Error in _fe_AiNodeGetPtrAtString. unable to convert: param");
     return ;
   }
-
-  #pragma message("_fe_AiNodeGetPtrAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+void * f2a_result = AiNodeGetPtrAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetPtrAtString", )
 }
 
@@ -3758,11 +3232,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetArrayAtString(
     setError("Error in _fe_AiNodeGetArrayAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetArrayAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtArray * f2a_result = AiNodeGetArrayAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetArrayAtString")
 }
 
@@ -3780,11 +3250,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetStrAtString(
     setError("Error in _fe_AiNodeGetStrAtString. unable to convert: param");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetStrAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AtString f2a_result = AiNodeGetStrAtString(f2anode, f2aparam);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetStrAtString")
 }
 
@@ -3807,11 +3273,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetMatrixAtString(
     setError("Error in _fe_AiNodeGetMatrixAtString. unable to convert: matrix");
     return;
   }
-
-  #pragma message("_fe_AiNodeGetMatrixAtString is missing its implementation.")
-
-  // Type 'AtNode' could not be converted.
-
+AiNodeGetMatrixAtString(f2anode, f2aparam, f2amatrix);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetMatrixAtString")
 }
 
@@ -3821,8 +3283,7 @@ FABRIC_EXT_EXPORT void _fe_AiBegin(
 {
   F2A_TRY_STATEMENT("_fe_AiBegin")
 
-  fe();
-
+AiBegin();
   F2A_CATCH_STATEMENT("_fe_AiBegin")
 }
 
@@ -3832,8 +3293,7 @@ FABRIC_EXT_EXPORT void _fe_AiEnd(
 {
   F2A_TRY_STATEMENT("_fe_AiEnd")
 
-  fe();
-
+AiEnd();
   F2A_CATCH_STATEMENT("_fe_AiEnd")
 }
 
@@ -3849,11 +3309,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiRender(
     setError("Error in _fe_AiRender. unable to convert: mode");
     return ;
   }
-  int f2a_result = fe(f2aMode);
-  KL::SInt32 _result;
-  int_to_SInt32(f2a_result, _result);
-  return _result;
-
+int f2a_result = AiRender(f2amode/*=AI_RENDER_MODE_CAMERA*/);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRender", )
 }
 
@@ -3863,8 +3319,7 @@ FABRIC_EXT_EXPORT void _fe_AiRenderAbort(
 {
   F2A_TRY_STATEMENT("_fe_AiRenderAbort")
 
-  fe();
-
+AiRenderAbort();
   F2A_CATCH_STATEMENT("_fe_AiRenderAbort")
 }
 
@@ -3874,8 +3329,7 @@ FABRIC_EXT_EXPORT void _fe_AiRenderInterrupt(
 {
   F2A_TRY_STATEMENT("_fe_AiRenderInterrupt")
 
-  fe();
-
+AiRenderInterrupt();
   F2A_CATCH_STATEMENT("_fe_AiRenderInterrupt")
 }
 
@@ -3885,11 +3339,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRendering(
 {
   F2A_TRY_STATEMENT("_fe_AiRendering")
 
-  bool f2a_result = fe();
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiRendering();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRendering", )
 }
 
@@ -3905,8 +3355,7 @@ FABRIC_EXT_EXPORT void _fe_AiLoadPlugins(
     setError("Error in _fe_AiLoadPlugins. unable to convert: directory");
     return;
   }
-  fe(f2aDirectory);
-
+AiLoadPlugins(f2adirectory);
   F2A_CATCH_STATEMENT("_fe_AiLoadPlugins")
 }
 
@@ -3922,8 +3371,7 @@ FABRIC_EXT_EXPORT void _fe_AiLoadPlugin(
     setError("Error in _fe_AiLoadPlugin. unable to convert: path");
     return;
   }
-  fe(f2aPath);
-
+AiLoadPlugin(f2apath);
   F2A_CATCH_STATEMENT("_fe_AiLoadPlugin")
 }
 
@@ -3959,12 +3407,7 @@ FABRIC_EXT_EXPORT void _fe_AiMakeRay(
     setError("Error in _fe_AiMakeRay. unable to convert: maxdist");
     return;
   }
-
-  #pragma message("_fe_AiMakeRay is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtShaderGlobals' could not be converted.
-
+AiMakeRay(f2aray, f2atype, f2aorigin, f2adir, f2amaxdist, f2asg);
   F2A_CATCH_STATEMENT("_fe_AiMakeRay")
 }
 
@@ -3982,12 +3425,7 @@ FABRIC_EXT_EXPORT void _fe_AiReflectRay(
     setError("Error in _fe_AiReflectRay. unable to convert: normal");
     return;
   }
-
-  #pragma message("_fe_AiReflectRay is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtShaderGlobals' could not be converted.
-
+AiReflectRay(f2aray, f2anormal, f2asg);
   F2A_CATCH_STATEMENT("_fe_AiReflectRay")
 }
 
@@ -4017,12 +3455,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
     setError("Error in _fe_AiRefractRay. unable to convert: n2");
     return ;
   }
-
-  #pragma message("_fe_AiRefractRay is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtShaderGlobals' could not be converted.
-
+bool f2a_result = AiRefractRay(f2aray, f2anormal, f2an1, f2an2, f2asg);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRefractRay", )
 }
 
@@ -4034,12 +3467,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
 {
   F2A_TRY_STATEMENT("_fe_AiTrace")
 
-
-  #pragma message("_fe_AiTrace is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtScrSample' could not be converted.
-
+bool f2a_result = AiTrace(f2aray, f2asample);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTrace", )
 }
 
@@ -4051,12 +3479,7 @@ FABRIC_EXT_EXPORT void _fe_AiTraceBackground(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceBackground")
 
-
-  #pragma message("_fe_AiTraceBackground is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtScrSample' could not be converted.
-
+AiTraceBackground(f2aray, f2asample);
   F2A_CATCH_STATEMENT("_fe_AiTraceBackground")
 }
 
@@ -4068,12 +3491,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceProbe")
 
-
-  #pragma message("_fe_AiTraceProbe is missing its implementation.")
-
-  // Type 'AtRay' could not be converted.
-  // Type 'AtShaderGlobals' could not be converted.
-
+bool f2a_result = AiTraceProbe(f2aray, f2asgout);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTraceProbe", )
 }
 
@@ -4084,11 +3502,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureParamsSetDefaults(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureParamsSetDefaults")
 
-
-  #pragma message("_fe_AiTextureParamsSetDefaults is missing its implementation.")
-
-  // Type 'AtTextureParams' could not be converted.
-
+AiTextureParamsSetDefaults(f2aparams);
   F2A_CATCH_STATEMENT("_fe_AiTextureParamsSetDefaults")
 }
 
@@ -4105,12 +3519,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleCreate(
     setError("Error in _fe_AiTextureHandleCreate. unable to convert: filename");
     return;
   }
-  f2a_result = fe(f2aFilename);
-
-  #pragma message("_fe_AiTextureHandleCreate is missing its implementation.")
-
-  // ReturnType 'AtTextureHandle' could not be conveted.
-
+AtTextureHandle * f2a_result = AiTextureHandleCreate(f2afilename);
   F2A_CATCH_STATEMENT("_fe_AiTextureHandleCreate")
 }
 
@@ -4130,13 +3539,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleAccess(
     setError("Error in _fe_AiTextureHandleAccess. unable to convert: success");
     return;
   }
-
-  #pragma message("_fe_AiTextureHandleAccess is missing its implementation.")
-
-  // Type 'AtShaderGlobals' could not be converted.
-  // Type 'AtTextureHandle' could not be converted.
-  // Type 'AtTextureParams' could not be converted.
-  bool_to_Boolean(f2aSuccess, success);
+AtRGBA f2a_result = AiTextureHandleAccess(f2asg, f2ahandle, f2aparams, f2asuccess/*=NULL*/);  bool_to_Boolean(f2aSuccess, success);
 
   F2A_CATCH_STATEMENT("_fe_AiTextureHandleAccess")
 }
@@ -4148,11 +3551,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureHandleDestroy")
 
-
-  #pragma message("_fe_AiTextureHandleDestroy is missing its implementation.")
-
-  // Type 'AtTextureHandle' could not be converted.
-
+AiTextureHandleDestroy(f2ahandle);
   F2A_CATCH_STATEMENT("_fe_AiTextureHandleDestroy")
 }
 
@@ -4177,12 +3576,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureAccess(
     setError("Error in _fe_AiTextureAccess. unable to convert: success");
     return;
   }
-
-  #pragma message("_fe_AiTextureAccess is missing its implementation.")
-
-  // Type 'AtShaderGlobals' could not be converted.
-  // Type 'AtTextureParams' could not be converted.
-  bool_to_Boolean(f2aSuccess, success);
+AtRGBA f2a_result = AiTextureAccess(f2asg, f2afilename, f2aparams, f2asuccess/*=NULL*/);  bool_to_Boolean(f2aSuccess, success);
 
   F2A_CATCH_STATEMENT("_fe_AiTextureAccess")
 }
@@ -4211,12 +3605,8 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetResolution(
     setError("Error in _fe_AiTextureGetResolution. unable to convert: height");
     return ;
   }
-  bool f2a_result = fe(f2aFilename, f2aWidth, f2aHeight);
-  AtUInt32_to_UInt32(f2aWidth, width);
+bool f2a_result = AiTextureGetResolution(f2afilename, f2awidth, f2aheight);  AtUInt32_to_UInt32(f2aWidth, width);
   AtUInt32_to_UInt32(f2aHeight, height);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetResolution", )
 }
@@ -4239,11 +3629,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetNumChannels(
     setError("Error in _fe_AiTextureGetNumChannels. unable to convert: num_channels");
     return ;
   }
-  bool f2a_result = fe(f2aFilename, f2aNum_channels);
-  AtUInt32_to_UInt32(f2aNum_channels, num_channels);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
+bool f2a_result = AiTextureGetNumChannels(f2afilename, f2anum_channels);  AtUInt32_to_UInt32(f2aNum_channels, num_channels);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetNumChannels", )
 }
@@ -4267,9 +3653,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureGetChannelName(
     setError("Error in _fe_AiTextureGetChannelName. unable to convert: channel_index");
     return;
   }
-  char* f2a_result = fe(f2aFilename, f2aChannel_index);
-  char_to_String(f2a_result, _result);
-
+const char * f2a_result = AiTextureGetChannelName(f2afilename, f2achannel_index);
   F2A_CATCH_STATEMENT("_fe_AiTextureGetChannelName")
 }
 
@@ -4291,11 +3675,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetFormat(
     setError("Error in _fe_AiTextureGetFormat. unable to convert: format");
     return ;
   }
-  bool f2a_result = fe(f2aFilename, f2aFormat);
-  AtUInt32_to_UInt32(f2aFormat, format);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
+bool f2a_result = AiTextureGetFormat(f2afilename, f2aformat);  AtUInt32_to_UInt32(f2aFormat, format);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetFormat", )
 }
@@ -4318,11 +3698,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetBitDepth(
     setError("Error in _fe_AiTextureGetBitDepth. unable to convert: bit_depth");
     return ;
   }
-  bool f2a_result = fe(f2aFilename, f2aBit_depth);
-  AtUInt32_to_UInt32(f2aBit_depth, bit_depth);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
+bool f2a_result = AiTextureGetBitDepth(f2afilename, f2abit_depth);  AtUInt32_to_UInt32(f2aBit_depth, bit_depth);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetBitDepth", )
 }
@@ -4351,11 +3727,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetMatrices(
     setError("Error in _fe_AiTextureGetMatrices. unable to convert: world_to_camera");
     return ;
   }
-  bool f2a_result = fe(f2aFilename, f2aWorld_to_screen, f2aWorld_to_camera);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiTextureGetMatrices(f2afilename, f2aworld_to_screen, f2aworld_to_camera);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetMatrices", )
 }
 
@@ -4371,8 +3743,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureInvalidate(
     setError("Error in _fe_AiTextureInvalidate. unable to convert: filename");
     return;
   }
-  fe(f2aFilename);
-
+AiTextureInvalidate(f2afilename);
   F2A_CATCH_STATEMENT("_fe_AiTextureInvalidate")
 }
 
@@ -4382,11 +3753,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUniverseIsActive(
 {
   F2A_TRY_STATEMENT("_fe_AiUniverseIsActive")
 
-  bool f2a_result = fe();
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiUniverseIsActive();
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUniverseIsActive", )
 }
 
@@ -4402,11 +3769,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUniverseCacheFlush(
     setError("Error in _fe_AiUniverseCacheFlush. unable to convert: cache_flags");
     return ;
   }
-  bool f2a_result = fe(f2aCache_flags);
-  KL::Boolean _result;
-  bool_to_Boolean(f2a_result, _result);
-  return _result;
-
+bool f2a_result = AiUniverseCacheFlush(f2acache_flags);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUniverseCacheFlush", )
 }
 
@@ -4417,12 +3780,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetOptions(
 {
   F2A_TRY_STATEMENT("_fe_AiUniverseGetOptions")
 
-  f2a_result = fe();
-
-  #pragma message("_fe_AiUniverseGetOptions is missing its implementation.")
-
-  // ReturnType 'AtNode' could not be conveted.
-
+AtNode * f2a_result = AiUniverseGetOptions();
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetOptions")
 }
 
@@ -4433,12 +3791,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetCamera(
 {
   F2A_TRY_STATEMENT("_fe_AiUniverseGetCamera")
 
-  f2a_result = fe();
-
-  #pragma message("_fe_AiUniverseGetCamera is missing its implementation.")
-
-  // ReturnType 'AtNode' could not be conveted.
-
+AtNode * f2a_result = AiUniverseGetCamera();
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetCamera")
 }
 
@@ -4449,9 +3802,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetSceneBounds(
 {
   F2A_TRY_STATEMENT("_fe_AiUniverseGetSceneBounds")
 
-  AtBBox f2a_result = fe();
-  AtBBox_to_Box3(f2a_result, _result);
-
+AtBBox f2a_result = AiUniverseGetSceneBounds();
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetSceneBounds")
 }
 
@@ -4468,12 +3819,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetNodeIterator(
     setError("Error in _fe_AiUniverseGetNodeIterator. unable to convert: node_mask");
     return;
   }
-  f2a_result = fe(f2aNode_mask);
-
-  #pragma message("_fe_AiUniverseGetNodeIterator is missing its implementation.")
-
-  // ReturnType 'AtNodeIterator' could not be conveted.
-
+AtNodeIterator * f2a_result = AiUniverseGetNodeIterator(f2anode_mask);
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetNodeIterator")
 }
 
@@ -4490,12 +3836,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetNodeEntryIterator(
     setError("Error in _fe_AiUniverseGetNodeEntryIterator. unable to convert: node_mask");
     return;
   }
-  f2a_result = fe(f2aNode_mask);
-
-  #pragma message("_fe_AiUniverseGetNodeEntryIterator is missing its implementation.")
-
-  // ReturnType 'AtNodeEntryIterator' could not be conveted.
-
+AtNodeEntryIterator * f2a_result = AiUniverseGetNodeEntryIterator(f2anode_mask);
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetNodeEntryIterator")
 }
 
@@ -4506,12 +3847,7 @@ FABRIC_EXT_EXPORT void _fe_AiUniverseGetAOVIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiUniverseGetAOVIterator")
 
-  f2a_result = fe();
-
-  #pragma message("_fe_AiUniverseGetAOVIterator is missing its implementation.")
-
-  // ReturnType 'AtAOVIterator' could not be conveted.
-
+AtAOVIterator * f2a_result = AiUniverseGetAOVIterator();
   F2A_CATCH_STATEMENT("_fe_AiUniverseGetAOVIterator")
 }
 
@@ -4522,11 +3858,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorDestroy")
 
-
-  #pragma message("_fe_AiNodeIteratorDestroy is missing its implementation.")
-
-  // Type 'AtNodeIterator' could not be converted.
-
+AiNodeIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiNodeIteratorDestroy")
 }
 
@@ -4538,11 +3870,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorGetNext")
 
-
-  #pragma message("_fe_AiNodeIteratorGetNext is missing its implementation.")
-
-  // Type 'AtNodeIterator' could not be converted.
-
+AtNode * f2a_result = AiNodeIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiNodeIteratorGetNext")
 }
 
@@ -4553,11 +3881,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorFinished")
 
-
-  #pragma message("_fe_AiNodeIteratorFinished is missing its implementation.")
-
-  // Type 'AtNodeIterator' could not be converted.
-
+bool f2a_result = AiNodeIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIteratorFinished", )
 }
 
@@ -4568,11 +3892,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorDestroy")
 
-
-  #pragma message("_fe_AiNodeEntryIteratorDestroy is missing its implementation.")
-
-  // Type 'AtNodeEntryIterator' could not be converted.
-
+AiNodeEntryIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryIteratorDestroy")
 }
 
@@ -4584,11 +3904,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorGetNext")
 
-
-  #pragma message("_fe_AiNodeEntryIteratorGetNext is missing its implementation.")
-
-  // Type 'AtNodeEntryIterator' could not be converted.
-
+AtNodeEntry * f2a_result = AiNodeEntryIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryIteratorGetNext")
 }
 
@@ -4599,11 +3915,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeEntryIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorFinished")
 
-
-  #pragma message("_fe_AiNodeEntryIteratorFinished is missing its implementation.")
-
-  // Type 'AtNodeEntryIterator' could not be converted.
-
+bool f2a_result = AiNodeEntryIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryIteratorFinished", )
 }
 
@@ -4614,11 +3926,7 @@ FABRIC_EXT_EXPORT void _fe_AiAOVIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorDestroy")
 
-
-  #pragma message("_fe_AiAOVIteratorDestroy is missing its implementation.")
-
-  // Type 'AtAOVIterator' could not be converted.
-
+AiAOVIteratorDestroy(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiAOVIteratorDestroy")
 }
 
@@ -4630,11 +3938,7 @@ FABRIC_EXT_EXPORT void _fe_AiAOVIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorGetNext")
 
-
-  #pragma message("_fe_AiAOVIteratorGetNext is missing its implementation.")
-
-  // Type 'AtAOVIterator' could not be converted.
-
+const AtAOVEntry * f2a_result = AiAOVIteratorGetNext(f2aiter);
   F2A_CATCH_STATEMENT("_fe_AiAOVIteratorGetNext")
 }
 
@@ -4645,10 +3949,6 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiAOVIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorFinished")
 
-
-  #pragma message("_fe_AiAOVIteratorFinished is missing its implementation.")
-
-  // Type 'AtAOVIterator' could not be converted.
-
+bool f2a_result = AiAOVIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiAOVIteratorFinished", )
 }

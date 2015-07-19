@@ -140,6 +140,8 @@ def process_function(functionNode):
     if (fnName in elementsToIgnore):
         return ''
 
+    fe_fn_tag = '_fe_'
+
     # While building the line to write into the KL file
     # we also build the line we'll add to the autogen file
     # Essentially, but the end of this function the auto-gen
@@ -188,11 +190,11 @@ def process_function(functionNode):
         # finally, add the name to the autogen line.
         autogen_line += parameter_prefix + arName
 
-    klLine += ') = \'_fe_' + fnName + '\';\n'
+    klLine += ') = \'' + fe_fn_tag + fnName + '\';\n'
     autogen_line += ');'
 
     # We remember our auto-genned lined for later reference
-    json_codegen_functionbodies[fnName] = autogen_line
+    json_codegen_functionbodies[fe_fn_tag + fnName] = autogen_line
 
     print(klLine)
     return klLine
