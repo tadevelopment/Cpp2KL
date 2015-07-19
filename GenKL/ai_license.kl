@@ -3,6 +3,8 @@
   
 */
 
+require Math;
+
 /**  License info structure 
  */
 struct AtLicenseInfo {
@@ -58,7 +60,7 @@ struct AtLicenseInfo {
  
   SInt32 ubased; //  USER_BASED count 
  
-}
+};
 
 /**
 Error Codes
@@ -72,10 +74,10 @@ const Integer AI_LIC_ERROR_NOTFOUND = 3;	 //  no licenses found (expired or not 
 const Integer AI_LIC_ERROR_NOTAVAILABLE = 4;	 //  no licenses available (all in use)  
 const Integer AI_LIC_ERROR = -1;	 //  generic license error  
 const Integer HOST_NAME_MAX = 64;	 //  
-function Boolean AiLicenseSetServer(String host, UInt32 port) = '_fe_AiLicenseSetServer'
-function Boolean AiLicenseGetServer(io String host, io UInt32 port) = '_fe_AiLicenseGetServer'
-function AiLicenseSetAttempts(SInt32 attempts) = '_fe_AiLicenseSetAttempts'
-function UInt32 AiLicenseGetAttempts() = '_fe_AiLicenseGetAttempts'
-function AiLicenseSetAttemptDelay(SInt32 msecs) = '_fe_AiLicenseSetAttemptDelay'
-function UInt32 AiLicenseGetAttemptDelay() = '_fe_AiLicenseGetAttemptDelay'
-function SInt32 AiLicenseGetInfo(io AtLicenseInfo licenses, io UInt32 n) = '_fe_AiLicenseGetInfo'
+function Boolean AiLicenseSetServer(String host, UInt32 port) = '_fe_AiLicenseSetServer';
+function Boolean AiLicenseGetServer(io String host, io UInt32 port) = '_fe_AiLicenseGetServer';
+function AiLicenseSetAttempts(SInt32 attempts) = '_fe_AiLicenseSetAttempts';
+function UInt32 AiLicenseGetAttempts() = '_fe_AiLicenseGetAttempts';
+function AiLicenseSetAttemptDelay(SInt32 msecs) = '_fe_AiLicenseSetAttemptDelay';
+function UInt32 AiLicenseGetAttemptDelay() = '_fe_AiLicenseGetAttemptDelay';
+function SInt32 AiLicenseGetInfo(io AtLicenseInfo licenses, io UInt32 n) = '_fe_AiLicenseGetInfo';

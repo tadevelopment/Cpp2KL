@@ -3,6 +3,8 @@
   
 */
 
+require Math;
+
 /**
 Rendering Modes
 
@@ -28,9 +30,9 @@ const Integer AI_INTERRUPT = 0x09;	 //  render interrupted by user
 const Integer AI_ERROR_UNRENDERABLE_SCENEGRAPH = 0x0A;	 //  unrenderable scenegraph  
 const Integer AI_ERROR_NO_OUTPUTS = 0x0B;	 //  no rendering outputs  
 const Integer AI_ERROR = -1;	 //  generic error  
-function AiBegin() = '_fe_AiBegin'
-function AiEnd() = '_fe_AiEnd'
-function SInt32 AiRender(SInt32 mode/*=AI_RENDER_MODE_CAMERA*/) = '_fe_AiRender'
-function AiRenderAbort() = '_fe_AiRenderAbort'
-function AiRenderInterrupt() = '_fe_AiRenderInterrupt'
-function Boolean AiRendering() = '_fe_AiRendering'
+function AiBegin() = '_fe_AiBegin';
+function AiEnd() = '_fe_AiEnd';
+function SInt32 AiRender(SInt32 mode/*=AI_RENDER_MODE_CAMERA*/) = '_fe_AiRender';
+function AiRenderAbort() = '_fe_AiRenderAbort';
+function AiRenderInterrupt() = '_fe_AiRenderInterrupt';
+function Boolean AiRendering() = '_fe_AiRendering';

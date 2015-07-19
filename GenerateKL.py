@@ -156,7 +156,7 @@ def process_function(functionNode):
         if (i > 0):
             klLine += ', '
         klLine += arType + ' ' + arName
-    klLine += ') = \'_fe_' + fnName + '\'\n'
+    klLine += ') = \'_fe_' + fnName + '\';\n'
 
     print(klLine)
     return klLine
@@ -192,7 +192,7 @@ def _process_struct(struct_node):
                 klLine += ' // ' + comment
             klLine += '\n'
 
-    klLine += '}\n'
+    klLine += '};\n'
     print(klLine)
     return klLine + '\n'
 
@@ -260,6 +260,12 @@ def process_file(override_name, infilename, outputfile):
     if detaileddesc:
         f.write('/**\n   ' + detaileddesc + ' \n*/\n\n')
 
+    # Add in 'requires
+    for extn in extns_required:
+        f.write('require %s;\n' % extn)
+
+    f.write('\n')
+
     # add in custom overrides
     if override_name in custom_add_to_file:
         f.write(custom_add_to_file[override_name])
@@ -298,12 +304,20 @@ for doxyElement in root.iter('compound'):
         allFiles.append(fileTuple)
 
 processed_files = []
-for aFile in allFiles:
-    if aFile[0] in filesToProcess:
-        print('Processing: ' + aFile[0])
-        out_file_name = aFile[0].split('.')[0] + '.kl'
-        processed_files.append(out_file_name)
-        process_file(aFile[0], xmlRootDir + aFile[1] + '.xml', outputRootDir + out_file_name)
+for aFile in filesToProcess:
+    # find the xml file for this header
+    processed = False
+    for xmlFileLink in allFiles:
+        if xmlFileLink[0] == aFile:
+            print('Processing: ' + aFile)
+            out_file_name = aFile.split('.')[0] + '.kl'
+            processed_files.append(out_file_name)
+            process_file(aFile, xmlRootDir + xmlFileLink[1] + '.xml', outputRootDir + out_file_name)
+            processed = True
+            break
+
+    if not processed:
+        raise ValueError("File: '%s' not found in doxygen generated files'" % aFile)
 
 # Our last step, generate the FPM file from the converted files.
 generate_fpm(processed_files)

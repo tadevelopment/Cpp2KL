@@ -3,6 +3,8 @@
   
 */
 
+require Math;
+
 /**
 Severity Codes
 
@@ -32,16 +34,16 @@ const Integer AI_LOG_BACKTRACE = 0x0400;	 //  show stack contents after abnormal
 const Integer AI_LOG_MEMORY = 0x0800;	 //  prefix messages with current memory usage  
 const Integer AI_LOG_COLOR = 0x1000;	 //  add colors to log messages based on severity  
 const Integer AI_LOG_SSS = 0x2000;	 //  show messages about sub-surface scattering pointclouds  
-function AiMsgSetLogFileName(String filename) = '_fe_AiMsgSetLogFileName'
-function AiMsgSetLogFileFlags(SInt32 flags) = '_fe_AiMsgSetLogFileFlags'
-function AiMsgSetConsoleFlags(SInt32 flags) = '_fe_AiMsgSetConsoleFlags'
-function AiMsgSetMaxWarnings(SInt32 max_warnings) = '_fe_AiMsgSetMaxWarnings'
-function AiMsgResetCallback() = '_fe_AiMsgResetCallback'
-function AiMsgInfo(String format) = '_fe_AiMsgInfo'
-function AiMsgDebug(String format) = '_fe_AiMsgDebug'
-function AiMsgWarning(String format) = '_fe_AiMsgWarning'
-function AiMsgError(String format) = '_fe_AiMsgError'
-function AiMsgFatal(String format) = '_fe_AiMsgFatal'
-function AiMsgTab(SInt32 tabinc) = '_fe_AiMsgTab'
-function UInt64 AiMsgUtilGetUsedMemory() = '_fe_AiMsgUtilGetUsedMemory'
-function UInt32 AiMsgUtilGetElapsedTime() = '_fe_AiMsgUtilGetElapsedTime'
+function AiMsgSetLogFileName(String filename) = '_fe_AiMsgSetLogFileName';
+function AiMsgSetLogFileFlags(SInt32 flags) = '_fe_AiMsgSetLogFileFlags';
+function AiMsgSetConsoleFlags(SInt32 flags) = '_fe_AiMsgSetConsoleFlags';
+function AiMsgSetMaxWarnings(SInt32 max_warnings) = '_fe_AiMsgSetMaxWarnings';
+function AiMsgResetCallback() = '_fe_AiMsgResetCallback';
+function AiMsgInfo(String format) = '_fe_AiMsgInfo';
+function AiMsgDebug(String format) = '_fe_AiMsgDebug';
+function AiMsgWarning(String format) = '_fe_AiMsgWarning';
+function AiMsgError(String format) = '_fe_AiMsgError';
+function AiMsgFatal(String format) = '_fe_AiMsgFatal';
+function AiMsgTab(SInt32 tabinc) = '_fe_AiMsgTab';
+function UInt64 AiMsgUtilGetUsedMemory() = '_fe_AiMsgUtilGetUsedMemory';
+function UInt32 AiMsgUtilGetElapsedTime() = '_fe_AiMsgUtilGetElapsedTime';

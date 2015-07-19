@@ -3,6 +3,12 @@
   
 */
 
+require Math;
+
+struct AtMetaDataStore {
+  Data handle;
+};
+
 /**
 Metadata Writing
 These functions let the author of a node attach auxiliary information about parameters or the node to the node itself. These methods may only be called inside of the node_parameters method where the parameters are declared. This function receives an opaque pointer to a AtMetaDataStore structure which will hold the results until AiEnd() is called.
@@ -17,22 +23,22 @@ Note that you should never pass allocated strings, as they will not be freed.
 
 */
 
-function AiMetaDataSetBool(io AtMetaDataStore mds, String param, String name, Boolean value) = '_fe_AiMetaDataSetBool'
-function AiMetaDataSetBoolAtString(io AtMetaDataStore mds, String param, String name, Boolean value) = '_fe_AiMetaDataSetBoolAtString'
-function AiMetaDataSetInt(io AtMetaDataStore mds, String param, String name, SInt32 value) = '_fe_AiMetaDataSetInt'
-function AiMetaDataSetIntAtString(io AtMetaDataStore mds, String param, String name, SInt32 value) = '_fe_AiMetaDataSetIntAtString'
-function AiMetaDataSetFlt(io AtMetaDataStore mds, String param, String name, Float32 value) = '_fe_AiMetaDataSetFlt'
-function AiMetaDataSetFltAtString(io AtMetaDataStore mds, String param, String name, Float32 value) = '_fe_AiMetaDataSetFltAtString'
-function AiMetaDataSetRGB(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetRGB'
-function AiMetaDataSetRGBAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetRGBAtString'
-function AiMetaDataSetVec(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetVec'
-function AiMetaDataSetVecAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetVecAtString'
-function AiMetaDataSetPnt(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetPnt'
-function AiMetaDataSetPntAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetPntAtString'
-function AiMetaDataSetPnt2(io AtMetaDataStore mds, String param, String name, Vec2 value) = '_fe_AiMetaDataSetPnt2'
-function AiMetaDataSetPnt2AtString(io AtMetaDataStore mds, String param, String name, Vec2 value) = '_fe_AiMetaDataSetPnt2AtString'
-function AiMetaDataSetStr(io AtMetaDataStore mds, String param, String name, String value) = '_fe_AiMetaDataSetStr'
-function AiMetaDataSetStrAtString(io AtMetaDataStore mds, String param, String name, String value) = '_fe_AiMetaDataSetStrAtString'
+function AiMetaDataSetBool(io AtMetaDataStore mds, String param, String name, Boolean value) = '_fe_AiMetaDataSetBool';
+function AiMetaDataSetBoolAtString(io AtMetaDataStore mds, String param, String name, Boolean value) = '_fe_AiMetaDataSetBoolAtString';
+function AiMetaDataSetInt(io AtMetaDataStore mds, String param, String name, SInt32 value) = '_fe_AiMetaDataSetInt';
+function AiMetaDataSetIntAtString(io AtMetaDataStore mds, String param, String name, SInt32 value) = '_fe_AiMetaDataSetIntAtString';
+function AiMetaDataSetFlt(io AtMetaDataStore mds, String param, String name, Float32 value) = '_fe_AiMetaDataSetFlt';
+function AiMetaDataSetFltAtString(io AtMetaDataStore mds, String param, String name, Float32 value) = '_fe_AiMetaDataSetFltAtString';
+function AiMetaDataSetRGB(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetRGB';
+function AiMetaDataSetRGBAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetRGBAtString';
+function AiMetaDataSetVec(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetVec';
+function AiMetaDataSetVecAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetVecAtString';
+function AiMetaDataSetPnt(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetPnt';
+function AiMetaDataSetPntAtString(io AtMetaDataStore mds, String param, String name, Vec3 value) = '_fe_AiMetaDataSetPntAtString';
+function AiMetaDataSetPnt2(io AtMetaDataStore mds, String param, String name, Vec2 value) = '_fe_AiMetaDataSetPnt2';
+function AiMetaDataSetPnt2AtString(io AtMetaDataStore mds, String param, String name, Vec2 value) = '_fe_AiMetaDataSetPnt2AtString';
+function AiMetaDataSetStr(io AtMetaDataStore mds, String param, String name, String value) = '_fe_AiMetaDataSetStr';
+function AiMetaDataSetStrAtString(io AtMetaDataStore mds, String param, String name, String value) = '_fe_AiMetaDataSetStrAtString';
 /**
 Metadata Retrieval
 These functions allow client code to examine metadata attached to specific parameters or to a node.
@@ -46,14 +52,14 @@ Following on the example above: constAtNodeEntry*entry=AiNodeEntryLookUp("my_sim
 
 */
 
-function Boolean AiMetaDataGetBoolAtString(AtNodeEntry entry, String param, String name, io Boolean value) = '_fe_AiMetaDataGetBoolAtString'
-function Boolean AiMetaDataGetIntAtString(AtNodeEntry entry, String param, String name, io SInt32 value) = '_fe_AiMetaDataGetIntAtString'
-function Boolean AiMetaDataGetFltAtString(AtNodeEntry entry, String param, String name, io Float32 value) = '_fe_AiMetaDataGetFltAtString'
-function Boolean AiMetaDataGetRGBAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetRGBAtString'
-function Boolean AiMetaDataGetVecAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetVecAtString'
-function Boolean AiMetaDataGetPntAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetPntAtString'
-function Boolean AiMetaDataGetPnt2AtString(AtNodeEntry entry, String param, String name, io Vec2 value) = '_fe_AiMetaDataGetPnt2AtString'
-function Boolean AiMetaDataGetStrAtString(AtNodeEntry entry, String param, String name, String value) = '_fe_AiMetaDataGetStrAtString'
+function Boolean AiMetaDataGetBoolAtString(AtNodeEntry entry, String param, String name, io Boolean value) = '_fe_AiMetaDataGetBoolAtString';
+function Boolean AiMetaDataGetIntAtString(AtNodeEntry entry, String param, String name, io SInt32 value) = '_fe_AiMetaDataGetIntAtString';
+function Boolean AiMetaDataGetFltAtString(AtNodeEntry entry, String param, String name, io Float32 value) = '_fe_AiMetaDataGetFltAtString';
+function Boolean AiMetaDataGetRGBAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetRGBAtString';
+function Boolean AiMetaDataGetVecAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetVecAtString';
+function Boolean AiMetaDataGetPntAtString(AtNodeEntry entry, String param, String name, io Vec3 value) = '_fe_AiMetaDataGetPntAtString';
+function Boolean AiMetaDataGetPnt2AtString(AtNodeEntry entry, String param, String name, io Vec2 value) = '_fe_AiMetaDataGetPnt2AtString';
+function Boolean AiMetaDataGetStrAtString(AtNodeEntry entry, String param, String name, String value) = '_fe_AiMetaDataGetStrAtString';
 /**
 Metadata Files
 This function allows client code to manually load and apply a metadata file.
@@ -64,4 +70,4 @@ Usage: constchar*metadata_file="metadata_file.mtd"; boolsuccess=AiMetaDataLoadFi
 
 */
 
-function Boolean AiMetaDataLoadFile(String filename) = '_fe_AiMetaDataLoadFile'
+function Boolean AiMetaDataLoadFile(String filename) = '_fe_AiMetaDataLoadFile';

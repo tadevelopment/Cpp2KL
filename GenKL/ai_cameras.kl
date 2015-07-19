@@ -3,6 +3,8 @@
   
 */
 
+require Math;
+
 /**  Camera ray creation inputs 
  */
 struct AtCameraInput {
@@ -17,7 +19,7 @@ struct AtCameraInput {
  
   Float32 relative_time; //  time relative to this camera (in [0,1)) 
  
-}
+};
 
 /**  Camera ray creation outputs
 If the d*d* derivatives are left to their default value of zero, an accurate numerical estimate will be automatically computed for them to prevent catastrophic degradation of texture IO performance. Note that this estimate might not be as good as analytically computed derivatives but will often be good enough. 
@@ -35,14 +37,14 @@ struct AtCameraOutput {
  
   Float32 weight; //  weight of this ray (used for vignetting) (optional - defaults to 1) 
  
-}
+};
 
 /**
 API Methods for Camera Writers
 
 */
 
-function AiCameraInitialize(io AtNode node, io Data data) = '_fe_AiCameraInitialize'
-function AiCameraUpdate(io AtNode node, Boolean plane_distance) = '_fe_AiCameraUpdate'
-function AiCameraDestroy(io AtNode node) = '_fe_AiCameraDestroy'
-function Data AiCameraGetLocalData(AtNode node) = '_fe_AiCameraGetLocalData'
+function AiCameraInitialize(io AtNode node, io Data data) = '_fe_AiCameraInitialize';
+function AiCameraUpdate(io AtNode node, Boolean plane_distance) = '_fe_AiCameraUpdate';
+function AiCameraDestroy(io AtNode node) = '_fe_AiCameraDestroy';
+function Data AiCameraGetLocalData(AtNode node) = '_fe_AiCameraGetLocalData';

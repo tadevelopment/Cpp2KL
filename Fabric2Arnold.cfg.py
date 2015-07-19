@@ -1,3 +1,9 @@
+#
+# This config file defines the various options
+# and overrides for converting a C++ API to KL
+# The output files are intended to be consumed
+# by kl2edk utility
+#
 
 cppToKLTypeMapping = {
     'unsigned int': 'UInt32',
@@ -11,9 +17,8 @@ cppToKLTypeMapping = {
     'void': '',
     'char*': 'String',
 
-    'AtArray': 'TODOArray',
     'AtByte' : 'UInt8',
-    'AtBBox': 'BBox',
+    'AtBBox': 'Box3',
     'AtRGB': 'Vec3',
     'AtColor': 'Vec3',
     'AtRGBA': 'Vec4',
@@ -26,6 +31,7 @@ cppToKLTypeMapping = {
     'AtVector' : 'Vec3',
     'AtPoint2' : 'Vec2',
     'AtVector2' : 'Vec2',
+    'AtMatrix' : 'Mat44',
     'AtBucket': 'Data',
     'AtList' : 'Data'
 }
@@ -38,6 +44,7 @@ xmlRootDir = './DoxygenXML/xml/'
 outputRootDir = 'E:/dev/OpusTech/Cpp2KL/GenKL/'
 
 filesToProcess = [
+    'ai_params.h',
     "ai_cameras.h",
     'ai_dotass.h',
     "ai_enum.h",
@@ -47,7 +54,6 @@ filesToProcess = [
     'ai_node_entry.h',
     'ai_nodes.h',
     'ai_render.h',
-    'ai_params.h',
     'ai_plugins.h',
     'ai_ray.h',
     'ai_texture.h',
@@ -62,6 +68,12 @@ elementsToIgnore = [
     'AtNodeMethods'
 ]
 
+# Add extensions to be required.  Should
+# this be per-file?  Or common for the whole project?
+extns_required = [
+    'Math'
+]
+
 # Add custom code to be added to the head of a file.
 # It is possible to override built in translations by
 # ignoring an element, and defining it explicitly here.
@@ -70,7 +82,11 @@ custom_add_to_file = {
                         '  Data internal;\n'
                         '};\n'
                         '\n'
-                        'struct AtParamIterator {\n'
+                        'struct AtNodeMethods {\n'
+                        '  Data internal;\n'
+                        '};\n'
+                        '\n'
+                         'struct AtParamIterator {\n'
                         '  Data internal;\n'
                         '};\n'
                         '\n'
@@ -81,9 +97,19 @@ custom_add_to_file = {
     'ai_nodes.h' :      '// This represents a node in Arnold\n'
                         'struct AtNode {\n'
                         '  Data internal;\n'
+                        '};\n\n'
+                        'struct AtUserParamIterator {\n'
+                        '  Data internal;\n'
                         '};\n\n',
 
     'ai_texture.h' :    'struct AtTextureHandle {\n'
+                        '  Data handle;\n'
+                        '};\n\n',
+
+    'ai_ray.h' :        'struct AtShaderGlobals {\n'
+                        '  Data handle;\n'
+                        '};\n\n'
+                        'struct AtScrSample {\n'
                         '  Data handle;\n'
                         '};\n\n',
 
@@ -103,21 +129,37 @@ custom_add_to_file = {
                         '  Data atParamValue;\n'
                         '};\n'
                         '\n'
-                        'UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8"\n'
-                        'UInt32 AtParamValue.asUInt32() = "_fe_AtParamValueAsUInt32"\n'
-                        'Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32"\n'
-                        'Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3"\n'
-                        'Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44"\n'
-                        'String AtParamValue.asString() = "_fe_AtParamValueAsString"\n'
+                        'UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8";\n'
+                        'UInt32 AtParamValue.asUInt32() = "_fe_AtParamValueAsUInt32";\n'
+                        'Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32";\n'
+                        'Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3";\n'
+                        'Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44";\n'
+                        'String AtParamValue.asString() = "_fe_AtParamValueAsString";\n'
+                        '\n'
+                        'struct AtArray {\n'
+                        '  Data atParamValue;\n'
+                        '};\n'
+                        '\n'
+                        'UInt8[] AtArray.asUInt8() = "_fe_AtArrayAsUInt8";\n'
+                        'UInt32[] AtArray.asUInt32() = "_fe_AtArrayAsUInt32";\n'
+                        'Float32[] AtArray.asFloat32() = "_fe_AtArrayAsFloat32";\n'
+                        'Vec3[] AtArray.asVec3() = "_fe_AtArrayAsVec3";\n'
+                        'Mat44[] AtArray.asMat44() = "_fe_AtArrayAsMat44";\n'
+                        'String[] AtArray.asString() = "_fe_AtArrayAsString";\n'
                         '\n'
                         'struct AtParamEntry {\n'
+
                         '  Data handle;\n'
                         '};\n'
                         '\n'
                         'struct AtUserParamEntry {\n'
                         '  Data handle;\n'
                         '};\n'
-                        '\n'
+                        '\n',
+
+    'ai_metadata.h' :   'struct AtMetaDataStore {\n'
+                        '  Data handle;\n'
+                        '};\n\n',
 }
 # Define this value to true to not expose inline functions
 skipInlineFunctions = True
