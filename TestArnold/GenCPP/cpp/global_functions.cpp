@@ -8,6 +8,7 @@
 #include "global_functions.h"
 
 #include "ai.h"
+#include "_defines.h"
 
 using namespace Fabric::EDK;
 

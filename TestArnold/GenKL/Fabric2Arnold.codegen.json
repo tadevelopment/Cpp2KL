@@ -202,7 +202,7 @@
     "functionentry": "F2A_TRY_STATEMENT", 
     "functionexit": "F2A_CATCH_STATEMENT", 
     "functionexitreturn": "F2A_CATCH_STATEMENT_RETURN", 
-    "header": "#include \"ai.h\"", 
+    "header": "#include \"ai.h\"\n#include \"_defines.h\"", 
     "parameterconversionstoskip": [], 
     "parameterprefix": "f2a", 
     "typemapping": {
