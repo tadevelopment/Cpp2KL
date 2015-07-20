@@ -341,6 +341,7 @@ def get_auto_codegen_typemapping():
             continue
 
         cpp_raw_type = cpp_type.replace('*', '')
+        cpp_raw_type = cpp_raw_type.replace(' ', '_')
         conversion = ( {
             'ctype': cpp_type,
             'from' : kl_type + '_to_' + cpp_raw_type,

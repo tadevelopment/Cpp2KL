@@ -257,9 +257,9 @@
         }, 
         "SInt64": {
             "ctype": "long long", 
-            "from": "SInt64_to_long long", 
+            "from": "SInt64_to_long_long", 
             "methodop": ".", 
-            "to": "long long_to_SInt64"
+            "to": "long_long_to_SInt64"
         }, 
         "String": {
             "ctype": "char*", 

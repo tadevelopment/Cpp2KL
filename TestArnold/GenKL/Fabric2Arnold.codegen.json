@@ -206,6 +206,12 @@
     "parameterconversionstoskip": [], 
     "parameterprefix": "f2a", 
     "typemapping": {
+        "AtParamValue": {
+            "ctype": "AtParamValue", 
+            "from": "KlParamValue_to_AtParamValue", 
+            "methodop": ".", 
+            "to": "AtParamValue_to_KLParamValue"
+        }, 
         "Boolean": {
             "ctype": "bool", 
             "from": "Boolean_to_bool", 
@@ -262,9 +268,9 @@
         }, 
         "SInt64": {
             "ctype": "long long", 
-            "from": "SInt64_to_long long", 
+            "from": "SInt64_to_long_long", 
             "methodop": ".", 
-            "to": "long long_to_SInt64"
+            "to": "long_long_to_SInt64"
         }, 
         "String": {
             "ctype": "char*", 

@@ -5,7 +5,12 @@
   "functionexit": "F2A_CATCH_STATEMENT", 
   "functionexitreturn": "F2A_CATCH_STATEMENT_RETURN",
   "typemapping": {
-
+    "AtParamValue": {
+        "ctype": "AtParamValue", 
+        "from": "KlParamValue_to_AtParamValue", 
+        "methodop": ".", 
+        "to": "AtParamValue_to_KLParamValue"
+    }
   },
   "functionbodies": {
   },
