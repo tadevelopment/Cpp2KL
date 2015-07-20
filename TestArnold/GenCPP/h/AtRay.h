@@ -19,11 +19,12 @@
 #include "global.h"
 #include "Vec3.h"
 #include "AtShaderGlobals.h"
+#include "AtBucket.h"
 
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtRay'
-// Defined at GenKL\\ai_ray.kl:18:1
+// Defined at GenKL\\ai_ray.kl:10:1
 
 struct AtRay
 {
@@ -51,7 +52,7 @@ struct AtRay
   Float64 maxdist;
   AtShaderGlobals psg;
   Data light_source;
-  Data bucket;
+  AtBucket bucket;
   Float32 weight;
   Float32 time;
   Vec3 dOdx;
@@ -84,7 +85,7 @@ inline void Traits<AtRay>::ConstructEmpty( AtRay &val )
   Traits< Float64 >::ConstructEmpty( val.maxdist );
   Traits< AtShaderGlobals >::ConstructEmpty( val.psg );
   Traits< Data >::ConstructEmpty( val.light_source );
-  Traits< Data >::ConstructEmpty( val.bucket );
+  Traits< AtBucket >::ConstructEmpty( val.bucket );
   Traits< Float32 >::ConstructEmpty( val.weight );
   Traits< Float32 >::ConstructEmpty( val.time );
   Traits< Vec3 >::ConstructEmpty( val.dOdx );
@@ -116,7 +117,7 @@ inline void Traits<AtRay>::ConstructCopy( AtRay &lhs, AtRay const &rhs )
   Traits< Float64 >::ConstructCopy( lhs.maxdist, rhs.maxdist );
   Traits< AtShaderGlobals >::ConstructCopy( lhs.psg, rhs.psg );
   Traits< Data >::ConstructCopy( lhs.light_source, rhs.light_source );
-  Traits< Data >::ConstructCopy( lhs.bucket, rhs.bucket );
+  Traits< AtBucket >::ConstructCopy( lhs.bucket, rhs.bucket );
   Traits< Float32 >::ConstructCopy( lhs.weight, rhs.weight );
   Traits< Float32 >::ConstructCopy( lhs.time, rhs.time );
   Traits< Vec3 >::ConstructCopy( lhs.dOdx, rhs.dOdx );
@@ -148,7 +149,7 @@ inline void Traits<AtRay>::AssignCopy( AtRay &lhs, AtRay const &rhs )
   Traits< Float64 >::AssignCopy( lhs.maxdist, rhs.maxdist );
   Traits< AtShaderGlobals >::AssignCopy( lhs.psg, rhs.psg );
   Traits< Data >::AssignCopy( lhs.light_source, rhs.light_source );
-  Traits< Data >::AssignCopy( lhs.bucket, rhs.bucket );
+  Traits< AtBucket >::AssignCopy( lhs.bucket, rhs.bucket );
   Traits< Float32 >::AssignCopy( lhs.weight, rhs.weight );
   Traits< Float32 >::AssignCopy( lhs.time, rhs.time );
   Traits< Vec3 >::AssignCopy( lhs.dOdx, rhs.dOdx );
@@ -170,7 +171,7 @@ inline void Traits<AtRay>::Destruct( AtRay &val )
   Traits< Vec3 >::Destruct( val.dOdx );
   Traits< Float32 >::Destruct( val.time );
   Traits< Float32 >::Destruct( val.weight );
-  Traits< Data >::Destruct( val.bucket );
+  Traits< AtBucket >::Destruct( val.bucket );
   Traits< Data >::Destruct( val.light_source );
   Traits< AtShaderGlobals >::Destruct( val.psg );
   Traits< Float64 >::Destruct( val.maxdist );

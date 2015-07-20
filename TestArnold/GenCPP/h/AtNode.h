@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtNode'
-// Defined at GenKL\\ai_nodes.kl:9:1
+// Defined at GenKL\\_opaque_types.kl:16:1
 
 struct AtNode
 {
@@ -30,24 +30,24 @@ struct AtNode
   typedef AtNode &IOParam;
   typedef AtNode &OUTParam;
   
-  Data internal;
+  Data _handle;
 };
 
 inline void Traits<AtNode>::ConstructEmpty( AtNode &val )
 {
-  Traits< Data >::ConstructEmpty( val.internal );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtNode>::ConstructCopy( AtNode &lhs, AtNode const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.internal, rhs.internal );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNode>::AssignCopy( AtNode &lhs, AtNode const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.internal, rhs.internal );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNode>::Destruct( AtNode &val )
 {
-  Traits< Data >::Destruct( val.internal );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

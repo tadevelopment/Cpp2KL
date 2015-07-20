@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtArray'
-// Defined at GenKL\\ai_params.kl:19:1
+// Defined at GenKL\\ai_params.kl:20:1
 
 struct AtArray
 {
@@ -30,24 +30,24 @@ struct AtArray
   typedef AtArray &IOParam;
   typedef AtArray &OUTParam;
   
-  Data atParamValue;
+  Data array_handle;
 };
 
 inline void Traits<AtArray>::ConstructEmpty( AtArray &val )
 {
-  Traits< Data >::ConstructEmpty( val.atParamValue );
+  Traits< Data >::ConstructEmpty( val.array_handle );
 }
 inline void Traits<AtArray>::ConstructCopy( AtArray &lhs, AtArray const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.atParamValue, rhs.atParamValue );
+  Traits< Data >::ConstructCopy( lhs.array_handle, rhs.array_handle );
 }
 inline void Traits<AtArray>::AssignCopy( AtArray &lhs, AtArray const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.atParamValue, rhs.atParamValue );
+  Traits< Data >::AssignCopy( lhs.array_handle, rhs.array_handle );
 }
 inline void Traits<AtArray>::Destruct( AtArray &val )
 {
-  Traits< Data >::Destruct( val.atParamValue );
+  Traits< Data >::Destruct( val.array_handle );
 }
 }}}
 

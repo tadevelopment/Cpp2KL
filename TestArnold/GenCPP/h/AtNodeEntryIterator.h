@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtNodeEntryIterator'
-// Defined at GenKL\\ai_universe.kl:12:1
+// Defined at GenKL\\_opaque_types.kl:56:1
 
 struct AtNodeEntryIterator
 {
@@ -30,24 +30,24 @@ struct AtNodeEntryIterator
   typedef AtNodeEntryIterator &IOParam;
   typedef AtNodeEntryIterator &OUTParam;
   
-  Data iterator;
+  Data _handle;
 };
 
 inline void Traits<AtNodeEntryIterator>::ConstructEmpty( AtNodeEntryIterator &val )
 {
-  Traits< Data >::ConstructEmpty( val.iterator );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtNodeEntryIterator>::ConstructCopy( AtNodeEntryIterator &lhs, AtNodeEntryIterator const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.iterator, rhs.iterator );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNodeEntryIterator>::AssignCopy( AtNodeEntryIterator &lhs, AtNodeEntryIterator const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.iterator, rhs.iterator );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNodeEntryIterator>::Destruct( AtNodeEntryIterator &val )
 {
-  Traits< Data >::Destruct( val.iterator );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

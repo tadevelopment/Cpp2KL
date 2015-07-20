@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtMetaDataIterator'
-// Defined at GenKL\\ai_node_entry.kl:20:1
+// Defined at GenKL\\_opaque_types.kl:32:1
 
 struct AtMetaDataIterator
 {
@@ -30,24 +30,24 @@ struct AtMetaDataIterator
   typedef AtMetaDataIterator &IOParam;
   typedef AtMetaDataIterator &OUTParam;
   
-  Data internal;
+  Data _handle;
 };
 
 inline void Traits<AtMetaDataIterator>::ConstructEmpty( AtMetaDataIterator &val )
 {
-  Traits< Data >::ConstructEmpty( val.internal );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtMetaDataIterator>::ConstructCopy( AtMetaDataIterator &lhs, AtMetaDataIterator const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.internal, rhs.internal );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtMetaDataIterator>::AssignCopy( AtMetaDataIterator &lhs, AtMetaDataIterator const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.internal, rhs.internal );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtMetaDataIterator>::Destruct( AtMetaDataIterator &val )
 {
-  Traits< Data >::Destruct( val.internal );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

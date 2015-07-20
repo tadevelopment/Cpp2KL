@@ -1,0 +1,1 @@
+call "E:\Fabric Engine\FabricEngine-2.1.0-alpha-Windows-x86_64\prompt.bat"

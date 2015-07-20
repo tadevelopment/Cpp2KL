@@ -21,6 +21,7 @@
 #include "Vec3.h"
 #include "Mat44.h"
 #include "Vec4.h"
+#include "AtArray.h"
 
 
 // Defined at GenKL\\ai_params.kl:12:1
@@ -53,6 +54,12 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsMat44(
 // Defined at GenKL\\ai_params.kl:17:1
 FABRIC_EXT_EXPORT void _fe_AtParamValueAsString(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
+);
+
+// Defined at GenKL\\ai_params.kl:18:1
+FABRIC_EXT_EXPORT void _fe_AtParamValueAsAtArray(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
 );
 

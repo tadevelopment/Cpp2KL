@@ -5,14 +5,6 @@
 
 require Math;
 
-struct AtShaderGlobals {
-  Data handle;
-};
-
-struct AtScrSample {
-  Data handle;
-};
-
 /**  Ray data structure 
  */
 struct AtRay {
@@ -54,7 +46,7 @@ struct AtRay {
  
   Data light_source; //  For shadow rays only 
  
-  Data bucket; //  Parent bucket 
+  AtBucket bucket; //  Parent bucket 
  
   Float32 weight; //  Ray weight, 1.0 for clean camera rays 
  

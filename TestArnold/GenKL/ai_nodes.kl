@@ -5,15 +5,6 @@
 
 require Math;
 
-// This represents a node in Arnold
-struct AtNode {
-  Data internal;
-};
-
-struct AtUserParamIterator {
-  Data internal;
-};
-
 /**
 AtNode Methods
 

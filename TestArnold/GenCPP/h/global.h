@@ -30,9 +30,11 @@ namespace Fabric { namespace EDK { namespace KL {
   struct AtAOVEntry;
   struct AtAOVIterator;
   struct AtArray;
+  struct AtBucket;
   struct AtCameraInput;
   struct AtCameraOutput;
   struct AtLicenseInfo;
+  struct AtList;
   struct AtMetaDataEntry;
   struct AtMetaDataIterator;
   struct AtMetaDataStore;
@@ -473,115 +475,45 @@ struct Traits< Xfo >
 };
 
 template<>
-struct Traits< AtParamValue >
+struct Traits< AtBucket >
 {
-  typedef AtParamValue &Result;
-  typedef AtParamValue const &INParam;
-  typedef AtParamValue &IOParam;
-  typedef AtParamValue &OUTParam;
+  typedef AtBucket &Result;
+  typedef AtBucket const &INParam;
+  typedef AtBucket &IOParam;
+  typedef AtBucket &OUTParam;
   
-  static void ConstructEmpty( AtParamValue &val );
-  static void ConstructCopy( AtParamValue &lhs, AtParamValue const &rhs );
-  static void AssignCopy( AtParamValue &lhs, AtParamValue const &rhs );
-  static void Destruct( AtParamValue &val );
+  static void ConstructEmpty( AtBucket &val );
+  static void ConstructCopy( AtBucket &lhs, AtBucket const &rhs );
+  static void AssignCopy( AtBucket &lhs, AtBucket const &rhs );
+  static void Destruct( AtBucket &val );
 };
 
 template<>
-struct Traits< AtArray >
+struct Traits< AtList >
 {
-  typedef AtArray &Result;
-  typedef AtArray const &INParam;
-  typedef AtArray &IOParam;
-  typedef AtArray &OUTParam;
+  typedef AtList &Result;
+  typedef AtList const &INParam;
+  typedef AtList &IOParam;
+  typedef AtList &OUTParam;
   
-  static void ConstructEmpty( AtArray &val );
-  static void ConstructCopy( AtArray &lhs, AtArray const &rhs );
-  static void AssignCopy( AtArray &lhs, AtArray const &rhs );
-  static void Destruct( AtArray &val );
+  static void ConstructEmpty( AtList &val );
+  static void ConstructCopy( AtList &lhs, AtList const &rhs );
+  static void AssignCopy( AtList &lhs, AtList const &rhs );
+  static void Destruct( AtList &val );
 };
 
 template<>
-struct Traits< AtParamEntry >
+struct Traits< AtNode >
 {
-  typedef AtParamEntry &Result;
-  typedef AtParamEntry const &INParam;
-  typedef AtParamEntry &IOParam;
-  typedef AtParamEntry &OUTParam;
+  typedef AtNode &Result;
+  typedef AtNode const &INParam;
+  typedef AtNode &IOParam;
+  typedef AtNode &OUTParam;
   
-  static void ConstructEmpty( AtParamEntry &val );
-  static void ConstructCopy( AtParamEntry &lhs, AtParamEntry const &rhs );
-  static void AssignCopy( AtParamEntry &lhs, AtParamEntry const &rhs );
-  static void Destruct( AtParamEntry &val );
-};
-
-template<>
-struct Traits< AtUserParamEntry >
-{
-  typedef AtUserParamEntry &Result;
-  typedef AtUserParamEntry const &INParam;
-  typedef AtUserParamEntry &IOParam;
-  typedef AtUserParamEntry &OUTParam;
-  
-  static void ConstructEmpty( AtUserParamEntry &val );
-  static void ConstructCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs );
-  static void AssignCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs );
-  static void Destruct( AtUserParamEntry &val );
-};
-
-template<>
-struct Traits< AtCameraInput >
-{
-  typedef AtCameraInput &Result;
-  typedef AtCameraInput const &INParam;
-  typedef AtCameraInput &IOParam;
-  typedef AtCameraInput &OUTParam;
-  
-  static void ConstructEmpty( AtCameraInput &val );
-  static void ConstructCopy( AtCameraInput &lhs, AtCameraInput const &rhs );
-  static void AssignCopy( AtCameraInput &lhs, AtCameraInput const &rhs );
-  static void Destruct( AtCameraInput &val );
-};
-
-template<>
-struct Traits< AtCameraOutput >
-{
-  typedef AtCameraOutput &Result;
-  typedef AtCameraOutput const &INParam;
-  typedef AtCameraOutput &IOParam;
-  typedef AtCameraOutput &OUTParam;
-  
-  static void ConstructEmpty( AtCameraOutput &val );
-  static void ConstructCopy( AtCameraOutput &lhs, AtCameraOutput const &rhs );
-  static void AssignCopy( AtCameraOutput &lhs, AtCameraOutput const &rhs );
-  static void Destruct( AtCameraOutput &val );
-};
-
-template<>
-struct Traits< AtLicenseInfo >
-{
-  typedef AtLicenseInfo &Result;
-  typedef AtLicenseInfo const &INParam;
-  typedef AtLicenseInfo &IOParam;
-  typedef AtLicenseInfo &OUTParam;
-  
-  static void ConstructEmpty( AtLicenseInfo &val );
-  static void ConstructCopy( AtLicenseInfo &lhs, AtLicenseInfo const &rhs );
-  static void AssignCopy( AtLicenseInfo &lhs, AtLicenseInfo const &rhs );
-  static void Destruct( AtLicenseInfo &val );
-};
-
-template<>
-struct Traits< AtMetaDataStore >
-{
-  typedef AtMetaDataStore &Result;
-  typedef AtMetaDataStore const &INParam;
-  typedef AtMetaDataStore &IOParam;
-  typedef AtMetaDataStore &OUTParam;
-  
-  static void ConstructEmpty( AtMetaDataStore &val );
-  static void ConstructCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs );
-  static void AssignCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs );
-  static void Destruct( AtMetaDataStore &val );
+  static void ConstructEmpty( AtNode &val );
+  static void ConstructCopy( AtNode &lhs, AtNode const &rhs );
+  static void AssignCopy( AtNode &lhs, AtNode const &rhs );
+  static void Destruct( AtNode &val );
 };
 
 template<>
@@ -641,34 +573,6 @@ struct Traits< AtMetaDataIterator >
 };
 
 template<>
-struct Traits< AtMetaDataEntry >
-{
-  typedef AtMetaDataEntry &Result;
-  typedef AtMetaDataEntry const &INParam;
-  typedef AtMetaDataEntry &IOParam;
-  typedef AtMetaDataEntry &OUTParam;
-  
-  static void ConstructEmpty( AtMetaDataEntry &val );
-  static void ConstructCopy( AtMetaDataEntry &lhs, AtMetaDataEntry const &rhs );
-  static void AssignCopy( AtMetaDataEntry &lhs, AtMetaDataEntry const &rhs );
-  static void Destruct( AtMetaDataEntry &val );
-};
-
-template<>
-struct Traits< AtNode >
-{
-  typedef AtNode &Result;
-  typedef AtNode const &INParam;
-  typedef AtNode &IOParam;
-  typedef AtNode &OUTParam;
-  
-  static void ConstructEmpty( AtNode &val );
-  static void ConstructCopy( AtNode &lhs, AtNode const &rhs );
-  static void AssignCopy( AtNode &lhs, AtNode const &rhs );
-  static void Destruct( AtNode &val );
-};
-
-template<>
 struct Traits< AtUserParamIterator >
 {
   typedef AtUserParamIterator &Result;
@@ -683,17 +587,17 @@ struct Traits< AtUserParamIterator >
 };
 
 template<>
-struct Traits< AtNodeLib >
+struct Traits< AtTextureHandle >
 {
-  typedef AtNodeLib &Result;
-  typedef AtNodeLib const &INParam;
-  typedef AtNodeLib &IOParam;
-  typedef AtNodeLib &OUTParam;
+  typedef AtTextureHandle &Result;
+  typedef AtTextureHandle const &INParam;
+  typedef AtTextureHandle &IOParam;
+  typedef AtTextureHandle &OUTParam;
   
-  static void ConstructEmpty( AtNodeLib &val );
-  static void ConstructCopy( AtNodeLib &lhs, AtNodeLib const &rhs );
-  static void AssignCopy( AtNodeLib &lhs, AtNodeLib const &rhs );
-  static void Destruct( AtNodeLib &val );
+  static void ConstructEmpty( AtTextureHandle &val );
+  static void ConstructCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs );
+  static void AssignCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs );
+  static void Destruct( AtTextureHandle &val );
 };
 
 template<>
@@ -722,48 +626,6 @@ struct Traits< AtScrSample >
   static void ConstructCopy( AtScrSample &lhs, AtScrSample const &rhs );
   static void AssignCopy( AtScrSample &lhs, AtScrSample const &rhs );
   static void Destruct( AtScrSample &val );
-};
-
-template<>
-struct Traits< AtRay >
-{
-  typedef AtRay &Result;
-  typedef AtRay const &INParam;
-  typedef AtRay &IOParam;
-  typedef AtRay &OUTParam;
-  
-  static void ConstructEmpty( AtRay &val );
-  static void ConstructCopy( AtRay &lhs, AtRay const &rhs );
-  static void AssignCopy( AtRay &lhs, AtRay const &rhs );
-  static void Destruct( AtRay &val );
-};
-
-template<>
-struct Traits< AtTextureHandle >
-{
-  typedef AtTextureHandle &Result;
-  typedef AtTextureHandle const &INParam;
-  typedef AtTextureHandle &IOParam;
-  typedef AtTextureHandle &OUTParam;
-  
-  static void ConstructEmpty( AtTextureHandle &val );
-  static void ConstructCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs );
-  static void AssignCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs );
-  static void Destruct( AtTextureHandle &val );
-};
-
-template<>
-struct Traits< AtTextureParams >
-{
-  typedef AtTextureParams &Result;
-  typedef AtTextureParams const &INParam;
-  typedef AtTextureParams &IOParam;
-  typedef AtTextureParams &OUTParam;
-  
-  static void ConstructEmpty( AtTextureParams &val );
-  static void ConstructCopy( AtTextureParams &lhs, AtTextureParams const &rhs );
-  static void AssignCopy( AtTextureParams &lhs, AtTextureParams const &rhs );
-  static void Destruct( AtTextureParams &val );
 };
 
 template<>
@@ -806,6 +668,174 @@ struct Traits< AtAOVIterator >
   static void ConstructCopy( AtAOVIterator &lhs, AtAOVIterator const &rhs );
   static void AssignCopy( AtAOVIterator &lhs, AtAOVIterator const &rhs );
   static void Destruct( AtAOVIterator &val );
+};
+
+template<>
+struct Traits< AtParamEntry >
+{
+  typedef AtParamEntry &Result;
+  typedef AtParamEntry const &INParam;
+  typedef AtParamEntry &IOParam;
+  typedef AtParamEntry &OUTParam;
+  
+  static void ConstructEmpty( AtParamEntry &val );
+  static void ConstructCopy( AtParamEntry &lhs, AtParamEntry const &rhs );
+  static void AssignCopy( AtParamEntry &lhs, AtParamEntry const &rhs );
+  static void Destruct( AtParamEntry &val );
+};
+
+template<>
+struct Traits< AtUserParamEntry >
+{
+  typedef AtUserParamEntry &Result;
+  typedef AtUserParamEntry const &INParam;
+  typedef AtUserParamEntry &IOParam;
+  typedef AtUserParamEntry &OUTParam;
+  
+  static void ConstructEmpty( AtUserParamEntry &val );
+  static void ConstructCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs );
+  static void AssignCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs );
+  static void Destruct( AtUserParamEntry &val );
+};
+
+template<>
+struct Traits< AtMetaDataStore >
+{
+  typedef AtMetaDataStore &Result;
+  typedef AtMetaDataStore const &INParam;
+  typedef AtMetaDataStore &IOParam;
+  typedef AtMetaDataStore &OUTParam;
+  
+  static void ConstructEmpty( AtMetaDataStore &val );
+  static void ConstructCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs );
+  static void AssignCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs );
+  static void Destruct( AtMetaDataStore &val );
+};
+
+template<>
+struct Traits< AtParamValue >
+{
+  typedef AtParamValue &Result;
+  typedef AtParamValue const &INParam;
+  typedef AtParamValue &IOParam;
+  typedef AtParamValue &OUTParam;
+  
+  static void ConstructEmpty( AtParamValue &val );
+  static void ConstructCopy( AtParamValue &lhs, AtParamValue const &rhs );
+  static void AssignCopy( AtParamValue &lhs, AtParamValue const &rhs );
+  static void Destruct( AtParamValue &val );
+};
+
+template<>
+struct Traits< AtArray >
+{
+  typedef AtArray &Result;
+  typedef AtArray const &INParam;
+  typedef AtArray &IOParam;
+  typedef AtArray &OUTParam;
+  
+  static void ConstructEmpty( AtArray &val );
+  static void ConstructCopy( AtArray &lhs, AtArray const &rhs );
+  static void AssignCopy( AtArray &lhs, AtArray const &rhs );
+  static void Destruct( AtArray &val );
+};
+
+template<>
+struct Traits< AtCameraInput >
+{
+  typedef AtCameraInput &Result;
+  typedef AtCameraInput const &INParam;
+  typedef AtCameraInput &IOParam;
+  typedef AtCameraInput &OUTParam;
+  
+  static void ConstructEmpty( AtCameraInput &val );
+  static void ConstructCopy( AtCameraInput &lhs, AtCameraInput const &rhs );
+  static void AssignCopy( AtCameraInput &lhs, AtCameraInput const &rhs );
+  static void Destruct( AtCameraInput &val );
+};
+
+template<>
+struct Traits< AtCameraOutput >
+{
+  typedef AtCameraOutput &Result;
+  typedef AtCameraOutput const &INParam;
+  typedef AtCameraOutput &IOParam;
+  typedef AtCameraOutput &OUTParam;
+  
+  static void ConstructEmpty( AtCameraOutput &val );
+  static void ConstructCopy( AtCameraOutput &lhs, AtCameraOutput const &rhs );
+  static void AssignCopy( AtCameraOutput &lhs, AtCameraOutput const &rhs );
+  static void Destruct( AtCameraOutput &val );
+};
+
+template<>
+struct Traits< AtLicenseInfo >
+{
+  typedef AtLicenseInfo &Result;
+  typedef AtLicenseInfo const &INParam;
+  typedef AtLicenseInfo &IOParam;
+  typedef AtLicenseInfo &OUTParam;
+  
+  static void ConstructEmpty( AtLicenseInfo &val );
+  static void ConstructCopy( AtLicenseInfo &lhs, AtLicenseInfo const &rhs );
+  static void AssignCopy( AtLicenseInfo &lhs, AtLicenseInfo const &rhs );
+  static void Destruct( AtLicenseInfo &val );
+};
+
+template<>
+struct Traits< AtMetaDataEntry >
+{
+  typedef AtMetaDataEntry &Result;
+  typedef AtMetaDataEntry const &INParam;
+  typedef AtMetaDataEntry &IOParam;
+  typedef AtMetaDataEntry &OUTParam;
+  
+  static void ConstructEmpty( AtMetaDataEntry &val );
+  static void ConstructCopy( AtMetaDataEntry &lhs, AtMetaDataEntry const &rhs );
+  static void AssignCopy( AtMetaDataEntry &lhs, AtMetaDataEntry const &rhs );
+  static void Destruct( AtMetaDataEntry &val );
+};
+
+template<>
+struct Traits< AtNodeLib >
+{
+  typedef AtNodeLib &Result;
+  typedef AtNodeLib const &INParam;
+  typedef AtNodeLib &IOParam;
+  typedef AtNodeLib &OUTParam;
+  
+  static void ConstructEmpty( AtNodeLib &val );
+  static void ConstructCopy( AtNodeLib &lhs, AtNodeLib const &rhs );
+  static void AssignCopy( AtNodeLib &lhs, AtNodeLib const &rhs );
+  static void Destruct( AtNodeLib &val );
+};
+
+template<>
+struct Traits< AtRay >
+{
+  typedef AtRay &Result;
+  typedef AtRay const &INParam;
+  typedef AtRay &IOParam;
+  typedef AtRay &OUTParam;
+  
+  static void ConstructEmpty( AtRay &val );
+  static void ConstructCopy( AtRay &lhs, AtRay const &rhs );
+  static void AssignCopy( AtRay &lhs, AtRay const &rhs );
+  static void Destruct( AtRay &val );
+};
+
+template<>
+struct Traits< AtTextureParams >
+{
+  typedef AtTextureParams &Result;
+  typedef AtTextureParams const &INParam;
+  typedef AtTextureParams &IOParam;
+  typedef AtTextureParams &OUTParam;
+  
+  static void ConstructEmpty( AtTextureParams &val );
+  static void ConstructCopy( AtTextureParams &lhs, AtTextureParams const &rhs );
+  static void AssignCopy( AtTextureParams &lhs, AtTextureParams const &rhs );
+  static void Destruct( AtTextureParams &val );
 };
 
 template<>

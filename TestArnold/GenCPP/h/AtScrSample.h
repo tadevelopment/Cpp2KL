@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtScrSample'
-// Defined at GenKL\\ai_ray.kl:12:1
+// Defined at GenKL\\_opaque_types.kl:48:1
 
 struct AtScrSample
 {
@@ -30,24 +30,24 @@ struct AtScrSample
   typedef AtScrSample &IOParam;
   typedef AtScrSample &OUTParam;
   
-  Data handle;
+  Data _handle;
 };
 
 inline void Traits<AtScrSample>::ConstructEmpty( AtScrSample &val )
 {
-  Traits< Data >::ConstructEmpty( val.handle );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtScrSample>::ConstructCopy( AtScrSample &lhs, AtScrSample const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.handle, rhs.handle );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtScrSample>::AssignCopy( AtScrSample &lhs, AtScrSample const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.handle, rhs.handle );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtScrSample>::Destruct( AtScrSample &val )
 {
-  Traits< Data >::Destruct( val.handle );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

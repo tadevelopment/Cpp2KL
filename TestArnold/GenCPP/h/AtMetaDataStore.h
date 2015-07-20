@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtMetaDataStore'
-// Defined at GenKL\\ai_metadata.kl:8:1
+// Defined at GenKL\\_opaque_types.kl:72:1
 
 struct AtMetaDataStore
 {
@@ -30,24 +30,24 @@ struct AtMetaDataStore
   typedef AtMetaDataStore &IOParam;
   typedef AtMetaDataStore &OUTParam;
   
-  Data handle;
+  Data _handle;
 };
 
 inline void Traits<AtMetaDataStore>::ConstructEmpty( AtMetaDataStore &val )
 {
-  Traits< Data >::ConstructEmpty( val.handle );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtMetaDataStore>::ConstructCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.handle, rhs.handle );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtMetaDataStore>::AssignCopy( AtMetaDataStore &lhs, AtMetaDataStore const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.handle, rhs.handle );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtMetaDataStore>::Destruct( AtMetaDataStore &val )
 {
-  Traits< Data >::Destruct( val.handle );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtUserParamEntry'
-// Defined at GenKL\\ai_params.kl:34:1
+// Defined at GenKL\\_opaque_types.kl:68:1
 
 struct AtUserParamEntry
 {
@@ -30,24 +30,24 @@ struct AtUserParamEntry
   typedef AtUserParamEntry &IOParam;
   typedef AtUserParamEntry &OUTParam;
   
-  Data handle;
+  Data _handle;
 };
 
 inline void Traits<AtUserParamEntry>::ConstructEmpty( AtUserParamEntry &val )
 {
-  Traits< Data >::ConstructEmpty( val.handle );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtUserParamEntry>::ConstructCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.handle, rhs.handle );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtUserParamEntry>::AssignCopy( AtUserParamEntry &lhs, AtUserParamEntry const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.handle, rhs.handle );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtUserParamEntry>::Destruct( AtUserParamEntry &val )
 {
-  Traits< Data >::Destruct( val.handle );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

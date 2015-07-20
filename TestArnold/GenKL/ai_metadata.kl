@@ -5,10 +5,6 @@
 
 require Math;
 
-struct AtMetaDataStore {
-  Data handle;
-};
-
 /**
 Metadata Writing
 These functions let the author of a node attach auxiliary information about parameters or the node to the node itself. These methods may only be called inside of the node_parameters method where the parameters are declared. This function receives an opaque pointer to a AtMetaDataStore structure which will hold the results until AiEnd() is called.

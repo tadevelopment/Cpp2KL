@@ -6,7 +6,7 @@
 require Math;
 
 struct AtParamValue {
-  Data atParamValue;
+  Data param_handle;
 };
 
 UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8";
@@ -15,9 +15,10 @@ Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32";
 Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3";
 Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44";
 String AtParamValue.asString() = "_fe_AtParamValueAsString";
+AtArray AtParamValue.asAtArray() = "_fe_AtParamValueAsAtArray";
 
 struct AtArray {
-  Data atParamValue;
+  Data array_handle;
 };
 
 UInt8[] AtArray.asUInt8() = "_fe_AtArrayAsUInt8";
@@ -26,14 +27,6 @@ Float32[] AtArray.asFloat32() = "_fe_AtArrayAsFloat32";
 Vec3[] AtArray.asVec3() = "_fe_AtArrayAsVec3";
 Mat44[] AtArray.asMat44() = "_fe_AtArrayAsMat44";
 String[] AtArray.asString() = "_fe_AtArrayAsString";
-
-struct AtParamEntry {
-  Data handle;
-};
-
-struct AtUserParamEntry {
-  Data handle;
-};
 
 /**
 Parameter Types
@@ -90,19 +83,19 @@ function SInt32 AiUserParamGetType(AtUserParamEntry upentry) = '_fe_AiUserParamG
 function SInt32 AiUserParamGetArrayType(AtUserParamEntry upentry) = '_fe_AiUserParamGetArrayType';
 function SInt32 AiUserParamGetCategory(AtUserParamEntry upentry) = '_fe_AiUserParamGetCategory';
 function SInt32 AiUserParamGetIndex(AtUserParamEntry upentry) = '_fe_AiUserParamGetIndex';
-function AiNodeParamByte(io Data params, SInt32 varoffset, String pname, UInt8 pdefault) = '_fe_AiNodeParamByte';
-function AiNodeParamInt(io Data params, SInt32 varoffset, String pname, SInt32 pdefault) = '_fe_AiNodeParamInt';
-function AiNodeParamUInt(io Data params, SInt32 varoffset, String pname, UInt32 pdefault) = '_fe_AiNodeParamUInt';
-function AiNodeParamBool(io Data params, SInt32 varoffset, String pname, Boolean pdefault) = '_fe_AiNodeParamBool';
-function AiNodeParamFlt(io Data params, SInt32 varoffset, String pname, Float32 pdefault) = '_fe_AiNodeParamFlt';
-function AiNodeParamRGB(io Data params, SInt32 varoffset, String pname, Float32 r, Float32 g, Float32 b) = '_fe_AiNodeParamRGB';
-function AiNodeParamRGBA(io Data params, SInt32 varoffset, String pname, Float32 r, Float32 g, Float32 b, Float32 a) = '_fe_AiNodeParamRGBA';
-function AiNodeParamVec(io Data params, SInt32 varoffset, String pname, Float32 x, Float32 y, Float32 z) = '_fe_AiNodeParamVec';
-function AiNodeParamPnt(io Data params, SInt32 varoffset, String pname, Float32 x, Float32 y, Float32 z) = '_fe_AiNodeParamPnt';
-function AiNodeParamPnt2(io Data params, SInt32 varoffset, String pname, Float32 x, Float32 y) = '_fe_AiNodeParamPnt2';
-function AiNodeParamStr(io Data params, SInt32 varoffset, String pname, String pdefault) = '_fe_AiNodeParamStr';
-function AiNodeParamPtr(io Data params, SInt32 varoffset, String pname, io Data pdefault) = '_fe_AiNodeParamPtr';
-function AiNodeParamNode(io Data params, SInt32 varoffset, String pname, io AtNode pdefault) = '_fe_AiNodeParamNode';
-function AiNodeParamArray(io Data params, SInt32 varoffset, String pname, io AtArray pdefault) = '_fe_AiNodeParamArray';
-function AiNodeParamMtx(io Data params, SInt32 varoffset, String pname, Mat44 matrix) = '_fe_AiNodeParamMtx';
-function AiNodeParamEnum(io Data params, SInt32 varoffset, String pname, SInt32 pdefault, String[] enum_type) = '_fe_AiNodeParamEnum';
+function AiNodeParamByte(io AtList params, SInt32 varoffset, String pname, UInt8 pdefault) = '_fe_AiNodeParamByte';
+function AiNodeParamInt(io AtList params, SInt32 varoffset, String pname, SInt32 pdefault) = '_fe_AiNodeParamInt';
+function AiNodeParamUInt(io AtList params, SInt32 varoffset, String pname, UInt32 pdefault) = '_fe_AiNodeParamUInt';
+function AiNodeParamBool(io AtList params, SInt32 varoffset, String pname, Boolean pdefault) = '_fe_AiNodeParamBool';
+function AiNodeParamFlt(io AtList params, SInt32 varoffset, String pname, Float32 pdefault) = '_fe_AiNodeParamFlt';
+function AiNodeParamRGB(io AtList params, SInt32 varoffset, String pname, Float32 r, Float32 g, Float32 b) = '_fe_AiNodeParamRGB';
+function AiNodeParamRGBA(io AtList params, SInt32 varoffset, String pname, Float32 r, Float32 g, Float32 b, Float32 a) = '_fe_AiNodeParamRGBA';
+function AiNodeParamVec(io AtList params, SInt32 varoffset, String pname, Float32 x, Float32 y, Float32 z) = '_fe_AiNodeParamVec';
+function AiNodeParamPnt(io AtList params, SInt32 varoffset, String pname, Float32 x, Float32 y, Float32 z) = '_fe_AiNodeParamPnt';
+function AiNodeParamPnt2(io AtList params, SInt32 varoffset, String pname, Float32 x, Float32 y) = '_fe_AiNodeParamPnt2';
+function AiNodeParamStr(io AtList params, SInt32 varoffset, String pname, String pdefault) = '_fe_AiNodeParamStr';
+function AiNodeParamPtr(io AtList params, SInt32 varoffset, String pname, io Data pdefault) = '_fe_AiNodeParamPtr';
+function AiNodeParamNode(io AtList params, SInt32 varoffset, String pname, io AtNode pdefault) = '_fe_AiNodeParamNode';
+function AiNodeParamArray(io AtList params, SInt32 varoffset, String pname, io AtArray pdefault) = '_fe_AiNodeParamArray';
+function AiNodeParamMtx(io AtList params, SInt32 varoffset, String pname, Mat44 matrix) = '_fe_AiNodeParamMtx';
+function AiNodeParamEnum(io AtList params, SInt32 varoffset, String pname, SInt32 pdefault, String[] enum_type) = '_fe_AiNodeParamEnum';

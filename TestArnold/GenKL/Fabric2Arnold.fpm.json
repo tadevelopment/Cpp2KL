@@ -3,6 +3,7 @@
     "Fabric2Arnold"
   ],
   "code" : [
+    "_opaque_types.kl",
     "ai_params.kl",
     "ai_cameras.kl",
     "ai_dotass.kl",

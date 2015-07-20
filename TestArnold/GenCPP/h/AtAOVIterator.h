@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtAOVIterator'
-// Defined at GenKL\\ai_universe.kl:16:1
+// Defined at GenKL\\_opaque_types.kl:60:1
 
 struct AtAOVIterator
 {
@@ -30,24 +30,24 @@ struct AtAOVIterator
   typedef AtAOVIterator &IOParam;
   typedef AtAOVIterator &OUTParam;
   
-  Data iterator;
+  Data _handle;
 };
 
 inline void Traits<AtAOVIterator>::ConstructEmpty( AtAOVIterator &val )
 {
-  Traits< Data >::ConstructEmpty( val.iterator );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtAOVIterator>::ConstructCopy( AtAOVIterator &lhs, AtAOVIterator const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.iterator, rhs.iterator );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtAOVIterator>::AssignCopy( AtAOVIterator &lhs, AtAOVIterator const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.iterator, rhs.iterator );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtAOVIterator>::Destruct( AtAOVIterator &val )
 {
-  Traits< Data >::Destruct( val.iterator );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

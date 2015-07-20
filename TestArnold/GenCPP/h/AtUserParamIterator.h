@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtUserParamIterator'
-// Defined at GenKL\\ai_nodes.kl:13:1
+// Defined at GenKL\\_opaque_types.kl:36:1
 
 struct AtUserParamIterator
 {
@@ -30,24 +30,24 @@ struct AtUserParamIterator
   typedef AtUserParamIterator &IOParam;
   typedef AtUserParamIterator &OUTParam;
   
-  Data internal;
+  Data _handle;
 };
 
 inline void Traits<AtUserParamIterator>::ConstructEmpty( AtUserParamIterator &val )
 {
-  Traits< Data >::ConstructEmpty( val.internal );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtUserParamIterator>::ConstructCopy( AtUserParamIterator &lhs, AtUserParamIterator const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.internal, rhs.internal );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtUserParamIterator>::AssignCopy( AtUserParamIterator &lhs, AtUserParamIterator const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.internal, rhs.internal );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtUserParamIterator>::Destruct( AtUserParamIterator &val )
 {
-  Traits< Data >::Destruct( val.internal );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

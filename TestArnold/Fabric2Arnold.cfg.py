@@ -32,9 +32,37 @@ cppToKLTypeMapping = {
     'AtPoint2' : 'Vec2',
     'AtVector2' : 'Vec2',
     'AtMatrix' : 'Mat44',
-    'AtBucket': 'Data',
-    'AtList' : 'Data'
 }
+
+#
+# If an SDK exposes opaque types (eg, handles) then
+# the only interaction KL can have with these objects
+# is to pass them around as Data pointers.  To maintain
+# some type-safety, we can generate structs to wrap
+# these pointers that simply contain a Data ptr. 
+# Note - the opaque_file_name should not conflict
+# with any filesToProcess, or it may be overwritten
+#
+opaque_file_name = '_opaque_types.kl'
+opaque_type_wrappers = [
+    'AtBucket',
+    'AtList',
+    'AtNode',
+    'AtNodeEntry',
+    'AtNodeMethods',
+    'AtParamIterator',
+    'AtMetaDataIterator',
+    'AtUserParamIterator',
+    'AtTextureHandle',
+    'AtShaderGlobals',
+    'AtScrSample',
+    'AtNodeIterator',
+    'AtNodeEntryIterator',
+    'AtAOVIterator',
+    'AtParamEntry',
+    'AtUserParamEntry',
+    'AtMetaDataStore'
+]
 
 # Name of this project
 project_name = 'Fabric2Arnold'
@@ -57,7 +85,7 @@ filesToProcess = [
     'ai_plugins.h',
     'ai_ray.h',
     'ai_texture.h',
-    'ai_universe.h'
+    'ai_universe.h',
 ]
 
 # Any elements named in this list will not be exported
@@ -78,55 +106,9 @@ extns_required = [
 # It is possible to override built in translations by
 # ignoring an element, and defining it explicitly here.
 custom_add_to_file = {
-    'ai_node_entry.h' : 'struct AtNodeEntry {\n'
-                        '  Data internal;\n'
-                        '};\n'
-                        '\n'
-                        'struct AtNodeMethods {\n'
-                        '  Data internal;\n'
-                        '};\n'
-                        '\n'
-                         'struct AtParamIterator {\n'
-                        '  Data internal;\n'
-                        '};\n'
-                        '\n'
-                        'struct AtMetaDataIterator {\n'
-                        '  Data internal;\n'
-                        '};\n\n',
-
-    'ai_nodes.h' :      '// This represents a node in Arnold\n'
-                        'struct AtNode {\n'
-                        '  Data internal;\n'
-                        '};\n\n'
-                        'struct AtUserParamIterator {\n'
-                        '  Data internal;\n'
-                        '};\n\n',
-
-    'ai_texture.h' :    'struct AtTextureHandle {\n'
-                        '  Data handle;\n'
-                        '};\n\n',
-
-    'ai_ray.h' :        'struct AtShaderGlobals {\n'
-                        '  Data handle;\n'
-                        '};\n\n'
-                        'struct AtScrSample {\n'
-                        '  Data handle;\n'
-                        '};\n\n',
-
-    'ai_universe.h' :   'struct AtNodeIterator {\n'
-                        '  Data iterator;\n'
-                        '};\n'
-                        '\n'
-                        'struct AtNodeEntryIterator {\n'
-                        '  Data iterator;\n'
-                        '};\n'
-                        '\n'
-                        'struct AtAOVIterator {\n'
-                        '  Data iterator;\n'
-                        '};\n\n',
 
     'ai_params.h' :     'struct AtParamValue {\n'
-                        '  Data atParamValue;\n'
+                        '  Data param_handle;\n'
                         '};\n'
                         '\n'
                         'UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8";\n'
@@ -135,9 +117,10 @@ custom_add_to_file = {
                         'Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3";\n'
                         'Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44";\n'
                         'String AtParamValue.asString() = "_fe_AtParamValueAsString";\n'
+                        'AtArray AtParamValue.asAtArray() = "_fe_AtParamValueAsAtArray";\n'
                         '\n'
                         'struct AtArray {\n'
-                        '  Data atParamValue;\n'
+                        '  Data array_handle;\n'
                         '};\n'
                         '\n'
                         'UInt8[] AtArray.asUInt8() = "_fe_AtArrayAsUInt8";\n'
@@ -147,19 +130,6 @@ custom_add_to_file = {
                         'Mat44[] AtArray.asMat44() = "_fe_AtArrayAsMat44";\n'
                         'String[] AtArray.asString() = "_fe_AtArrayAsString";\n'
                         '\n'
-                        'struct AtParamEntry {\n'
-
-                        '  Data handle;\n'
-                        '};\n'
-                        '\n'
-                        'struct AtUserParamEntry {\n'
-                        '  Data handle;\n'
-                        '};\n'
-                        '\n',
-
-    'ai_metadata.h' :   'struct AtMetaDataStore {\n'
-                        '  Data handle;\n'
-                        '};\n\n',
 }
 # Define this value to true to not expose inline functions
 skipInlineFunctions = True

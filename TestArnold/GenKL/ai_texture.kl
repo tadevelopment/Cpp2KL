@@ -5,10 +5,6 @@
 
 require Math;
 
-struct AtTextureHandle {
-  Data handle;
-};
-
 /**  Structure that holds all of the available texture map look-up options 
  */
 struct AtTextureParams {

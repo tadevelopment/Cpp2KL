@@ -1,8 +1,8 @@
-#ifndef __KL2EDK_AUTOGEN_AtNodeIterator__
-#define __KL2EDK_AUTOGEN_AtNodeIterator__
+#ifndef __KL2EDK_AUTOGEN_AtBucket__
+#define __KL2EDK_AUTOGEN_AtBucket__
 
 #ifdef KL2EDK_INCLUDE_MESSAGES
-  #pragma message ( "Including 'AtNodeIterator.h'" )
+  #pragma message ( "Including 'AtBucket.h'" )
 #endif
 
 ////////////////////////////////////////////////////////////////
@@ -20,35 +20,35 @@
 
 namespace Fabric { namespace EDK { namespace KL {
 
-// KL struct 'AtNodeIterator'
-// Defined at GenKL\\_opaque_types.kl:52:1
+// KL struct 'AtBucket'
+// Defined at GenKL\\_opaque_types.kl:8:1
 
-struct AtNodeIterator
+struct AtBucket
 {
-  typedef AtNodeIterator &Result;
-  typedef AtNodeIterator const &INParam;
-  typedef AtNodeIterator &IOParam;
-  typedef AtNodeIterator &OUTParam;
+  typedef AtBucket &Result;
+  typedef AtBucket const &INParam;
+  typedef AtBucket &IOParam;
+  typedef AtBucket &OUTParam;
   
   Data _handle;
 };
 
-inline void Traits<AtNodeIterator>::ConstructEmpty( AtNodeIterator &val )
+inline void Traits<AtBucket>::ConstructEmpty( AtBucket &val )
 {
   Traits< Data >::ConstructEmpty( val._handle );
 }
-inline void Traits<AtNodeIterator>::ConstructCopy( AtNodeIterator &lhs, AtNodeIterator const &rhs )
+inline void Traits<AtBucket>::ConstructCopy( AtBucket &lhs, AtBucket const &rhs )
 {
   Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
-inline void Traits<AtNodeIterator>::AssignCopy( AtNodeIterator &lhs, AtNodeIterator const &rhs )
+inline void Traits<AtBucket>::AssignCopy( AtBucket &lhs, AtBucket const &rhs )
 {
   Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
-inline void Traits<AtNodeIterator>::Destruct( AtNodeIterator &val )
+inline void Traits<AtBucket>::Destruct( AtBucket &val )
 {
   Traits< Data >::Destruct( val._handle );
 }
 }}}
 
-#endif // __KL2EDK_AUTOGEN_AtNodeIterator__
+#endif // __KL2EDK_AUTOGEN_AtBucket__

@@ -5,22 +5,6 @@
 
 require Math;
 
-struct AtNodeEntry {
-  Data internal;
-};
-
-struct AtNodeMethods {
-  Data internal;
-};
-
-struct AtParamIterator {
-  Data internal;
-};
-
-struct AtMetaDataIterator {
-  Data internal;
-};
-
 /**  */
 struct AtMetaDataEntry {
   String name; //  

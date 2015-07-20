@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtTextureHandle'
-// Defined at GenKL\\ai_texture.kl:8:1
+// Defined at GenKL\\_opaque_types.kl:40:1
 
 struct AtTextureHandle
 {
@@ -30,24 +30,24 @@ struct AtTextureHandle
   typedef AtTextureHandle &IOParam;
   typedef AtTextureHandle &OUTParam;
   
-  Data handle;
+  Data _handle;
 };
 
 inline void Traits<AtTextureHandle>::ConstructEmpty( AtTextureHandle &val )
 {
-  Traits< Data >::ConstructEmpty( val.handle );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtTextureHandle>::ConstructCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.handle, rhs.handle );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtTextureHandle>::AssignCopy( AtTextureHandle &lhs, AtTextureHandle const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.handle, rhs.handle );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtTextureHandle>::Destruct( AtTextureHandle &val )
 {
-  Traits< Data >::Destruct( val.handle );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 

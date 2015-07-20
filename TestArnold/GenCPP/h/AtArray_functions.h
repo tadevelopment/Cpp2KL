@@ -23,37 +23,37 @@
 #include "Vec4.h"
 
 
-// Defined at GenKL\\ai_params.kl:23:1
+// Defined at GenKL\\ai_params.kl:24:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsUInt8(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::UInt8 > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_
 );
 
-// Defined at GenKL\\ai_params.kl:24:1
+// Defined at GenKL\\ai_params.kl:25:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsUInt32(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::UInt32 > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_
 );
 
-// Defined at GenKL\\ai_params.kl:25:1
+// Defined at GenKL\\ai_params.kl:26:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsFloat32(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::Float32 > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_
 );
 
-// Defined at GenKL\\ai_params.kl:26:1
+// Defined at GenKL\\ai_params.kl:27:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsVec3(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::Vec3 > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_
 );
 
-// Defined at GenKL\\ai_params.kl:27:1
+// Defined at GenKL\\ai_params.kl:28:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsMat44(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::Mat44 > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_
 );
 
-// Defined at GenKL\\ai_params.kl:28:1
+// Defined at GenKL\\ai_params.kl:29:1
 FABRIC_EXT_EXPORT void _fe_AtArrayAsString(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam this_

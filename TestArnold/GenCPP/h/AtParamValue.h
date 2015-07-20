@@ -30,24 +30,24 @@ struct AtParamValue
   typedef AtParamValue &IOParam;
   typedef AtParamValue &OUTParam;
   
-  Data atParamValue;
+  Data param_handle;
 };
 
 inline void Traits<AtParamValue>::ConstructEmpty( AtParamValue &val )
 {
-  Traits< Data >::ConstructEmpty( val.atParamValue );
+  Traits< Data >::ConstructEmpty( val.param_handle );
 }
 inline void Traits<AtParamValue>::ConstructCopy( AtParamValue &lhs, AtParamValue const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.atParamValue, rhs.atParamValue );
+  Traits< Data >::ConstructCopy( lhs.param_handle, rhs.param_handle );
 }
 inline void Traits<AtParamValue>::AssignCopy( AtParamValue &lhs, AtParamValue const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.atParamValue, rhs.atParamValue );
+  Traits< Data >::AssignCopy( lhs.param_handle, rhs.param_handle );
 }
 inline void Traits<AtParamValue>::Destruct( AtParamValue &val )
 {
-  Traits< Data >::Destruct( val.atParamValue );
+  Traits< Data >::Destruct( val.param_handle );
 }
 }}}
 

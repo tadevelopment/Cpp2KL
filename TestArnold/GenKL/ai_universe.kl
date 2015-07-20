@@ -5,18 +5,6 @@
 
 require Math;
 
-struct AtNodeIterator {
-  Data iterator;
-};
-
-struct AtNodeEntryIterator {
-  Data iterator;
-};
-
-struct AtAOVIterator {
-  Data iterator;
-};
-
 /**  */
 struct AtAOVEntry {
   String name; //  

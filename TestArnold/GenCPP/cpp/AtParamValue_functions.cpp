@@ -25,7 +25,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AtParamValueAsUInt8(
     setError("Error in _fe_AtParamValueAsUInt8. unable to convert: this_");
     return ;
   }
- f2aThis_.BYTE;
+AtByte f2a_result = f2aThis_.BYTE;
   F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsUInt8", )
 }
 
@@ -114,4 +114,26 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsString(
   }
 const char* f2a_result = f2aThis_.STR;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsString")
+}
+
+// Defined at GenKL\\ai_params.kl:18:1
+FABRIC_EXT_EXPORT void _fe_AtParamValueAsAtArray(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
+)
+{
+  F2A_TRY_STATEMENT("_fe_AtParamValueAsAtArray")
+
+  AtParamValue f2aThis_;
+  if(!KlParamValue_to_AtParamValue(this_, f2aThis_)){
+    setError("Error in _fe_AtParamValueAsAtArray. unable to convert: this_");
+    return;
+  }
+  f2a_result = f2aThis_.fe();
+
+  #pragma message("_fe_AtParamValueAsAtArray is missing its implementation.")
+
+  // ReturnType 'AtArray' could not be conveted.
+
+  F2A_CATCH_STATEMENT("_fe_AtParamValueAsAtArray")
 }

@@ -312,6 +312,30 @@ def process_file(override_name, infilename, outputfile):
     f.writelines(file_contents)
 
 #
+# Write out simple wrapper structs for opaque data types.
+# These structs are collected in a file that is written out
+# as the first file in a project (so that following files
+# can refer to it's definitions
+#
+def generate_opaque_file():
+    f = open(os.path.join(output_dir, opaque_file_name), 'w')
+    f.write(
+        '/* \n'
+        ' * This auto-generated file contains simple wrapper\n'
+        ' * structs for the opaque data-types found in ' + project_name + '\n'
+        ' *  - Do not modify this file, it will be overwritten\n'
+        ' */\n\n'
+    )
+
+    for opaque_type in opaque_type_wrappers:
+        f.write(
+            '\n'
+            'struct ' + opaque_type + ' {\n'
+            '  private Data _handle;\n'
+            '};\n'
+        )
+
+#
 # Generate an FPM file that KL2EDK can use to generate the
 # CPP bindings to call back into our wrapped SDK's library
 #
@@ -364,10 +388,11 @@ def get_auto_codegen_typemapping():
 #
 def generate_auto_codegen():
 
+    type_mapping = get_auto_codegen_typemapping()
     # create the full Codegen JSON repr
     full_json = {}
     full_json['parameterprefix'] = parameter_prefix
-    full_json['typemapping'] = get_auto_codegen_typemapping()
+    full_json['typemapping'] = type_mapping
     full_json['functionbodies'] = json_codegen_functionbodies
 
     # We don't have any parameterconversionstoskip or methodmapping - do we need 'em?
@@ -419,6 +444,12 @@ for doxyElement in root.iter('compound'):
         allFiles.append(fileTuple)
 
 processed_files = []
+
+# first, generate our opaque datatypes
+if opaque_type_wrappers:
+    generate_opaque_file()
+    processed_files.append(opaque_file_name)
+
 for aFile in filesToProcess:
     # find the xml file for this header
     processed = False

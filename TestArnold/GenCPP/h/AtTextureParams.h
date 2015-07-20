@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtTextureParams'
-// Defined at GenKL\\ai_texture.kl:14:1
+// Defined at GenKL\\ai_texture.kl:10:1
 
 struct AtTextureParams
 {

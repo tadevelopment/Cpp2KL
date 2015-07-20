@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtNodeMethods'
-// Defined at GenKL\\ai_node_entry.kl:12:1
+// Defined at GenKL\\_opaque_types.kl:24:1
 
 struct AtNodeMethods
 {
@@ -30,24 +30,24 @@ struct AtNodeMethods
   typedef AtNodeMethods &IOParam;
   typedef AtNodeMethods &OUTParam;
   
-  Data internal;
+  Data _handle;
 };
 
 inline void Traits<AtNodeMethods>::ConstructEmpty( AtNodeMethods &val )
 {
-  Traits< Data >::ConstructEmpty( val.internal );
+  Traits< Data >::ConstructEmpty( val._handle );
 }
 inline void Traits<AtNodeMethods>::ConstructCopy( AtNodeMethods &lhs, AtNodeMethods const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.internal, rhs.internal );
+  Traits< Data >::ConstructCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNodeMethods>::AssignCopy( AtNodeMethods &lhs, AtNodeMethods const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.internal, rhs.internal );
+  Traits< Data >::AssignCopy( lhs._handle, rhs._handle );
 }
 inline void Traits<AtNodeMethods>::Destruct( AtNodeMethods &val )
 {
-  Traits< Data >::Destruct( val.internal );
+  Traits< Data >::Destruct( val._handle );
 }
 }}}
 
