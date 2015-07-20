@@ -25,11 +25,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AtParamValueAsUInt8(
     setError("Error in _fe_AtParamValueAsUInt8. unable to convert: this_");
     return ;
   }
-  AtByte f2a_result = f2aThis_.fe();
-  KL::UInt8 _result;
-  AtByte_to_UInt8(f2a_result, _result);
-  return _result;
-
+ f2aThis_.BYTE;
   F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsUInt8", )
 }
 
@@ -45,11 +41,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AtParamValueAsUInt32(
     setError("Error in _fe_AtParamValueAsUInt32. unable to convert: this_");
     return ;
   }
-  AtUInt32 f2a_result = f2aThis_.fe();
-  KL::UInt32 _result;
-  AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
-
+unsigned int f2a_result = f2aThis_.UINT;
   F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsUInt32", )
 }
 
@@ -86,9 +78,7 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsVec3(
     setError("Error in _fe_AtParamValueAsVec3. unable to convert: this_");
     return;
   }
-  AtPoint f2a_result = f2aThis_.fe();
-  AtPoint_to_Vec3(f2a_result, _result);
-
+AtVector f2a_result = f2aThis_.VEC;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsVec3")
 }
 
@@ -105,9 +95,7 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsMat44(
     setError("Error in _fe_AtParamValueAsMat44. unable to convert: this_");
     return;
   }
-  AtMatrix f2a_result = f2aThis_.fe();
-  AtMatrix_to_Mat44(f2a_result, _result);
-
+AtMatrix f2a_result = *f2aThis_.pMTX;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsMat44")
 }
 
@@ -124,8 +112,6 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsString(
     setError("Error in _fe_AtParamValueAsString. unable to convert: this_");
     return;
   }
-  char* f2a_result = f2aThis_.fe();
-  char_to_String(f2a_result, _result);
-
+const char* f2a_result = f2aThis_.STR;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsString")
 }

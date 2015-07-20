@@ -197,7 +197,13 @@
         "_fe_AiUserParamGetType": "int f2a_result = AiUserParamGetType(f2aupentry);", 
         "_fe_AiUserParamIteratorDestroy": "AiUserParamIteratorDestroy(f2aiter);", 
         "_fe_AiUserParamIteratorFinished": "bool f2a_result = AiUserParamIteratorFinished(f2aiter);", 
-        "_fe_AiUserParamIteratorGetNext": "const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);"
+        "_fe_AiUserParamIteratorGetNext": "const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);", 
+        "_fe_AtParamValueAsMat44": "AtMatrix f2a_result = *f2aThis_.pMTX;", 
+        "_fe_AtParamValueAsSInt32": " f2aThis_.INT;", 
+        "_fe_AtParamValueAsString": "const char* f2a_result = f2aThis_.STR;", 
+        "_fe_AtParamValueAsUInt32": "unsigned int f2a_result = f2aThis_.UINT;", 
+        "_fe_AtParamValueAsUInt8": " f2aThis_.BYTE;", 
+        "_fe_AtParamValueAsVec3": "AtVector f2a_result = f2aThis_.VEC;"
     }, 
     "functionentry": "F2A_TRY_STATEMENT", 
     "functionexit": "F2A_CATCH_STATEMENT", 
