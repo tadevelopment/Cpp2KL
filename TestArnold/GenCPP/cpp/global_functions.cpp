@@ -13,7 +13,7 @@
 using namespace Fabric::EDK;
 
 
-// Defined at GenKL\\ai_params.kl:70:1
+// Defined at GenKL\\ai_params.kl:61:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
@@ -21,22 +21,32 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetName")
 
+  AtParamEntry f2aPentry;
+  if(!KLAtParamEntry_to_CPAtParamEntry(pentry, f2aPentry)){
+    setError("Error in _fe_AiParamGetName. unable to convert: pentry");
+    return;
+  }
 const char * f2a_result = AiParamGetName(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetName")
 }
 
-// Defined at GenKL\\ai_params.kl:71:1
+// Defined at GenKL\\ai_params.kl:62:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
 )
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetType")
 
+  AtParamEntry f2aPentry;
+  if(!KLAtParamEntry_to_CPAtParamEntry(pentry, f2aPentry)){
+    setError("Error in _fe_AiParamGetType. unable to convert: pentry");
+    return ;
+  }
 int f2a_result = AiParamGetType(f2apentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetType", )
 }
 
-// Defined at GenKL\\ai_params.kl:72:1
+// Defined at GenKL\\ai_params.kl:63:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetDefault(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
@@ -44,11 +54,16 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetDefault(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetDefault")
 
+  AtParamEntry f2aPentry;
+  if(!KLAtParamEntry_to_CPAtParamEntry(pentry, f2aPentry)){
+    setError("Error in _fe_AiParamGetDefault. unable to convert: pentry");
+    return;
+  }
 const AtParamValue * f2a_result = AiParamGetDefault(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetDefault")
 }
 
-// Defined at GenKL\\ai_params.kl:73:1
+// Defined at GenKL\\ai_params.kl:64:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetEnum(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
@@ -56,11 +71,16 @@ FABRIC_EXT_EXPORT void _fe_AiParamGetEnum(
 {
   F2A_TRY_STATEMENT("_fe_AiParamGetEnum")
 
+  AtParamEntry f2aPentry;
+  if(!KLAtParamEntry_to_CPAtParamEntry(pentry, f2aPentry)){
+    setError("Error in _fe_AiParamGetEnum. unable to convert: pentry");
+    return;
+  }
 AtEnum f2a_result = AiParamGetEnum(f2apentry);
   F2A_CATCH_STATEMENT("_fe_AiParamGetEnum")
 }
 
-// Defined at GenKL\\ai_params.kl:74:1
+// Defined at GenKL\\ai_params.kl:65:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetTypeName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
@@ -77,7 +97,7 @@ const char * f2a_result = AiParamGetTypeName(f2atype);
   F2A_CATCH_STATEMENT("_fe_AiParamGetTypeName")
 }
 
-// Defined at GenKL\\ai_params.kl:75:1
+// Defined at GenKL\\ai_params.kl:66:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetTypeSize(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
 )
@@ -93,7 +113,7 @@ AI_CONST int f2a_result = AiParamGetTypeSize(f2atype);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetTypeSize", )
 }
 
-// Defined at GenKL\\ai_params.kl:81:1
+// Defined at GenKL\\ai_params.kl:72:1
 FABRIC_EXT_EXPORT void _fe_AiUserParamGetName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
@@ -101,55 +121,80 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetName")
 
+  AtUserParamEntry f2aUpentry;
+  if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
+    setError("Error in _fe_AiUserParamGetName. unable to convert: upentry");
+    return;
+  }
 const char * f2a_result = AiUserParamGetName(f2aupentry);
   F2A_CATCH_STATEMENT("_fe_AiUserParamGetName")
 }
 
-// Defined at GenKL\\ai_params.kl:82:1
+// Defined at GenKL\\ai_params.kl:73:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 )
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetType")
 
+  AtUserParamEntry f2aUpentry;
+  if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
+    setError("Error in _fe_AiUserParamGetType. unable to convert: upentry");
+    return ;
+  }
 int f2a_result = AiUserParamGetType(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetType", )
 }
 
-// Defined at GenKL\\ai_params.kl:83:1
+// Defined at GenKL\\ai_params.kl:74:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetArrayType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 )
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetArrayType")
 
+  AtUserParamEntry f2aUpentry;
+  if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
+    setError("Error in _fe_AiUserParamGetArrayType. unable to convert: upentry");
+    return ;
+  }
 int f2a_result = AiUserParamGetArrayType(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetArrayType", )
 }
 
-// Defined at GenKL\\ai_params.kl:84:1
+// Defined at GenKL\\ai_params.kl:75:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetCategory(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 )
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetCategory")
 
+  AtUserParamEntry f2aUpentry;
+  if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
+    setError("Error in _fe_AiUserParamGetCategory. unable to convert: upentry");
+    return ;
+  }
 int f2a_result = AiUserParamGetCategory(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetCategory", )
 }
 
-// Defined at GenKL\\ai_params.kl:85:1
+// Defined at GenKL\\ai_params.kl:76:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetIndex(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 )
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamGetIndex")
 
+  AtUserParamEntry f2aUpentry;
+  if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
+    setError("Error in _fe_AiUserParamGetIndex. unable to convert: upentry");
+    return ;
+  }
 AI_CONST int f2a_result = AiUserParamGetIndex(f2aupentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetIndex", )
 }
 
-// Defined at GenKL\\ai_params.kl:86:1
+// Defined at GenKL\\ai_params.kl:77:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -159,6 +204,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamByte")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamByte. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamByte. unable to convert: varoffset");
@@ -174,11 +224,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
     setError("Error in _fe_AiNodeParamByte. unable to convert: pdefault");
     return;
   }
-AiNodeParamByte(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamByte(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamByte")
 }
 
-// Defined at GenKL\\ai_params.kl:87:1
+// Defined at GenKL\\ai_params.kl:78:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -188,6 +239,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamInt")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamInt. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamInt. unable to convert: varoffset");
@@ -203,11 +259,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
     setError("Error in _fe_AiNodeParamInt. unable to convert: pdefault");
     return;
   }
-AiNodeParamInt(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamInt(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamInt")
 }
 
-// Defined at GenKL\\ai_params.kl:88:1
+// Defined at GenKL\\ai_params.kl:79:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -217,6 +274,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamUInt")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamUInt. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamUInt. unable to convert: varoffset");
@@ -232,11 +294,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
     setError("Error in _fe_AiNodeParamUInt. unable to convert: pdefault");
     return;
   }
-AiNodeParamUInt(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamUInt(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamUInt")
 }
 
-// Defined at GenKL\\ai_params.kl:89:1
+// Defined at GenKL\\ai_params.kl:80:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -246,6 +309,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamBool")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamBool. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamBool. unable to convert: varoffset");
@@ -261,11 +329,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
     setError("Error in _fe_AiNodeParamBool. unable to convert: pdefault");
     return;
   }
-AiNodeParamBool(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamBool(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamBool")
 }
 
-// Defined at GenKL\\ai_params.kl:90:1
+// Defined at GenKL\\ai_params.kl:81:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -275,6 +344,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamFlt")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamFlt. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamFlt. unable to convert: varoffset");
@@ -290,11 +364,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
     setError("Error in _fe_AiNodeParamFlt. unable to convert: pdefault");
     return;
   }
-AiNodeParamFlt(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamFlt(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamFlt")
 }
 
-// Defined at GenKL\\ai_params.kl:91:1
+// Defined at GenKL\\ai_params.kl:82:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -306,6 +381,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamRGB")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamRGB. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamRGB. unable to convert: varoffset");
@@ -331,11 +411,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
     setError("Error in _fe_AiNodeParamRGB. unable to convert: b");
     return;
   }
-AiNodeParamRGB(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab);
+AiNodeParamRGB(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamRGB")
 }
 
-// Defined at GenKL\\ai_params.kl:92:1
+// Defined at GenKL\\ai_params.kl:83:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -348,6 +429,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamRGBA")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamRGBA. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamRGBA. unable to convert: varoffset");
@@ -378,11 +464,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
     setError("Error in _fe_AiNodeParamRGBA. unable to convert: a");
     return;
   }
-AiNodeParamRGBA(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab, f2aa);
+AiNodeParamRGBA(f2aparams, f2avaroffset, f2apname, f2ar, f2ag, f2ab, f2aa);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamRGBA")
 }
 
-// Defined at GenKL\\ai_params.kl:93:1
+// Defined at GenKL\\ai_params.kl:84:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -394,6 +481,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamVec")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamVec. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamVec. unable to convert: varoffset");
@@ -419,11 +511,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
     setError("Error in _fe_AiNodeParamVec. unable to convert: z");
     return;
   }
-AiNodeParamVec(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);
+AiNodeParamVec(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamVec")
 }
 
-// Defined at GenKL\\ai_params.kl:94:1
+// Defined at GenKL\\ai_params.kl:85:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -435,6 +528,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamPnt")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamPnt. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamPnt. unable to convert: varoffset");
@@ -460,11 +558,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
     setError("Error in _fe_AiNodeParamPnt. unable to convert: z");
     return;
   }
-AiNodeParamPnt(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);
+AiNodeParamPnt(f2aparams, f2avaroffset, f2apname, f2ax, f2ay, f2az);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPnt")
 }
 
-// Defined at GenKL\\ai_params.kl:95:1
+// Defined at GenKL\\ai_params.kl:86:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -475,6 +574,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamPnt2")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamPnt2. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamPnt2. unable to convert: varoffset");
@@ -495,11 +599,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
     setError("Error in _fe_AiNodeParamPnt2. unable to convert: y");
     return;
   }
-AiNodeParamPnt2(f2aparams, f2avaroffset, f2apname, f2ax, f2ay);
+AiNodeParamPnt2(f2aparams, f2avaroffset, f2apname, f2ax, f2ay);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPnt2")
 }
 
-// Defined at GenKL\\ai_params.kl:96:1
+// Defined at GenKL\\ai_params.kl:87:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -509,6 +614,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamStr")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamStr. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamStr. unable to convert: varoffset");
@@ -524,11 +634,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
     setError("Error in _fe_AiNodeParamStr. unable to convert: pdefault");
     return;
   }
-AiNodeParamStr(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamStr(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamStr")
 }
 
-// Defined at GenKL\\ai_params.kl:97:1
+// Defined at GenKL\\ai_params.kl:88:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -538,6 +649,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamPtr")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamPtr. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamPtr. unable to convert: varoffset");
@@ -553,12 +669,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
     setError("Error in _fe_AiNodeParamPtr. unable to convert: pdefault");
     return;
   }
-AiNodeParamPtr(f2aparams, f2avaroffset, f2apname, f2apdefault);  void_to_Data(f2aPdefault, pdefault);
+AiNodeParamPtr(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+  void_to_Data(f2aPdefault, pdefault);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeParamPtr")
 }
 
-// Defined at GenKL\\ai_params.kl:98:1
+// Defined at GenKL\\ai_params.kl:89:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -568,6 +685,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamNode")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamNode. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamNode. unable to convert: varoffset");
@@ -578,11 +700,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
     setError("Error in _fe_AiNodeParamNode. unable to convert: pname");
     return;
   }
-AiNodeParamNode(f2aparams, f2avaroffset, f2apname, f2apdefault);
+  AtNode f2aPdefault;
+  if(!KLAtNode_to_CPAtNode(pdefault, f2aPdefault)){
+    setError("Error in _fe_AiNodeParamNode. unable to convert: pdefault");
+    return;
+  }
+AiNodeParamNode(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+  CPAtNode_to_KLAtNode(f2aPdefault, pdefault);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamNode")
 }
 
-// Defined at GenKL\\ai_params.kl:99:1
+// Defined at GenKL\\ai_params.kl:90:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -592,6 +721,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamArray")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamArray. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamArray. unable to convert: varoffset");
@@ -602,11 +736,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
     setError("Error in _fe_AiNodeParamArray. unable to convert: pname");
     return;
   }
-AiNodeParamArray(f2aparams, f2avaroffset, f2apname, f2apdefault);
+AiNodeParamArray(f2aparams, f2avaroffset, f2apname, f2apdefault);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamArray")
 }
 
-// Defined at GenKL\\ai_params.kl:100:1
+// Defined at GenKL\\ai_params.kl:91:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -616,6 +751,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamMtx")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamMtx. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamMtx. unable to convert: varoffset");
@@ -631,11 +771,12 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
     setError("Error in _fe_AiNodeParamMtx. unable to convert: matrix");
     return;
   }
-AiNodeParamMtx(f2aparams, f2avaroffset, f2apname, f2amatrix);
+AiNodeParamMtx(f2aparams, f2avaroffset, f2apname, f2amatrix);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamMtx")
 }
 
-// Defined at GenKL\\ai_params.kl:101:1
+// Defined at GenKL\\ai_params.kl:92:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamEnum(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -646,6 +787,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamEnum(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeParamEnum")
 
+  AtList f2aParams;
+  if(!KLAtList_to_CPAtList(params, f2aParams)){
+    setError("Error in _fe_AiNodeParamEnum. unable to convert: params");
+    return;
+  }
   int f2aVaroffset;
   if(!SInt32_to_int(varoffset, f2aVaroffset)){
     setError("Error in _fe_AiNodeParamEnum. unable to convert: varoffset");
@@ -666,8 +812,1056 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamEnum(
     setError("Error in _fe_AiNodeParamEnum. unable to convert: enum_type");
     return;
   }
-AiNodeParamEnum(f2aparams, f2avaroffset, f2apname, f2apdefault, f2aenum_type);
+AiNodeParamEnum(f2aparams, f2avaroffset, f2apname, f2apdefault, f2aenum_type);  CPAtList_to_KLAtList(f2aParams, params);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeParamEnum")
+}
+
+// Defined at GenKL\\ai_array.kl:21:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetMtxFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetMtxFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetMtxFunc. unable to convert: i");
+    return;
+  }
+
+  #pragma message("_fe_AiArrayGetMtxFunc is missing its implementation.")
+
+  // Type 'AtArray' could not be converted.
+
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetMtxFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:23:1
+FABRIC_EXT_EXPORT void _fe_AiArray(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArray")
+
+  AtUInt32 f2aNelements;
+  if(!UInt32_to_AtUInt32(nelements, f2aNelements)){
+    setError("Error in _fe_AiArray. unable to convert: nelements");
+    return;
+  }
+  AtByte f2aNkeys;
+  if(!UInt8_to_AtByte(nkeys, f2aNkeys)){
+    setError("Error in _fe_AiArray. unable to convert: nkeys");
+    return;
+  }
+  AtByte f2aType;
+  if(!UInt8_to_AtByte(type, f2aType)){
+    setError("Error in _fe_AiArray. unable to convert: type");
+    return;
+  }
+AtArray * f2a_result = AiArray(f2anelements, f2ankeys, f2atype);
+  F2A_CATCH_STATEMENT("_fe_AiArray")
+}
+
+// Defined at GenKL\\ai_array.kl:24:1
+FABRIC_EXT_EXPORT void _fe_AiArrayAllocate(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayAllocate")
+
+  AtUInt32 f2aNelements;
+  if(!UInt32_to_AtUInt32(nelements, f2aNelements)){
+    setError("Error in _fe_AiArrayAllocate. unable to convert: nelements");
+    return;
+  }
+  AtByte f2aNkeys;
+  if(!UInt8_to_AtByte(nkeys, f2aNkeys)){
+    setError("Error in _fe_AiArrayAllocate. unable to convert: nkeys");
+    return;
+  }
+  AtByte f2aType;
+  if(!UInt8_to_AtByte(type, f2aType)){
+    setError("Error in _fe_AiArrayAllocate. unable to convert: type");
+    return;
+  }
+AtArray * f2a_result = AiArrayAllocate(f2anelements, f2ankeys, f2atype);
+  F2A_CATCH_STATEMENT("_fe_AiArrayAllocate")
+}
+
+// Defined at GenKL\\ai_array.kl:25:1
+FABRIC_EXT_EXPORT void _fe_AiArrayDestroy(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayDestroy")
+
+AiArrayDestroy(f2aarray);
+  F2A_CATCH_STATEMENT("_fe_AiArrayDestroy")
+}
+
+// Defined at GenKL\\ai_array.kl:26:1
+FABRIC_EXT_EXPORT void _fe_AiArrayConvert(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::INParam data
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayConvert")
+
+  AtUInt32 f2aNelements;
+  if(!UInt32_to_AtUInt32(nelements, f2aNelements)){
+    setError("Error in _fe_AiArrayConvert. unable to convert: nelements");
+    return;
+  }
+  AtByte f2aNkeys;
+  if(!UInt8_to_AtByte(nkeys, f2aNkeys)){
+    setError("Error in _fe_AiArrayConvert. unable to convert: nkeys");
+    return;
+  }
+  AtByte f2aType;
+  if(!UInt8_to_AtByte(type, f2aType)){
+    setError("Error in _fe_AiArrayConvert. unable to convert: type");
+    return;
+  }
+  void* f2aData = NULL;
+  if(!Data_to_void(data, f2aData)){
+    setError("Error in _fe_AiArrayConvert. unable to convert: data");
+    return;
+  }
+AtArray * f2a_result = AiArrayConvert(f2anelements, f2ankeys, f2atype, f2adata);
+  F2A_CATCH_STATEMENT("_fe_AiArrayConvert")
+}
+
+// Defined at GenKL\\ai_array.kl:27:1
+FABRIC_EXT_EXPORT void _fe_AiArrayModify(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayModify")
+
+  AtUInt32 f2aNelements;
+  if(!UInt32_to_AtUInt32(nelements, f2aNelements)){
+    setError("Error in _fe_AiArrayModify. unable to convert: nelements");
+    return;
+  }
+  AtByte f2aNkeys;
+  if(!UInt8_to_AtByte(nkeys, f2aNkeys)){
+    setError("Error in _fe_AiArrayModify. unable to convert: nkeys");
+    return;
+  }
+  AtByte f2aType;
+  if(!UInt8_to_AtByte(type, f2aType)){
+    setError("Error in _fe_AiArrayModify. unable to convert: type");
+    return;
+  }
+AtArray * f2a_result = AiArrayModify(f2aarray, f2anelements, f2ankeys, f2atype);
+  F2A_CATCH_STATEMENT("_fe_AiArrayModify")
+}
+
+// Defined at GenKL\\ai_array.kl:28:1
+FABRIC_EXT_EXPORT void _fe_AiArrayCopy(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayCopy")
+
+AtArray * f2a_result = AiArrayCopy(f2aarray);
+  F2A_CATCH_STATEMENT("_fe_AiArrayCopy")
+}
+
+// Defined at GenKL\\ai_array.kl:29:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetKey(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam key,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::INParam data
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetKey")
+
+  AtByte f2aKey;
+  if(!UInt8_to_AtByte(key, f2aKey)){
+    setError("Error in _fe_AiArraySetKey. unable to convert: key");
+    return ;
+  }
+  void* f2aData = NULL;
+  if(!Data_to_void(data, f2aData)){
+    setError("Error in _fe_AiArraySetKey. unable to convert: data");
+    return ;
+  }
+bool f2a_result = AiArraySetKey(f2aarray, f2akey, f2adata);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetKey", )
+}
+
+// Defined at GenKL\\ai_array.kl:30:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolatePnt(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolatePnt")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolatePnt. unable to convert: time");
+    return;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolatePnt. unable to convert: idx");
+    return;
+  }
+AtPoint f2a_result = AiArrayInterpolatePnt(f2aarray, f2atime, f2aidx);
+  F2A_CATCH_STATEMENT("_fe_AiArrayInterpolatePnt")
+}
+
+// Defined at GenKL\\ai_array.kl:31:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateVec(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolateVec")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolateVec. unable to convert: time");
+    return;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolateVec. unable to convert: idx");
+    return;
+  }
+AtVector f2a_result = AiArrayInterpolateVec(f2aarray, f2atime, f2aidx);
+  F2A_CATCH_STATEMENT("_fe_AiArrayInterpolateVec")
+}
+
+// Defined at GenKL\\ai_array.kl:32:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateRGB(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolateRGB")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolateRGB. unable to convert: time");
+    return;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolateRGB. unable to convert: idx");
+    return;
+  }
+AtColor f2a_result = AiArrayInterpolateRGB(f2aarray, f2atime, f2aidx);
+  F2A_CATCH_STATEMENT("_fe_AiArrayInterpolateRGB")
+}
+
+// Defined at GenKL\\ai_array.kl:33:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateRGBA(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolateRGBA")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolateRGBA. unable to convert: time");
+    return;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolateRGBA. unable to convert: idx");
+    return;
+  }
+AtRGBA f2a_result = AiArrayInterpolateRGBA(f2aarray, f2atime, f2aidx);
+  F2A_CATCH_STATEMENT("_fe_AiArrayInterpolateRGBA")
+}
+
+// Defined at GenKL\\ai_array.kl:34:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayInterpolateFlt(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolateFlt")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolateFlt. unable to convert: time");
+    return ;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolateFlt. unable to convert: idx");
+    return ;
+  }
+float f2a_result = AiArrayInterpolateFlt(f2aarray, f2atime, f2aidx);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayInterpolateFlt", )
+}
+
+// Defined at GenKL\\ai_array.kl:35:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateMtx(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::INParam result
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayInterpolateMtx")
+
+  float f2aTime;
+  if(!Float32_to_float(time, f2aTime)){
+    setError("Error in _fe_AiArrayInterpolateMtx. unable to convert: time");
+    return;
+  }
+  AtUInt32 f2aIdx;
+  if(!UInt32_to_AtUInt32(idx, f2aIdx)){
+    setError("Error in _fe_AiArrayInterpolateMtx. unable to convert: idx");
+    return;
+  }
+  AtMatrix f2aResult;
+  if(!Mat44_to_AtMatrix(result, f2aResult)){
+    setError("Error in _fe_AiArrayInterpolateMtx. unable to convert: result");
+    return;
+  }
+AiArrayInterpolateMtx(f2aarray, f2atime, f2aidx, f2aresult);
+  F2A_CATCH_STATEMENT("_fe_AiArrayInterpolateMtx")
+}
+
+// Defined at GenKL\\ai_array.kl:36:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArrayGetBoolFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetBoolFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetBoolFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetBoolFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArrayGetBoolFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetBoolFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:37:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiArrayGetByteFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetByteFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetByteFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetByteFunc. unable to convert: line");
+    return ;
+  }
+AtByte f2a_result = AiArrayGetByteFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetByteFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:38:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiArrayGetIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetIntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetIntFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetIntFunc. unable to convert: line");
+    return ;
+  }
+int f2a_result = AiArrayGetIntFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetIntFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:39:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiArrayGetUIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetUIntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetUIntFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetUIntFunc. unable to convert: line");
+    return ;
+  }
+AtUInt32 f2a_result = AiArrayGetUIntFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetUIntFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:40:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayGetFltFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetFltFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetFltFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetFltFunc. unable to convert: line");
+    return ;
+  }
+float f2a_result = AiArrayGetFltFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetFltFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:41:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetRGBFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::RGB >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetRGBFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetRGBFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetRGBFunc. unable to convert: line");
+    return;
+  }
+AtRGB f2a_result = AiArrayGetRGBFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetRGBFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:42:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetRGBAFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetRGBAFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetRGBAFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetRGBAFunc. unable to convert: line");
+    return;
+  }
+AtRGBA f2a_result = AiArrayGetRGBAFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetRGBAFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:43:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetPntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetPntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetPntFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetPntFunc. unable to convert: line");
+    return;
+  }
+AtPoint f2a_result = AiArrayGetPntFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetPntFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:44:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetPnt2Func(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec2 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetPnt2Func")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetPnt2Func. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetPnt2Func. unable to convert: line");
+    return;
+  }
+AtPoint2 f2a_result = AiArrayGetPnt2Func(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetPnt2Func")
+}
+
+// Defined at GenKL\\ai_array.kl:45:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetVecFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetVecFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetVecFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetVecFunc. unable to convert: line");
+    return;
+  }
+AtVector f2a_result = AiArrayGetVecFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetVecFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:46:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetStrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetStrFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetStrFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetStrFunc. unable to convert: line");
+    return;
+  }
+const char * f2a_result = AiArrayGetStrFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetStrFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:47:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiArrayGetPtrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetPtrFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetPtrFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetPtrFunc. unable to convert: line");
+    return ;
+  }
+void * f2a_result = AiArrayGetPtrFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetPtrFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:48:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetArrayFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArrayGetArrayFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArrayGetArrayFunc. unable to convert: i");
+    return;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArrayGetArrayFunc. unable to convert: line");
+    return;
+  }
+AtArray * f2a_result = AiArrayGetArrayFunc(f2aa, f2ai, f2aline);
+  F2A_CATCH_STATEMENT("_fe_AiArrayGetArrayFunc")
+}
+
+// Defined at GenKL\\ai_array.kl:49:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetBoolFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Boolean >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetBoolFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetBoolFunc. unable to convert: i");
+    return ;
+  }
+  bool f2aVal;
+  if(!Boolean_to_bool(val, f2aVal)){
+    setError("Error in _fe_AiArraySetBoolFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetBoolFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetBoolFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetBoolFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:50:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetByteFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetByteFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetByteFunc. unable to convert: i");
+    return ;
+  }
+  AtByte f2aVal;
+  if(!UInt8_to_AtByte(val, f2aVal)){
+    setError("Error in _fe_AiArraySetByteFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetByteFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetByteFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetByteFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:51:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetIntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetIntFunc. unable to convert: i");
+    return ;
+  }
+  int f2aVal;
+  if(!SInt32_to_int(val, f2aVal)){
+    setError("Error in _fe_AiArraySetIntFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetIntFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetIntFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetIntFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:52:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetUIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetUIntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetUIntFunc. unable to convert: i");
+    return ;
+  }
+  AtUInt32 f2aVal;
+  if(!UInt32_to_AtUInt32(val, f2aVal)){
+    setError("Error in _fe_AiArraySetUIntFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetUIntFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetUIntFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetUIntFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:53:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetFltFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetFltFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetFltFunc. unable to convert: i");
+    return ;
+  }
+  float f2aVal;
+  if(!Float32_to_float(val, f2aVal)){
+    setError("Error in _fe_AiArraySetFltFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetFltFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetFltFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetFltFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:54:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::RGB >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetRGBFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetRGBFunc. unable to convert: i");
+    return ;
+  }
+  AtRGB f2aVal;
+  if(!RGB_to_AtRGB(val, f2aVal)){
+    setError("Error in _fe_AiArraySetRGBFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetRGBFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetRGBFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetRGBFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:55:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBAFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetRGBAFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: i");
+    return ;
+  }
+  AtRGBA f2aVal;
+  if(!Color_to_AtRGBA(val, f2aVal)){
+    setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetRGBAFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetRGBAFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:56:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetPntFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetPntFunc. unable to convert: i");
+    return ;
+  }
+  AtPoint f2aVal;
+  if(!Vec3_to_AtPoint(val, f2aVal)){
+    setError("Error in _fe_AiArraySetPntFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetPntFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetPntFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPntFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:57:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPnt2Func(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec2 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetPnt2Func")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetPnt2Func. unable to convert: i");
+    return ;
+  }
+  AtPoint2 f2aVal;
+  if(!Vec2_to_AtPoint2(val, f2aVal)){
+    setError("Error in _fe_AiArraySetPnt2Func. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetPnt2Func. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetPnt2Func(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPnt2Func", )
+}
+
+// Defined at GenKL\\ai_array.kl:58:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetVecFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetVecFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetVecFunc. unable to convert: i");
+    return ;
+  }
+  AtPoint f2aVal;
+  if(!Vec3_to_AtPoint(val, f2aVal)){
+    setError("Error in _fe_AiArraySetVecFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetVecFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetVecFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetVecFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:59:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetMtxFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetMtxFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetMtxFunc. unable to convert: i");
+    return ;
+  }
+  AtMatrix f2aVal;
+  if(!Mat44_to_AtMatrix(val, f2aVal)){
+    setError("Error in _fe_AiArraySetMtxFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetMtxFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetMtxFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetMtxFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:60:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetStrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetStrFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetStrFunc. unable to convert: i");
+    return ;
+  }
+  char* f2aVal = NULL;
+  if(!String_to_char(val, f2aVal)){
+    setError("Error in _fe_AiArraySetStrFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetStrFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetStrFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetStrFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:61:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPtrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::IOParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetPtrFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetPtrFunc. unable to convert: i");
+    return ;
+  }
+  void* f2aVal = NULL;
+  if(!Data_to_void(val, f2aVal)){
+    setError("Error in _fe_AiArraySetPtrFunc. unable to convert: val");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetPtrFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetPtrFunc(f2aa, f2ai, f2aval, f2aline);  void_to_Data(f2aVal, val);
+
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPtrFunc", )
+}
+
+// Defined at GenKL\\ai_array.kl:62:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetArrayFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+)
+{
+  F2A_TRY_STATEMENT("_fe_AiArraySetArrayFunc")
+
+  AtUInt32 f2aI;
+  if(!UInt32_to_AtUInt32(i, f2aI)){
+    setError("Error in _fe_AiArraySetArrayFunc. unable to convert: i");
+    return ;
+  }
+  int f2aLine;
+  if(!SInt32_to_int(line, f2aLine)){
+    setError("Error in _fe_AiArraySetArrayFunc. unable to convert: line");
+    return ;
+  }
+bool f2a_result = AiArraySetArrayFunc(f2aa, f2ai, f2aval, f2aline);
+  F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetArrayFunc", )
 }
 
 // Defined at GenKL\\ai_cameras.kl:47:1
@@ -678,12 +1872,18 @@ FABRIC_EXT_EXPORT void _fe_AiCameraInitialize(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraInitialize")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiCameraInitialize. unable to convert: node");
+    return;
+  }
   void* f2aData = NULL;
   if(!Data_to_void(data, f2aData)){
     setError("Error in _fe_AiCameraInitialize. unable to convert: data");
     return;
   }
-AiCameraInitialize(f2anode, f2adata);  void_to_Data(f2aData, data);
+AiCameraInitialize(f2anode, f2adata);  CPAtNode_to_KLAtNode(f2aNode, node);
+  void_to_Data(f2aData, data);
 
   F2A_CATCH_STATEMENT("_fe_AiCameraInitialize")
 }
@@ -696,12 +1896,18 @@ FABRIC_EXT_EXPORT void _fe_AiCameraUpdate(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraUpdate")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiCameraUpdate. unable to convert: node");
+    return;
+  }
   bool f2aPlane_distance;
   if(!Boolean_to_bool(plane_distance, f2aPlane_distance)){
     setError("Error in _fe_AiCameraUpdate. unable to convert: plane_distance");
     return;
   }
-AiCameraUpdate(f2anode, f2aplane_distance);
+AiCameraUpdate(f2anode, f2aplane_distance);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiCameraUpdate")
 }
 
@@ -712,7 +1918,13 @@ FABRIC_EXT_EXPORT void _fe_AiCameraDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraDestroy")
 
-AiCameraDestroy(f2anode);
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiCameraDestroy. unable to convert: node");
+    return;
+  }
+AiCameraDestroy(f2anode);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiCameraDestroy")
 }
 
@@ -723,6 +1935,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiCameraGetLocalData(
 {
   F2A_TRY_STATEMENT("_fe_AiCameraGetLocalData")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiCameraGetLocalData. unable to convert: node");
+    return ;
+  }
 void * f2a_result = AiCameraGetLocalData(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiCameraGetLocalData", )
 }
@@ -954,6 +2171,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBool(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetBool")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetBool. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetBool. unable to convert: param");
@@ -969,7 +2191,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBool(
     setError("Error in _fe_AiMetaDataSetBool. unable to convert: value");
     return;
   }
-AiMetaDataSetBool(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetBool(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetBool")
 }
 
@@ -983,6 +2206,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBoolAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetBoolAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetBoolAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetBoolAtString. unable to convert: param");
@@ -998,7 +2226,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetBoolAtString(
     setError("Error in _fe_AiMetaDataSetBoolAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetBoolAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetBoolAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetBoolAtString")
 }
 
@@ -1012,6 +2241,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetInt(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetInt")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetInt. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetInt. unable to convert: param");
@@ -1027,7 +2261,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetInt(
     setError("Error in _fe_AiMetaDataSetInt. unable to convert: value");
     return;
   }
-AiMetaDataSetInt(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetInt(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetInt")
 }
 
@@ -1041,6 +2276,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetIntAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetIntAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetIntAtString. unable to convert: param");
@@ -1056,7 +2296,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetIntAtString(
     setError("Error in _fe_AiMetaDataSetIntAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetIntAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetIntAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetIntAtString")
 }
 
@@ -1070,6 +2311,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFlt(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetFlt")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetFlt. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetFlt. unable to convert: param");
@@ -1085,7 +2331,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFlt(
     setError("Error in _fe_AiMetaDataSetFlt. unable to convert: value");
     return;
   }
-AiMetaDataSetFlt(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetFlt(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetFlt")
 }
 
@@ -1099,6 +2346,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFltAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetFltAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetFltAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetFltAtString. unable to convert: param");
@@ -1114,7 +2366,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetFltAtString(
     setError("Error in _fe_AiMetaDataSetFltAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetFltAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetFltAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetFltAtString")
 }
 
@@ -1128,6 +2381,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGB(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetRGB")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetRGB. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetRGB. unable to convert: param");
@@ -1143,7 +2401,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGB(
     setError("Error in _fe_AiMetaDataSetRGB. unable to convert: value");
     return;
   }
-AiMetaDataSetRGB(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetRGB(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetRGB")
 }
 
@@ -1157,6 +2416,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGBAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetRGBAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetRGBAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetRGBAtString. unable to convert: param");
@@ -1172,7 +2436,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetRGBAtString(
     setError("Error in _fe_AiMetaDataSetRGBAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetRGBAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetRGBAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetRGBAtString")
 }
 
@@ -1186,6 +2451,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVec(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetVec")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetVec. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetVec. unable to convert: param");
@@ -1201,7 +2471,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVec(
     setError("Error in _fe_AiMetaDataSetVec. unable to convert: value");
     return;
   }
-AiMetaDataSetVec(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetVec(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetVec")
 }
 
@@ -1215,6 +2486,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVecAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetVecAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetVecAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetVecAtString. unable to convert: param");
@@ -1230,7 +2506,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetVecAtString(
     setError("Error in _fe_AiMetaDataSetVecAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetVecAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetVecAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetVecAtString")
 }
 
@@ -1244,6 +2521,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetPnt")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetPnt. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetPnt. unable to convert: param");
@@ -1259,7 +2541,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt(
     setError("Error in _fe_AiMetaDataSetPnt. unable to convert: value");
     return;
   }
-AiMetaDataSetPnt(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetPnt(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt")
 }
 
@@ -1273,6 +2556,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetPntAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetPntAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetPntAtString. unable to convert: param");
@@ -1288,7 +2576,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPntAtString(
     setError("Error in _fe_AiMetaDataSetPntAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetPntAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetPntAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPntAtString")
 }
 
@@ -1302,6 +2591,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetPnt2")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetPnt2. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetPnt2. unable to convert: param");
@@ -1317,7 +2611,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2(
     setError("Error in _fe_AiMetaDataSetPnt2. unable to convert: value");
     return;
   }
-AiMetaDataSetPnt2(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetPnt2(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt2")
 }
 
@@ -1331,6 +2626,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2AtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetPnt2AtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetPnt2AtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetPnt2AtString. unable to convert: param");
@@ -1346,7 +2646,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetPnt2AtString(
     setError("Error in _fe_AiMetaDataSetPnt2AtString. unable to convert: value");
     return;
   }
-AiMetaDataSetPnt2AtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetPnt2AtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetPnt2AtString")
 }
 
@@ -1360,6 +2661,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStr(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetStr")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetStr. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetStr. unable to convert: param");
@@ -1375,7 +2681,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStr(
     setError("Error in _fe_AiMetaDataSetStr. unable to convert: value");
     return;
   }
-AiMetaDataSetStr(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetStr(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetStr")
 }
 
@@ -1389,6 +2696,11 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataSetStrAtString")
 
+  AtMetaDataStore f2aMds;
+  if(!KLAtMetaDataStore_to_CPAtMetaDataStore(mds, f2aMds)){
+    setError("Error in _fe_AiMetaDataSetStrAtString. unable to convert: mds");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataSetStrAtString. unable to convert: param");
@@ -1404,7 +2716,8 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataSetStrAtString(
     setError("Error in _fe_AiMetaDataSetStrAtString. unable to convert: value");
     return;
   }
-AiMetaDataSetStrAtString(f2amds, f2aparam, f2aname, f2avalue);
+AiMetaDataSetStrAtString(f2amds, f2aparam, f2aname, f2avalue);  CPAtMetaDataStore_to_KLAtMetaDataStore(f2aMds, mds);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataSetStrAtString")
 }
 
@@ -1418,6 +2731,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetBoolAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetBoolAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: param");
@@ -1448,6 +2766,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetIntAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: param");
@@ -1478,6 +2801,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetFltAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetFltAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: param");
@@ -1508,6 +2836,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetRGBAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetRGBAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: param");
@@ -1538,6 +2871,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetVecAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetVecAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: param");
@@ -1568,6 +2906,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetPntAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: param");
@@ -1598,6 +2941,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPnt2AtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetPnt2AtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: param");
@@ -1628,6 +2976,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataGetStrAtString")
 
+  AtNodeEntry f2aEntry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
+    setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: entry");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: param");
@@ -1878,6 +3231,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetName")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetName. unable to convert: nentry");
+    return;
+  }
 const char * f2a_result = AiNodeEntryGetName(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetName")
 }
@@ -1889,6 +3247,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetType(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetType")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetType. unable to convert: nentry");
+    return ;
+  }
 int f2a_result = AiNodeEntryGetType(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetType", )
 }
@@ -1901,6 +3264,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetTypeName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetTypeName")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetTypeName. unable to convert: nentry");
+    return;
+  }
 const char * f2a_result = AiNodeEntryGetTypeName(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetTypeName")
 }
@@ -1912,6 +3280,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetOutputType(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetOutputType")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetOutputType. unable to convert: nentry");
+    return ;
+  }
 int f2a_result = AiNodeEntryGetOutputType(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetOutputType", )
 }
@@ -1924,6 +3297,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetFilename(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetFilename")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetFilename. unable to convert: nentry");
+    return;
+  }
 const char * f2a_result = AiNodeEntryGetFilename(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetFilename")
 }
@@ -1936,6 +3314,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetVersion(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetVersion")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetVersion. unable to convert: nentry");
+    return;
+  }
 const char * f2a_result = AiNodeEntryGetVersion(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetVersion")
 }
@@ -1947,6 +3330,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetCount(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetCount")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetCount. unable to convert: nentry");
+    return ;
+  }
 int f2a_result = AiNodeEntryGetCount(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetCount", )
 }
@@ -1958,6 +3346,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetNumParams(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetNumParams")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetNumParams. unable to convert: nentry");
+    return ;
+  }
 int f2a_result = AiNodeEntryGetNumParams(f2anentry);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetNumParams", )
 }
@@ -1971,6 +3364,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetParameter(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetParameter")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetParameter. unable to convert: nentry");
+    return;
+  }
   int f2aI;
   if(!SInt32_to_int(i, f2aI)){
     setError("Error in _fe_AiNodeEntryGetParameter. unable to convert: i");
@@ -1989,6 +3387,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryLookUpParameterAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryLookUpParameterAtString")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryLookUpParameterAtString. unable to convert: nentry");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeEntryLookUpParameterAtString. unable to convert: param");
@@ -2006,6 +3409,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetParamIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetParamIterator")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetParamIterator. unable to convert: nentry");
+    return;
+  }
 AtParamIterator * f2a_result = AiNodeEntryGetParamIterator(f2anentry);
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryGetParamIterator")
 }
@@ -2019,6 +3427,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryGetMetaDataIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryGetMetaDataIterator")
 
+  AtNodeEntry f2aNentry;
+  if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
+    setError("Error in _fe_AiNodeEntryGetMetaDataIterator. unable to convert: nentry");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeEntryGetMetaDataIterator. unable to convert: param");
@@ -2060,12 +3473,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryInstall(
     setError("Error in _fe_AiNodeEntryInstall. unable to convert: filename");
     return;
   }
+  AtNodeMethods f2aMethods;
+  if(!KLAtNodeMethods_to_CPAtNodeMethods(methods, f2aMethods)){
+    setError("Error in _fe_AiNodeEntryInstall. unable to convert: methods");
+    return;
+  }
   char* f2aVersion = NULL;
   if(!String_to_char(version, f2aVersion)){
     setError("Error in _fe_AiNodeEntryInstall. unable to convert: version");
     return;
   }
-AiNodeEntryInstall(f2atype, f2aoutput_type, f2aname, f2afilename, f2amethods, f2aversion);
+AiNodeEntryInstall(f2atype, f2aoutput_type, f2aname, f2afilename, f2amethods, f2aversion);  CPAtNodeMethods_to_KLAtNodeMethods(f2aMethods, methods);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryInstall")
 }
 
@@ -2092,7 +3511,13 @@ FABRIC_EXT_EXPORT void _fe_AiParamIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorDestroy")
 
-AiParamIteratorDestroy(f2aiter);
+  AtParamIterator f2aIter;
+  if(!KLAtParamIterator_to_CPAtParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiParamIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiParamIteratorDestroy(f2aiter);  CPAtParamIterator_to_KLAtParamIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiParamIteratorDestroy")
 }
 
@@ -2104,7 +3529,13 @@ FABRIC_EXT_EXPORT void _fe_AiParamIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorGetNext")
 
-const AtParamEntry * f2a_result = AiParamIteratorGetNext(f2aiter);
+  AtParamIterator f2aIter;
+  if(!KLAtParamIterator_to_CPAtParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiParamIteratorGetNext. unable to convert: iter");
+    return;
+  }
+const AtParamEntry * f2a_result = AiParamIteratorGetNext(f2aiter);  CPAtParamIterator_to_KLAtParamIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiParamIteratorGetNext")
 }
 
@@ -2115,6 +3546,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiParamIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiParamIteratorFinished")
 
+  AtParamIterator f2aIter;
+  if(!KLAtParamIterator_to_CPAtParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiParamIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiParamIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamIteratorFinished", )
 }
@@ -2126,7 +3562,13 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorDestroy")
 
-AiMetaDataIteratorDestroy(f2aiter);
+  AtMetaDataIterator f2aIter;
+  if(!KLAtMetaDataIterator_to_CPAtMetaDataIterator(iter, f2aIter)){
+    setError("Error in _fe_AiMetaDataIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiMetaDataIteratorDestroy(f2aiter);  CPAtMetaDataIterator_to_KLAtMetaDataIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataIteratorDestroy")
 }
 
@@ -2138,7 +3580,13 @@ FABRIC_EXT_EXPORT void _fe_AiMetaDataIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorGetNext")
 
-const AtMetaDataEntry * f2a_result = AiMetaDataIteratorGetNext(f2aiter);
+  AtMetaDataIterator f2aIter;
+  if(!KLAtMetaDataIterator_to_CPAtMetaDataIterator(iter, f2aIter)){
+    setError("Error in _fe_AiMetaDataIteratorGetNext. unable to convert: iter");
+    return;
+  }
+const AtMetaDataEntry * f2a_result = AiMetaDataIteratorGetNext(f2aiter);  CPAtMetaDataIterator_to_KLAtMetaDataIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiMetaDataIteratorGetNext")
 }
 
@@ -2149,6 +3597,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiMetaDataIteratorFinished")
 
+  AtMetaDataIterator f2aIter;
+  if(!KLAtMetaDataIterator_to_CPAtMetaDataIterator(iter, f2aIter)){
+    setError("Error in _fe_AiMetaDataIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiMetaDataIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataIteratorFinished", )
 }
@@ -2194,7 +3647,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeReset(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeReset")
 
-AiNodeReset(f2anode);
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeReset. unable to convert: node");
+    return;
+  }
+AiNodeReset(f2anode);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeReset")
 }
 
@@ -2206,12 +3665,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeResetParameter(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeResetParameter")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeResetParameter. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeResetParameter. unable to convert: param");
     return;
   }
-AiNodeResetParameter(f2anode, f2aparam);
+AiNodeResetParameter(f2anode, f2aparam);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeResetParameter")
 }
 
@@ -2223,6 +3688,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeClone(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeClone")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeClone. unable to convert: node");
+    return;
+  }
 AtNode * f2a_result = AiNodeClone(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeClone")
 }
@@ -2234,7 +3704,13 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeDestroy")
 
-bool f2a_result = AiNodeDestroy(f2anode);
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeDestroy. unable to convert: node");
+    return ;
+  }
+bool f2a_result = AiNodeDestroy(f2anode);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDestroy", )
 }
 
@@ -2246,6 +3722,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIs(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIs")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeIs. unable to convert: node");
+    return ;
+  }
   char* f2aStr = NULL;
   if(!String_to_char(str, f2aStr)){
     setError("Error in _fe_AiNodeIs. unable to convert: str");
@@ -2264,6 +3745,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDeclareAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeDeclareAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeDeclareAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: param");
@@ -2274,7 +3760,8 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDeclareAtString(
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: declaration");
     return ;
   }
-bool f2a_result = AiNodeDeclareAtString(f2anode, f2aparam, f2adeclaration);
+bool f2a_result = AiNodeDeclareAtString(f2anode, f2aparam, f2adeclaration);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDeclareAtString", )
 }
 
@@ -2287,12 +3774,24 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLink(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeLink")
 
+  AtNode f2aSrc;
+  if(!KLAtNode_to_CPAtNode(src, f2aSrc)){
+    setError("Error in _fe_AiNodeLink. unable to convert: src");
+    return ;
+  }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeLink. unable to convert: input");
     return ;
   }
-bool f2a_result = AiNodeLink(f2asrc, f2ainput, f2atarget);
+  AtNode f2aTarget;
+  if(!KLAtNode_to_CPAtNode(target, f2aTarget)){
+    setError("Error in _fe_AiNodeLink. unable to convert: target");
+    return ;
+  }
+bool f2a_result = AiNodeLink(f2asrc, f2ainput, f2atarget);  CPAtNode_to_KLAtNode(f2aSrc, src);
+  CPAtNode_to_KLAtNode(f2aTarget, target);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLink", )
 }
 
@@ -2306,9 +3805,19 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLinkOutput(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeLinkOutput")
 
+  AtNode f2aSrc;
+  if(!KLAtNode_to_CPAtNode(src, f2aSrc)){
+    setError("Error in _fe_AiNodeLinkOutput. unable to convert: src");
+    return ;
+  }
   char* f2aOutput = NULL;
   if(!String_to_char(output, f2aOutput)){
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: output");
+    return ;
+  }
+  AtNode f2aTarget;
+  if(!KLAtNode_to_CPAtNode(target, f2aTarget)){
+    setError("Error in _fe_AiNodeLinkOutput. unable to convert: target");
     return ;
   }
   char* f2aInput = NULL;
@@ -2316,7 +3825,9 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLinkOutput(
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: input");
     return ;
   }
-bool f2a_result = AiNodeLinkOutput(f2asrc, f2aoutput, f2atarget, f2ainput);
+bool f2a_result = AiNodeLinkOutput(f2asrc, f2aoutput, f2atarget, f2ainput);  CPAtNode_to_KLAtNode(f2aSrc, src);
+  CPAtNode_to_KLAtNode(f2aTarget, target);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLinkOutput", )
 }
 
@@ -2328,12 +3839,18 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeUnlink(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeUnlink")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeUnlink. unable to convert: node");
+    return ;
+  }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeUnlink. unable to convert: input");
     return ;
   }
-bool f2a_result = AiNodeUnlink(f2anode, f2ainput);
+bool f2a_result = AiNodeUnlink(f2anode, f2ainput);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeUnlink", )
 }
 
@@ -2345,6 +3862,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsLinked(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIsLinked")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeIsLinked. unable to convert: node");
+    return ;
+  }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeIsLinked. unable to convert: input");
@@ -2364,6 +3886,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetLink(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetLink")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetLink. unable to convert: node");
+    return;
+  }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeGetLink. unable to convert: input");
@@ -2387,6 +3914,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetName(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetName")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetName. unable to convert: node");
+    return;
+  }
 const char * f2a_result = AiNodeGetName(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetName")
 }
@@ -2399,6 +3931,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetNodeEntry(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetNodeEntry")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetNodeEntry. unable to convert: node");
+    return;
+  }
 const AtNodeEntry * f2a_result = AiNodeGetNodeEntry(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetNodeEntry")
 }
@@ -2411,6 +3948,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetParams(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetParams")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetParams. unable to convert: node");
+    return;
+  }
 AtParamValue * f2a_result = AiNodeGetParams(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetParams")
 }
@@ -2422,6 +3964,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetLocalData(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetLocalData")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetLocalData. unable to convert: node");
+    return ;
+  }
 void * f2a_result = AiNodeGetLocalData(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetLocalData", )
 }
@@ -2434,12 +3981,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetLocalData(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetLocalData")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetLocalData. unable to convert: node");
+    return;
+  }
   void* f2aData = NULL;
   if(!Data_to_void(data, f2aData)){
     setError("Error in _fe_AiNodeSetLocalData. unable to convert: data");
     return;
   }
-AiNodeSetLocalData(f2anode, f2adata);  void_to_Data(f2aData, data);
+AiNodeSetLocalData(f2anode, f2adata);  CPAtNode_to_KLAtNode(f2aNode, node);
+  void_to_Data(f2aData, data);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeSetLocalData")
 }
@@ -2452,12 +4005,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetDisabled(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetDisabled")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetDisabled. unable to convert: node");
+    return;
+  }
   bool f2aDisabled;
   if(!Boolean_to_bool(disabled, f2aDisabled)){
     setError("Error in _fe_AiNodeSetDisabled. unable to convert: disabled");
     return;
   }
-AiNodeSetDisabled(f2anode, f2adisabled);
+AiNodeSetDisabled(f2anode, f2adisabled);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetDisabled")
 }
 
@@ -2468,6 +4027,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsDisabled(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIsDisabled")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeIsDisabled. unable to convert: node");
+    return ;
+  }
 bool f2a_result = AiNodeIsDisabled(f2anode);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIsDisabled", )
 }
@@ -2481,6 +4045,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeLookUpUserParameterAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeLookUpUserParameterAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeLookUpUserParameterAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeLookUpUserParameterAtString. unable to convert: param");
@@ -2498,6 +4067,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetUserParamIterator(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetUserParamIterator")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetUserParamIterator. unable to convert: node");
+    return;
+  }
 AtUserParamIterator * f2a_result = AiNodeGetUserParamIterator(f2anode);
   F2A_CATCH_STATEMENT("_fe_AiNodeGetUserParamIterator")
 }
@@ -2509,7 +4083,13 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorDestroy")
 
-AiUserParamIteratorDestroy(f2aiter);
+  AtUserParamIterator f2aIter;
+  if(!KLAtUserParamIterator_to_CPAtUserParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiUserParamIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiUserParamIteratorDestroy(f2aiter);  CPAtUserParamIterator_to_KLAtUserParamIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiUserParamIteratorDestroy")
 }
 
@@ -2521,7 +4101,13 @@ FABRIC_EXT_EXPORT void _fe_AiUserParamIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorGetNext")
 
-const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);
+  AtUserParamIterator f2aIter;
+  if(!KLAtUserParamIterator_to_CPAtUserParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiUserParamIteratorGetNext. unable to convert: iter");
+    return;
+  }
+const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);  CPAtUserParamIterator_to_KLAtUserParamIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiUserParamIteratorGetNext")
 }
 
@@ -2532,6 +4118,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUserParamIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiUserParamIteratorFinished")
 
+  AtUserParamIterator f2aIter;
+  if(!KLAtUserParamIterator_to_CPAtUserParamIterator(iter, f2aIter)){
+    setError("Error in _fe_AiUserParamIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiUserParamIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamIteratorFinished", )
 }
@@ -2545,6 +4136,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetByteAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetByteAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetByteAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetByteAtString. unable to convert: param");
@@ -2555,7 +4151,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetByteAtString(
     setError("Error in _fe_AiNodeSetByteAtString. unable to convert: val");
     return;
   }
-AiNodeSetByteAtString(f2anode, f2aparam, f2aval);
+AiNodeSetByteAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetByteAtString")
 }
 
@@ -2568,6 +4165,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetIntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetIntAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetIntAtString. unable to convert: param");
@@ -2578,7 +4180,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetIntAtString(
     setError("Error in _fe_AiNodeSetIntAtString. unable to convert: val");
     return;
   }
-AiNodeSetIntAtString(f2anode, f2aparam, f2aval);
+AiNodeSetIntAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetIntAtString")
 }
 
@@ -2591,6 +4194,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetUIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetUIntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetUIntAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetUIntAtString. unable to convert: param");
@@ -2601,7 +4209,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetUIntAtString(
     setError("Error in _fe_AiNodeSetUIntAtString. unable to convert: val");
     return;
   }
-AiNodeSetUIntAtString(f2anode, f2aparam, f2aval);
+AiNodeSetUIntAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetUIntAtString")
 }
 
@@ -2614,6 +4223,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetBoolAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetBoolAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetBoolAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetBoolAtString. unable to convert: param");
@@ -2624,7 +4238,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetBoolAtString(
     setError("Error in _fe_AiNodeSetBoolAtString. unable to convert: val");
     return;
   }
-AiNodeSetBoolAtString(f2anode, f2aparam, f2aval);
+AiNodeSetBoolAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetBoolAtString")
 }
 
@@ -2637,6 +4252,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetFltAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetFltAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetFltAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetFltAtString. unable to convert: param");
@@ -2647,7 +4267,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetFltAtString(
     setError("Error in _fe_AiNodeSetFltAtString. unable to convert: val");
     return;
   }
-AiNodeSetFltAtString(f2anode, f2aparam, f2aval);
+AiNodeSetFltAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetFltAtString")
 }
 
@@ -2660,6 +4281,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPtrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetPtrAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetPtrAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetPtrAtString. unable to convert: param");
@@ -2670,7 +4296,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPtrAtString(
     setError("Error in _fe_AiNodeSetPtrAtString. unable to convert: val");
     return;
   }
-AiNodeSetPtrAtString(f2anode, f2aparam, f2aval);  void_to_Data(f2aVal, val);
+AiNodeSetPtrAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+  void_to_Data(f2aVal, val);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPtrAtString")
 }
@@ -2684,12 +4311,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetArrayAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetArrayAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetArrayAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetArrayAtString. unable to convert: param");
     return;
   }
-AiNodeSetArrayAtString(f2anode, f2aparam, f2aval);
+AiNodeSetArrayAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetArrayAtString")
 }
 
@@ -2702,6 +4335,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetMatrixAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetMatrixAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetMatrixAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetMatrixAtString. unable to convert: param");
@@ -2712,7 +4350,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetMatrixAtString(
     setError("Error in _fe_AiNodeSetMatrixAtString. unable to convert: val");
     return;
   }
-AiNodeSetMatrixAtString(f2anode, f2aparam, f2aval);
+AiNodeSetMatrixAtString(f2anode, f2aparam, f2aval);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetMatrixAtString")
 }
 
@@ -2725,6 +4364,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetStrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetStrAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetStrAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetStrAtString. unable to convert: param");
@@ -2735,7 +4379,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetStrAtString(
     setError("Error in _fe_AiNodeSetStrAtString. unable to convert: str");
     return;
   }
-AiNodeSetStrAtString(f2anode, f2aparam, f2astr);
+AiNodeSetStrAtString(f2anode, f2aparam, f2astr);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetStrAtString")
 }
 
@@ -2750,6 +4395,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetRGBAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetRGBAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetRGBAtString. unable to convert: param");
@@ -2770,7 +4420,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAtString(
     setError("Error in _fe_AiNodeSetRGBAtString. unable to convert: b");
     return;
   }
-AiNodeSetRGBAtString(f2anode, f2aparam, f2ar, f2ag, f2ab);
+AiNodeSetRGBAtString(f2anode, f2aparam, f2ar, f2ag, f2ab);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetRGBAtString")
 }
 
@@ -2786,6 +4437,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetRGBAAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetRGBAAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetRGBAAtString. unable to convert: param");
@@ -2811,7 +4467,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetRGBAAtString(
     setError("Error in _fe_AiNodeSetRGBAAtString. unable to convert: a");
     return;
   }
-AiNodeSetRGBAAtString(f2anode, f2aparam, f2ar, f2ag, f2ab, f2aa);
+AiNodeSetRGBAAtString(f2anode, f2aparam, f2ar, f2ag, f2ab, f2aa);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetRGBAAtString")
 }
 
@@ -2826,6 +4483,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetVecAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetVecAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetVecAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetVecAtString. unable to convert: param");
@@ -2846,7 +4508,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetVecAtString(
     setError("Error in _fe_AiNodeSetVecAtString. unable to convert: z");
     return;
   }
-AiNodeSetVecAtString(f2anode, f2aparam, f2ax, f2ay, f2az);
+AiNodeSetVecAtString(f2anode, f2aparam, f2ax, f2ay, f2az);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetVecAtString")
 }
 
@@ -2861,6 +4524,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetPntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetPntAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetPntAtString. unable to convert: param");
@@ -2881,7 +4549,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPntAtString(
     setError("Error in _fe_AiNodeSetPntAtString. unable to convert: z");
     return;
   }
-AiNodeSetPntAtString(f2anode, f2aparam, f2ax, f2ay, f2az);
+AiNodeSetPntAtString(f2anode, f2aparam, f2ax, f2ay, f2az);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPntAtString")
 }
 
@@ -2895,6 +4564,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPnt2AtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetPnt2AtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetPnt2AtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeSetPnt2AtString. unable to convert: param");
@@ -2910,7 +4584,8 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetPnt2AtString(
     setError("Error in _fe_AiNodeSetPnt2AtString. unable to convert: y");
     return;
   }
-AiNodeSetPnt2AtString(f2anode, f2aparam, f2ax, f2ay);
+AiNodeSetPnt2AtString(f2anode, f2aparam, f2ax, f2ay);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetPnt2AtString")
 }
 
@@ -2922,12 +4597,18 @@ FABRIC_EXT_EXPORT void _fe_AiNodeSetAttributes(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeSetAttributes")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeSetAttributes. unable to convert: node");
+    return;
+  }
   char* f2aAttributes = NULL;
   if(!String_to_char(attributes, f2aAttributes)){
     setError("Error in _fe_AiNodeSetAttributes. unable to convert: attributes");
     return;
   }
-AiNodeSetAttributes(f2anode, f2aattributes);
+AiNodeSetAttributes(f2anode, f2aattributes);  CPAtNode_to_KLAtNode(f2aNode, node);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeSetAttributes")
 }
 
@@ -2939,6 +4620,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiNodeGetByteAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetByteAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetByteAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetByteAtString. unable to convert: param");
@@ -2956,6 +4642,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeGetIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetIntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetIntAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetIntAtString. unable to convert: param");
@@ -2973,6 +4664,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiNodeGetUIntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetUIntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetUIntAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetUIntAtString. unable to convert: param");
@@ -2990,6 +4686,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeGetBoolAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetBoolAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetBoolAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetBoolAtString. unable to convert: param");
@@ -3007,6 +4708,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiNodeGetFltAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetFltAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetFltAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetFltAtString. unable to convert: param");
@@ -3025,6 +4731,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetRGBAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetRGBAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetRGBAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetRGBAtString. unable to convert: param");
@@ -3043,6 +4754,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetRGBAAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetRGBAAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetRGBAAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetRGBAAtString. unable to convert: param");
@@ -3061,6 +4777,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetVecAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetVecAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetVecAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetVecAtString. unable to convert: param");
@@ -3079,6 +4800,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetPntAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetPntAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetPntAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetPntAtString. unable to convert: param");
@@ -3097,6 +4823,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetPnt2AtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetPnt2AtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetPnt2AtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetPnt2AtString. unable to convert: param");
@@ -3114,6 +4845,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetPtrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetPtrAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetPtrAtString. unable to convert: node");
+    return ;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetPtrAtString. unable to convert: param");
@@ -3132,6 +4868,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetArrayAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetArrayAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetArrayAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetArrayAtString. unable to convert: param");
@@ -3150,6 +4891,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetStrAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetStrAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetStrAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetStrAtString. unable to convert: param");
@@ -3168,6 +4914,11 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetMatrixAtString(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeGetMatrixAtString")
 
+  AtNode f2aNode;
+  if(!KLAtNode_to_CPAtNode(node, f2aNode)){
+    setError("Error in _fe_AiNodeGetMatrixAtString. unable to convert: node");
+    return;
+  }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetMatrixAtString. unable to convert: param");
@@ -3312,6 +5063,11 @@ FABRIC_EXT_EXPORT void _fe_AiMakeRay(
     setError("Error in _fe_AiMakeRay. unable to convert: maxdist");
     return;
   }
+  AtShaderGlobals f2aSg;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
+    setError("Error in _fe_AiMakeRay. unable to convert: sg");
+    return;
+  }
 AiMakeRay(f2aray, f2atype, f2aorigin, f2adir, f2amaxdist, f2asg);
   F2A_CATCH_STATEMENT("_fe_AiMakeRay")
 }
@@ -3328,6 +5084,11 @@ FABRIC_EXT_EXPORT void _fe_AiReflectRay(
   AtPoint f2aNormal;
   if(!Vec3_to_AtPoint(normal, f2aNormal)){
     setError("Error in _fe_AiReflectRay. unable to convert: normal");
+    return;
+  }
+  AtShaderGlobals f2aSg;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
+    setError("Error in _fe_AiReflectRay. unable to convert: sg");
     return;
   }
 AiReflectRay(f2aray, f2anormal, f2asg);
@@ -3360,6 +5121,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
     setError("Error in _fe_AiRefractRay. unable to convert: n2");
     return ;
   }
+  AtShaderGlobals f2aSg;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
+    setError("Error in _fe_AiRefractRay. unable to convert: sg");
+    return ;
+  }
 bool f2a_result = AiRefractRay(f2aray, f2anormal, f2an1, f2an2, f2asg);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRefractRay", )
 }
@@ -3372,7 +5138,13 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
 {
   F2A_TRY_STATEMENT("_fe_AiTrace")
 
-bool f2a_result = AiTrace(f2aray, f2asample);
+  AtScrSample f2aSample;
+  if(!KLAtScrSample_to_CPAtScrSample(sample, f2aSample)){
+    setError("Error in _fe_AiTrace. unable to convert: sample");
+    return ;
+  }
+bool f2a_result = AiTrace(f2aray, f2asample);  CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTrace", )
 }
 
@@ -3384,7 +5156,13 @@ FABRIC_EXT_EXPORT void _fe_AiTraceBackground(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceBackground")
 
-AiTraceBackground(f2aray, f2asample);
+  AtScrSample f2aSample;
+  if(!KLAtScrSample_to_CPAtScrSample(sample, f2aSample)){
+    setError("Error in _fe_AiTraceBackground. unable to convert: sample");
+    return;
+  }
+AiTraceBackground(f2aray, f2asample);  CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
+
   F2A_CATCH_STATEMENT("_fe_AiTraceBackground")
 }
 
@@ -3396,7 +5174,13 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceProbe")
 
-bool f2a_result = AiTraceProbe(f2aray, f2asgout);
+  AtShaderGlobals f2aSgout;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sgout, f2aSgout)){
+    setError("Error in _fe_AiTraceProbe. unable to convert: sgout");
+    return ;
+  }
+bool f2a_result = AiTraceProbe(f2aray, f2asgout);  CPAtShaderGlobals_to_KLAtShaderGlobals(f2aSgout, sgout);
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTraceProbe", )
 }
 
@@ -3439,12 +5223,23 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleAccess(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureHandleAccess")
 
+  AtShaderGlobals f2aSg;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
+    setError("Error in _fe_AiTextureHandleAccess. unable to convert: sg");
+    return;
+  }
+  AtTextureHandle f2aHandle;
+  if(!KLAtTextureHandle_to_CPAtTextureHandle(handle, f2aHandle)){
+    setError("Error in _fe_AiTextureHandleAccess. unable to convert: handle");
+    return;
+  }
   bool f2aSuccess;
   if(!Boolean_to_bool(success, f2aSuccess)){
     setError("Error in _fe_AiTextureHandleAccess. unable to convert: success");
     return;
   }
-AtRGBA f2a_result = AiTextureHandleAccess(f2asg, f2ahandle, f2aparams, f2asuccess/*=NULL*/);  bool_to_Boolean(f2aSuccess, success);
+AtRGBA f2a_result = AiTextureHandleAccess(f2asg, f2ahandle, f2aparams, f2asuccess/*=NULL*/);  CPAtTextureHandle_to_KLAtTextureHandle(f2aHandle, handle);
+  bool_to_Boolean(f2aSuccess, success);
 
   F2A_CATCH_STATEMENT("_fe_AiTextureHandleAccess")
 }
@@ -3456,7 +5251,13 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureHandleDestroy")
 
-AiTextureHandleDestroy(f2ahandle);
+  AtTextureHandle f2aHandle;
+  if(!KLAtTextureHandle_to_CPAtTextureHandle(handle, f2aHandle)){
+    setError("Error in _fe_AiTextureHandleDestroy. unable to convert: handle");
+    return;
+  }
+AiTextureHandleDestroy(f2ahandle);  CPAtTextureHandle_to_KLAtTextureHandle(f2aHandle, handle);
+
   F2A_CATCH_STATEMENT("_fe_AiTextureHandleDestroy")
 }
 
@@ -3471,6 +5272,11 @@ FABRIC_EXT_EXPORT void _fe_AiTextureAccess(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureAccess")
 
+  AtShaderGlobals f2aSg;
+  if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
+    setError("Error in _fe_AiTextureAccess. unable to convert: sg");
+    return;
+  }
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureAccess. unable to convert: filename");
@@ -3763,7 +5569,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorDestroy")
 
-AiNodeIteratorDestroy(f2aiter);
+  AtNodeIterator f2aIter;
+  if(!KLAtNodeIterator_to_CPAtNodeIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiNodeIteratorDestroy(f2aiter);  CPAtNodeIterator_to_KLAtNodeIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeIteratorDestroy")
 }
 
@@ -3775,7 +5587,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorGetNext")
 
-AtNode * f2a_result = AiNodeIteratorGetNext(f2aiter);
+  AtNodeIterator f2aIter;
+  if(!KLAtNodeIterator_to_CPAtNodeIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeIteratorGetNext. unable to convert: iter");
+    return;
+  }
+AtNode * f2a_result = AiNodeIteratorGetNext(f2aiter);  CPAtNodeIterator_to_KLAtNodeIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeIteratorGetNext")
 }
 
@@ -3786,6 +5604,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeIteratorFinished")
 
+  AtNodeIterator f2aIter;
+  if(!KLAtNodeIterator_to_CPAtNodeIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiNodeIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIteratorFinished", )
 }
@@ -3797,7 +5620,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorDestroy")
 
-AiNodeEntryIteratorDestroy(f2aiter);
+  AtNodeEntryIterator f2aIter;
+  if(!KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeEntryIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiNodeEntryIteratorDestroy(f2aiter);  CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryIteratorDestroy")
 }
 
@@ -3809,7 +5638,13 @@ FABRIC_EXT_EXPORT void _fe_AiNodeEntryIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorGetNext")
 
-AtNodeEntry * f2a_result = AiNodeEntryIteratorGetNext(f2aiter);
+  AtNodeEntryIterator f2aIter;
+  if(!KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeEntryIteratorGetNext. unable to convert: iter");
+    return;
+  }
+AtNodeEntry * f2a_result = AiNodeEntryIteratorGetNext(f2aiter);  CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiNodeEntryIteratorGetNext")
 }
 
@@ -3820,6 +5655,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeEntryIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiNodeEntryIteratorFinished")
 
+  AtNodeEntryIterator f2aIter;
+  if(!KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(iter, f2aIter)){
+    setError("Error in _fe_AiNodeEntryIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiNodeEntryIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryIteratorFinished", )
 }
@@ -3831,7 +5671,13 @@ FABRIC_EXT_EXPORT void _fe_AiAOVIteratorDestroy(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorDestroy")
 
-AiAOVIteratorDestroy(f2aiter);
+  AtAOVIterator f2aIter;
+  if(!KLAtAOVIterator_to_CPAtAOVIterator(iter, f2aIter)){
+    setError("Error in _fe_AiAOVIteratorDestroy. unable to convert: iter");
+    return;
+  }
+AiAOVIteratorDestroy(f2aiter);  CPAtAOVIterator_to_KLAtAOVIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiAOVIteratorDestroy")
 }
 
@@ -3843,7 +5689,13 @@ FABRIC_EXT_EXPORT void _fe_AiAOVIteratorGetNext(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorGetNext")
 
-const AtAOVEntry * f2a_result = AiAOVIteratorGetNext(f2aiter);
+  AtAOVIterator f2aIter;
+  if(!KLAtAOVIterator_to_CPAtAOVIterator(iter, f2aIter)){
+    setError("Error in _fe_AiAOVIteratorGetNext. unable to convert: iter");
+    return;
+  }
+const AtAOVEntry * f2a_result = AiAOVIteratorGetNext(f2aiter);  CPAtAOVIterator_to_KLAtAOVIterator(f2aIter, iter);
+
   F2A_CATCH_STATEMENT("_fe_AiAOVIteratorGetNext")
 }
 
@@ -3854,6 +5706,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiAOVIteratorFinished(
 {
   F2A_TRY_STATEMENT("_fe_AiAOVIteratorFinished")
 
+  AtAOVIterator f2aIter;
+  if(!KLAtAOVIterator_to_CPAtAOVIterator(iter, f2aIter)){
+    setError("Error in _fe_AiAOVIteratorFinished. unable to convert: iter");
+    return ;
+  }
 bool f2a_result = AiAOVIteratorFinished(f2aiter);
   F2A_CATCH_STATEMENT_RETURN("_fe_AiAOVIteratorFinished", )
 }

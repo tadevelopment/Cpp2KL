@@ -16,6 +16,7 @@
     "_fe_AtParamValueAsUInt8" : "AtByte f2a_result = f2aThis_.BYTE;",
     "_fe_AtParamValueAsSInt32" : "int f2a_result = f2aThis_.INT;",
     "_fe_AtParamValueAsUInt32" : "unsigned int f2a_result = f2aThis_.UINT;",
+    "_fe_AtParamValueAsFloat32" : "float f2a_result = f2aThis_.UINT;",
     "_fe_AtParamValueAsVec3" : "AtVector f2a_result = f2aThis_.VEC;",
     "_fe_AtParamValueAsMat44" : "AtMatrix f2a_result = *f2aThis_.pMTX;",
     "_fe_AtParamValueAsString" : "const char* f2a_result = f2aThis_.STR;"

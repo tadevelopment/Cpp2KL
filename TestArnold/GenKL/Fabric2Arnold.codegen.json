@@ -5,6 +5,46 @@
         "_fe_AiAOVIteratorGetNext": "const AtAOVEntry * f2a_result = AiAOVIteratorGetNext(f2aiter);", 
         "_fe_AiASSLoad": "int f2a_result = AiASSLoad(f2afilename, f2amask/*=AI_NODE_ALL*/);", 
         "_fe_AiASSWrite": "int f2a_result = AiASSWrite(f2afilename, f2amask/*=AI_NODE_ALL*/, f2aopen_procs/*=false*/, f2abinary/*=true*/);", 
+        "_fe_AiArray": "AtArray * f2a_result = AiArray(f2anelements, f2ankeys, f2atype);", 
+        "_fe_AiArrayAllocate": "AtArray * f2a_result = AiArrayAllocate(f2anelements, f2ankeys, f2atype);", 
+        "_fe_AiArrayConvert": "AtArray * f2a_result = AiArrayConvert(f2anelements, f2ankeys, f2atype, f2adata);", 
+        "_fe_AiArrayCopy": "AtArray * f2a_result = AiArrayCopy(f2aarray);", 
+        "_fe_AiArrayDestroy": "AiArrayDestroy(f2aarray);", 
+        "_fe_AiArrayGetArrayFunc": "AtArray * f2a_result = AiArrayGetArrayFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetBoolFunc": "bool f2a_result = AiArrayGetBoolFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetByteFunc": "AtByte f2a_result = AiArrayGetByteFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetFltFunc": "float f2a_result = AiArrayGetFltFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetIntFunc": "int f2a_result = AiArrayGetIntFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetPnt2Func": "AtPoint2 f2a_result = AiArrayGetPnt2Func(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetPntFunc": "AtPoint f2a_result = AiArrayGetPntFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetPtrFunc": "void * f2a_result = AiArrayGetPtrFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetRGBAFunc": "AtRGBA f2a_result = AiArrayGetRGBAFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetRGBFunc": "AtRGB f2a_result = AiArrayGetRGBFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetStrFunc": "const char * f2a_result = AiArrayGetStrFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetUIntFunc": "AtUInt32 f2a_result = AiArrayGetUIntFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayGetVecFunc": "AtVector f2a_result = AiArrayGetVecFunc(f2aa, f2ai, f2aline);", 
+        "_fe_AiArrayInterpolateFlt": "float f2a_result = AiArrayInterpolateFlt(f2aarray, f2atime, f2aidx);", 
+        "_fe_AiArrayInterpolateMtx": "AiArrayInterpolateMtx(f2aarray, f2atime, f2aidx, f2aresult);", 
+        "_fe_AiArrayInterpolatePnt": "AtPoint f2a_result = AiArrayInterpolatePnt(f2aarray, f2atime, f2aidx);", 
+        "_fe_AiArrayInterpolateRGB": "AtColor f2a_result = AiArrayInterpolateRGB(f2aarray, f2atime, f2aidx);", 
+        "_fe_AiArrayInterpolateRGBA": "AtRGBA f2a_result = AiArrayInterpolateRGBA(f2aarray, f2atime, f2aidx);", 
+        "_fe_AiArrayInterpolateVec": "AtVector f2a_result = AiArrayInterpolateVec(f2aarray, f2atime, f2aidx);", 
+        "_fe_AiArrayModify": "AtArray * f2a_result = AiArrayModify(f2aarray, f2anelements, f2ankeys, f2atype);", 
+        "_fe_AiArraySetArrayFunc": "bool f2a_result = AiArraySetArrayFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetBoolFunc": "bool f2a_result = AiArraySetBoolFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetByteFunc": "bool f2a_result = AiArraySetByteFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetFltFunc": "bool f2a_result = AiArraySetFltFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetIntFunc": "bool f2a_result = AiArraySetIntFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetKey": "bool f2a_result = AiArraySetKey(f2aarray, f2akey, f2adata);", 
+        "_fe_AiArraySetMtxFunc": "bool f2a_result = AiArraySetMtxFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetPnt2Func": "bool f2a_result = AiArraySetPnt2Func(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetPntFunc": "bool f2a_result = AiArraySetPntFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetPtrFunc": "bool f2a_result = AiArraySetPtrFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetRGBAFunc": "bool f2a_result = AiArraySetRGBAFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetRGBFunc": "bool f2a_result = AiArraySetRGBFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetStrFunc": "bool f2a_result = AiArraySetStrFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetUIntFunc": "bool f2a_result = AiArraySetUIntFunc(f2aa, f2ai, f2aval, f2aline);", 
+        "_fe_AiArraySetVecFunc": "bool f2a_result = AiArraySetVecFunc(f2aa, f2ai, f2aval, f2aline);", 
         "_fe_AiBegin": "AiBegin();", 
         "_fe_AiCameraDestroy": "AiCameraDestroy(f2anode);", 
         "_fe_AiCameraGetLocalData": "void * f2a_result = AiCameraGetLocalData(f2anode);", 
@@ -198,6 +238,7 @@
         "_fe_AiUserParamIteratorDestroy": "AiUserParamIteratorDestroy(f2aiter);", 
         "_fe_AiUserParamIteratorFinished": "bool f2a_result = AiUserParamIteratorFinished(f2aiter);", 
         "_fe_AiUserParamIteratorGetNext": "const AtUserParamEntry * f2a_result = AiUserParamIteratorGetNext(f2aiter);", 
+        "_fe_AtParamValueAsFloat32": "float f2a_result = f2aThis_.UINT;", 
         "_fe_AtParamValueAsMat44": "AtMatrix f2a_result = *f2aThis_.pMTX;", 
         "_fe_AtParamValueAsSInt32": "int f2a_result = f2aThis_.INT;", 
         "_fe_AtParamValueAsString": "const char* f2a_result = f2aThis_.STR;", 
@@ -212,11 +253,96 @@
     "parameterconversionstoskip": [], 
     "parameterprefix": "f2a", 
     "typemapping": {
+        "AtAOVIterator": {
+            "ctype": "AtAOVIterator", 
+            "from": "KLAtAOVIterator_to_CPAtAOVIterator", 
+            "to": "CPAtAOVIterator_to_KLAtAOVIterator"
+        }, 
+        "AtBucket": {
+            "ctype": "AtBucket", 
+            "from": "KLAtBucket_to_CPAtBucket", 
+            "to": "CPAtBucket_to_KLAtBucket"
+        }, 
+        "AtList": {
+            "ctype": "AtList", 
+            "from": "KLAtList_to_CPAtList", 
+            "to": "CPAtList_to_KLAtList"
+        }, 
+        "AtMetaDataIterator": {
+            "ctype": "AtMetaDataIterator", 
+            "from": "KLAtMetaDataIterator_to_CPAtMetaDataIterator", 
+            "to": "CPAtMetaDataIterator_to_KLAtMetaDataIterator"
+        }, 
+        "AtMetaDataStore": {
+            "ctype": "AtMetaDataStore", 
+            "from": "KLAtMetaDataStore_to_CPAtMetaDataStore", 
+            "to": "CPAtMetaDataStore_to_KLAtMetaDataStore"
+        }, 
+        "AtNode": {
+            "ctype": "AtNode", 
+            "from": "KLAtNode_to_CPAtNode", 
+            "to": "CPAtNode_to_KLAtNode"
+        }, 
+        "AtNodeEntry": {
+            "ctype": "AtNodeEntry", 
+            "from": "KLAtNodeEntry_to_CPAtNodeEntry", 
+            "to": "CPAtNodeEntry_to_KLAtNodeEntry"
+        }, 
+        "AtNodeEntryIterator": {
+            "ctype": "AtNodeEntryIterator", 
+            "from": "KLAtNodeEntryIterator_to_CPAtNodeEntryIterator", 
+            "to": "CPAtNodeEntryIterator_to_KLAtNodeEntryIterator"
+        }, 
+        "AtNodeIterator": {
+            "ctype": "AtNodeIterator", 
+            "from": "KLAtNodeIterator_to_CPAtNodeIterator", 
+            "to": "CPAtNodeIterator_to_KLAtNodeIterator"
+        }, 
+        "AtNodeMethods": {
+            "ctype": "AtNodeMethods", 
+            "from": "KLAtNodeMethods_to_CPAtNodeMethods", 
+            "to": "CPAtNodeMethods_to_KLAtNodeMethods"
+        }, 
+        "AtParamEntry": {
+            "ctype": "AtParamEntry", 
+            "from": "KLAtParamEntry_to_CPAtParamEntry", 
+            "to": "CPAtParamEntry_to_KLAtParamEntry"
+        }, 
+        "AtParamIterator": {
+            "ctype": "AtParamIterator", 
+            "from": "KLAtParamIterator_to_CPAtParamIterator", 
+            "to": "CPAtParamIterator_to_KLAtParamIterator"
+        }, 
         "AtParamValue": {
             "ctype": "AtParamValue", 
             "from": "KlParamValue_to_AtParamValue", 
             "methodop": ".", 
             "to": "AtParamValue_to_KLParamValue"
+        }, 
+        "AtScrSample": {
+            "ctype": "AtScrSample", 
+            "from": "KLAtScrSample_to_CPAtScrSample", 
+            "to": "CPAtScrSample_to_KLAtScrSample"
+        }, 
+        "AtShaderGlobals": {
+            "ctype": "AtShaderGlobals", 
+            "from": "KLAtShaderGlobals_to_CPAtShaderGlobals", 
+            "to": "CPAtShaderGlobals_to_KLAtShaderGlobals"
+        }, 
+        "AtTextureHandle": {
+            "ctype": "AtTextureHandle", 
+            "from": "KLAtTextureHandle_to_CPAtTextureHandle", 
+            "to": "CPAtTextureHandle_to_KLAtTextureHandle"
+        }, 
+        "AtUserParamEntry": {
+            "ctype": "AtUserParamEntry", 
+            "from": "KLAtUserParamEntry_to_CPAtUserParamEntry", 
+            "to": "CPAtUserParamEntry_to_KLAtUserParamEntry"
+        }, 
+        "AtUserParamIterator": {
+            "ctype": "AtUserParamIterator", 
+            "from": "KLAtUserParamIterator_to_CPAtUserParamIterator", 
+            "to": "CPAtUserParamIterator_to_KLAtUserParamIterator"
         }, 
         "Boolean": {
             "ctype": "bool", 

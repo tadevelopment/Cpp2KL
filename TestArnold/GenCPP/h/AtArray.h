@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtArray'
-// Defined at GenKL\\ai_params.kl:20:1
+// Defined at GenKL\\ai_array.kl:10:1
 
 struct AtArray
 {
@@ -30,24 +30,39 @@ struct AtArray
   typedef AtArray &IOParam;
   typedef AtArray &OUTParam;
   
-  Data array_handle;
+  Data data;
+  UInt32 nelements;
+  UInt8 nkeys;
+  UInt8 type;
 };
 
 inline void Traits<AtArray>::ConstructEmpty( AtArray &val )
 {
-  Traits< Data >::ConstructEmpty( val.array_handle );
+  Traits< Data >::ConstructEmpty( val.data );
+  Traits< UInt32 >::ConstructEmpty( val.nelements );
+  Traits< UInt8 >::ConstructEmpty( val.nkeys );
+  Traits< UInt8 >::ConstructEmpty( val.type );
 }
 inline void Traits<AtArray>::ConstructCopy( AtArray &lhs, AtArray const &rhs )
 {
-  Traits< Data >::ConstructCopy( lhs.array_handle, rhs.array_handle );
+  Traits< Data >::ConstructCopy( lhs.data, rhs.data );
+  Traits< UInt32 >::ConstructCopy( lhs.nelements, rhs.nelements );
+  Traits< UInt8 >::ConstructCopy( lhs.nkeys, rhs.nkeys );
+  Traits< UInt8 >::ConstructCopy( lhs.type, rhs.type );
 }
 inline void Traits<AtArray>::AssignCopy( AtArray &lhs, AtArray const &rhs )
 {
-  Traits< Data >::AssignCopy( lhs.array_handle, rhs.array_handle );
+  Traits< Data >::AssignCopy( lhs.data, rhs.data );
+  Traits< UInt32 >::AssignCopy( lhs.nelements, rhs.nelements );
+  Traits< UInt8 >::AssignCopy( lhs.nkeys, rhs.nkeys );
+  Traits< UInt8 >::AssignCopy( lhs.type, rhs.type );
 }
 inline void Traits<AtArray>::Destruct( AtArray &val )
 {
-  Traits< Data >::Destruct( val.array_handle );
+  Traits< UInt8 >::Destruct( val.type );
+  Traits< UInt8 >::Destruct( val.nkeys );
+  Traits< UInt32 >::Destruct( val.nelements );
+  Traits< Data >::Destruct( val.data );
 }
 }}}
 

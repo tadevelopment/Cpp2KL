@@ -61,7 +61,7 @@ opaque_type_wrappers = [
     'AtAOVIterator',
     'AtParamEntry',
     'AtUserParamEntry',
-    'AtMetaDataStore'
+    'AtMetaDataStore',
 ]
 
 # Name of this project
@@ -73,6 +73,7 @@ output_dir = 'GenKL'
 
 filesToProcess = [
     'ai_params.h',
+    'ai_array.h',
     "ai_cameras.h",
     'ai_dotass.h',
     "ai_enum.h",
@@ -93,7 +94,8 @@ elementsToIgnore = [
     'AtCameraNodeMethods',
     'AiMsgSetCallback',
     'AtCommonMethods',
-    'AtNodeMethods'
+    'AtNodeMethods',
+    'AiArrayGetMtxFunc'
 ]
 
 # Add extensions to be required.  Should
@@ -113,23 +115,14 @@ custom_add_to_file = {
                         '\n'
                         'UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8";\n'
                         'UInt32 AtParamValue.asUInt32() = "_fe_AtParamValueAsUInt32";\n'
+                        'SInt32 AtParamValue.asSInt32() = "_fe_AtParamValueAsSInt32";\n'
                         'Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32";\n'
                         'Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3";\n'
                         'Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44";\n'
                         'String AtParamValue.asString() = "_fe_AtParamValueAsString";\n'
-                        'AtArray AtParamValue.asAtArray() = "_fe_AtParamValueAsAtArray";\n'
-                        '\n'
-                        'struct AtArray {\n'
-                        '  Data array_handle;\n'
-                        '};\n'
-                        '\n'
-                        'UInt8[] AtArray.asUInt8() = "_fe_AtArrayAsUInt8";\n'
-                        'UInt32[] AtArray.asUInt32() = "_fe_AtArrayAsUInt32";\n'
-                        'Float32[] AtArray.asFloat32() = "_fe_AtArrayAsFloat32";\n'
-                        'Vec3[] AtArray.asVec3() = "_fe_AtArrayAsVec3";\n'
-                        'Mat44[] AtArray.asMat44() = "_fe_AtArrayAsMat44";\n'
-                        'String[] AtArray.asString() = "_fe_AtArrayAsString";\n'
-                        '\n'
+                        'AtArray AtParamValue.asAtArray() = "_fe_AtParamValueAsAtArray";\n',
+
+    'ai_array.h' :      'Mat44 AiArrayGetMtxFunc(AtArray a, UInt32 i) = "_fe_AiArrayGetMtxFunc";'
 }
 # Define this value to true to not expose inline functions
 skipInlineFunctions = True

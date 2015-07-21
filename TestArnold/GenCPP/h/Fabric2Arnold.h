@@ -22,7 +22,6 @@
 #include "AtAOVEntry.h"
 #include "AtAOVIterator.h"
 #include "AtArray.h"
-#include "AtArray_functions.h"
 #include "AtBucket.h"
 #include "AtCameraInput.h"
 #include "AtCameraOutput.h"

@@ -46,6 +46,22 @@ unsigned int f2a_result = f2aThis_.UINT;
 }
 
 // Defined at GenKL\\ai_params.kl:14:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AtParamValueAsSInt32(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
+)
+{
+  F2A_TRY_STATEMENT("_fe_AtParamValueAsSInt32")
+
+  AtParamValue f2aThis_;
+  if(!KlParamValue_to_AtParamValue(this_, f2aThis_)){
+    setError("Error in _fe_AtParamValueAsSInt32. unable to convert: this_");
+    return ;
+  }
+int f2a_result = f2aThis_.INT;
+  F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsSInt32", )
+}
+
+// Defined at GenKL\\ai_params.kl:15:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AtParamValueAsFloat32(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
 )
@@ -57,15 +73,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AtParamValueAsFloat32(
     setError("Error in _fe_AtParamValueAsFloat32. unable to convert: this_");
     return ;
   }
-  float f2a_result = f2aThis_.fe();
-  KL::Float32 _result;
-  float_to_Float32(f2a_result, _result);
-  return _result;
-
+float f2a_result = f2aThis_.UINT;
   F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsFloat32", )
 }
 
-// Defined at GenKL\\ai_params.kl:15:1
+// Defined at GenKL\\ai_params.kl:16:1
 FABRIC_EXT_EXPORT void _fe_AtParamValueAsVec3(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
@@ -82,7 +94,7 @@ AtVector f2a_result = f2aThis_.VEC;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsVec3")
 }
 
-// Defined at GenKL\\ai_params.kl:16:1
+// Defined at GenKL\\ai_params.kl:17:1
 FABRIC_EXT_EXPORT void _fe_AtParamValueAsMat44(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
@@ -99,7 +111,7 @@ AtMatrix f2a_result = *f2aThis_.pMTX;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsMat44")
 }
 
-// Defined at GenKL\\ai_params.kl:17:1
+// Defined at GenKL\\ai_params.kl:18:1
 FABRIC_EXT_EXPORT void _fe_AtParamValueAsString(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_
@@ -116,7 +128,7 @@ const char* f2a_result = f2aThis_.STR;
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsString")
 }
 
-// Defined at GenKL\\ai_params.kl:18:1
+// Defined at GenKL\\ai_params.kl:19:1
 FABRIC_EXT_EXPORT void _fe_AtParamValueAsAtArray(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::INParam this_

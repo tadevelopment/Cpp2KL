@@ -259,8 +259,14 @@ def process_file(override_name, infilename, outputfile):
 
     file_contents = []
 
+    # Always have class declarations at the top of the file
     for class_element in root.iter('innerclass'):
         file_contents.append(process_class_or_struct(class_element))
+
+    # add in custom overrides after class declarations
+    if override_name in custom_add_to_file:
+        file_contents.append(custom_add_to_file[override_name] + '\n\n')
+
 
     # Should we process the sections first of
     for section_def in root.iter('sectiondef'):
@@ -303,10 +309,6 @@ def process_file(override_name, infilename, outputfile):
         f.write('require %s;\n' % extn)
 
     f.write('\n')
-
-    # add in custom overrides
-    if override_name in custom_add_to_file:
-        f.write(custom_add_to_file[override_name])
 
     # add in auto-translated KL contents
     f.writelines(file_contents)
@@ -359,6 +361,7 @@ def generate_fpm(processed_files):
 def get_auto_codegen_typemapping():
     typemapping = {}
 
+    # generate conversions for our CPP To KL types
     for cpp_type, kl_type in cppToKLTypeMapping.iteritems():
         # Do not translate types that KL has removed (eg - void)
         if not kl_type:
@@ -378,6 +381,17 @@ def get_auto_codegen_typemapping():
             conversion['methodop'] = '.'
 
         typemapping[kl_type] = conversion
+
+    # Generate conversions for our opaque wrappers
+    #  This will be pretty simple - just wrapping the
+    # returned pointer a data pointer
+    for opaque_type in opaque_type_wrappers:
+        conversion = ( {
+            'ctype': opaque_type,
+            'from' : 'KL' + opaque_type + '_to_CP' + opaque_type,
+            'to' : 'CP' + opaque_type + '_to_KL' + opaque_type,
+        })
+        typemapping[opaque_type] = conversion
 
     return typemapping
 

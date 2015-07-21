@@ -11,22 +11,13 @@ struct AtParamValue {
 
 UInt8 AtParamValue.asUInt8() = "_fe_AtParamValueAsUInt8";
 UInt32 AtParamValue.asUInt32() = "_fe_AtParamValueAsUInt32";
+SInt32 AtParamValue.asSInt32() = "_fe_AtParamValueAsSInt32";
 Float32 AtParamValue.asFloat32() = "_fe_AtParamValueAsFloat32";
 Vec3 AtParamValue.asVec3() = "_fe_AtParamValueAsVec3";
 Mat44 AtParamValue.asMat44() = "_fe_AtParamValueAsMat44";
 String AtParamValue.asString() = "_fe_AtParamValueAsString";
 AtArray AtParamValue.asAtArray() = "_fe_AtParamValueAsAtArray";
 
-struct AtArray {
-  Data array_handle;
-};
-
-UInt8[] AtArray.asUInt8() = "_fe_AtArrayAsUInt8";
-UInt32[] AtArray.asUInt32() = "_fe_AtArrayAsUInt32";
-Float32[] AtArray.asFloat32() = "_fe_AtArrayAsFloat32";
-Vec3[] AtArray.asVec3() = "_fe_AtArrayAsVec3";
-Mat44[] AtArray.asMat44() = "_fe_AtArrayAsMat44";
-String[] AtArray.asString() = "_fe_AtArrayAsString";
 
 /**
 Parameter Types

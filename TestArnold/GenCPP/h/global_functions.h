@@ -25,18 +25,18 @@
 #include "AtArray.h"
 #include "Mat44.h"
 #include "Vec4.h"
+#include "Vec3.h"
+#include "Color.h"
+#include "RGB.h"
+#include "Vec2.h"
 #include "AtLicenseInfo.h"
 #include "AtMetaDataStore.h"
-#include "Vec3.h"
-#include "Vec2.h"
 #include "AtNodeEntry.h"
 #include "AtParamIterator.h"
 #include "AtMetaDataIterator.h"
 #include "AtNodeMethods.h"
 #include "AtMetaDataEntry.h"
 #include "AtUserParamIterator.h"
-#include "RGB.h"
-#include "Color.h"
 #include "AtRay.h"
 #include "AtShaderGlobals.h"
 #include "AtBucket.h"
@@ -50,67 +50,67 @@
 #include "AtAOVEntry.h"
 
 
-// Defined at GenKL\\ai_params.kl:70:1
+// Defined at GenKL\\ai_params.kl:61:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
 );
 
-// Defined at GenKL\\ai_params.kl:71:1
+// Defined at GenKL\\ai_params.kl:62:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
 );
 
-// Defined at GenKL\\ai_params.kl:72:1
+// Defined at GenKL\\ai_params.kl:63:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetDefault(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamValue >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
 );
 
-// Defined at GenKL\\ai_params.kl:73:1
+// Defined at GenKL\\ai_params.kl:64:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetEnum(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtParamEntry >::INParam pentry
 );
 
-// Defined at GenKL\\ai_params.kl:74:1
+// Defined at GenKL\\ai_params.kl:65:1
 FABRIC_EXT_EXPORT void _fe_AiParamGetTypeName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
 );
 
-// Defined at GenKL\\ai_params.kl:75:1
+// Defined at GenKL\\ai_params.kl:66:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetTypeSize(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
 );
 
-// Defined at GenKL\\ai_params.kl:81:1
+// Defined at GenKL\\ai_params.kl:72:1
 FABRIC_EXT_EXPORT void _fe_AiUserParamGetName(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 );
 
-// Defined at GenKL\\ai_params.kl:82:1
+// Defined at GenKL\\ai_params.kl:73:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 );
 
-// Defined at GenKL\\ai_params.kl:83:1
+// Defined at GenKL\\ai_params.kl:74:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetArrayType(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 );
 
-// Defined at GenKL\\ai_params.kl:84:1
+// Defined at GenKL\\ai_params.kl:75:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetCategory(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 );
 
-// Defined at GenKL\\ai_params.kl:85:1
+// Defined at GenKL\\ai_params.kl:76:1
 FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetIndex(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtUserParamEntry >::INParam upentry
 );
 
-// Defined at GenKL\\ai_params.kl:86:1
+// Defined at GenKL\\ai_params.kl:77:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -118,7 +118,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamByte(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:87:1
+// Defined at GenKL\\ai_params.kl:78:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -126,7 +126,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:88:1
+// Defined at GenKL\\ai_params.kl:79:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -134,7 +134,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamUInt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:89:1
+// Defined at GenKL\\ai_params.kl:80:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -142,7 +142,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamBool(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Boolean >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:90:1
+// Defined at GenKL\\ai_params.kl:81:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -150,7 +150,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamFlt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:91:1
+// Defined at GenKL\\ai_params.kl:82:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -160,7 +160,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGB(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam b
 );
 
-// Defined at GenKL\\ai_params.kl:92:1
+// Defined at GenKL\\ai_params.kl:83:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -171,7 +171,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamRGBA(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam a
 );
 
-// Defined at GenKL\\ai_params.kl:93:1
+// Defined at GenKL\\ai_params.kl:84:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -181,7 +181,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamVec(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam z
 );
 
-// Defined at GenKL\\ai_params.kl:94:1
+// Defined at GenKL\\ai_params.kl:85:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -191,7 +191,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam z
 );
 
-// Defined at GenKL\\ai_params.kl:95:1
+// Defined at GenKL\\ai_params.kl:86:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -200,7 +200,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPnt2(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam y
 );
 
-// Defined at GenKL\\ai_params.kl:96:1
+// Defined at GenKL\\ai_params.kl:87:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -208,7 +208,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamStr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::INParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:97:1
+// Defined at GenKL\\ai_params.kl:88:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -216,7 +216,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamPtr(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::IOParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:98:1
+// Defined at GenKL\\ai_params.kl:89:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -224,7 +224,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamNode(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtNode >::IOParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:99:1
+// Defined at GenKL\\ai_params.kl:90:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -232,7 +232,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamArray(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam pdefault
 );
 
-// Defined at GenKL\\ai_params.kl:100:1
+// Defined at GenKL\\ai_params.kl:91:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
@@ -240,13 +240,329 @@ FABRIC_EXT_EXPORT void _fe_AiNodeParamMtx(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::INParam matrix
 );
 
-// Defined at GenKL\\ai_params.kl:101:1
+// Defined at GenKL\\ai_params.kl:92:1
 FABRIC_EXT_EXPORT void _fe_AiNodeParamEnum(
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtList >::IOParam params,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam varoffset,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::INParam pname,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam pdefault,
   Fabric::EDK::KL::Traits< Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > >::INParam enum_type
+);
+
+// Defined at GenKL\\ai_array.kl:21:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetMtxFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i
+);
+
+// Defined at GenKL\\ai_array.kl:23:1
+FABRIC_EXT_EXPORT void _fe_AiArray(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+);
+
+// Defined at GenKL\\ai_array.kl:24:1
+FABRIC_EXT_EXPORT void _fe_AiArrayAllocate(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+);
+
+// Defined at GenKL\\ai_array.kl:25:1
+FABRIC_EXT_EXPORT void _fe_AiArrayDestroy(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array
+);
+
+// Defined at GenKL\\ai_array.kl:26:1
+FABRIC_EXT_EXPORT void _fe_AiArrayConvert(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::INParam data
+);
+
+// Defined at GenKL\\ai_array.kl:27:1
+FABRIC_EXT_EXPORT void _fe_AiArrayModify(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam nelements,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam nkeys,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam type
+);
+
+// Defined at GenKL\\ai_array.kl:28:1
+FABRIC_EXT_EXPORT void _fe_AiArrayCopy(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array
+);
+
+// Defined at GenKL\\ai_array.kl:29:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetKey(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam key,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::INParam data
+);
+
+// Defined at GenKL\\ai_array.kl:30:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolatePnt(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+);
+
+// Defined at GenKL\\ai_array.kl:31:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateVec(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+);
+
+// Defined at GenKL\\ai_array.kl:32:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateRGB(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+);
+
+// Defined at GenKL\\ai_array.kl:33:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateRGBA(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+);
+
+// Defined at GenKL\\ai_array.kl:34:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayInterpolateFlt(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx
+);
+
+// Defined at GenKL\\ai_array.kl:35:1
+FABRIC_EXT_EXPORT void _fe_AiArrayInterpolateMtx(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam array,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam time,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam idx,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::INParam result
+);
+
+// Defined at GenKL\\ai_array.kl:36:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArrayGetBoolFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:37:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiArrayGetByteFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:38:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiArrayGetIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:39:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiArrayGetUIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:40:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayGetFltFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:41:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetRGBFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::RGB >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:42:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetRGBAFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:43:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetPntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:44:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetPnt2Func(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec2 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:45:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetVecFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:46:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetStrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:47:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiArrayGetPtrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:48:1
+FABRIC_EXT_EXPORT void _fe_AiArrayGetArrayFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::Result _result,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::INParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:49:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetBoolFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Boolean >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:50:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetByteFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt8 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:51:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:52:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetUIntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:53:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetFltFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Float32 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:54:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::RGB >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:55:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBAFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Color >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:56:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPntFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:57:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPnt2Func(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec2 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:58:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetVecFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Vec3 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:59:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetMtxFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Mat44 >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:60:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetStrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::String >::INParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:61:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPtrFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::Data >::IOParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
+);
+
+// Defined at GenKL\\ai_array.kl:62:1
+FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetArrayFunc(
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam a,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::UInt32 >::INParam i,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::AtArray >::IOParam val,
+  Fabric::EDK::KL::Traits< Fabric::EDK::KL::SInt32 >::INParam line
 );
 
 // Defined at GenKL\\ai_cameras.kl:47:1
