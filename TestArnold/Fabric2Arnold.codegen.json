@@ -36,7 +36,7 @@
         "to": "AtTextureParams_to_KLAtTextureParams"
     }
   },
-  
+
   "functionbodies": {
     "_fe_AtParamValueAsUInt8" : "AtByte f2a_result = f2aThis_.BYTE;",
     "_fe_AtParamValueAsSInt32" : "int f2a_result = f2aThis_.INT;",

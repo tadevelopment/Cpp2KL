@@ -17,6 +17,7 @@ execfile(cfg_file)
 root_dir = os.path.dirname(cfg_file)
 output_dir = os.path.join(root_dir, output_dir)
 output_h_dir = os.path.join(root_dir, output_h_dir)
+output_cpp_dir = os.path.join(root_dir, output_cpp_dir)
 
 # we will auto-generate our JSON codegen file as well, as we
 # already have most of the data for what is required.
@@ -317,9 +318,7 @@ def process_file(override_name, infilename, outputfile):
 # For each opaque struct, we can auto-generate the C++ code
 # to convert to/from the KL type
 def generate_opaque_cpp_conv():
-    print 'You are here'
     fh = open(os.path.join(output_h_dir, opaque_file_name + '.h'), 'w')
-    print 'now here'
     fh.write(
     '/* \n'
     ' * This auto-generated file contains simple conversion fn\n'
@@ -332,14 +331,16 @@ def generate_opaque_cpp_conv():
         sfrom = 'KL' + opaque_type + '_to_CP' + opaque_type
         sto = 'CP' + opaque_type + '_to_KL' + opaque_type
         fh.write(
-            'inline bool %s(const KL::%s & from, %s* & to) {\n'
-            ' // TODO \n'
-            '}\n\n' % (sfrom, opaque_type, opaque_type)
+            'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
+            '  to = reinterpret_cast<%s>(from._handle); \n'
+            '  return true; \n'
+            '}\n\n' % (sfrom, opaque_type, opaque_type, opaque_type + '*')
         )
 
         fh.write(
-            'inline bool %s(const KL::%s & from, %s* & to) {\n'
-            ' // TODO \n'
+            'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
+            '  to._handle = from; \n'
+            '  return true; \n'
             '}\n\n' % (sto, opaque_type, opaque_type)
             )
 
