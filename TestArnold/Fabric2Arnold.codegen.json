@@ -10,8 +10,33 @@
         "from": "KlParamValue_to_AtParamValue", 
         "methodop": ".", 
         "to": "AtParamValue_to_KLParamValue"
+    },
+    "AtArray": {
+        "ctype": "AtArray",
+        "from": "KlArray_to_AtArray",
+        "methodop": ".",
+        "to": "AtArray_to_KLArray"
+    },
+    "AtLicenseInfo": {
+        "ctype": "AtLicenseInfo",
+        "from": "KlAtLicenseInfo_to_AtLicenseInfo",
+        "methodop": ".",
+        "to": "AtLicenseInfo_to_KLAtLicenseInfo"
+    },
+    "AtRay": {
+        "ctype": "AtRay",
+        "from": "KlAtRay_to_AtRay",
+        "methodop": ".",
+        "to": "AtRay_to_KLAtRay"
+    },
+    "AtTextureParams": {
+        "ctype": "AtArray",
+        "from": "KlAtTextureParams_to_AtTextureParams",
+        "methodop": ".",
+        "to": "AtTextureParams_to_KLAtTextureParams"
     }
   },
+  
   "functionbodies": {
     "_fe_AtParamValueAsUInt8" : "AtByte f2a_result = f2aThis_.BYTE;",
     "_fe_AtParamValueAsSInt32" : "int f2a_result = f2aThis_.INT;",

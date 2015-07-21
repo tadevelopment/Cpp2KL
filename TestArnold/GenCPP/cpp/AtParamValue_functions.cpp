@@ -141,11 +141,8 @@ FABRIC_EXT_EXPORT void _fe_AtParamValueAsAtArray(
     setError("Error in _fe_AtParamValueAsAtArray. unable to convert: this_");
     return;
   }
-  f2a_result = f2aThis_.fe();
-
-  #pragma message("_fe_AtParamValueAsAtArray is missing its implementation.")
-
-  // ReturnType 'AtArray' could not be conveted.
+  AtArray f2a_result = f2aThis_.fe();
+  AtArray_to_KLArray(f2a_result, _result);
 
   F2A_CATCH_STATEMENT("_fe_AtParamValueAsAtArray")
 }

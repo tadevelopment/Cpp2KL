@@ -16,6 +16,7 @@ execfile(cfg_file)
 # Use cfg file as the root of further path manips
 root_dir = os.path.dirname(cfg_file)
 output_dir = os.path.join(root_dir, output_dir)
+output_h_dir = os.path.join(root_dir, output_h_dir)
 
 # we will auto-generate our JSON codegen file as well, as we
 # already have most of the data for what is required.
@@ -313,6 +314,35 @@ def process_file(override_name, infilename, outputfile):
     # add in auto-translated KL contents
     f.writelines(file_contents)
 
+# For each opaque struct, we can auto-generate the C++ code
+# to convert to/from the KL type
+def generate_opaque_cpp_conv():
+    print 'You are here'
+    fh = open(os.path.join(output_h_dir, opaque_file_name + '.h'), 'w')
+    print 'now here'
+    fh.write(
+    '/* \n'
+    ' * This auto-generated file contains simple conversion fn\n'
+    ' * declarations for the opaque data-types found in %s\n'
+    ' *  - Do not modify this file, it will be overwritten\n'
+    ' */\n\n\n' % (project_name)
+    )
+
+    for opaque_type in opaque_type_wrappers:
+        sfrom = 'KL' + opaque_type + '_to_CP' + opaque_type
+        sto = 'CP' + opaque_type + '_to_KL' + opaque_type
+        fh.write(
+            'inline bool %s(const KL::%s & from, %s* & to) {\n'
+            ' // TODO \n'
+            '}\n\n' % (sfrom, opaque_type, opaque_type)
+        )
+
+        fh.write(
+            'inline bool %s(const KL::%s & from, %s* & to) {\n'
+            ' // TODO \n'
+            '}\n\n' % (sto, opaque_type, opaque_type)
+            )
+
 #
 # Write out simple wrapper structs for opaque data types.
 # These structs are collected in a file that is written out
@@ -320,7 +350,7 @@ def process_file(override_name, infilename, outputfile):
 # can refer to it's definitions
 #
 def generate_opaque_file():
-    f = open(os.path.join(output_dir, opaque_file_name), 'w')
+    f = open(os.path.join(output_dir, opaque_file_name + '.kl'), 'w')
     f.write(
         '/* \n'
         ' * This auto-generated file contains simple wrapper\n'
@@ -336,6 +366,8 @@ def generate_opaque_file():
             '  private Data _handle;\n'
             '};\n'
         )
+
+    generate_opaque_cpp_conv()
 
 #
 # Generate an FPM file that KL2EDK can use to generate the
@@ -462,7 +494,7 @@ processed_files = []
 # first, generate our opaque datatypes
 if opaque_type_wrappers:
     generate_opaque_file()
-    processed_files.append(opaque_file_name)
+    processed_files.append(opaque_file_name + '.kl')
 
 for aFile in filesToProcess:
     # find the xml file for this header

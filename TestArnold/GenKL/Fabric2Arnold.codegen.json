@@ -258,10 +258,22 @@
             "from": "KLAtAOVIterator_to_CPAtAOVIterator", 
             "to": "CPAtAOVIterator_to_KLAtAOVIterator"
         }, 
+        "AtArray": {
+            "ctype": "AtArray", 
+            "from": "KlArray_to_AtArray", 
+            "methodop": ".", 
+            "to": "AtArray_to_KLArray"
+        }, 
         "AtBucket": {
             "ctype": "AtBucket", 
             "from": "KLAtBucket_to_CPAtBucket", 
             "to": "CPAtBucket_to_KLAtBucket"
+        }, 
+        "AtLicenseInfo": {
+            "ctype": "AtLicenseInfo", 
+            "from": "KlAtLicenseInfo_to_AtLicenseInfo", 
+            "methodop": ".", 
+            "to": "AtLicenseInfo_to_KLAtLicenseInfo"
         }, 
         "AtList": {
             "ctype": "AtList", 
@@ -319,6 +331,12 @@
             "methodop": ".", 
             "to": "AtParamValue_to_KLParamValue"
         }, 
+        "AtRay": {
+            "ctype": "AtRay", 
+            "from": "KlAtRay_to_AtRay", 
+            "methodop": ".", 
+            "to": "AtRay_to_KLAtRay"
+        }, 
         "AtScrSample": {
             "ctype": "AtScrSample", 
             "from": "KLAtScrSample_to_CPAtScrSample", 
@@ -333,6 +351,12 @@
             "ctype": "AtTextureHandle", 
             "from": "KLAtTextureHandle_to_CPAtTextureHandle", 
             "to": "CPAtTextureHandle_to_KLAtTextureHandle"
+        }, 
+        "AtTextureParams": {
+            "ctype": "AtArray", 
+            "from": "KlAtTextureParams_to_AtTextureParams", 
+            "methodop": ".", 
+            "to": "AtTextureParams_to_KLAtTextureParams"
         }, 
         "AtUserParamEntry": {
             "ctype": "AtUserParamEntry", 

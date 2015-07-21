@@ -43,7 +43,7 @@ cppToKLTypeMapping = {
 # Note - the opaque_file_name should not conflict
 # with any filesToProcess, or it may be overwritten
 #
-opaque_file_name = '_opaque_types.kl'
+opaque_file_name = '_opaque_types'
 opaque_type_wrappers = [
     'AtBucket',
     'AtList',
@@ -70,6 +70,8 @@ project_name = 'Fabric2Arnold'
 xml_dir = '../DoxygenXML/xml/'
 # Specify where the output files are written.  This dir is relative to this file
 output_dir = 'GenKL'
+output_h_dir = 'GenCPP/h'
+output_cpp_dir = 'GenCPP/cpp'
 
 filesToProcess = [
     'ai_params.h',
