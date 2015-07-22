@@ -14,4 +14,8 @@ if not exist GenCPP\cpp mkdir GenCPP\cpp
 del /Q GenCPP\cpp\*.*
 kl2edk GenKL\Fabric2Arnold.fpm.json -o GenCPP\h -c GenCPP\cpp
 
+REM Do any post-processing to get things as close as possible
+call python ../MassageCPP.py Fabric2Arnold.cfg.py
+
+
 popd
