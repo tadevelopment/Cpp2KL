@@ -9,6 +9,8 @@
 
 #include "ai.h"
 #include "_defines.h"
+#include "_typemapping.h"
+#include "_opaque_types.h"
 
 using namespace Fabric::EDK;
 
@@ -25,7 +27,11 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AtParamValueAsUInt8(
     setError("Error in _fe_AtParamValueAsUInt8. unable to convert: this_");
     return ;
   }
-AtByte f2a_result = f2aThis_.BYTE;
+  AtByte f2a_result = f2aThis_.BYTE;
+  KL::UInt8 _result;
+  AtByte_to_UInt8(f2a_result, _result);
+  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AtParamValueAsUInt8", )
 }
 

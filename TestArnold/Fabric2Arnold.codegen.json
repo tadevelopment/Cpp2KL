@@ -1,5 +1,5 @@
 {
-  "header": "#include \"ai.h\"\n#include \"_defines.h\"",
+  "header": "#include \"ai.h\"\n#include \"_defines.h\"\n#include \"_typemapping.h\"\n#include \"_opaque_types.h\"",
   "parameterprefix": "f2a",
   "functionentry": "F2A_TRY_STATEMENT", 
   "functionexit": "F2A_CATCH_STATEMENT", 
@@ -34,11 +34,23 @@
         "from": "KlAtTextureParams_to_AtTextureParams",
         "methodop": ".",
         "to": "AtTextureParams_to_KLAtTextureParams"
+    },
+    "AtMetaDataEntry": {
+        "ctype": "AtMetaDataEntry",
+        "from": "KlAtMetaDataEntry_to_AtMetaDataEntry",
+        "methodop": ".",
+        "to": "AtMetaDataEntry_to_KLAtMetaDataEntry"
+    },
+    "AtAOVEntry": {
+        "ctype": "AtAOVEntry",
+        "from": "KlAtAOVEntry_to_AtAOVEntry",
+        "methodop": ".",
+        "to": "AtAOVEntry_to_KLAtAOVEntry"
     }
   },
 
   "functionbodies": {
-    "_fe_AtParamValueAsUInt8" : "AtByte f2a_result = f2aThis_.BYTE;",
+    "_fe_AtParamValueAsUInt8" : "  AtByte f2a_result = f2aThis_.BYTE;\n  KL::UInt8 _result;\n  AtByte_to_UInt8(f2a_result, _result);\n  return _result;\n",
     "_fe_AtParamValueAsSInt32" : "int f2a_result = f2aThis_.INT;",
     "_fe_AtParamValueAsUInt32" : "unsigned int f2a_result = f2aThis_.UINT;",
     "_fe_AtParamValueAsFloat32" : "float f2a_result = f2aThis_.UINT;",

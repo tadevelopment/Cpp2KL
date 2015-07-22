@@ -156,12 +156,8 @@ def process_function(functionNode):
     kl_returns = cpp_to_kl_type(cpp_returns)
 
     klLine = ""
-    if (len(kl_returns) > 0):
+    if kl_returns:
         klLine = 'function ' + kl_returns + ' ' + fnName + '(';
-        # if our function returns something, capture the result
-        # KL2EDK will automatically convert a value called:
-        # parameter_prefix + '_result' to it's KL type and return it
-        autogen_line = cpp_returns + ' ' + parameter_prefix + '_result = ' + autogen_line
     else:
         klLine = 'function ' + fnName + '(';
 
@@ -194,6 +190,12 @@ def process_function(functionNode):
 
     klLine += ') = \'' + fe_fn_tag + fnName + '\';\n'
     autogen_line += ');'
+
+    # If we return, we need to create the return value parameter
+    if kl_returns:
+        to_fn = json_codegen_typemapping[kl_returns]['to']
+        res = '%s_result' % parameter_prefix
+        autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _return;\n  %s(%s, _return);\n  return _return;' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
 
     # We remember our auto-genned lined for later reference
     json_codegen_functionbodies[fe_fn_tag + fnName] = autogen_line
@@ -315,6 +317,44 @@ def process_file(override_name, infilename, outputfile):
     # add in auto-translated KL contents
     f.writelines(file_contents)
 
+##################################################################################
+# Code-genning files
+
+def generate_typemapping_header(full_json):
+    fh = open(os.path.join(output_h_dir, '_typemapping.h'), 'w')
+
+    fh.write(
+    '/* \n'
+    ' * This auto-generated file contains typemapping conversion fn\n'
+    ' * declarations for the data types found in %s codegen file\n'
+    ' *  - Do not modify this file, it will be overwritten\n'
+    ' */\n\n\n' % (project_name)
+    )
+
+    typemapping = full_json['typemapping']
+    for key, val in typemapping.iteritems():
+        kl_type = key
+        if kl_type[-2:] == '[]':
+            kl_type = 'VariableArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
+
+        cpp_type = val['ctype']
+        sfrom = val['from']
+        sto = val['to']
+        fh.write(
+            'inline bool %s(const Fabric::EDK::KL::%s & from, %s & to) {\n'
+            '  #pragma message("Implement Me")\n'
+            '  return true; \n'
+            '}\n\n' % (sfrom, kl_type, cpp_type)
+        )
+
+        fh.write(
+            'inline bool %s(%s & from, const Fabric::EDK::KL::%s & to) {\n'
+            '  #pragma message("Implement Me")\n'
+            '  return true; \n'
+            '}\n\n' % (sto, cpp_type, kl_type)
+            )
+
+
 # For each opaque struct, we can auto-generate the C++ code
 # to convert to/from the KL type
 def generate_opaque_cpp_conv():
@@ -324,24 +364,27 @@ def generate_opaque_cpp_conv():
     ' * This auto-generated file contains simple conversion fn\n'
     ' * declarations for the opaque data-types found in %s\n'
     ' *  - Do not modify this file, it will be overwritten\n'
-    ' */\n\n\n' % (project_name)
+    ' */\n'
+    '\n'
+    '#pragma once\n\n' % (project_name)
     )
 
     for opaque_type in opaque_type_wrappers:
         sfrom = 'KL' + opaque_type + '_to_CP' + opaque_type
         sto = 'CP' + opaque_type + '_to_KL' + opaque_type
         fh.write(
+            '#include "%s.h"\n'
             'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
             '  to = reinterpret_cast<%s>(from._handle); \n'
             '  return true; \n'
-            '}\n\n' % (sfrom, opaque_type, opaque_type, opaque_type + '*')
+            '}\n\n' % (opaque_type, sfrom, opaque_type, opaque_type, opaque_type + '*')
         )
 
         fh.write(
-            'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
-            '  to._handle = from; \n'
+            'inline bool %s(const %s* & from, Fabric::EDK::KL::%s & to) {\n'
+            '  to._handle = const_cast<%s*>(from); \n'
             '  return true; \n'
-            '}\n\n' % (sto, opaque_type, opaque_type)
+            '}\n\n' % (sto, opaque_type, opaque_type, opaque_type)
             )
 
 #
@@ -402,10 +445,11 @@ def get_auto_codegen_typemapping():
 
         cpp_raw_type = cpp_type.replace('*', '')
         cpp_raw_type = cpp_raw_type.replace(' ', '_')
+        kl_raw_type = kl_type.replace('[]', 'Arr')
         conversion = ( {
             'ctype': cpp_type,
-            'from' : kl_type + '_to_' + cpp_raw_type,
-            'to' : cpp_raw_type + '_to_' + kl_type,
+            'from' : kl_raw_type + '_to_' + cpp_raw_type,
+            'to' : cpp_raw_type + '_to_' + kl_raw_type,
 
         })
         if '*' in cpp_type:
@@ -417,7 +461,7 @@ def get_auto_codegen_typemapping():
 
     # Generate conversions for our opaque wrappers
     #  This will be pretty simple - just wrapping the
-    # returned pointer a data pointer
+    # returned pointer with a KL data member
     for opaque_type in opaque_type_wrappers:
         conversion = ( {
             'ctype': opaque_type,
@@ -435,11 +479,11 @@ def get_auto_codegen_typemapping():
 #
 def generate_auto_codegen():
 
-    type_mapping = get_auto_codegen_typemapping()
+    #type_mapping = get_auto_codegen_typemapping()
     # create the full Codegen JSON repr
     full_json = {}
     full_json['parameterprefix'] = parameter_prefix
-    full_json['typemapping'] = type_mapping
+    full_json['typemapping'] = json_codegen_typemapping
     full_json['functionbodies'] = json_codegen_functionbodies
 
     # We don't have any parameterconversionstoskip or methodmapping - do we need 'em?
@@ -466,6 +510,10 @@ def generate_codegen():
         with open(merge_file_path) as json_file:
             merge_codegen = json.load(json_file)
             final_codegen = jsonmerge.merge(auto_codegen, merge_codegen)
+
+            # generate a header file for conversion functions
+            generate_typemapping_header(final_codegen)
+
             # write out the result
             with open(final_file, 'w') as outfile:
                 json.dump(final_codegen, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
@@ -474,9 +522,9 @@ def generate_codegen():
         with open(final_file, 'w') as outfile:
             json.dump(auto_codegen, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
 
-
 ####################################################################################################
 #
+# Begin:
 # first, load in the index, get the file list.
 #
 xml_path = os.path.join(root_dir, xml_dir)
@@ -496,6 +544,16 @@ processed_files = []
 if opaque_type_wrappers:
     generate_opaque_file()
     processed_files.append(opaque_file_name + '.kl')
+
+# Build conversion fn's
+json_codegen_typemapping = get_auto_codegen_typemapping();
+# We need the full conversion fn list (even manually spec ones)
+# This is because when auto-genning fn's we need the conv fns
+# for building the return values
+merge_file_path = os.path.join(root_dir, merge_codegen_file)
+with open(merge_file_path) as json_file:
+    merge_codegen = json.load(json_file)
+    json_codegen_typemapping = jsonmerge.merge(json_codegen_typemapping, merge_codegen['typemapping'])
 
 for aFile in filesToProcess:
     # find the xml file for this header
