@@ -10,7 +10,7 @@ inline bool KLAtUserParamIterator_to_CPAtUserParamIterator(const Fabric::EDK::KL
   return true; 
 }
 
-inline bool CPAtUserParamIterator_to_KLAtUserParamIterator(AtUserParamIterator & from, const Fabric::EDK::KL::AtUserParamIterator & to) {
+inline bool CPAtUserParamIterator_to_KLAtUserParamIterator(const AtUserParamIterator & from, Fabric::EDK::KL::AtUserParamIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -20,7 +20,7 @@ inline bool StringArr_to_AtEnum(const Fabric::EDK::KL::VariableArray< Fabric::ED
   return true; 
 }
 
-inline bool AtEnum_to_StringArr(AtEnum & from, const Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > & to) {
+inline bool AtEnum_to_StringArr(const AtEnum & from, Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -30,7 +30,7 @@ inline bool KlAtLicenseInfo_to_AtLicenseInfo(const Fabric::EDK::KL::AtLicenseInf
   return true; 
 }
 
-inline bool AtLicenseInfo_to_KLAtLicenseInfo(AtLicenseInfo & from, const Fabric::EDK::KL::AtLicenseInfo & to) {
+inline bool AtLicenseInfo_to_KLAtLicenseInfo(const AtLicenseInfo & from, Fabric::EDK::KL::AtLicenseInfo & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -40,7 +40,7 @@ inline bool RGB_to_AtRGB(const Fabric::EDK::KL::RGB & from, AtRGB & to) {
   return true; 
 }
 
-inline bool AtRGB_to_RGB(AtRGB & from, const Fabric::EDK::KL::RGB & to) {
+inline bool AtRGB_to_RGB(const AtRGB & from, Fabric::EDK::KL::RGB & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -50,7 +50,7 @@ inline bool KLAtBucket_to_CPAtBucket(const Fabric::EDK::KL::AtBucket & from, AtB
   return true; 
 }
 
-inline bool CPAtBucket_to_KLAtBucket(AtBucket & from, const Fabric::EDK::KL::AtBucket & to) {
+inline bool CPAtBucket_to_KLAtBucket(const AtBucket & from, Fabric::EDK::KL::AtBucket & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -60,7 +60,7 @@ inline bool Float32_to_float(const Fabric::EDK::KL::Float32 & from, float & to) 
   return true; 
 }
 
-inline bool float_to_Float32(float & from, const Fabric::EDK::KL::Float32 & to) {
+inline bool float_to_Float32(const float & from, Fabric::EDK::KL::Float32 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -70,7 +70,7 @@ inline bool Boolean_to_bool(const Fabric::EDK::KL::Boolean & from, bool & to) {
   return true; 
 }
 
-inline bool bool_to_Boolean(bool & from, const Fabric::EDK::KL::Boolean & to) {
+inline bool bool_to_Boolean(const bool & from, Fabric::EDK::KL::Boolean & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -80,7 +80,7 @@ inline bool KLAtAOVIterator_to_CPAtAOVIterator(const Fabric::EDK::KL::AtAOVItera
   return true; 
 }
 
-inline bool CPAtAOVIterator_to_KLAtAOVIterator(AtAOVIterator & from, const Fabric::EDK::KL::AtAOVIterator & to) {
+inline bool CPAtAOVIterator_to_KLAtAOVIterator(const AtAOVIterator & from, Fabric::EDK::KL::AtAOVIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -90,7 +90,7 @@ inline bool KLAtTextureHandle_to_CPAtTextureHandle(const Fabric::EDK::KL::AtText
   return true; 
 }
 
-inline bool CPAtTextureHandle_to_KLAtTextureHandle(AtTextureHandle & from, const Fabric::EDK::KL::AtTextureHandle & to) {
+inline bool CPAtTextureHandle_to_KLAtTextureHandle(const AtTextureHandle & from, Fabric::EDK::KL::AtTextureHandle & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -100,7 +100,7 @@ inline bool KLAtNodeEntry_to_CPAtNodeEntry(const Fabric::EDK::KL::AtNodeEntry & 
   return true; 
 }
 
-inline bool CPAtNodeEntry_to_KLAtNodeEntry(AtNodeEntry & from, const Fabric::EDK::KL::AtNodeEntry & to) {
+inline bool CPAtNodeEntry_to_KLAtNodeEntry(const AtNodeEntry & from, Fabric::EDK::KL::AtNodeEntry & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -110,7 +110,7 @@ inline bool String_to_char(const Fabric::EDK::KL::String & from, char* & to) {
   return true; 
 }
 
-inline bool char_to_String(char* & from, const Fabric::EDK::KL::String & to) {
+inline bool char_to_String(const char* & from, Fabric::EDK::KL::String & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -120,7 +120,7 @@ inline bool SInt64_to_long_long(const Fabric::EDK::KL::SInt64 & from, long long 
   return true; 
 }
 
-inline bool long_long_to_SInt64(long long & from, const Fabric::EDK::KL::SInt64 & to) {
+inline bool long_long_to_SInt64(const long long & from, Fabric::EDK::KL::SInt64 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -130,7 +130,7 @@ inline bool KLAtParamIterator_to_CPAtParamIterator(const Fabric::EDK::KL::AtPara
   return true; 
 }
 
-inline bool CPAtParamIterator_to_KLAtParamIterator(AtParamIterator & from, const Fabric::EDK::KL::AtParamIterator & to) {
+inline bool CPAtParamIterator_to_KLAtParamIterator(const AtParamIterator & from, Fabric::EDK::KL::AtParamIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -140,7 +140,7 @@ inline bool KlAtRay_to_AtRay(const Fabric::EDK::KL::AtRay & from, AtRay & to) {
   return true; 
 }
 
-inline bool AtRay_to_KLAtRay(AtRay & from, const Fabric::EDK::KL::AtRay & to) {
+inline bool AtRay_to_KLAtRay(const AtRay & from, Fabric::EDK::KL::AtRay & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -150,7 +150,7 @@ inline bool KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(const Fabric::EDK::KL
   return true; 
 }
 
-inline bool CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(AtNodeEntryIterator & from, const Fabric::EDK::KL::AtNodeEntryIterator & to) {
+inline bool CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(const AtNodeEntryIterator & from, Fabric::EDK::KL::AtNodeEntryIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -160,7 +160,7 @@ inline bool UInt16_to_AtUInt16(const Fabric::EDK::KL::UInt16 & from, AtUInt16 & 
   return true; 
 }
 
-inline bool AtUInt16_to_UInt16(AtUInt16 & from, const Fabric::EDK::KL::UInt16 & to) {
+inline bool AtUInt16_to_UInt16(const AtUInt16 & from, Fabric::EDK::KL::UInt16 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -170,7 +170,7 @@ inline bool KlAtMetaDataEntry_to_AtMetaDataEntry(const Fabric::EDK::KL::AtMetaDa
   return true; 
 }
 
-inline bool AtMetaDataEntry_to_KLAtMetaDataEntry(AtMetaDataEntry & from, const Fabric::EDK::KL::AtMetaDataEntry & to) {
+inline bool AtMetaDataEntry_to_KLAtMetaDataEntry(const AtMetaDataEntry & from, Fabric::EDK::KL::AtMetaDataEntry & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -180,7 +180,7 @@ inline bool KLAtMetaDataStore_to_CPAtMetaDataStore(const Fabric::EDK::KL::AtMeta
   return true; 
 }
 
-inline bool CPAtMetaDataStore_to_KLAtMetaDataStore(AtMetaDataStore & from, const Fabric::EDK::KL::AtMetaDataStore & to) {
+inline bool CPAtMetaDataStore_to_KLAtMetaDataStore(const AtMetaDataStore & from, Fabric::EDK::KL::AtMetaDataStore & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -190,7 +190,7 @@ inline bool Data_to_void(const Fabric::EDK::KL::Data & from, void* & to) {
   return true; 
 }
 
-inline bool void_to_Data(void* & from, const Fabric::EDK::KL::Data & to) {
+inline bool void_to_Data(const void* & from, Fabric::EDK::KL::Data & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -200,7 +200,7 @@ inline bool UInt32_to_AtUInt32(const Fabric::EDK::KL::UInt32 & from, AtUInt32 & 
   return true; 
 }
 
-inline bool AtUInt32_to_UInt32(AtUInt32 & from, const Fabric::EDK::KL::UInt32 & to) {
+inline bool AtUInt32_to_UInt32(const AtUInt32 & from, Fabric::EDK::KL::UInt32 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -210,7 +210,7 @@ inline bool Box3_to_AtBBox(const Fabric::EDK::KL::Box3 & from, AtBBox & to) {
   return true; 
 }
 
-inline bool AtBBox_to_Box3(AtBBox & from, const Fabric::EDK::KL::Box3 & to) {
+inline bool AtBBox_to_Box3(const AtBBox & from, Fabric::EDK::KL::Box3 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -220,7 +220,7 @@ inline bool KlParamValue_to_AtParamValue(const Fabric::EDK::KL::AtParamValue & f
   return true; 
 }
 
-inline bool AtParamValue_to_KLParamValue(AtParamValue & from, const Fabric::EDK::KL::AtParamValue & to) {
+inline bool AtParamValue_to_KLParamValue(const AtParamValue & from, Fabric::EDK::KL::AtParamValue & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -230,7 +230,7 @@ inline bool KLAtNodeMethods_to_CPAtNodeMethods(const Fabric::EDK::KL::AtNodeMeth
   return true; 
 }
 
-inline bool CPAtNodeMethods_to_KLAtNodeMethods(AtNodeMethods & from, const Fabric::EDK::KL::AtNodeMethods & to) {
+inline bool CPAtNodeMethods_to_KLAtNodeMethods(const AtNodeMethods & from, Fabric::EDK::KL::AtNodeMethods & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -240,7 +240,7 @@ inline bool Float64_to_double(const Fabric::EDK::KL::Float64 & from, double & to
   return true; 
 }
 
-inline bool double_to_Float64(double & from, const Fabric::EDK::KL::Float64 & to) {
+inline bool double_to_Float64(const double & from, Fabric::EDK::KL::Float64 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -250,7 +250,7 @@ inline bool KLAtScrSample_to_CPAtScrSample(const Fabric::EDK::KL::AtScrSample & 
   return true; 
 }
 
-inline bool CPAtScrSample_to_KLAtScrSample(AtScrSample & from, const Fabric::EDK::KL::AtScrSample & to) {
+inline bool CPAtScrSample_to_KLAtScrSample(const AtScrSample & from, Fabric::EDK::KL::AtScrSample & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -260,7 +260,7 @@ inline bool KlAtTextureParams_to_AtTextureParams(const Fabric::EDK::KL::AtTextur
   return true; 
 }
 
-inline bool AtTextureParams_to_KLAtTextureParams(AtArray & from, const Fabric::EDK::KL::AtTextureParams & to) {
+inline bool AtTextureParams_to_KLAtTextureParams(const AtArray & from, Fabric::EDK::KL::AtTextureParams & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -270,7 +270,7 @@ inline bool UInt8_to_AtByte(const Fabric::EDK::KL::UInt8 & from, AtByte & to) {
   return true; 
 }
 
-inline bool AtByte_to_UInt8(AtByte & from, const Fabric::EDK::KL::UInt8 & to) {
+inline bool AtByte_to_UInt8(const AtByte & from, Fabric::EDK::KL::UInt8 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -280,7 +280,7 @@ inline bool KLAtNodeIterator_to_CPAtNodeIterator(const Fabric::EDK::KL::AtNodeIt
   return true; 
 }
 
-inline bool CPAtNodeIterator_to_KLAtNodeIterator(AtNodeIterator & from, const Fabric::EDK::KL::AtNodeIterator & to) {
+inline bool CPAtNodeIterator_to_KLAtNodeIterator(const AtNodeIterator & from, Fabric::EDK::KL::AtNodeIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -290,7 +290,7 @@ inline bool KLAtMetaDataIterator_to_CPAtMetaDataIterator(const Fabric::EDK::KL::
   return true; 
 }
 
-inline bool CPAtMetaDataIterator_to_KLAtMetaDataIterator(AtMetaDataIterator & from, const Fabric::EDK::KL::AtMetaDataIterator & to) {
+inline bool CPAtMetaDataIterator_to_KLAtMetaDataIterator(const AtMetaDataIterator & from, Fabric::EDK::KL::AtMetaDataIterator & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -300,7 +300,7 @@ inline bool KlArray_to_AtArray(const Fabric::EDK::KL::AtArray & from, AtArray & 
   return true; 
 }
 
-inline bool AtArray_to_KLArray(AtArray & from, const Fabric::EDK::KL::AtArray & to) {
+inline bool AtArray_to_KLArray(const AtArray & from, Fabric::EDK::KL::AtArray & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -310,7 +310,7 @@ inline bool KLAtUserParamEntry_to_CPAtUserParamEntry(const Fabric::EDK::KL::AtUs
   return true; 
 }
 
-inline bool CPAtUserParamEntry_to_KLAtUserParamEntry(AtUserParamEntry & from, const Fabric::EDK::KL::AtUserParamEntry & to) {
+inline bool CPAtUserParamEntry_to_KLAtUserParamEntry(const AtUserParamEntry & from, Fabric::EDK::KL::AtUserParamEntry & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -320,7 +320,7 @@ inline bool UInt64_to_AtUInt64(const Fabric::EDK::KL::UInt64 & from, AtUInt64 & 
   return true; 
 }
 
-inline bool AtUInt64_to_UInt64(AtUInt64 & from, const Fabric::EDK::KL::UInt64 & to) {
+inline bool AtUInt64_to_UInt64(const AtUInt64 & from, Fabric::EDK::KL::UInt64 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -330,7 +330,7 @@ inline bool Mat44_to_AtMatrix(const Fabric::EDK::KL::Mat44 & from, AtMatrix & to
   return true; 
 }
 
-inline bool AtMatrix_to_Mat44(AtMatrix & from, const Fabric::EDK::KL::Mat44 & to) {
+inline bool AtMatrix_to_Mat44(const AtMatrix & from, Fabric::EDK::KL::Mat44 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -340,7 +340,7 @@ inline bool Color_to_AtRGBA(const Fabric::EDK::KL::Color & from, AtRGBA & to) {
   return true; 
 }
 
-inline bool AtRGBA_to_Color(AtRGBA & from, const Fabric::EDK::KL::Color & to) {
+inline bool AtRGBA_to_Color(const AtRGBA & from, Fabric::EDK::KL::Color & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -350,7 +350,7 @@ inline bool KLAtNode_to_CPAtNode(const Fabric::EDK::KL::AtNode & from, AtNode & 
   return true; 
 }
 
-inline bool CPAtNode_to_KLAtNode(AtNode & from, const Fabric::EDK::KL::AtNode & to) {
+inline bool CPAtNode_to_KLAtNode(const AtNode & from, Fabric::EDK::KL::AtNode & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -360,7 +360,7 @@ inline bool KLAtParamEntry_to_CPAtParamEntry(const Fabric::EDK::KL::AtParamEntry
   return true; 
 }
 
-inline bool CPAtParamEntry_to_KLAtParamEntry(AtParamEntry & from, const Fabric::EDK::KL::AtParamEntry & to) {
+inline bool CPAtParamEntry_to_KLAtParamEntry(const AtParamEntry & from, Fabric::EDK::KL::AtParamEntry & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -370,7 +370,7 @@ inline bool KlAtAOVEntry_to_AtAOVEntry(const Fabric::EDK::KL::AtAOVEntry & from,
   return true; 
 }
 
-inline bool AtAOVEntry_to_KLAtAOVEntry(AtAOVEntry & from, const Fabric::EDK::KL::AtAOVEntry & to) {
+inline bool AtAOVEntry_to_KLAtAOVEntry(const AtAOVEntry & from, Fabric::EDK::KL::AtAOVEntry & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -380,7 +380,7 @@ inline bool Vec2_to_AtPoint2(const Fabric::EDK::KL::Vec2 & from, AtPoint2 & to) 
   return true; 
 }
 
-inline bool AtPoint2_to_Vec2(AtPoint2 & from, const Fabric::EDK::KL::Vec2 & to) {
+inline bool AtPoint2_to_Vec2(const AtPoint2 & from, Fabric::EDK::KL::Vec2 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -390,7 +390,7 @@ inline bool Vec3_to_AtPoint(const Fabric::EDK::KL::Vec3 & from, AtPoint & to) {
   return true; 
 }
 
-inline bool AtPoint_to_Vec3(AtPoint & from, const Fabric::EDK::KL::Vec3 & to) {
+inline bool AtPoint_to_Vec3(const AtPoint & from, Fabric::EDK::KL::Vec3 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -400,7 +400,7 @@ inline bool SInt32_to_int(const Fabric::EDK::KL::SInt32 & from, int & to) {
   return true; 
 }
 
-inline bool int_to_SInt32(int & from, const Fabric::EDK::KL::SInt32 & to) {
+inline bool int_to_SInt32(const int & from, Fabric::EDK::KL::SInt32 & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -410,7 +410,7 @@ inline bool KLAtList_to_CPAtList(const Fabric::EDK::KL::AtList & from, AtList & 
   return true; 
 }
 
-inline bool CPAtList_to_KLAtList(AtList & from, const Fabric::EDK::KL::AtList & to) {
+inline bool CPAtList_to_KLAtList(const AtList & from, Fabric::EDK::KL::AtList & to) {
   #pragma message("Implement Me")
   return true; 
 }
@@ -420,7 +420,7 @@ inline bool KLAtShaderGlobals_to_CPAtShaderGlobals(const Fabric::EDK::KL::AtShad
   return true; 
 }
 
-inline bool CPAtShaderGlobals_to_KLAtShaderGlobals(AtShaderGlobals & from, const Fabric::EDK::KL::AtShaderGlobals & to) {
+inline bool CPAtShaderGlobals_to_KLAtShaderGlobals(const AtShaderGlobals & from, Fabric::EDK::KL::AtShaderGlobals & to) {
   #pragma message("Implement Me")
   return true; 
 }

@@ -348,7 +348,7 @@ def generate_typemapping_header(full_json):
         )
 
         fh.write(
-            'inline bool %s(%s & from, const Fabric::EDK::KL::%s & to) {\n'
+            'inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
             '  #pragma message("Implement Me")\n'
             '  return true; \n'
             '}\n\n' % (sto, cpp_type, kl_type)

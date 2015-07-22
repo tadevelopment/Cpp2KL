@@ -45,7 +45,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetType(
   AtParamEntry f2aPentry;
   if(!KLAtParamEntry_to_CPAtParamEntry(pentry, f2aPentry)){
     setError("Error in _fe_AiParamGetType. unable to convert: pentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiParamGetType(f2apentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -124,7 +124,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetTypeSize(
   AtByte f2aType;
   if(!UInt8_to_AtByte(type, f2aType)){
     setError("Error in _fe_AiParamGetTypeSize. unable to convert: type");
-    return ;
+    return 0;
   }
   AI_CONST int f2a_result = AiParamGetTypeSize(f2atype);;
   Fabric::EDK::KL::SInt32 _return;
@@ -163,7 +163,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetType(
   AtUserParamEntry f2aUpentry;
   if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
     setError("Error in _fe_AiUserParamGetType. unable to convert: upentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiUserParamGetType(f2aupentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -182,7 +182,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetArrayType(
   AtUserParamEntry f2aUpentry;
   if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
     setError("Error in _fe_AiUserParamGetArrayType. unable to convert: upentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiUserParamGetArrayType(f2aupentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -201,7 +201,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetCategory(
   AtUserParamEntry f2aUpentry;
   if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
     setError("Error in _fe_AiUserParamGetCategory. unable to convert: upentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiUserParamGetCategory(f2aupentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -220,7 +220,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetIndex(
   AtUserParamEntry f2aUpentry;
   if(!KLAtUserParamEntry_to_CPAtUserParamEntry(upentry, f2aUpentry)){
     setError("Error in _fe_AiUserParamGetIndex. unable to convert: upentry");
-    return ;
+    return 0;
   }
   AI_CONST int f2a_result = AiUserParamGetIndex(f2aupentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -1073,17 +1073,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetKey(
   AtArray f2aArray;
   if(!KlArray_to_AtArray(array, f2aArray)){
     setError("Error in _fe_AiArraySetKey. unable to convert: array");
-    return ;
+    return 0;
   }
   AtByte f2aKey;
   if(!UInt8_to_AtByte(key, f2aKey)){
     setError("Error in _fe_AiArraySetKey. unable to convert: key");
-    return ;
+    return 0;
   }
   void* f2aData = NULL;
   if(!Data_to_void(data, f2aData)){
     setError("Error in _fe_AiArraySetKey. unable to convert: data");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetKey(f2aarray, f2akey, f2adata);;
   Fabric::EDK::KL::Boolean _return;
@@ -1233,17 +1233,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayInterpolateFlt(
   AtArray f2aArray;
   if(!KlArray_to_AtArray(array, f2aArray)){
     setError("Error in _fe_AiArrayInterpolateFlt. unable to convert: array");
-    return ;
+    return 0;
   }
   float f2aTime;
   if(!Float32_to_float(time, f2aTime)){
     setError("Error in _fe_AiArrayInterpolateFlt. unable to convert: time");
-    return ;
+    return 0;
   }
   AtUInt32 f2aIdx;
   if(!UInt32_to_AtUInt32(idx, f2aIdx)){
     setError("Error in _fe_AiArrayInterpolateFlt. unable to convert: idx");
-    return ;
+    return 0;
   }
   float f2a_result = AiArrayInterpolateFlt(f2aarray, f2atime, f2aidx);;
   Fabric::EDK::KL::Float32 _return;
@@ -1298,17 +1298,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArrayGetBoolFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetBoolFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetBoolFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetBoolFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArrayGetBoolFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1329,17 +1329,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiArrayGetByteFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetByteFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetByteFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetByteFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   AtByte f2a_result = AiArrayGetByteFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::UInt8 _return;
@@ -1360,17 +1360,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiArrayGetIntFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetIntFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetIntFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetIntFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   int f2a_result = AiArrayGetIntFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::SInt32 _return;
@@ -1391,17 +1391,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiArrayGetUIntFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetUIntFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetUIntFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetUIntFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   AtUInt32 f2a_result = AiArrayGetUIntFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::UInt32 _return;
@@ -1422,17 +1422,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayGetFltFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetFltFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetFltFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetFltFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   float f2a_result = AiArrayGetFltFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::Float32 _return;
@@ -1645,17 +1645,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiArrayGetPtrFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArrayGetPtrFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArrayGetPtrFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArrayGetPtrFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   void * f2a_result = AiArrayGetPtrFunc(f2aa, f2ai, f2aline);;
   Fabric::EDK::KL::Data _return;
@@ -1709,22 +1709,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetBoolFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetBoolFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetBoolFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   bool f2aVal;
   if(!Boolean_to_bool(val, f2aVal)){
     setError("Error in _fe_AiArraySetBoolFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetBoolFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetBoolFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1747,22 +1747,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetByteFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetByteFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetByteFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtByte f2aVal;
   if(!UInt8_to_AtByte(val, f2aVal)){
     setError("Error in _fe_AiArraySetByteFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetByteFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetByteFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1785,22 +1785,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetIntFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetIntFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetIntFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   int f2aVal;
   if(!SInt32_to_int(val, f2aVal)){
     setError("Error in _fe_AiArraySetIntFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetIntFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetIntFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1823,22 +1823,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetUIntFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetUIntFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetUIntFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtUInt32 f2aVal;
   if(!UInt32_to_AtUInt32(val, f2aVal)){
     setError("Error in _fe_AiArraySetUIntFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetUIntFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetUIntFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1861,22 +1861,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetFltFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetFltFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetFltFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   float f2aVal;
   if(!Float32_to_float(val, f2aVal)){
     setError("Error in _fe_AiArraySetFltFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetFltFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetFltFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1899,22 +1899,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetRGBFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetRGBFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtRGB f2aVal;
   if(!RGB_to_AtRGB(val, f2aVal)){
     setError("Error in _fe_AiArraySetRGBFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetRGBFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetRGBFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1937,22 +1937,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBAFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtRGBA f2aVal;
   if(!Color_to_AtRGBA(val, f2aVal)){
     setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetRGBAFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetRGBAFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -1975,22 +1975,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPntFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetPntFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetPntFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtPoint f2aVal;
   if(!Vec3_to_AtPoint(val, f2aVal)){
     setError("Error in _fe_AiArraySetPntFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetPntFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetPntFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2013,22 +2013,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPnt2Func(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetPnt2Func. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetPnt2Func. unable to convert: i");
-    return ;
+    return 0;
   }
   AtPoint2 f2aVal;
   if(!Vec2_to_AtPoint2(val, f2aVal)){
     setError("Error in _fe_AiArraySetPnt2Func. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetPnt2Func. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetPnt2Func(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2051,22 +2051,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetVecFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetVecFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetVecFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtPoint f2aVal;
   if(!Vec3_to_AtPoint(val, f2aVal)){
     setError("Error in _fe_AiArraySetVecFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetVecFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetVecFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2089,22 +2089,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetMtxFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetMtxFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetMtxFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtMatrix f2aVal;
   if(!Mat44_to_AtMatrix(val, f2aVal)){
     setError("Error in _fe_AiArraySetMtxFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetMtxFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetMtxFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2127,22 +2127,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetStrFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetStrFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetStrFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   char* f2aVal = NULL;
   if(!String_to_char(val, f2aVal)){
     setError("Error in _fe_AiArraySetStrFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetStrFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetStrFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2165,22 +2165,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPtrFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetPtrFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetPtrFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   void* f2aVal = NULL;
   if(!Data_to_void(val, f2aVal)){
     setError("Error in _fe_AiArraySetPtrFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetPtrFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetPtrFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2204,22 +2204,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetArrayFunc(
   AtArray f2aA;
   if(!KlArray_to_AtArray(a, f2aA)){
     setError("Error in _fe_AiArraySetArrayFunc. unable to convert: a");
-    return ;
+    return 0;
   }
   AtUInt32 f2aI;
   if(!UInt32_to_AtUInt32(i, f2aI)){
     setError("Error in _fe_AiArraySetArrayFunc. unable to convert: i");
-    return ;
+    return 0;
   }
   AtArray f2aVal;
   if(!KlArray_to_AtArray(val, f2aVal)){
     setError("Error in _fe_AiArraySetArrayFunc. unable to convert: val");
-    return ;
+    return 0;
   }
   int f2aLine;
   if(!SInt32_to_int(line, f2aLine)){
     setError("Error in _fe_AiArraySetArrayFunc. unable to convert: line");
-    return ;
+    return 0;
   }
   bool f2a_result = AiArraySetArrayFunc(f2aa, f2ai, f2aval, f2aline);;
   Fabric::EDK::KL::Boolean _return;
@@ -2304,7 +2304,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiCameraGetLocalData(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiCameraGetLocalData. unable to convert: node");
-    return ;
+    return 0;
   }
   void * f2a_result = AiCameraGetLocalData(f2anode);;
   Fabric::EDK::KL::Data _return;
@@ -2326,22 +2326,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSWrite(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiASSWrite. unable to convert: filename");
-    return ;
+    return 0;
   }
   int f2aMask;
   if(!SInt32_to_int(mask, f2aMask)){
     setError("Error in _fe_AiASSWrite. unable to convert: mask");
-    return ;
+    return 0;
   }
   bool f2aOpen_procs;
   if(!Boolean_to_bool(open_procs, f2aOpen_procs)){
     setError("Error in _fe_AiASSWrite. unable to convert: open_procs");
-    return ;
+    return 0;
   }
   bool f2aBinary;
   if(!Boolean_to_bool(binary, f2aBinary)){
     setError("Error in _fe_AiASSWrite. unable to convert: binary");
-    return ;
+    return 0;
   }
   int f2a_result = AiASSWrite(f2afilename, f2amask/*=AI_NODE_ALL*/, f2aopen_procs/*=false*/, f2abinary/*=true*/);;
   Fabric::EDK::KL::SInt32 _return;
@@ -2361,12 +2361,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSLoad(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiASSLoad. unable to convert: filename");
-    return ;
+    return 0;
   }
   int f2aMask;
   if(!SInt32_to_int(mask, f2aMask)){
     setError("Error in _fe_AiASSLoad. unable to convert: mask");
-    return ;
+    return 0;
   }
   int f2a_result = AiASSLoad(f2afilename, f2amask/*=AI_NODE_ALL*/);;
   Fabric::EDK::KL::SInt32 _return;
@@ -2386,12 +2386,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiEnumGetValue(
   AtEnum f2aEnum_type;
   if(!StringArr_to_AtEnum(enum_type, f2aEnum_type)){
     setError("Error in _fe_AiEnumGetValue. unable to convert: enum_type");
-    return ;
+    return 0;
   }
   char* f2aString = NULL;
   if(!String_to_char(string, f2aString)){
     setError("Error in _fe_AiEnumGetValue. unable to convert: string");
-    return ;
+    return 0;
   }
   int f2a_result = AiEnumGetValue(f2aenum_type, f2astring);;
   Fabric::EDK::KL::SInt32 _return;
@@ -2437,12 +2437,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseSetServer(
   char* f2aHost = NULL;
   if(!String_to_char(host, f2aHost)){
     setError("Error in _fe_AiLicenseSetServer. unable to convert: host");
-    return ;
+    return 0;
   }
   AtUInt32 f2aPort;
   if(!UInt32_to_AtUInt32(port, f2aPort)){
     setError("Error in _fe_AiLicenseSetServer. unable to convert: port");
-    return ;
+    return 0;
   }
   bool f2a_result = AiLicenseSetServer(f2ahost, f2aport);;
   Fabric::EDK::KL::Boolean _return;
@@ -2462,12 +2462,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseGetServer(
   char* f2aHost = NULL;
   if(!String_to_char(host, f2aHost)){
     setError("Error in _fe_AiLicenseGetServer. unable to convert: host");
-    return ;
+    return 0;
   }
   AtUInt32 f2aPort;
   if(!UInt32_to_AtUInt32(port, f2aPort)){
     setError("Error in _fe_AiLicenseGetServer. unable to convert: port");
-    return ;
+    return 0;
   }
   bool f2a_result = AiLicenseGetServer(f2ahost, f2aport);;
   Fabric::EDK::KL::Boolean _return;
@@ -2547,12 +2547,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiLicenseGetInfo(
   AtLicenseInfo f2aLicenses;
   if(!KlAtLicenseInfo_to_AtLicenseInfo(licenses, f2aLicenses)){
     setError("Error in _fe_AiLicenseGetInfo. unable to convert: licenses");
-    return ;
+    return 0;
   }
   AtUInt32 f2aN;
   if(!UInt32_to_AtUInt32(n, f2aN)){
     setError("Error in _fe_AiLicenseGetInfo. unable to convert: n");
-    return ;
+    return 0;
   }
   int f2a_result = AiLicenseGetInfo(f2alicenses, f2an);;
   Fabric::EDK::KL::SInt32 _return;
@@ -3136,22 +3136,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetBoolAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   bool f2aValue;
   if(!Boolean_to_bool(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetBoolAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3174,22 +3174,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetIntAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   int f2aValue;
   if(!SInt32_to_int(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetIntAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3212,22 +3212,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetFltAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   float f2aValue;
   if(!Float32_to_float(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetFltAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3250,22 +3250,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetRGBAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   AtPoint f2aValue;
   if(!Vec3_to_AtPoint(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetRGBAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3288,22 +3288,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetVecAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   AtPoint f2aValue;
   if(!Vec3_to_AtPoint(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetVecAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3326,22 +3326,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPntAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   AtPoint f2aValue;
   if(!Vec3_to_AtPoint(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetPntAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3364,22 +3364,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPnt2AtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: name");
-    return ;
+    return 0;
   }
   AtPoint2 f2aValue;
   if(!Vec2_to_AtPoint2(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetPnt2AtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3402,22 +3402,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
   AtNodeEntry f2aEntry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(entry, f2aEntry)){
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: entry");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aName = NULL;
   if(!String_to_char(name, f2aName)){
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: name");
-    return ;
+    return 0;
   }
   char* f2aValue = NULL;
   if(!String_to_char(value, f2aValue)){
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: value");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataGetStrAtString(f2aentry, f2aparam, f2aname, f2avalue);;
   Fabric::EDK::KL::Boolean _return;
@@ -3436,7 +3436,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataLoadFile(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiMetaDataLoadFile. unable to convert: filename");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataLoadFile(f2afilename);;
   Fabric::EDK::KL::Boolean _return;
@@ -3691,7 +3691,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetType(
   AtNodeEntry f2aNentry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
     setError("Error in _fe_AiNodeEntryGetType. unable to convert: nentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiNodeEntryGetType(f2anentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -3730,7 +3730,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetOutputType(
   AtNodeEntry f2aNentry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
     setError("Error in _fe_AiNodeEntryGetOutputType. unable to convert: nentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiNodeEntryGetOutputType(f2anentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -3789,7 +3789,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetCount(
   AtNodeEntry f2aNentry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
     setError("Error in _fe_AiNodeEntryGetCount. unable to convert: nentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiNodeEntryGetCount(f2anentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -3808,7 +3808,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetNumParams(
   AtNodeEntry f2aNentry;
   if(!KLAtNodeEntry_to_CPAtNodeEntry(nentry, f2aNentry)){
     setError("Error in _fe_AiNodeEntryGetNumParams. unable to convert: nentry");
-    return ;
+    return 0;
   }
   int f2a_result = AiNodeEntryGetNumParams(f2anentry);;
   Fabric::EDK::KL::SInt32 _return;
@@ -4026,7 +4026,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiParamIteratorFinished(
   AtParamIterator f2aIter;
   if(!KLAtParamIterator_to_CPAtParamIterator(iter, f2aIter)){
     setError("Error in _fe_AiParamIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiParamIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
@@ -4083,7 +4083,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataIteratorFinished(
   AtMetaDataIterator f2aIter;
   if(!KLAtMetaDataIterator_to_CPAtMetaDataIterator(iter, f2aIter)){
     setError("Error in _fe_AiMetaDataIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiMetaDataIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
@@ -4202,7 +4202,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDestroy(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeDestroy. unable to convert: node");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeDestroy(f2anode);;
   Fabric::EDK::KL::Boolean _return;
@@ -4223,12 +4223,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIs(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeIs. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aStr = NULL;
   if(!String_to_char(str, f2aStr)){
     setError("Error in _fe_AiNodeIs. unable to convert: str");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeIs(f2anode, f2astr);;
   Fabric::EDK::KL::Boolean _return;
@@ -4249,17 +4249,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDeclareAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   char* f2aDeclaration = NULL;
   if(!String_to_char(declaration, f2aDeclaration)){
     setError("Error in _fe_AiNodeDeclareAtString. unable to convert: declaration");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeDeclareAtString(f2anode, f2aparam, f2adeclaration);;
   Fabric::EDK::KL::Boolean _return;
@@ -4281,17 +4281,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLink(
   AtNode f2aSrc;
   if(!KLAtNode_to_CPAtNode(src, f2aSrc)){
     setError("Error in _fe_AiNodeLink. unable to convert: src");
-    return ;
+    return 0;
   }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeLink. unable to convert: input");
-    return ;
+    return 0;
   }
   AtNode f2aTarget;
   if(!KLAtNode_to_CPAtNode(target, f2aTarget)){
     setError("Error in _fe_AiNodeLink. unable to convert: target");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeLink(f2asrc, f2ainput, f2atarget);;
   Fabric::EDK::KL::Boolean _return;
@@ -4315,22 +4315,22 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLinkOutput(
   AtNode f2aSrc;
   if(!KLAtNode_to_CPAtNode(src, f2aSrc)){
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: src");
-    return ;
+    return 0;
   }
   char* f2aOutput = NULL;
   if(!String_to_char(output, f2aOutput)){
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: output");
-    return ;
+    return 0;
   }
   AtNode f2aTarget;
   if(!KLAtNode_to_CPAtNode(target, f2aTarget)){
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: target");
-    return ;
+    return 0;
   }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeLinkOutput. unable to convert: input");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeLinkOutput(f2asrc, f2aoutput, f2atarget, f2ainput);;
   Fabric::EDK::KL::Boolean _return;
@@ -4352,12 +4352,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeUnlink(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeUnlink. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeUnlink. unable to convert: input");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeUnlink(f2anode, f2ainput);;
   Fabric::EDK::KL::Boolean _return;
@@ -4378,12 +4378,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsLinked(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeIsLinked. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aInput = NULL;
   if(!String_to_char(input, f2aInput)){
     setError("Error in _fe_AiNodeIsLinked. unable to convert: input");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeIsLinked(f2anode, f2ainput);;
   Fabric::EDK::KL::Boolean _return;
@@ -4495,7 +4495,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetLocalData(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetLocalData. unable to convert: node");
-    return ;
+    return 0;
   }
   void * f2a_result = AiNodeGetLocalData(f2anode);;
   Fabric::EDK::KL::Data _return;
@@ -4561,7 +4561,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsDisabled(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeIsDisabled. unable to convert: node");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeIsDisabled(f2anode);;
   Fabric::EDK::KL::Boolean _return;
@@ -4664,7 +4664,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUserParamIteratorFinished(
   AtUserParamIterator f2aIter;
   if(!KLAtUserParamIterator_to_CPAtUserParamIterator(iter, f2aIter)){
     setError("Error in _fe_AiUserParamIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiUserParamIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
@@ -5175,12 +5175,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiNodeGetByteAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetByteAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetByteAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   AtByte f2a_result = AiNodeGetByteAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::UInt8 _return;
@@ -5200,12 +5200,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeGetIntAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetIntAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetIntAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   int f2a_result = AiNodeGetIntAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::SInt32 _return;
@@ -5225,12 +5225,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiNodeGetUIntAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetUIntAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetUIntAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   unsigned int f2a_result = AiNodeGetUIntAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::UInt32 _return;
@@ -5250,12 +5250,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeGetBoolAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetBoolAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetBoolAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeGetBoolAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::Boolean _return;
@@ -5275,12 +5275,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiNodeGetFltAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetFltAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetFltAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   float f2a_result = AiNodeGetFltAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::Float32 _return;
@@ -5430,12 +5430,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetPtrAtString(
   AtNode f2aNode;
   if(!KLAtNode_to_CPAtNode(node, f2aNode)){
     setError("Error in _fe_AiNodeGetPtrAtString. unable to convert: node");
-    return ;
+    return 0;
   }
   char* f2aParam = NULL;
   if(!String_to_char(param, f2aParam)){
     setError("Error in _fe_AiNodeGetPtrAtString. unable to convert: param");
-    return ;
+    return 0;
   }
   void * f2a_result = AiNodeGetPtrAtString(f2anode, f2aparam);;
   Fabric::EDK::KL::Data _return;
@@ -5554,7 +5554,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiRender(
   int f2aMode;
   if(!SInt32_to_int(mode, f2aMode)){
     setError("Error in _fe_AiRender. unable to convert: mode");
-    return ;
+    return 0;
   }
   int f2a_result = AiRender(f2amode/*=AI_RENDER_MODE_CAMERA*/);;
   Fabric::EDK::KL::SInt32 _return;
@@ -5718,27 +5718,27 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
   AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiRefractRay. unable to convert: ray");
-    return ;
+    return 0;
   }
   AtPoint f2aNormal;
   if(!Vec3_to_AtPoint(normal, f2aNormal)){
     setError("Error in _fe_AiRefractRay. unable to convert: normal");
-    return ;
+    return 0;
   }
   float f2aN1;
   if(!Float32_to_float(n1, f2aN1)){
     setError("Error in _fe_AiRefractRay. unable to convert: n1");
-    return ;
+    return 0;
   }
   float f2aN2;
   if(!Float32_to_float(n2, f2aN2)){
     setError("Error in _fe_AiRefractRay. unable to convert: n2");
-    return ;
+    return 0;
   }
   AtShaderGlobals f2aSg;
   if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sg, f2aSg)){
     setError("Error in _fe_AiRefractRay. unable to convert: sg");
-    return ;
+    return 0;
   }
   bool f2a_result = AiRefractRay(f2aray, f2anormal, f2an1, f2an2, f2asg);;
   Fabric::EDK::KL::Boolean _return;
@@ -5759,12 +5759,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
   AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiTrace. unable to convert: ray");
-    return ;
+    return 0;
   }
   AtScrSample f2aSample;
   if(!KLAtScrSample_to_CPAtScrSample(sample, f2aSample)){
     setError("Error in _fe_AiTrace. unable to convert: sample");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTrace(f2aray, f2asample);;
   Fabric::EDK::KL::Boolean _return;
@@ -5808,12 +5808,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
   AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiTraceProbe. unable to convert: ray");
-    return ;
+    return 0;
   }
   AtShaderGlobals f2aSgout;
   if(!KLAtShaderGlobals_to_CPAtShaderGlobals(sgout, f2aSgout)){
     setError("Error in _fe_AiTraceProbe. unable to convert: sgout");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTraceProbe(f2aray, f2asgout);;
   Fabric::EDK::KL::Boolean _return;
@@ -5968,17 +5968,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetResolution(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureGetResolution. unable to convert: filename");
-    return ;
+    return 0;
   }
   AtUInt32 f2aWidth;
   if(!UInt32_to_AtUInt32(width, f2aWidth)){
     setError("Error in _fe_AiTextureGetResolution. unable to convert: width");
-    return ;
+    return 0;
   }
   AtUInt32 f2aHeight;
   if(!UInt32_to_AtUInt32(height, f2aHeight)){
     setError("Error in _fe_AiTextureGetResolution. unable to convert: height");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTextureGetResolution(f2afilename, f2awidth, f2aheight);;
   Fabric::EDK::KL::Boolean _return;
@@ -6000,12 +6000,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetNumChannels(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureGetNumChannels. unable to convert: filename");
-    return ;
+    return 0;
   }
   AtUInt32 f2aNum_channels;
   if(!UInt32_to_AtUInt32(num_channels, f2aNum_channels)){
     setError("Error in _fe_AiTextureGetNumChannels. unable to convert: num_channels");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTextureGetNumChannels(f2afilename, f2anum_channels);;
   Fabric::EDK::KL::Boolean _return;
@@ -6052,12 +6052,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetFormat(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureGetFormat. unable to convert: filename");
-    return ;
+    return 0;
   }
   AtUInt32 f2aFormat;
   if(!UInt32_to_AtUInt32(format, f2aFormat)){
     setError("Error in _fe_AiTextureGetFormat. unable to convert: format");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTextureGetFormat(f2afilename, f2aformat);;
   Fabric::EDK::KL::Boolean _return;
@@ -6078,12 +6078,12 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetBitDepth(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureGetBitDepth. unable to convert: filename");
-    return ;
+    return 0;
   }
   AtUInt32 f2aBit_depth;
   if(!UInt32_to_AtUInt32(bit_depth, f2aBit_depth)){
     setError("Error in _fe_AiTextureGetBitDepth. unable to convert: bit_depth");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTextureGetBitDepth(f2afilename, f2abit_depth);;
   Fabric::EDK::KL::Boolean _return;
@@ -6105,17 +6105,17 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetMatrices(
   char* f2aFilename = NULL;
   if(!String_to_char(filename, f2aFilename)){
     setError("Error in _fe_AiTextureGetMatrices. unable to convert: filename");
-    return ;
+    return 0;
   }
   AtMatrix f2aWorld_to_screen;
   if(!Mat44_to_AtMatrix(world_to_screen, f2aWorld_to_screen)){
     setError("Error in _fe_AiTextureGetMatrices. unable to convert: world_to_screen");
-    return ;
+    return 0;
   }
   AtMatrix f2aWorld_to_camera;
   if(!Mat44_to_AtMatrix(world_to_camera, f2aWorld_to_camera)){
     setError("Error in _fe_AiTextureGetMatrices. unable to convert: world_to_camera");
-    return ;
+    return 0;
   }
   bool f2a_result = AiTextureGetMatrices(f2afilename, f2aworld_to_screen, f2aworld_to_camera);;
   Fabric::EDK::KL::Boolean _return;
@@ -6163,7 +6163,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUniverseCacheFlush(
   int f2aCache_flags;
   if(!SInt32_to_int(cache_flags, f2aCache_flags)){
     setError("Error in _fe_AiUniverseCacheFlush. unable to convert: cache_flags");
-    return ;
+    return 0;
   }
   bool f2a_result = AiUniverseCacheFlush(f2acache_flags);;
   Fabric::EDK::KL::Boolean _return;
@@ -6316,7 +6316,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIteratorFinished(
   AtNodeIterator f2aIter;
   if(!KLAtNodeIterator_to_CPAtNodeIterator(iter, f2aIter)){
     setError("Error in _fe_AiNodeIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
@@ -6373,7 +6373,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeEntryIteratorFinished(
   AtNodeEntryIterator f2aIter;
   if(!KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(iter, f2aIter)){
     setError("Error in _fe_AiNodeEntryIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiNodeEntryIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
@@ -6430,7 +6430,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiAOVIteratorFinished(
   AtAOVIterator f2aIter;
   if(!KLAtAOVIterator_to_CPAtAOVIterator(iter, f2aIter)){
     setError("Error in _fe_AiAOVIteratorFinished. unable to convert: iter");
-    return ;
+    return 0;
   }
   bool f2a_result = AiAOVIteratorFinished(f2aiter);;
   Fabric::EDK::KL::Boolean _return;
