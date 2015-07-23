@@ -64,6 +64,29 @@ opaque_type_wrappers = [
     'AtMetaDataStore',
 ]
 
+#
+# We need to define a list of KL POD types
+# When generating the fn definition in kl2edk,
+# complex (non-POD) types will be passed an IO
+# parameter to set as a return value, while
+# POD types will return their value directly.
+# We need to know which is which in order to
+# correctly generate the function implementations
+#
+kl_pod_types = [
+    'UInt8',
+    'UInt16',
+    'UInt32',
+    'UInt64',
+    'SInt8',
+    'SInt16',
+    'SInt32',
+    'SInt64',
+    'Float32',
+    'Float64',
+    'Boolean',
+]
+
 # Name of this project
 project_name = 'Fabric2Arnold'
 # Specify the root of the doxygen output directory.  This dir is relative to this file

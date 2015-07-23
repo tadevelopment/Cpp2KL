@@ -189,13 +189,18 @@ def process_function(functionNode):
         autogen_line += parameter_prefix + arName.capitalize()
 
     klLine += ') = \'' + fe_fn_tag + fnName + '\';\n'
-    autogen_line += ');'
+    autogen_line += ')'
 
     # If we return, we need to create the return value parameter
     if kl_returns:
         to_fn = json_codegen_typemapping[kl_returns]['to']
         res = '%s_result' % parameter_prefix
-        autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _return;\n  %s(%s, _return);\n  return _return;' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
+        if kl_returns in kl_pod_types:
+            autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n  return _result;' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
+        else:
+            autogen_line = '  %s %s = %s;\n  %s(%s, _result);' % (cpp_returns, res, autogen_line, to_fn, res)
+    else:
+        autogen_line = '  %s;\n' % autogen_line
 
     # We remember our auto-genned lined for later reference
     json_codegen_functionbodies[fe_fn_tag + fnName] = autogen_line
@@ -354,6 +359,13 @@ def generate_typemapping_header(full_json):
             '}\n\n' % (sfrom, kl_type, cpp_type)
         )
 
+        # When passing pointer values by-reference, we need
+        # to const the reference in order for the cast to const
+        # to succeed.
+        # https://stackoverflow.com/questions/2908244/why-no-implicit-conversion-from-pointer-to-reference-to-const-pointer
+        if '*' in cpp_type:
+            cpp_type = cpp_type + ' const'
+
         fh.write(
             'inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
             '  #pragma message("Implement Me")\n'
@@ -388,7 +400,7 @@ def generate_opaque_cpp_conv():
         )
 
         fh.write(
-            'inline bool %s(const %s* & from, Fabric::EDK::KL::%s & to) {\n'
+            'inline bool %s(const %s* const& from, Fabric::EDK::KL::%s & to) {\n'
             '  to._handle = const_cast<%s*>(from); \n'
             '  return true; \n'
             '}\n\n' % (sto, opaque_type, opaque_type, opaque_type)

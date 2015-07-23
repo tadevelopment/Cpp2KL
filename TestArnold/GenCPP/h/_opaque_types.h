@@ -12,7 +12,7 @@ inline bool KLAtBucket_to_CPAtBucket(const Fabric::EDK::KL::AtBucket & from, AtB
   return true; 
 }
 
-inline bool CPAtBucket_to_KLAtBucket(const AtBucket* & from, Fabric::EDK::KL::AtBucket & to) {
+inline bool CPAtBucket_to_KLAtBucket(const AtBucket* const& from, Fabric::EDK::KL::AtBucket & to) {
   to._handle = const_cast<AtBucket*>(from); 
   return true; 
 }
@@ -23,7 +23,7 @@ inline bool KLAtList_to_CPAtList(const Fabric::EDK::KL::AtList & from, AtList* &
   return true; 
 }
 
-inline bool CPAtList_to_KLAtList(const AtList* & from, Fabric::EDK::KL::AtList & to) {
+inline bool CPAtList_to_KLAtList(const AtList* const& from, Fabric::EDK::KL::AtList & to) {
   to._handle = const_cast<AtList*>(from); 
   return true; 
 }
@@ -34,7 +34,7 @@ inline bool KLAtNode_to_CPAtNode(const Fabric::EDK::KL::AtNode & from, AtNode* &
   return true; 
 }
 
-inline bool CPAtNode_to_KLAtNode(const AtNode* & from, Fabric::EDK::KL::AtNode & to) {
+inline bool CPAtNode_to_KLAtNode(const AtNode* const& from, Fabric::EDK::KL::AtNode & to) {
   to._handle = const_cast<AtNode*>(from); 
   return true; 
 }
@@ -45,7 +45,7 @@ inline bool KLAtNodeEntry_to_CPAtNodeEntry(const Fabric::EDK::KL::AtNodeEntry & 
   return true; 
 }
 
-inline bool CPAtNodeEntry_to_KLAtNodeEntry(const AtNodeEntry* & from, Fabric::EDK::KL::AtNodeEntry & to) {
+inline bool CPAtNodeEntry_to_KLAtNodeEntry(const AtNodeEntry* const& from, Fabric::EDK::KL::AtNodeEntry & to) {
   to._handle = const_cast<AtNodeEntry*>(from); 
   return true; 
 }
@@ -56,7 +56,7 @@ inline bool KLAtNodeMethods_to_CPAtNodeMethods(const Fabric::EDK::KL::AtNodeMeth
   return true; 
 }
 
-inline bool CPAtNodeMethods_to_KLAtNodeMethods(const AtNodeMethods* & from, Fabric::EDK::KL::AtNodeMethods & to) {
+inline bool CPAtNodeMethods_to_KLAtNodeMethods(const AtNodeMethods* const& from, Fabric::EDK::KL::AtNodeMethods & to) {
   to._handle = const_cast<AtNodeMethods*>(from); 
   return true; 
 }
@@ -67,7 +67,7 @@ inline bool KLAtParamIterator_to_CPAtParamIterator(const Fabric::EDK::KL::AtPara
   return true; 
 }
 
-inline bool CPAtParamIterator_to_KLAtParamIterator(const AtParamIterator* & from, Fabric::EDK::KL::AtParamIterator & to) {
+inline bool CPAtParamIterator_to_KLAtParamIterator(const AtParamIterator* const& from, Fabric::EDK::KL::AtParamIterator & to) {
   to._handle = const_cast<AtParamIterator*>(from); 
   return true; 
 }
@@ -78,7 +78,7 @@ inline bool KLAtMetaDataIterator_to_CPAtMetaDataIterator(const Fabric::EDK::KL::
   return true; 
 }
 
-inline bool CPAtMetaDataIterator_to_KLAtMetaDataIterator(const AtMetaDataIterator* & from, Fabric::EDK::KL::AtMetaDataIterator & to) {
+inline bool CPAtMetaDataIterator_to_KLAtMetaDataIterator(const AtMetaDataIterator* const& from, Fabric::EDK::KL::AtMetaDataIterator & to) {
   to._handle = const_cast<AtMetaDataIterator*>(from); 
   return true; 
 }
@@ -89,7 +89,7 @@ inline bool KLAtUserParamIterator_to_CPAtUserParamIterator(const Fabric::EDK::KL
   return true; 
 }
 
-inline bool CPAtUserParamIterator_to_KLAtUserParamIterator(const AtUserParamIterator* & from, Fabric::EDK::KL::AtUserParamIterator & to) {
+inline bool CPAtUserParamIterator_to_KLAtUserParamIterator(const AtUserParamIterator* const& from, Fabric::EDK::KL::AtUserParamIterator & to) {
   to._handle = const_cast<AtUserParamIterator*>(from); 
   return true; 
 }
@@ -100,7 +100,7 @@ inline bool KLAtTextureHandle_to_CPAtTextureHandle(const Fabric::EDK::KL::AtText
   return true; 
 }
 
-inline bool CPAtTextureHandle_to_KLAtTextureHandle(const AtTextureHandle* & from, Fabric::EDK::KL::AtTextureHandle & to) {
+inline bool CPAtTextureHandle_to_KLAtTextureHandle(const AtTextureHandle* const& from, Fabric::EDK::KL::AtTextureHandle & to) {
   to._handle = const_cast<AtTextureHandle*>(from); 
   return true; 
 }
@@ -111,7 +111,7 @@ inline bool KLAtShaderGlobals_to_CPAtShaderGlobals(const Fabric::EDK::KL::AtShad
   return true; 
 }
 
-inline bool CPAtShaderGlobals_to_KLAtShaderGlobals(const AtShaderGlobals* & from, Fabric::EDK::KL::AtShaderGlobals & to) {
+inline bool CPAtShaderGlobals_to_KLAtShaderGlobals(const AtShaderGlobals* const& from, Fabric::EDK::KL::AtShaderGlobals & to) {
   to._handle = const_cast<AtShaderGlobals*>(from); 
   return true; 
 }
@@ -122,7 +122,7 @@ inline bool KLAtScrSample_to_CPAtScrSample(const Fabric::EDK::KL::AtScrSample & 
   return true; 
 }
 
-inline bool CPAtScrSample_to_KLAtScrSample(const AtScrSample* & from, Fabric::EDK::KL::AtScrSample & to) {
+inline bool CPAtScrSample_to_KLAtScrSample(const AtScrSample* const& from, Fabric::EDK::KL::AtScrSample & to) {
   to._handle = const_cast<AtScrSample*>(from); 
   return true; 
 }
@@ -133,7 +133,7 @@ inline bool KLAtNodeIterator_to_CPAtNodeIterator(const Fabric::EDK::KL::AtNodeIt
   return true; 
 }
 
-inline bool CPAtNodeIterator_to_KLAtNodeIterator(const AtNodeIterator* & from, Fabric::EDK::KL::AtNodeIterator & to) {
+inline bool CPAtNodeIterator_to_KLAtNodeIterator(const AtNodeIterator* const& from, Fabric::EDK::KL::AtNodeIterator & to) {
   to._handle = const_cast<AtNodeIterator*>(from); 
   return true; 
 }
@@ -144,7 +144,7 @@ inline bool KLAtNodeEntryIterator_to_CPAtNodeEntryIterator(const Fabric::EDK::KL
   return true; 
 }
 
-inline bool CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(const AtNodeEntryIterator* & from, Fabric::EDK::KL::AtNodeEntryIterator & to) {
+inline bool CPAtNodeEntryIterator_to_KLAtNodeEntryIterator(const AtNodeEntryIterator* const& from, Fabric::EDK::KL::AtNodeEntryIterator & to) {
   to._handle = const_cast<AtNodeEntryIterator*>(from); 
   return true; 
 }
@@ -155,7 +155,7 @@ inline bool KLAtAOVIterator_to_CPAtAOVIterator(const Fabric::EDK::KL::AtAOVItera
   return true; 
 }
 
-inline bool CPAtAOVIterator_to_KLAtAOVIterator(const AtAOVIterator* & from, Fabric::EDK::KL::AtAOVIterator & to) {
+inline bool CPAtAOVIterator_to_KLAtAOVIterator(const AtAOVIterator* const& from, Fabric::EDK::KL::AtAOVIterator & to) {
   to._handle = const_cast<AtAOVIterator*>(from); 
   return true; 
 }
@@ -166,7 +166,7 @@ inline bool KLAtParamEntry_to_CPAtParamEntry(const Fabric::EDK::KL::AtParamEntry
   return true; 
 }
 
-inline bool CPAtParamEntry_to_KLAtParamEntry(const AtParamEntry* & from, Fabric::EDK::KL::AtParamEntry & to) {
+inline bool CPAtParamEntry_to_KLAtParamEntry(const AtParamEntry* const& from, Fabric::EDK::KL::AtParamEntry & to) {
   to._handle = const_cast<AtParamEntry*>(from); 
   return true; 
 }
@@ -177,7 +177,7 @@ inline bool KLAtUserParamEntry_to_CPAtUserParamEntry(const Fabric::EDK::KL::AtUs
   return true; 
 }
 
-inline bool CPAtUserParamEntry_to_KLAtUserParamEntry(const AtUserParamEntry* & from, Fabric::EDK::KL::AtUserParamEntry & to) {
+inline bool CPAtUserParamEntry_to_KLAtUserParamEntry(const AtUserParamEntry* const& from, Fabric::EDK::KL::AtUserParamEntry & to) {
   to._handle = const_cast<AtUserParamEntry*>(from); 
   return true; 
 }
@@ -188,7 +188,7 @@ inline bool KLAtMetaDataStore_to_CPAtMetaDataStore(const Fabric::EDK::KL::AtMeta
   return true; 
 }
 
-inline bool CPAtMetaDataStore_to_KLAtMetaDataStore(const AtMetaDataStore* & from, Fabric::EDK::KL::AtMetaDataStore & to) {
+inline bool CPAtMetaDataStore_to_KLAtMetaDataStore(const AtMetaDataStore* const& from, Fabric::EDK::KL::AtMetaDataStore & to) {
   to._handle = const_cast<AtMetaDataStore*>(from); 
   return true; 
 }
