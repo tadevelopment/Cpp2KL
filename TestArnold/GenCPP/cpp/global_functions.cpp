@@ -3574,7 +3574,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
 
@@ -5974,7 +5974,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureParamsSetDefaults(
 {
   F2A_TRY_STATEMENT("_fe_AiTextureParamsSetDefaults")
 
-  AtArray* f2aParams = NULL;
+  AtTextureParams* f2aParams = NULL;
   if(!KlAtTextureParams_to_AtTextureParams(params, f2aParams)){
     setError("Error in _fe_AiTextureParamsSetDefaults. unable to convert: params");
     return;
@@ -6024,7 +6024,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleAccess(
     setError("Error in _fe_AiTextureHandleAccess. unable to convert: handle");
     return;
   }
-  AtArray* f2aParams = NULL;
+  AtTextureParams* f2aParams = NULL;
   if(!KlAtTextureParams_to_AtTextureParams(params, f2aParams)){
     setError("Error in _fe_AiTextureHandleAccess. unable to convert: params");
     return;
@@ -6080,7 +6080,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureAccess(
     setError("Error in _fe_AiTextureAccess. unable to convert: filename");
     return;
   }
-  AtArray* f2aParams = NULL;
+  AtTextureParams* f2aParams = NULL;
   if(!KlAtTextureParams_to_AtTextureParams(params, f2aParams)){
     setError("Error in _fe_AiTextureAccess. unable to convert: params");
     return;

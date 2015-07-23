@@ -145,9 +145,6 @@ def process_function(functionNode):
     # kl2edk utility
     autogen_line = fnName + '('
 
-    if 'AiMetaDataGetStrAtString' == fnName:
-        br = 10;
-
     # Get KL type for return arg
     kl_returns = cpp_to_kl_type(cpp_returns)
 

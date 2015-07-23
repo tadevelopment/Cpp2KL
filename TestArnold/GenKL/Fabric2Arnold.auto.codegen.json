@@ -69,7 +69,7 @@
         "_fe_AiMetaDataGetPnt2AtString": "  bool f2a_result = AiMetaDataGetPnt2AtString(f2aEntry, f2aParam, f2aName, &f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
         "_fe_AiMetaDataGetPntAtString": "  bool f2a_result = AiMetaDataGetPntAtString(f2aEntry, f2aParam, f2aName, &f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
         "_fe_AiMetaDataGetRGBAtString": "  bool f2a_result = AiMetaDataGetRGBAtString(f2aEntry, f2aParam, f2aName, &f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
-        "_fe_AiMetaDataGetStrAtString": "  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
+        "_fe_AiMetaDataGetStrAtString": "  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, &f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
         "_fe_AiMetaDataGetVecAtString": "  bool f2a_result = AiMetaDataGetVecAtString(f2aEntry, f2aParam, f2aName, &f2aValue);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
         "_fe_AiMetaDataIteratorDestroy": "  AiMetaDataIteratorDestroy(f2aIter);\n", 
         "_fe_AiMetaDataIteratorFinished": "  bool f2a_result = AiMetaDataIteratorFinished(f2aIter);\n  Fabric::EDK::KL::Boolean _result;\n  bool_to_Boolean(f2a_result, _result);\n", 
@@ -359,7 +359,7 @@
             "to": "CPAtTextureHandle_to_KLAtTextureHandle"
         }, 
         "AtTextureParams": {
-            "ctype": "AtArray*", 
+            "ctype": "AtTextureParams*", 
             "from": "KlAtTextureParams_to_AtTextureParams", 
             "methodop": "->", 
             "to": "AtTextureParams_to_KLAtTextureParams"

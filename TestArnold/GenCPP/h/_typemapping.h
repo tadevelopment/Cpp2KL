@@ -166,12 +166,12 @@ inline bool double_to_Float64(const double & from, Fabric::EDK::KL::Float64 & to
   return true; 
 }
 
-inline bool KlAtTextureParams_to_AtTextureParams(const Fabric::EDK::KL::AtTextureParams & from, AtArray* & to) {
+inline bool KlAtTextureParams_to_AtTextureParams(const Fabric::EDK::KL::AtTextureParams & from, AtTextureParams* & to) {
   #pragma message("Implement Me")
   return true; 
 }
 
-inline bool AtTextureParams_to_KLAtTextureParams(const AtArray* const & from, Fabric::EDK::KL::AtTextureParams & to) {
+inline bool AtTextureParams_to_KLAtTextureParams(const AtTextureParams* const & from, Fabric::EDK::KL::AtTextureParams & to) {
   #pragma message("Implement Me")
   return true; 
 }
