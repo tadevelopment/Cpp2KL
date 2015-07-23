@@ -21,13 +21,13 @@ fabricBuildEnv.Append(CPPPATH = [
   'GenCPP/h'
   ])
 
-# fabricBuildEnv.Append(LIBPATH = [
-#   os.path.join(kinectSDKPath, 'lib/amd64'),
-#   ])
+fabricBuildEnv.Append(LIBPATH = [
+  "E:/dev/Arnold SDK/Arnold-4.2.7.5/lib",
+  ])
 
-# fabricBuildEnv.Append(LIBS = [
-#   "kinect10.lib",
-#   ])
+fabricBuildEnv.Append(LIBS = [
+  "ai.lib",
+  ])
 
 cppFiles = glob.glob('./GenCPP/cpp/*.cpp')
 fabricBuildEnv.Extension(
