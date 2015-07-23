@@ -45,7 +45,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetType(
   int f2a_result = AiParamGetType(f2aPentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetType", )
 }
 
@@ -118,7 +118,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiParamGetTypeSize(
   AI_CONST int f2a_result = AiParamGetTypeSize(f2aType);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamGetTypeSize", )
 }
 
@@ -155,7 +155,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetType(
   int f2a_result = AiUserParamGetType(f2aUpentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetType", )
 }
 
@@ -174,7 +174,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetArrayType(
   int f2a_result = AiUserParamGetArrayType(f2aUpentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetArrayType", )
 }
 
@@ -193,7 +193,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetCategory(
   int f2a_result = AiUserParamGetCategory(f2aUpentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetCategory", )
 }
 
@@ -212,7 +212,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiUserParamGetIndex(
   AI_CONST int f2a_result = AiUserParamGetIndex(f2aUpentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamGetIndex", )
 }
 
@@ -1083,7 +1083,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetKey(
   bool f2a_result = AiArraySetKey(f2aArray, f2aKey, f2aData);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aArray, array);
+  AtArray_to_KLArray(f2aArray, array);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetKey", )
 }
@@ -1235,7 +1235,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayInterpolateFlt(
   float f2a_result = AiArrayInterpolateFlt(f2aArray, f2aTime, f2aIdx);
   Fabric::EDK::KL::Float32 _result;
   float_to_Float32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayInterpolateFlt", )
 }
 
@@ -1307,7 +1307,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArrayGetBoolFunc(
   bool f2a_result = AiArrayGetBoolFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetBoolFunc", )
 }
 
@@ -1344,7 +1344,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiArrayGetByteFunc(
   AtByte f2a_result = AiArrayGetByteFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::UInt8 _result;
   AtByte_to_UInt8(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetByteFunc", )
 }
 
@@ -1381,7 +1381,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiArrayGetIntFunc(
   int f2a_result = AiArrayGetIntFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetIntFunc", )
 }
 
@@ -1418,7 +1418,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiArrayGetUIntFunc(
   AtUInt32 f2a_result = AiArrayGetUIntFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::UInt32 _result;
   AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetUIntFunc", )
 }
 
@@ -1455,7 +1455,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiArrayGetFltFunc(
   float f2a_result = AiArrayGetFltFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::Float32 _result;
   float_to_Float32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetFltFunc", )
 }
 
@@ -1708,7 +1708,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiArrayGetPtrFunc(
   void * f2a_result = AiArrayGetPtrFunc(f2aA, f2aI, f2a_val, f2aLine);
   Fabric::EDK::KL::Data _result;
   void_to_Data(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArrayGetPtrFunc", )
 }
 
@@ -1787,7 +1787,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetBoolFunc(
   bool f2a_result = AiArraySetBoolFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetBoolFunc", )
 }
@@ -1831,7 +1831,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetByteFunc(
   bool f2a_result = AiArraySetByteFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetByteFunc", )
 }
@@ -1875,7 +1875,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetIntFunc(
   bool f2a_result = AiArraySetIntFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetIntFunc", )
 }
@@ -1919,7 +1919,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetUIntFunc(
   bool f2a_result = AiArraySetUIntFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetUIntFunc", )
 }
@@ -1963,7 +1963,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetFltFunc(
   bool f2a_result = AiArraySetFltFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetFltFunc", )
 }
@@ -2007,7 +2007,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBFunc(
   bool f2a_result = AiArraySetRGBFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetRGBFunc", )
 }
@@ -2051,7 +2051,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetRGBAFunc(
   bool f2a_result = AiArraySetRGBAFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetRGBAFunc", )
 }
@@ -2095,7 +2095,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPntFunc(
   bool f2a_result = AiArraySetPntFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPntFunc", )
 }
@@ -2139,7 +2139,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPnt2Func(
   bool f2a_result = AiArraySetPnt2Func(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPnt2Func", )
 }
@@ -2183,7 +2183,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetVecFunc(
   bool f2a_result = AiArraySetVecFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetVecFunc", )
 }
@@ -2227,7 +2227,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetMtxFunc(
   bool f2a_result = AiArraySetMtxFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetMtxFunc", )
 }
@@ -2271,7 +2271,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetStrFunc(
   bool f2a_result = AiArraySetStrFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetStrFunc", )
 }
@@ -2315,7 +2315,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetPtrFunc(
   bool f2a_result = AiArraySetPtrFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
   void_to_Data(f2aVal, val);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetPtrFunc", )
@@ -2360,7 +2360,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiArraySetArrayFunc(
   bool f2a_result = AiArraySetArrayFunc(f2aA, f2aI, f2aVal, f2a_val, f2aLine);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtArray_to_KLArray(f2aA, a);
+  AtArray_to_KLArray(f2aA, a);
   AtArray_to_KLArray(f2aVal, val);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiArraySetArrayFunc", )
@@ -2448,7 +2448,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiCameraGetLocalData(
   void * f2a_result = AiCameraGetLocalData(f2aNode);
   Fabric::EDK::KL::Data _result;
   void_to_Data(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiCameraGetLocalData", )
 }
 
@@ -2485,7 +2485,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSWrite(
   int f2a_result = AiASSWrite(f2aFilename, f2aMask/*=ai_node_all*/, f2aOpen_procs/*=false*/, f2aBinary/*=true*/);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiASSWrite", )
 }
 
@@ -2510,7 +2510,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiASSLoad(
   int f2a_result = AiASSLoad(f2aFilename, f2aMask/*=ai_node_all*/);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiASSLoad", )
 }
 
@@ -2535,7 +2535,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiEnumGetValue(
   int f2a_result = AiEnumGetValue(f2aEnum_type, f2aString);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiEnumGetValue", )
 }
 
@@ -2584,7 +2584,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseSetServer(
   bool f2a_result = AiLicenseSetServer(f2aHost, f2aPort);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseSetServer", )
 }
 
@@ -2609,7 +2609,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiLicenseGetServer(
   bool f2a_result = AiLicenseGetServer(f2aHost, f2aPort);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  char_to_String(f2aHost, host);
+  char_to_String(f2aHost, host);
   AtUInt32_to_UInt32(f2aPort, port);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetServer", )
@@ -2641,7 +2641,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiLicenseGetAttempts(
   unsigned int f2a_result = AiLicenseGetAttempts();
   Fabric::EDK::KL::UInt32 _result;
   AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetAttempts", )
 }
 
@@ -2671,7 +2671,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiLicenseGetAttemptDelay(
   unsigned int f2a_result = AiLicenseGetAttemptDelay();
   Fabric::EDK::KL::UInt32 _result;
   AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetAttemptDelay", )
 }
 
@@ -2696,7 +2696,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiLicenseGetInfo(
   int f2a_result = AiLicenseGetInfo(f2aLicenses, f2aN);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;  AtLicenseInfo_to_KLAtLicenseInfo(f2aLicenses, licenses);
+  AtLicenseInfo_to_KLAtLicenseInfo(f2aLicenses, licenses);
   AtUInt32_to_UInt32(f2aN, n);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiLicenseGetInfo", )
@@ -3308,10 +3308,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetBoolAtString(
     setError("Error in _fe_AiMetaDataGetBoolAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetBoolAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetBoolAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  bool_to_Boolean(f2aValue, value);
+  bool_to_Boolean(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetBoolAtString", )
 }
@@ -3346,10 +3346,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetIntAtString(
     setError("Error in _fe_AiMetaDataGetIntAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetIntAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetIntAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  int_to_SInt32(f2aValue, value);
+  int_to_SInt32(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetIntAtString", )
 }
@@ -3384,10 +3384,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetFltAtString(
     setError("Error in _fe_AiMetaDataGetFltAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetFltAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetFltAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  float_to_Float32(f2aValue, value);
+  float_to_Float32(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetFltAtString", )
 }
@@ -3422,10 +3422,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetRGBAtString(
     setError("Error in _fe_AiMetaDataGetRGBAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetRGBAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetRGBAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtRGB_to_RGB(f2aValue, value);
+  AtRGB_to_RGB(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetRGBAtString", )
 }
@@ -3460,10 +3460,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetVecAtString(
     setError("Error in _fe_AiMetaDataGetVecAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetVecAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetVecAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtPoint_to_Vec3(f2aValue, value);
+  AtPoint_to_Vec3(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetVecAtString", )
 }
@@ -3498,10 +3498,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPntAtString(
     setError("Error in _fe_AiMetaDataGetPntAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetPntAtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetPntAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtPoint_to_Vec3(f2aValue, value);
+  AtPoint_to_Vec3(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetPntAtString", )
 }
@@ -3536,10 +3536,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetPnt2AtString(
     setError("Error in _fe_AiMetaDataGetPnt2AtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetPnt2AtString(f2aEntry, f2aParam, f2aName, f2aValue);
+  bool f2a_result = AiMetaDataGetPnt2AtString(f2aEntry, f2aParam, f2aName, &f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtPoint2_to_Vec2(f2aValue, value);
+  AtPoint2_to_Vec2(f2aValue, value);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetPnt2AtString", )
 }
@@ -3577,7 +3577,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
   bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, f2aValue);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataGetStrAtString", )
 }
 
@@ -3596,7 +3596,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataLoadFile(
   bool f2a_result = AiMetaDataLoadFile(f2aFilename);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataLoadFile", )
 }
 
@@ -3790,7 +3790,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt64 _fe_AiMsgUtilGetUsedMemory(
   AtUInt64 f2a_result = AiMsgUtilGetUsedMemory();
   Fabric::EDK::KL::UInt64 _result;
   AtUInt64_to_UInt64(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMsgUtilGetUsedMemory", )
 }
 
@@ -3803,7 +3803,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiMsgUtilGetElapsedTime(
   AtUInt32 f2a_result = AiMsgUtilGetElapsedTime();
   Fabric::EDK::KL::UInt32 _result;
   AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMsgUtilGetElapsedTime", )
 }
 
@@ -3858,7 +3858,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetType(
   int f2a_result = AiNodeEntryGetType(f2aNentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetType", )
 }
 
@@ -3895,7 +3895,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetOutputType(
   int f2a_result = AiNodeEntryGetOutputType(f2aNentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetOutputType", )
 }
 
@@ -3950,7 +3950,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetCount(
   int f2a_result = AiNodeEntryGetCount(f2aNentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetCount", )
 }
 
@@ -3969,7 +3969,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeEntryGetNumParams(
   int f2a_result = AiNodeEntryGetNumParams(f2aNentry);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryGetNumParams", )
 }
 
@@ -4180,7 +4180,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiParamIteratorFinished(
   bool f2a_result = AiParamIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiParamIteratorFinished", )
 }
 
@@ -4236,7 +4236,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataIteratorFinished(
   bool f2a_result = AiMetaDataIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiMetaDataIteratorFinished", )
 }
 
@@ -4351,7 +4351,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDestroy(
   bool f2a_result = AiNodeDestroy(f2aNode);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtNode_to_KLAtNode(f2aNode, node);
+  CPAtNode_to_KLAtNode(f2aNode, node);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDestroy", )
 }
@@ -4377,7 +4377,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIs(
   bool f2a_result = AiNodeIs(f2aNode, f2aStr);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIs", )
 }
 
@@ -4408,7 +4408,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeDeclareAtString(
   bool f2a_result = AiNodeDeclareAtString(f2aNode, f2aParam, f2aDeclaration);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtNode_to_KLAtNode(f2aNode, node);
+  CPAtNode_to_KLAtNode(f2aNode, node);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeDeclareAtString", )
 }
@@ -4440,7 +4440,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLink(
   bool f2a_result = AiNodeLink(f2aSrc, f2aInput, f2aTarget);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtNode_to_KLAtNode(f2aSrc, src);
+  CPAtNode_to_KLAtNode(f2aSrc, src);
   CPAtNode_to_KLAtNode(f2aTarget, target);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLink", )
@@ -4479,7 +4479,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeLinkOutput(
   bool f2a_result = AiNodeLinkOutput(f2aSrc, f2aOutput, f2aTarget, f2aInput);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtNode_to_KLAtNode(f2aSrc, src);
+  CPAtNode_to_KLAtNode(f2aSrc, src);
   CPAtNode_to_KLAtNode(f2aTarget, target);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeLinkOutput", )
@@ -4506,7 +4506,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeUnlink(
   bool f2a_result = AiNodeUnlink(f2aNode, f2aInput);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtNode_to_KLAtNode(f2aNode, node);
+  CPAtNode_to_KLAtNode(f2aNode, node);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeUnlink", )
 }
@@ -4532,7 +4532,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsLinked(
   bool f2a_result = AiNodeIsLinked(f2aNode, f2aInput);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIsLinked", )
 }
 
@@ -4561,7 +4561,7 @@ FABRIC_EXT_EXPORT void _fe_AiNodeGetLink(
     setError("Error in _fe_AiNodeGetLink. unable to convert: comp");
     return;
   }
-  AtNode * f2a_result = AiNodeGetLink(f2aNode, f2aInput, f2aComp/*=null*/);
+  AtNode * f2a_result = AiNodeGetLink(f2aNode, f2aInput, &f2aComp/*=null*/);
   CPAtNode_to_KLAtNode(f2a_result, _result);  int_to_SInt32(f2aComp, comp);
 
   F2A_CATCH_STATEMENT("_fe_AiNodeGetLink")
@@ -4636,7 +4636,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetLocalData(
   void * f2a_result = AiNodeGetLocalData(f2aNode);
   Fabric::EDK::KL::Data _result;
   void_to_Data(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetLocalData", )
 }
 
@@ -4704,7 +4704,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIsDisabled(
   bool f2a_result = AiNodeIsDisabled(f2aNode);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIsDisabled", )
 }
 
@@ -4802,7 +4802,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUserParamIteratorFinished(
   bool f2a_result = AiUserParamIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUserParamIteratorFinished", )
 }
 
@@ -5333,7 +5333,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt8 _fe_AiNodeGetByteAtString(
   AtByte f2a_result = AiNodeGetByteAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::UInt8 _result;
   AtByte_to_UInt8(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetByteAtString", )
 }
 
@@ -5358,7 +5358,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiNodeGetIntAtString(
   int f2a_result = AiNodeGetIntAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetIntAtString", )
 }
 
@@ -5383,7 +5383,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::UInt32 _fe_AiNodeGetUIntAtString(
   unsigned int f2a_result = AiNodeGetUIntAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::UInt32 _result;
   AtUInt32_to_UInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetUIntAtString", )
 }
 
@@ -5408,7 +5408,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeGetBoolAtString(
   bool f2a_result = AiNodeGetBoolAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetBoolAtString", )
 }
 
@@ -5433,7 +5433,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Float32 _fe_AiNodeGetFltAtString(
   float f2a_result = AiNodeGetFltAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::Float32 _result;
   float_to_Float32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetFltAtString", )
 }
 
@@ -5578,7 +5578,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Data _fe_AiNodeGetPtrAtString(
   void * f2a_result = AiNodeGetPtrAtString(f2aNode, f2aParam);
   Fabric::EDK::KL::Data _result;
   void_to_Data(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeGetPtrAtString", )
 }
 
@@ -5696,7 +5696,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::SInt32 _fe_AiRender(
   int f2a_result = AiRender(f2aMode/*=ai_render_mode_camera*/);
   Fabric::EDK::KL::SInt32 _result;
   int_to_SInt32(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRender", )
 }
 
@@ -5731,7 +5731,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRendering(
   bool f2a_result = AiRendering();
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRendering", )
 }
 
@@ -5811,7 +5811,7 @@ FABRIC_EXT_EXPORT void _fe_AiMakeRay(
     setError("Error in _fe_AiMakeRay. unable to convert: sg");
     return;
   }
-  AiMakeRay(f2aRay, f2aType, f2aOrigin, f2aDir, f2aMaxdist, f2aSg);
+  AiMakeRay(f2aRay, f2aType, &f2aOrigin, &f2aDir, f2aMaxdist, f2aSg);
   AtRay_to_KLAtRay(f2aRay, ray);
 
   F2A_CATCH_STATEMENT("_fe_AiMakeRay")
@@ -5841,7 +5841,7 @@ FABRIC_EXT_EXPORT void _fe_AiReflectRay(
     setError("Error in _fe_AiReflectRay. unable to convert: sg");
     return;
   }
-  AiReflectRay(f2aRay, f2aNormal, f2aSg);
+  AiReflectRay(f2aRay, &f2aNormal, f2aSg);
   AtRay_to_KLAtRay(f2aRay, ray);
 
   F2A_CATCH_STATEMENT("_fe_AiReflectRay")
@@ -5883,10 +5883,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
     setError("Error in _fe_AiRefractRay. unable to convert: sg");
     return 0;
   }
-  bool f2a_result = AiRefractRay(f2aRay, f2aNormal, f2aN1, f2aN2, f2aSg);
+  bool f2a_result = AiRefractRay(f2aRay, &f2aNormal, f2aN1, f2aN2, f2aSg);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtRay_to_KLAtRay(f2aRay, ray);
+  AtRay_to_KLAtRay(f2aRay, ray);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiRefractRay", )
 }
@@ -5912,7 +5912,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
   bool f2a_result = AiTrace(f2aRay, f2aSample);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
+  CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTrace", )
 }
@@ -5962,7 +5962,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
   bool f2a_result = AiTraceProbe(f2aRay, f2aSgout);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  CPAtShaderGlobals_to_KLAtShaderGlobals(f2aSgout, sgout);
+  CPAtShaderGlobals_to_KLAtShaderGlobals(f2aSgout, sgout);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTraceProbe", )
 }
@@ -6034,7 +6034,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureHandleAccess(
     setError("Error in _fe_AiTextureHandleAccess. unable to convert: success");
     return;
   }
-  AtRGBA f2a_result = AiTextureHandleAccess(f2aSg, f2aHandle, f2aParams, f2aSuccess/*=null*/);
+  AtRGBA f2a_result = AiTextureHandleAccess(f2aSg, f2aHandle, f2aParams, &f2aSuccess/*=null*/);
   AtRGBA_to_Color(f2a_result, _result);  CPAtTextureHandle_to_KLAtTextureHandle(f2aHandle, handle);
   bool_to_Boolean(f2aSuccess, success);
 
@@ -6090,7 +6090,7 @@ FABRIC_EXT_EXPORT void _fe_AiTextureAccess(
     setError("Error in _fe_AiTextureAccess. unable to convert: success");
     return;
   }
-  AtRGBA f2a_result = AiTextureAccess(f2aSg, f2aFilename, f2aParams, f2aSuccess/*=null*/);
+  AtRGBA f2a_result = AiTextureAccess(f2aSg, f2aFilename, f2aParams, &f2aSuccess/*=null*/);
   AtRGBA_to_Color(f2a_result, _result);  bool_to_Boolean(f2aSuccess, success);
 
   F2A_CATCH_STATEMENT("_fe_AiTextureAccess")
@@ -6120,10 +6120,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetResolution(
     setError("Error in _fe_AiTextureGetResolution. unable to convert: height");
     return 0;
   }
-  bool f2a_result = AiTextureGetResolution(f2aFilename, f2aWidth, f2aHeight);
+  bool f2a_result = AiTextureGetResolution(f2aFilename, &f2aWidth, &f2aHeight);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtUInt32_to_UInt32(f2aWidth, width);
+  AtUInt32_to_UInt32(f2aWidth, width);
   AtUInt32_to_UInt32(f2aHeight, height);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetResolution", )
@@ -6147,10 +6147,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetNumChannels(
     setError("Error in _fe_AiTextureGetNumChannels. unable to convert: num_channels");
     return 0;
   }
-  bool f2a_result = AiTextureGetNumChannels(f2aFilename, f2aNum_channels);
+  bool f2a_result = AiTextureGetNumChannels(f2aFilename, &f2aNum_channels);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtUInt32_to_UInt32(f2aNum_channels, num_channels);
+  AtUInt32_to_UInt32(f2aNum_channels, num_channels);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetNumChannels", )
 }
@@ -6197,10 +6197,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetFormat(
     setError("Error in _fe_AiTextureGetFormat. unable to convert: format");
     return 0;
   }
-  bool f2a_result = AiTextureGetFormat(f2aFilename, f2aFormat);
+  bool f2a_result = AiTextureGetFormat(f2aFilename, &f2aFormat);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtUInt32_to_UInt32(f2aFormat, format);
+  AtUInt32_to_UInt32(f2aFormat, format);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetFormat", )
 }
@@ -6223,10 +6223,10 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetBitDepth(
     setError("Error in _fe_AiTextureGetBitDepth. unable to convert: bit_depth");
     return 0;
   }
-  bool f2a_result = AiTextureGetBitDepth(f2aFilename, f2aBit_depth);
+  bool f2a_result = AiTextureGetBitDepth(f2aFilename, &f2aBit_depth);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;  AtUInt32_to_UInt32(f2aBit_depth, bit_depth);
+  AtUInt32_to_UInt32(f2aBit_depth, bit_depth);
 
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetBitDepth", )
 }
@@ -6258,7 +6258,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTextureGetMatrices(
   bool f2a_result = AiTextureGetMatrices(f2aFilename, f2aWorld_to_screen, f2aWorld_to_camera);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiTextureGetMatrices", )
 }
 
@@ -6288,7 +6288,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUniverseIsActive(
   bool f2a_result = AiUniverseIsActive();
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUniverseIsActive", )
 }
 
@@ -6307,7 +6307,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiUniverseCacheFlush(
   bool f2a_result = AiUniverseCacheFlush(f2aCache_flags);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiUniverseCacheFlush", )
 }
 
@@ -6447,7 +6447,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeIteratorFinished(
   bool f2a_result = AiNodeIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeIteratorFinished", )
 }
 
@@ -6503,7 +6503,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiNodeEntryIteratorFinished(
   bool f2a_result = AiNodeEntryIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiNodeEntryIteratorFinished", )
 }
 
@@ -6559,6 +6559,6 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiAOVIteratorFinished(
   bool f2a_result = AiAOVIteratorFinished(f2aIter);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
-  return _result;
+
   F2A_CATCH_STATEMENT_RETURN("_fe_AiAOVIteratorFinished", )
 }

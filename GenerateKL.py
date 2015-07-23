@@ -145,6 +145,9 @@ def process_function(functionNode):
     # kl2edk utility
     autogen_line = fnName + '('
 
+    if 'AiMetaDataGetStrAtString' == fnName:
+        br = 10;
+
     # Get KL type for return arg
     kl_returns = cpp_to_kl_type(cpp_returns)
 
@@ -156,12 +159,12 @@ def process_function(functionNode):
 
     for i in range(len(fnArgs)):
         arg = fnArgs[i]
-        arType = get_str(arg.find('type'))
+        cpp_type = get_str(arg.find('type'))
         arName = get_str(arg.find('declname'))
         arArgsStr = get_str(arg.find('argsstring'))
 
         # skip varargs
-        if arType == '...':
+        if cpp_type == '...':
             continue
 
         # if hte name is not defined, we give it a default value
@@ -170,16 +173,16 @@ def process_function(functionNode):
             arName = '_val'
 
         # get the KL type
-        arType = cpp_to_kl_type(arType, True, arArgsStr)
+        kl_type = cpp_to_kl_type(cpp_type, True, arArgsStr)
 
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
         # to fix up the conversion functions in MassageCPP
-        if arType in kl_type_aliases:
+        if kl_type in kl_type_aliases:
             fe_fn_name = fe_fn_tag + fnName
             if fe_fn_name not in functions_with_aliases:
                 functions_with_aliases[fe_fn_name] = []
-            functions_with_aliases[fe_fn_name].append([arType, arName])
+            functions_with_aliases[fe_fn_name].append([kl_type, arName])
 
         # if we had a C++ default val, indicate what it was
         # Perhaps we could generate 2 functions in this case, one which calls the other.
@@ -191,7 +194,15 @@ def process_function(functionNode):
             klLine += ', '
             autogen_line += ', '
 
-        klLine += arType + ' ' + arName
+        klLine += kl_type + ' ' + arName
+
+        # If there are more '*' in the CPP type than we expect
+        # (based on the ctype in our codegen) then we will need
+        # to pass this parameter by address.
+        base_kl_type = kl_type.rsplit(None, 1)[-1]
+        if base_kl_type in json_codegen_typemapping:
+            if cpp_type.count('*') > json_codegen_typemapping[base_kl_type]['ctype'].count('*'):
+                autogen_line += '&'
 
         # finally, add the name to the autogen line.
         autogen_line += parameter_prefix + arName.capitalize()
@@ -204,7 +215,7 @@ def process_function(functionNode):
         to_fn = json_codegen_typemapping[kl_returns]['to']
         res = '%s_result' % parameter_prefix
         if kl_returns in kl_pod_types:
-            autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n  return _result;' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
+            autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
         else:
             autogen_line = '  %s %s = %s;\n  %s(%s, _result);' % (cpp_returns, res, autogen_line, to_fn, res)
     else:
