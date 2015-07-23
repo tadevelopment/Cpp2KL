@@ -880,8 +880,9 @@ FABRIC_EXT_EXPORT void _fe_AiArrayGetMtxFunc(
     setError("Error in _fe_AiArrayGetMtxFunc. unable to convert: i");
     return;
   }
-  AtMatrix f2a_result = fe(f2aA, f2aI);
-  AtMatrix_to_Mat44(f2a_result, _result);
+  AtMatrix mtx;
+  AiArrayGetMtx(f2aA, f2aI, mtx);
+  AtMatrix_to_Mat44(mtx, _result);
 
   F2A_CATCH_STATEMENT("_fe_AiArrayGetMtxFunc")
 }

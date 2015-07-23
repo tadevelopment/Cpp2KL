@@ -15,6 +15,7 @@
         "_fe_AiArrayGetByteFunc": "  AtByte f2a_result = AiArrayGetByteFunc(f2aA, f2aI, f2aLine);\n  Fabric::EDK::KL::UInt8 _result;\n  AtByte_to_UInt8(f2a_result, _result);\n  return _result;", 
         "_fe_AiArrayGetFltFunc": "  float f2a_result = AiArrayGetFltFunc(f2aA, f2aI, f2aLine);\n  Fabric::EDK::KL::Float32 _result;\n  float_to_Float32(f2a_result, _result);\n  return _result;", 
         "_fe_AiArrayGetIntFunc": "  int f2a_result = AiArrayGetIntFunc(f2aA, f2aI, f2aLine);\n  Fabric::EDK::KL::SInt32 _result;\n  int_to_SInt32(f2a_result, _result);\n  return _result;", 
+        "_fe_AiArrayGetMtxFunc": "  AtMatrix mtx;\n  AiArrayGetMtx(f2aA, f2aI, mtx);\n  AtMatrix_to_Mat44(mtx, _result);\n", 
         "_fe_AiArrayGetPnt2Func": "  AtPoint2 f2a_result = AiArrayGetPnt2Func(f2aA, f2aI, f2aLine);\n  AtPoint2_to_Vec2(f2a_result, _result);", 
         "_fe_AiArrayGetPntFunc": "  AtPoint f2a_result = AiArrayGetPntFunc(f2aA, f2aI, f2aLine);\n  AtPoint_to_Vec3(f2a_result, _result);", 
         "_fe_AiArrayGetPtrFunc": "  void * f2a_result = AiArrayGetPtrFunc(f2aA, f2aI, f2aLine);\n  void_to_Data(f2a_result, _result);", 

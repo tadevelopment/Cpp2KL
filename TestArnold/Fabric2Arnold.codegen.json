@@ -57,7 +57,8 @@
     "_fe_AtParamValueAsVec3"    : "  AtVector f2a_result = f2aThis_->VEC;\n  AtPoint_to_Vec3(f2a_result, _result);\n",
     "_fe_AtParamValueAsMat44"   : "  AtMatrix_to_Mat44(*f2aThis_->pMTX, _result);\n",
     "_fe_AtParamValueAsString"  : "  const char* f2a_result = f2aThis_->STR;\n  char_to_String(f2a_result, _result);\n",
-    "_fe_AtParamValueAsAtArray" : "  const AtArray* parr = f2aThis_->ARRAY;\n AtArray_to_KLArray(parr, _result);\n"
+    "_fe_AtParamValueAsAtArray" : "  const AtArray* parr = f2aThis_->ARRAY;\n AtArray_to_KLArray(parr, _result);\n",
+    "_fe_AiArrayGetMtxFunc"     : "  AtMatrix mtx;\n  AiArrayGetMtx(f2aA, f2aI, mtx);\n  AtMatrix_to_Mat44(mtx, _result);\n"
   },
   "parameterconversionstoskip": [
   ]
