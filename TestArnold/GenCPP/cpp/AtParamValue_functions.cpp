@@ -7,10 +7,7 @@
 
 #include "AtParamValue_functions.h"
 
-#include "ai.h"
-#include "_defines.h"
-#include "_typemapping.h"
-#include "_opaque_types.h"
+#include "_IncludeAll.h"
 
 using namespace Fabric::EDK;
 

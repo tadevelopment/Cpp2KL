@@ -186,7 +186,7 @@ def process_function(functionNode):
         klLine += arType + ' ' + arName
 
         # finally, add the name to the autogen line.
-        autogen_line += parameter_prefix + arName
+        autogen_line += parameter_prefix + arName.capitalize()
 
     klLine += ') = \'' + fe_fn_tag + fnName + '\';\n'
     autogen_line += ');'
@@ -328,12 +328,19 @@ def generate_typemapping_header(full_json):
     ' * This auto-generated file contains typemapping conversion fn\n'
     ' * declarations for the data types found in %s codegen file\n'
     ' *  - Do not modify this file, it will be overwritten\n'
-    ' */\n\n\n' % (project_name)
+    ' */\n\n\n#pragma once\n' % (project_name)
     )
 
     typemapping = full_json['typemapping']
     for key, val in typemapping.iteritems():
         kl_type = key
+
+        # Skip opaque types - they will be generated
+        # separately (we know the full implementation for
+        # those functions)
+        if kl_type in opaque_type_wrappers:
+            continue
+
         if kl_type[-2:] == '[]':
             kl_type = 'VariableArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
 
@@ -464,7 +471,7 @@ def get_auto_codegen_typemapping():
     # returned pointer with a KL data member
     for opaque_type in opaque_type_wrappers:
         conversion = ( {
-            'ctype': opaque_type,
+            'ctype': opaque_type + '*',
             'from' : 'KL' + opaque_type + '_to_CP' + opaque_type,
             'to' : 'CP' + opaque_type + '_to_KL' + opaque_type,
         })

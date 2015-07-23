@@ -1,5 +1,5 @@
 {
-  "header": "#include \"ai.h\"\n#include \"_defines.h\"\n#include \"_typemapping.h\"\n#include \"_opaque_types.h\"",
+  "header": "#include \"_IncludeAll.h\"",
   "parameterprefix": "f2a",
   "functionentry": "F2A_TRY_STATEMENT", 
   "functionexit": "F2A_CATCH_STATEMENT", 

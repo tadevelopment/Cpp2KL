@@ -6,7 +6,8 @@ if not exist GenKL mkdir GenKL
 call python ../GenerateKL.py Fabric2Arnold.cfg.py
 
 REM Copy existing header in
-copy _defines.h GenCPP\h
+copy CustomCPP\*.h GenCPP\h
+copy CustomCPP\*.cpp GenCPP\cpp
 
 REM Generate C++ Files from KL files
 if not exist GenCPP\h mkdir GenCPP\h
