@@ -3574,7 +3574,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiMetaDataGetStrAtString(
     setError("Error in _fe_AiMetaDataGetStrAtString. unable to convert: value");
     return 0;
   }
-  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, &f2aValue);
+  bool f2a_result = AiMetaDataGetStrAtString(f2aEntry, f2aParam, f2aName, const_cast<const char**>(&f2aValue));
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
 

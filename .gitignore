@@ -2,3 +2,4 @@ DoxygenXML/
 .idea/
 .sconsign.dblite
 TestArnold/Alembic.codegen.json
+TestArnold/Fabric2Arnold-Windows-x86_64.exp

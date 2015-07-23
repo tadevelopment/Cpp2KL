@@ -20,8 +20,7 @@ output_cpp_dir = os.path.join(root_dir, output_cpp_dir)
 custom_cpp_dir = os.path.join(root_dir, custom_cpp_dir)
 script_path = os.path.dirname(os.path.realpath(__file__))
 
-def ensure_dir(f):
-    d = os.path.dirname(f)
+def ensure_dir(d):
     if not os.path.exists(d):
         os.makedirs(d)
 
