@@ -1,67 +1,72 @@
 //
-// Copyright (c) 2014, Steven Caron <steven@steven-caron.com> All rights reserved.
+// Testing file for Fabric2Arnold.
 //
-// FabricArnold Extension
+// Test basic functionality.
+// Based on Steven Caron's work
+//
 
-require FabricArnold;
+require Fabric2Arnold;
 
-operator entry(in String filename) {
-  UInt64 start = getCurrentTicks();
+operator entry() {
+  report('Loaded!!');
+  // UInt64 start = getCurrentTicks();
   AiBegin();
 
   // create a sphere
-  AtNode sphere = AiNode("sphere");
-  AiNodeSetStr(sphere, "name", "mysphere");
-  AiNodeSetFlt(sphere, "radius", 5.0);
+  AtNode sphere = AiNodeAtString("sphere");
+  AiNodeSetStrAtString(sphere, "name", "mysphere");
+  AiNodeSetFltAtString(sphere, "radius", 5.0);
 
   // create a lambert shader
-  AtNode lambert = AiNode("lambert");
-  AiNodeSetStr(lambert, "name", "myshader");
-  AiNodeSetRGB(lambert, "Kd_color", 1.0, 0.0, 0.0);
+  AtNode lambert = AiNodeAtString("lambert");
+  AiNodeSetStrAtString(lambert, "name", "myshader");
+  AiNodeSetRGBAtString(lambert, "Kd_color", 1.0, 0.0, 0.0);
 
   // assign the sphere's shader
-  AiNodeSetPtr(sphere, "shader", lambert.node);
+  AiNodeSetPtrAtString(sphere, "shader", lambert._handle);
 
   // create a perspective camera
-  AtNode camera = AiNode("persp_camera");
-  AiNodeSetStr(camera, "name", "mycamera");
-  AiNodeSetPnt(camera, "position", 0.0, 0.0, 20.0);
+  AtNode camera = AiNodeAtString("persp_camera");
+  AiNodeSetStrAtString(camera, "name", "mycamera");
+  AiNodeSetPntAtString(camera, "position", 0.0, 0.0, 20.0);
 
   // create a point light
-  AtNode light = AiNode("point_light");
-  AiNodeSetStr(light, "name", "mylight");
-  AiNodeSetFlt(light, "exposure", 7.5);
-  AiNodeSetPnt(light, "position", 0.0, 10.0, 10.0);
+  AtNode light = AiNodeAtString("point_light");
+  AiNodeSetStrAtString(light, "name", "mylight");
+  AiNodeSetFltAtString(light, "exposure", 7.5);
+  AiNodeSetPntAtString(light, "position", 0.0, 10.0, 10.0);
 
   // set render options
   AtNode options = AiUniverseGetOptions();
-  AiNodeSetInt(options, "AA_samples", 1);
-  AiNodeSetInt(options, "xres", 320);
-  AiNodeSetInt(options, "yres", 240);
-  AiNodeSetPtr(options, "camera", camera.node);
+  AiNodeSetIntAtString(options, "AA_samples", 1);
+  AiNodeSetIntAtString(options, "xres", 320);
+  AiNodeSetIntAtString(options, "yres", 240);
+  AiNodeSetPtrAtString(options, "camera", camera._handle);
 
   // create an output driver
-  AtNode driver = AiNode("driver_jpeg");
-  AiNodeSetStr(driver, "name", "mydriver");
-  AiNodeSetStr(driver, "filename", filename);
+  AtNode driver = AiNodeAtString("driver_jpeg");
+  AiNodeSetStrAtString(driver, "name", "mydriver");
+
+  String filename = "E:\\dev\\OpusTech\\Cpp2KL\\TestArnold\\Tests\\testfile.jpg";
+  AiNodeSetStrAtString(driver, "filename", filename);
 
   // create a gaussian filter node
-  AtNode gfilter = AiNode("gaussian_filter");
-  AiNodeSetStr(gfilter, "name", "myfilter");
+  AtNode gfilter = AiNodeAtString("gaussian_filter");
+  AiNodeSetStrAtString(gfilter, "name", "myfilter");
 
   // assign th driver and the filter to the outputs
   AtArray outputs_array = AiArrayAllocate(2, 1, AI_TYPE_STRING);
-  report(AiArraySetStr(outputs_array, 0, "RGB RGB myfilter mydriver"));
-  report(AiArraySetStr(outputs_array, 1, "TEST RGB myfilter mydriver"));
-  // AiNodeSetArray(options, "outputs", outputs_array);
+  report(AiArraySetStrFunc(outputs_array, 0, "RGB RGB myfilter mydriver", "Tester", 0));
+  report(AiArraySetStrFunc(outputs_array, 1, "TEST RGB myfilter mydriver", "Tester", 0));
+  AiNodeSetArrayAtString(options, "outputs", outputs_array);
   // render the scene
-  // Integer result = AiRender(AI_RENDER_MODE_CAMERA);
-  // if (result != AI_SUCCESS)
-  // {
-  //   report("[FabricArnold::TestSuite] Error " + String(result));
-  // }
+  Integer result = AiRender(AI_RENDER_MODE_CAMERA);
+  if (result != AI_SUCCESS)
+  {
+    report("[FabricArnold::TestSuite] Error " + String(result));
+  }
   AiEnd();
 
-  UInt64 end = getCurrentTicks();
-  report("Elapsed time: " + getSecondsBetweenTicks(start, end) + " seconds");
+  // UInt64 end = getCurrentTicks();
+  // report("Elapsed time: " + getSecondsBetweenTicks(start, end) + " seconds");
 }
