@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtCameraInput'
-// Defined at GenKL\\ai_cameras.kl:10:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\ai_cameras.kl:10:1
 
 struct AtCameraInput
 {

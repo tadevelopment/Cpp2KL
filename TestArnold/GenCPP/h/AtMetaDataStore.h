@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtMetaDataStore'
-// Defined at GenKL\\_opaque_types.kl:72:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:75:1
 
 struct AtMetaDataStore
 {

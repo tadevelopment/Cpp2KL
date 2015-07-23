@@ -6,18 +6,6 @@ import sys
 import json
 import jsonmerge
 import os
-# Pass in the cfg file of the extension to generate as an argument
-if not len(sys.argv) > 1:
-    print ("Usage - please pass the config file as an argument to this script")
-
-cfg_file = sys.argv[1]
-# import the configuration file.
-execfile(cfg_file)
-# Use cfg file as the root of further path manips
-root_dir = os.path.dirname(cfg_file)
-output_dir = os.path.join(root_dir, output_dir)
-output_h_dir = os.path.join(root_dir, output_h_dir)
-output_cpp_dir = os.path.join(root_dir, output_cpp_dir)
 
 # we will auto-generate our JSON codegen file as well, as we
 # already have most of the data for what is required.
@@ -29,6 +17,11 @@ json_codegen_typemapping = {}
 # This dictionary contains the auto-generated function
 # implementations.
 json_codegen_functionbodies = {}
+
+# keep a list of all functions that contain aliased params
+# in MassageCPP we will process the aliases to ensure they
+# are converted to the correct C++ types
+functions_with_aliases = {}
 
 def is_int(str):
     try:
@@ -170,7 +163,7 @@ def process_function(functionNode):
         # skip varargs
         if arType == '...':
             continue
-            
+
         # if hte name is not defined, we give it a default value
         # (its legal c++ syntax to define void f(char* )
         if not arName:
@@ -178,6 +171,15 @@ def process_function(functionNode):
 
         # get the KL type
         arType = cpp_to_kl_type(arType, True, arArgsStr)
+
+        # if our KL type is alias'ed, then save the name
+        # of this function.  This is because we will need
+        # to fix up the conversion functions in MassageCPP
+        if arType in kl_type_aliases:
+            fe_fn_name = fe_fn_tag + fnName
+            if fe_fn_name not in functions_with_aliases:
+                functions_with_aliases[fe_fn_name] = []
+            functions_with_aliases[fe_fn_name].append([arType, arName])
 
         # if we had a C++ default val, indicate what it was
         # Perhaps we could generate 2 functions in this case, one which calls the other.
@@ -428,6 +430,13 @@ def generate_opaque_file():
         ' */\n\n'
     )
 
+    # we add in the aliases here (for lack of a better place)
+    f.write('// Aliases help us differentiate the correct\n//return type when converting KL to C++ types later\n')
+    for alias, kl_type in kl_type_aliases.iteritems():
+        f.write(
+            'alias %s %s;\n' % (kl_type, alias)
+        )
+
     for opaque_type in opaque_type_wrappers:
         f.write(
             '\n'
@@ -483,6 +492,22 @@ def get_auto_codegen_typemapping():
             conversion['methodop'] = '.'
 
         typemapping[kl_type] = conversion
+
+    # generate conversions for alias'ed types
+    # (We assume that an alias'ed type reflects
+    # a C++ class)
+    for alias_type, base_type in kl_type_aliases.iteritems():
+
+        conversion = ( {
+            'ctype': alias_type,
+            'from' : base_type + '_to_' + alias_type,
+            'to' : alias_type + '_to_' + base_type,
+
+        })
+        # We cannot know if the type should be pointer-based,
+        # but we can assume that most of the time it won't be
+        conversion['methodop'] = '.'
+        typemapping[alias_type] = conversion
 
     # Generate conversions for our opaque wrappers
     #  This will be pretty simple - just wrapping the

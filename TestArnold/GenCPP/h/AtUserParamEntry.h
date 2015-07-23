@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtUserParamEntry'
-// Defined at GenKL\\_opaque_types.kl:68:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:71:1
 
 struct AtUserParamEntry
 {

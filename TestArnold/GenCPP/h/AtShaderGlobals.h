@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtShaderGlobals'
-// Defined at GenKL\\_opaque_types.kl:44:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:47:1
 
 struct AtShaderGlobals
 {

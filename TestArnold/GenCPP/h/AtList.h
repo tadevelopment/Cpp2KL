@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtList'
-// Defined at GenKL\\_opaque_types.kl:12:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:15:1
 
 struct AtList
 {

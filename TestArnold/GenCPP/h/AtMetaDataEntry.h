@@ -22,7 +22,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtMetaDataEntry'
-// Defined at GenKL\\ai_node_entry.kl:9:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\ai_node_entry.kl:9:1
 
 struct AtMetaDataEntry
 {

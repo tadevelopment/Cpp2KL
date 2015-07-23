@@ -146,6 +146,16 @@ inline bool AtParamValue_to_KLParamValue(const AtParamValue* const & from, Fabri
   return true; 
 }
 
+inline bool String_to_AtString(const Fabric::EDK::KL::AtString & from, AtString & to) {
+  #pragma message("Implement Me")
+  return true; 
+}
+
+inline bool AtString_to_String(const AtString & from, Fabric::EDK::KL::AtString & to) {
+  #pragma message("Implement Me")
+  return true; 
+}
+
 inline bool Float64_to_double(const Fabric::EDK::KL::Float64 & from, double & to) {
   #pragma message("Implement Me")
   return true; 

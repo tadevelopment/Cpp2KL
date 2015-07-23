@@ -26,12 +26,27 @@ cppToKLTypeMapping = {
     'AtUInt16' : 'UInt16',
     'AtUInt32' : 'UInt32',
     'AtUInt64' : 'UInt64',
-    'AtString' : 'String',
     'AtPoint' : 'Vec3',
     'AtVector' : 'Vec3',
     'AtPoint2' : 'Vec2',
     'AtVector2' : 'Vec2',
     'AtMatrix' : 'Mat44',
+}
+
+#
+# When multiple C++ types map to a single KL
+# type, it becomes impossible to correctly remap
+# the conversion functions for the KL type back
+# to the correct C++ type.  To resolve these 
+# issues, we can create a KL 'alias' for the type
+# which allows us to specify a unique KL type in the
+# generated fn signatures, and this type lets us know
+# the correct C++ type to convert to in the 
+# kl2edk phase
+# NOTE: The alias must be named the same as the C++ type
+#
+kl_type_aliases = {
+    'AtString' : 'String'
 }
 
 #
@@ -85,6 +100,7 @@ kl_pod_types = [
     'Float32',
     'Float64',
     'Boolean',
+    'Data'
 ]
 
 # Name of this project
@@ -95,6 +111,9 @@ xml_dir = '../DoxygenXML/xml/'
 output_dir = 'GenKL'
 output_h_dir = 'GenCPP/h'
 output_cpp_dir = 'GenCPP/cpp'
+
+# specify where custom CPP files (if any) are located
+custom_cpp_dir = 'CustomCPP'
 
 filesToProcess = [
     'ai_params.h',

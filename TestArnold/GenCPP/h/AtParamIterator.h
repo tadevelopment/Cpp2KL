@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtParamIterator'
-// Defined at GenKL\\_opaque_types.kl:28:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:31:1
 
 struct AtParamIterator
 {

@@ -60,7 +60,7 @@ struct AtRay {
  
   Vec3 dDdy; //  Partial derivative of ray direction wrt image-space Y coordinate 
  
-  String traceset; //  Trace-set for this ray. 
+  AtString traceset; //  Trace-set for this ray. 
  
   Boolean inclusive_traceset; //  Is the trace-set inclusive or exclusive? 
  

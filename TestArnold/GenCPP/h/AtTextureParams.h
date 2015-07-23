@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtTextureParams'
-// Defined at GenKL\\ai_texture.kl:10:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\ai_texture.kl:10:1
 
 struct AtTextureParams
 {

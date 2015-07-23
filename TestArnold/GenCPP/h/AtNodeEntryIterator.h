@@ -21,7 +21,7 @@
 namespace Fabric { namespace EDK { namespace KL {
 
 // KL struct 'AtNodeEntryIterator'
-// Defined at GenKL\\_opaque_types.kl:56:1
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:59:1
 
 struct AtNodeEntryIterator
 {

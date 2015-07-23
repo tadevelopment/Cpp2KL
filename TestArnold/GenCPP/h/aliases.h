@@ -18,6 +18,10 @@
 
 namespace Fabric { namespace EDK { namespace KL {
 
+
+// KL alias 'AtString'
+// Defined at E:\dev\OpusTech\Cpp2KL\TestArnold\GenKL/\_opaque_types.kl:9:1
+typedef String AtString;
 }}}
 
 #endif // __KL2EDK_AUTOGEN_aliases__
