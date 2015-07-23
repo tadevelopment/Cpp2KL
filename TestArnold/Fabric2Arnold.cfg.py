@@ -20,7 +20,7 @@ cppToKLTypeMapping = {
     'AtByte' : 'UInt8',
     'AtBBox': 'Box3',
     'AtRGB': 'RGB',
-    'AtColor': 'Vec3',
+    'AtColor': 'RGB',
     'AtRGBA': 'Color',
     'AtEnum': 'String[]',
     'AtUInt16' : 'UInt16',

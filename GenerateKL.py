@@ -166,9 +166,15 @@ def process_function(functionNode):
         arType = get_str(arg.find('type'))
         arName = get_str(arg.find('declname'))
         arArgsStr = get_str(arg.find('argsstring'))
-        # if hte name is not defined, the argument is ignored
+
+        # skip varargs
+        if arType == '...':
+            continue
+            
+        # if hte name is not defined, we give it a default value
+        # (its legal c++ syntax to define void f(char* )
         if not arName:
-            continue;
+            arName = '_val'
 
         # get the KL type
         arType = cpp_to_kl_type(arType, True, arArgsStr)
