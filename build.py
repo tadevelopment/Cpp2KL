@@ -39,8 +39,8 @@ ensure_dir(output_h_dir)
 ensure_dir(output_cpp_dir)
 
 # remove all files in output directory
-old_files = glob.glob(output_cpp_dir + '/*.cpp')
-old_files += glob.glob(output_h_dir + '/*.h')
+old_files = glob.glob(output_cpp_dir + '/*.*')
+old_files += glob.glob(output_h_dir + '/*.*')
 for file in old_files:
     os.remove(file)
 

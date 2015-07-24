@@ -9,8 +9,6 @@
 
 inline bool Vec3_to_AtPoint(const Fabric::EDK::KL::Vec3 & from, AtPoint & to);
 inline bool String_to_AtString(const Fabric::EDK::KL::AtString & from, AtString & to);
-inline bool AtParamValue_to_KLParamValue(const AtParamValue* const & from, Fabric::EDK::KL::AtParamValue & to);
-inline bool AtPoint_to_Vec3(const AtPoint & from, Fabric::EDK::KL::Vec3 & to);
 
 inline bool StringArr_to_AtEnum(const Fabric::EDK::KL::VariableArray< Fabric::EDK::KL::String > & from, AtEnum & to) { 
   #pragma message("Implement Me")

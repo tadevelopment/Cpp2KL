@@ -7,7 +7,9 @@
 #include "ai_params.h"
 
 #include "_defines.h"
-#include "_typemapping.h"
+#include "Fabric2Arnold.h"
 #include "_opaque_types.h"
+#include "_typemapping.h"
+
 
 #endif

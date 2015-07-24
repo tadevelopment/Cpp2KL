@@ -5781,7 +5781,7 @@ FABRIC_EXT_EXPORT void _fe_AiMakeRay(
 {
   F2A_TRY_STATEMENT("_fe_AiMakeRay")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiMakeRay. unable to convert: ray");
     return;
@@ -5811,7 +5811,7 @@ FABRIC_EXT_EXPORT void _fe_AiMakeRay(
     setError("Error in _fe_AiMakeRay. unable to convert: sg");
     return;
   }
-  AiMakeRay(f2aRay, f2aType, &f2aOrigin, &f2aDir, f2aMaxdist, f2aSg);
+  AiMakeRay(&f2aRay, f2aType, &f2aOrigin, &f2aDir, f2aMaxdist, f2aSg);
   AtRay_to_KLAtRay(f2aRay, ray);
 
   F2A_CATCH_STATEMENT("_fe_AiMakeRay")
@@ -5826,7 +5826,7 @@ FABRIC_EXT_EXPORT void _fe_AiReflectRay(
 {
   F2A_TRY_STATEMENT("_fe_AiReflectRay")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiReflectRay. unable to convert: ray");
     return;
@@ -5841,7 +5841,7 @@ FABRIC_EXT_EXPORT void _fe_AiReflectRay(
     setError("Error in _fe_AiReflectRay. unable to convert: sg");
     return;
   }
-  AiReflectRay(f2aRay, &f2aNormal, f2aSg);
+  AiReflectRay(&f2aRay, &f2aNormal, f2aSg);
   AtRay_to_KLAtRay(f2aRay, ray);
 
   F2A_CATCH_STATEMENT("_fe_AiReflectRay")
@@ -5858,7 +5858,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
 {
   F2A_TRY_STATEMENT("_fe_AiRefractRay")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiRefractRay. unable to convert: ray");
     return 0;
@@ -5883,7 +5883,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiRefractRay(
     setError("Error in _fe_AiRefractRay. unable to convert: sg");
     return 0;
   }
-  bool f2a_result = AiRefractRay(f2aRay, &f2aNormal, f2aN1, f2aN2, f2aSg);
+  bool f2a_result = AiRefractRay(&f2aRay, &f2aNormal, f2aN1, f2aN2, f2aSg);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
   AtRay_to_KLAtRay(f2aRay, ray);
@@ -5899,7 +5899,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
 {
   F2A_TRY_STATEMENT("_fe_AiTrace")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiTrace. unable to convert: ray");
     return 0;
@@ -5909,7 +5909,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTrace(
     setError("Error in _fe_AiTrace. unable to convert: sample");
     return 0;
   }
-  bool f2a_result = AiTrace(f2aRay, f2aSample);
+  bool f2a_result = AiTrace(&f2aRay, f2aSample);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
   CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
@@ -5925,7 +5925,7 @@ FABRIC_EXT_EXPORT void _fe_AiTraceBackground(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceBackground")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiTraceBackground. unable to convert: ray");
     return;
@@ -5935,7 +5935,7 @@ FABRIC_EXT_EXPORT void _fe_AiTraceBackground(
     setError("Error in _fe_AiTraceBackground. unable to convert: sample");
     return;
   }
-  AiTraceBackground(f2aRay, f2aSample);
+  AiTraceBackground(&f2aRay, f2aSample);
   CPAtScrSample_to_KLAtScrSample(f2aSample, sample);
 
   F2A_CATCH_STATEMENT("_fe_AiTraceBackground")
@@ -5949,7 +5949,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
 {
   F2A_TRY_STATEMENT("_fe_AiTraceProbe")
 
-  AtRay* f2aRay = NULL;
+  AtRay f2aRay;
   if(!KlAtRay_to_AtRay(ray, f2aRay)){
     setError("Error in _fe_AiTraceProbe. unable to convert: ray");
     return 0;
@@ -5959,7 +5959,7 @@ FABRIC_EXT_EXPORT Fabric::EDK::KL::Boolean _fe_AiTraceProbe(
     setError("Error in _fe_AiTraceProbe. unable to convert: sgout");
     return 0;
   }
-  bool f2a_result = AiTraceProbe(f2aRay, f2aSgout);
+  bool f2a_result = AiTraceProbe(&f2aRay, f2aSgout);
   Fabric::EDK::KL::Boolean _result;
   bool_to_Boolean(f2a_result, _result);
   CPAtShaderGlobals_to_KLAtShaderGlobals(f2aSgout, sgout);

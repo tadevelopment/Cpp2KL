@@ -35,6 +35,15 @@ dll = fabricBuildEnv.Extension(
   cppFiles
   )
 
+# Copy relevant files into stage directory
+stage_dir = './stage'
+kl_files = glob.glob('./GenKL/*.kl')
+fpm_file = glob.glob('./GenKL/Fabric2Arnold.fpm.json')
+
+fabricBuildEnv.Install(stage_dir, dll)
+fabricBuildEnv.Install(stage_dir, kl_files)
+fabricBuildEnv.Install(stage_dir, fpm_file)
+
 # set our file paths to be relative to the proj directory
 hFiles = glob.glob('./GenCPP/h/*.h')
 for i in range(len(cppFiles)):
@@ -52,3 +61,4 @@ fabricBuildEnv.MSVSProject(target = './GenCPP/Fabric2Arnold' + fabricBuildEnv['M
                 incs = hFiles,
                 buildtarget = dll[0],
                 variant = 'Debug|x64')
+

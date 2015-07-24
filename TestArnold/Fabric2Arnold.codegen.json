@@ -24,9 +24,9 @@
         "to": "AtLicenseInfo_to_KLAtLicenseInfo"
     },
     "AtRay": {
-        "ctype": "AtRay*",
+        "ctype": "AtRay",
         "from": "KlAtRay_to_AtRay",
-        "methodop": "->",
+        "methodop": ".",
         "to": "AtRay_to_KLAtRay"
     },
     "AtTextureParams": {

@@ -169,7 +169,8 @@ buildFlags = {
     ],
     'ccflags': [ 
       '/EHsc', 
-      '/wd4624'    ],
+      '/wd4624',
+      '/FC'    ],
     'linkflags': [ 'chkstk.obj' ],
     'x86' : {
       'ccflags': [ ],
