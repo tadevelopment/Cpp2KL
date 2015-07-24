@@ -35,9 +35,18 @@ dll = fabricBuildEnv.Extension(
   cppFiles
   )
 
+# set our file paths to be relative to the proj directory
+hFiles = glob.glob('./GenCPP/h/*.h')
+for i in range(len(cppFiles)):
+  cppFiles[i] = cppFiles[i].replace('\\', '/')
+  cppFiles[i] = os.path.relpath(cppFiles[i], './GenCPP')
+
+for i in range(len(hFiles)):
+  hFiles[i] = hFiles[i].replace('\\', '/')
+  hFiles[i] = os.path.relpath(hFiles[i], './GenCPP')
+
 # Build a VS project to go along with this dll
 # We can use this for debugging the project later.
-hFiles = glob.glob('./GenCPP/h/*.h')
 fabricBuildEnv.MSVSProject(target = './GenCPP/Fabric2Arnold' + fabricBuildEnv['MSVSPROJECTSUFFIX'],
                 srcs = cppFiles,
                 incs = hFiles,

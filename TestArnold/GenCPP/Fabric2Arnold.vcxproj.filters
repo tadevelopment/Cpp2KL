@@ -5,190 +5,184 @@
 			<UniqueIdentifier>{7b42d31d-d53c-4868-8b92-ca2bc9fc052f}</UniqueIdentifier>
 			<Extensions>h;hpp;hxx;hm;inl</Extensions>
 		</Filter>
-		<Filter Include="Header Files\h">
-			<UniqueIdentifier>{26D548D1-594D-311C-7B95-08A49CCEC2CC}</UniqueIdentifier>
-		</Filter>
 		<Filter Include="Source Files">
 			<UniqueIdentifier>{7b42d31d-d53c-4868-8b92-ca2bc9fc052f}</UniqueIdentifier>
 			<Extensions>cpp;c;cxx;l;y;def;odl;idl;hpj;bat</Extensions>
 		</Filter>
-		<Filter Include="Source Files\p">
-			<UniqueIdentifier>{8E086B73-0561-6D8C-14A8-46DD6A127CA0}</UniqueIdentifier>
-		</Filter>
 	</ItemGroup>
 	<ItemGroup>
-		<ClInclude Include="GenCPP\h\h\_defines.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\_defines.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\_IncludeAll.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\_IncludeAll.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\_opaque_types.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\_opaque_types.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\_typemapping.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\_typemapping.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\aliases.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\aliases.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\ARGB.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\ARGB.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtAOVEntry.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtAOVEntry.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtAOVIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtAOVIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtArray.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtArray.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtBucket.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtBucket.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtCameraInput.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtCameraInput.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtCameraOutput.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtCameraOutput.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtLicenseInfo.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtLicenseInfo.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtList.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtList.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtMetaDataEntry.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtMetaDataEntry.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtMetaDataIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtMetaDataIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtMetaDataStore.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtMetaDataStore.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNode.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNode.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNodeEntry.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNodeEntry.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNodeEntryIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNodeEntryIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNodeIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNodeIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNodeLib.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNodeLib.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtNodeMethods.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtNodeMethods.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtParamEntry.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtParamEntry.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtParamIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtParamIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtParamValue.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtParamValue.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtParamValue_functions.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtParamValue_functions.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtRay.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtRay.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtScrSample.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtScrSample.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtShaderGlobals.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtShaderGlobals.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtTextureHandle.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtTextureHandle.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtTextureParams.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtTextureParams.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtUserParamEntry.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtUserParamEntry.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\AtUserParamIterator.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\AtUserParamIterator.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Box2.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Box2.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Box3.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Box3.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Color.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Color.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Euler.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Euler.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Fabric2Arnold.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Fabric2Arnold.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\global.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\global.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\global_functions.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\global_functions.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Mat22.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Mat22.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Mat33.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Mat33.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Mat44.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Mat44.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Quat.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Quat.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Ray.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Ray.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\RGB.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\RGB.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\RGBA.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\RGBA.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\RotationOrder.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\RotationOrder.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Vec2.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Vec2.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Vec3.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Vec3.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Vec3_d.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Vec3_d.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Vec4.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Vec4.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
-		<ClInclude Include="GenCPP\h\h\Xfo.h">
-			<Filter>Header Files\h</Filter>
+		<ClInclude Include="h\Xfo.h">
+			<Filter>Header Files</Filter>
 		</ClInclude>
 	</ItemGroup>
 	<ItemGroup>
-		<ClCompile Include="GenCPP\cpp\p\AtParamValue_functions.cpp">
-			<Filter>Source Files\p</Filter>
+		<ClCompile Include="cpp\AtParamValue_functions.cpp">
+			<Filter>Source Files</Filter>
 		</ClCompile>
-		<ClCompile Include="GenCPP\cpp\p\extension.cpp">
-			<Filter>Source Files\p</Filter>
+		<ClCompile Include="cpp\extension.cpp">
+			<Filter>Source Files</Filter>
 		</ClCompile>
-		<ClCompile Include="GenCPP\cpp\p\global_functions.cpp">
-			<Filter>Source Files\p</Filter>
+		<ClCompile Include="cpp\global_functions.cpp">
+			<Filter>Source Files</Filter>
 		</ClCompile>
 	</ItemGroup>
 </Project>
