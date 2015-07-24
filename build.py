@@ -28,7 +28,7 @@ def copy_gen_file(f, out_dir):
     # If we would copy over a generated file, rename the generated file
     custom_filename = os.path.basename(f)
     custom_filename = os.path.join(out_dir, custom_filename)
-    if os.path.isfile(out_dir):
+    if os.path.isfile(custom_filename):
         os.rename(custom_filename, custom_filename + '.gen')
 
     shutil.copy(f, out_dir)
@@ -63,4 +63,3 @@ call(klcmd, shell=True)
 
 #REM Do any post-processing to get things as close as possible
 execfile(os.path.join(script_path, 'MassageCPP.py'))
-#call python ../MassageCPP.py Fabric2Arnold.cfg.py
