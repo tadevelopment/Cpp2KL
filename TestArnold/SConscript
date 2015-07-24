@@ -218,6 +218,7 @@ for subType in subTypes:
 # See: http://www.scons.org/doc/HTML/scons-man.html section CCPDBFLAGS
 # 
 fabricBuildEnv['CCPDBFLAGS'] = '/Zi /Fd${TARGET}.pdb'
+fabricBuildEnv['PDB']='${TARGET.base}.pdb'
 
 def buildExtension(env, target, sources):
   env.Append(CPPPATH = [env.Dir('.')])

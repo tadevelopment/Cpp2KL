@@ -24,6 +24,15 @@ def ensure_dir(d):
     if not os.path.exists(d):
         os.makedirs(d)
 
+def copy_gen_file(f, out_dir):
+    # If we would copy over a generated file, rename the generated file
+    custom_filename = os.path.basename(f)
+    custom_filename = os.path.join(out_dir, custom_filename)
+    if os.path.isfile(out_dir):
+        os.rename(custom_filename, custom_filename + '.gen')
+
+    shutil.copy(f, out_dir)
+
 # make these directories if necessary
 ensure_dir(output_dir)
 ensure_dir(output_h_dir)
@@ -41,10 +50,11 @@ execfile(os.path.join(script_path, 'GenerateKL.py'))
 # Copy existing header in
 custom_files = glob.glob(custom_cpp_dir + '/*.h')
 for file in custom_files:
-    shutil.copy(file, output_h_dir)
+    copy_gen_file(file, output_h_dir)
 custom_files = glob.glob(custom_cpp_dir + '/*.cpp')
 for file in custom_files:
-    shutil.copy(file, output_cpp_dir)
+    copy_gen_file(file, output_cpp_dir)
+
 
 # Generate C++ Files from KL files
 klcmd = 'kl2edk "%s/%s.fpm.json" -o "%s" -c "%s"' % (output_dir, project_name, output_h_dir, output_cpp_dir)

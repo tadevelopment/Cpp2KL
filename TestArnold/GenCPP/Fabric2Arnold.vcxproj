@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{5DD24BB0-EF34-9C02-7065-BFA96202D326}</ProjectGuid>
+		<RootNamespace>Fabric2Arnold</RootNamespace>
+		<Keyword>MakeFileProj</Keyword>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<UseOfMfc>false</UseOfMfc>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Label="ExtensionSettings">
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup>
+	<_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+		<NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo Starting SCons &amp;&amp; &quot;C:\Python27\python.exe&quot; -c &quot;from os.path import join; import sys; sys.path = [ join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons&apos;), join(sys.prefix, &apos;scons&apos;) ] + sys.path; import SCons.Script; SCons.Script.main()&quot; -C &quot;E:\dev\OpusTech\Cpp2KL\TestArnold&quot; -f SConstruct &quot;E:\dev\OpusTech\Cpp2KL\TestArnold\Fabric2Arnold-Windows-x86_64.dll&quot;</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo Starting SCons &amp;&amp; &quot;C:\Python27\python.exe&quot; -c &quot;from os.path import join; import sys; sys.path = [ join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons&apos;), join(sys.prefix, &apos;scons&apos;) ] + sys.path; import SCons.Script; SCons.Script.main()&quot; -C &quot;E:\dev\OpusTech\Cpp2KL\TestArnold&quot; -f SConstruct &quot;E:\dev\OpusTech\Cpp2KL\TestArnold\Fabric2Arnold-Windows-x86_64.dll&quot;</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo Starting SCons &amp;&amp; &quot;C:\Python27\python.exe&quot; -c &quot;from os.path import join; import sys; sys.path = [ join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;scons-2.3.4&apos;), join(sys.prefix, &apos;Lib&apos;, &apos;site-packages&apos;, &apos;scons&apos;), join(sys.prefix, &apos;scons&apos;) ] + sys.path; import SCons.Script; SCons.Script.main()&quot; -C &quot;E:\dev\OpusTech\Cpp2KL\TestArnold&quot; -f SConstruct -c &quot;E:\dev\OpusTech\Cpp2KL\TestArnold\Fabric2Arnold-Windows-x86_64.dll&quot;</NMakeCleanCommandLine>
+		<NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\dev\OpusTech\Cpp2KL\TestArnold\Fabric2Arnold-Windows-x86_64.dll</NMakeOutput>
+		<NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NDEBUG;_SCL_SECURE_NO_WARNINGS=1;_ITERATOR_DEBUG_LEVEL=0;_SECURE_SCL=0;_WIN32_WINNT=0x0600;WIN64</NMakePreprocessorDefinitions>
+		<NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Fabric Engine\FabricEngine-2.1.0-alpha-Windows-x86_64\include;E:/dev/Arnold SDK/Arnold-4.2.7.5/include;GenCPP/h;.</NMakeIncludeSearchPath>
+		<NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedIncludes)</NMakeForcedIncludes>
+		<NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+		<NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+	</PropertyGroup>
+	<ItemGroup>
+		<ClInclude Include="GenCPP\h\h\_defines.h" />
+		<ClInclude Include="GenCPP\h\h\_IncludeAll.h" />
+		<ClInclude Include="GenCPP\h\h\_opaque_types.h" />
+		<ClInclude Include="GenCPP\h\h\_typemapping.h" />
+		<ClInclude Include="GenCPP\h\h\aliases.h" />
+		<ClInclude Include="GenCPP\h\h\ARGB.h" />
+		<ClInclude Include="GenCPP\h\h\AtAOVEntry.h" />
+		<ClInclude Include="GenCPP\h\h\AtAOVIterator.h" />
+		<ClInclude Include="GenCPP\h\h\AtArray.h" />
+		<ClInclude Include="GenCPP\h\h\AtBucket.h" />
+		<ClInclude Include="GenCPP\h\h\AtCameraInput.h" />
+		<ClInclude Include="GenCPP\h\h\AtCameraOutput.h" />
+		<ClInclude Include="GenCPP\h\h\AtLicenseInfo.h" />
+		<ClInclude Include="GenCPP\h\h\AtList.h" />
+		<ClInclude Include="GenCPP\h\h\AtMetaDataEntry.h" />
+		<ClInclude Include="GenCPP\h\h\AtMetaDataIterator.h" />
+		<ClInclude Include="GenCPP\h\h\AtMetaDataStore.h" />
+		<ClInclude Include="GenCPP\h\h\AtNode.h" />
+		<ClInclude Include="GenCPP\h\h\AtNodeEntry.h" />
+		<ClInclude Include="GenCPP\h\h\AtNodeEntryIterator.h" />
+		<ClInclude Include="GenCPP\h\h\AtNodeIterator.h" />
+		<ClInclude Include="GenCPP\h\h\AtNodeLib.h" />
+		<ClInclude Include="GenCPP\h\h\AtNodeMethods.h" />
+		<ClInclude Include="GenCPP\h\h\AtParamEntry.h" />
+		<ClInclude Include="GenCPP\h\h\AtParamIterator.h" />
+		<ClInclude Include="GenCPP\h\h\AtParamValue.h" />
+		<ClInclude Include="GenCPP\h\h\AtParamValue_functions.h" />
+		<ClInclude Include="GenCPP\h\h\AtRay.h" />
+		<ClInclude Include="GenCPP\h\h\AtScrSample.h" />
+		<ClInclude Include="GenCPP\h\h\AtShaderGlobals.h" />
+		<ClInclude Include="GenCPP\h\h\AtTextureHandle.h" />
+		<ClInclude Include="GenCPP\h\h\AtTextureParams.h" />
+		<ClInclude Include="GenCPP\h\h\AtUserParamEntry.h" />
+		<ClInclude Include="GenCPP\h\h\AtUserParamIterator.h" />
+		<ClInclude Include="GenCPP\h\h\Box2.h" />
+		<ClInclude Include="GenCPP\h\h\Box3.h" />
+		<ClInclude Include="GenCPP\h\h\Color.h" />
+		<ClInclude Include="GenCPP\h\h\Euler.h" />
+		<ClInclude Include="GenCPP\h\h\Fabric2Arnold.h" />
+		<ClInclude Include="GenCPP\h\h\global.h" />
+		<ClInclude Include="GenCPP\h\h\global_functions.h" />
+		<ClInclude Include="GenCPP\h\h\Mat22.h" />
+		<ClInclude Include="GenCPP\h\h\Mat33.h" />
+		<ClInclude Include="GenCPP\h\h\Mat44.h" />
+		<ClInclude Include="GenCPP\h\h\Quat.h" />
+		<ClInclude Include="GenCPP\h\h\Ray.h" />
+		<ClInclude Include="GenCPP\h\h\RGB.h" />
+		<ClInclude Include="GenCPP\h\h\RGBA.h" />
+		<ClInclude Include="GenCPP\h\h\RotationOrder.h" />
+		<ClInclude Include="GenCPP\h\h\Vec2.h" />
+		<ClInclude Include="GenCPP\h\h\Vec3.h" />
+		<ClInclude Include="GenCPP\h\h\Vec3_d.h" />
+		<ClInclude Include="GenCPP\h\h\Vec4.h" />
+		<ClInclude Include="GenCPP\h\h\Xfo.h" />
+	</ItemGroup>
+	<ItemGroup>
+		<ClCompile Include="GenCPP\cpp\p\AtParamValue_functions.cpp" />
+		<ClCompile Include="GenCPP\cpp\p\extension.cpp" />
+		<ClCompile Include="GenCPP\cpp\p\global_functions.cpp" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="SConstruct" />
+	</ItemGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ImportGroup Label="ExtensionTargets">
+	</ImportGroup>
+</Project>
+<!-- SCons Data:
+fXEBVQlEZWJ1Z3x4NjRxAmNjb3B5X3JlZwpfcmVjb25zdHJ1Y3RvcgpxAyhjU0NvbnMuVG9vbC5t
+c3ZzCkNvbmZpZwpxBGNfX2J1aWx0aW5fXwpvYmplY3QKcQVOdFJxBn1xByhVB3ZhcmlhbnRxCFUF
+RGVidWdxCVUHY21kYXJnc3EKVQBVCHBsYXRmb3JtcQtVA3g2NHEMVQdydW5maWxlcQ1VQkU6XGRl
+dlxPcHVzVGVjaFxDcHAyS0xcVGVzdEFybm9sZFxGYWJyaWMyQXJub2xkLVdpbmRvd3MteDg2XzY0
+LmRsbHEOVQtidWlsZHRhcmdldHEPaA5VBm91dGRpcnEQVQB1YnMu
+
+fXEBKFULT3RoZXIgRmlsZXNxAl1VDUxvY2FsIEhlYWRlcnNxA11VDEhlYWRlciBGaWxlc3EEXXEF
+KFUVLi9HZW5DUFAvaFxfZGVmaW5lcy5ocQZVGC4vR2VuQ1BQL2hcX0luY2x1ZGVBbGwuaHEHVRou
+L0dlbkNQUC9oXF9vcGFxdWVfdHlwZXMuaHEIVRkuL0dlbkNQUC9oXF90eXBlbWFwcGluZy5ocQlV
+FC4vR2VuQ1BQL2hcYWxpYXNlcy5ocQpVES4vR2VuQ1BQL2hcQVJHQi5ocQtVFy4vR2VuQ1BQL2hc
+QXRBT1ZFbnRyeS5ocQxVGi4vR2VuQ1BQL2hcQXRBT1ZJdGVyYXRvci5ocQ1VFC4vR2VuQ1BQL2hc
+QXRBcnJheS5ocQ5VFS4vR2VuQ1BQL2hcQXRCdWNrZXQuaHEPVRouL0dlbkNQUC9oXEF0Q2FtZXJh
+SW5wdXQuaHEQVRsuL0dlbkNQUC9oXEF0Q2FtZXJhT3V0cHV0LmhxEVUaLi9HZW5DUFAvaFxBdExp
+Y2Vuc2VJbmZvLmhxElUTLi9HZW5DUFAvaFxBdExpc3QuaHETVRwuL0dlbkNQUC9oXEF0TWV0YURh
+dGFFbnRyeS5ocRRVHy4vR2VuQ1BQL2hcQXRNZXRhRGF0YUl0ZXJhdG9yLmhxFVUcLi9HZW5DUFAv
+aFxBdE1ldGFEYXRhU3RvcmUuaHEWVRMuL0dlbkNQUC9oXEF0Tm9kZS5ocRdVGC4vR2VuQ1BQL2hc
+QXROb2RlRW50cnkuaHEYVSAuL0dlbkNQUC9oXEF0Tm9kZUVudHJ5SXRlcmF0b3IuaHEZVRsuL0dl
+bkNQUC9oXEF0Tm9kZUl0ZXJhdG9yLmhxGlUWLi9HZW5DUFAvaFxBdE5vZGVMaWIuaHEbVRouL0dl
+bkNQUC9oXEF0Tm9kZU1ldGhvZHMuaHEcVRkuL0dlbkNQUC9oXEF0UGFyYW1FbnRyeS5ocR1VHC4v
+R2VuQ1BQL2hcQXRQYXJhbUl0ZXJhdG9yLmhxHlUZLi9HZW5DUFAvaFxBdFBhcmFtVmFsdWUuaHEf
+VSMuL0dlbkNQUC9oXEF0UGFyYW1WYWx1ZV9mdW5jdGlvbnMuaHEgVRIuL0dlbkNQUC9oXEF0UmF5
+LmhxIVUYLi9HZW5DUFAvaFxBdFNjclNhbXBsZS5ocSJVHC4vR2VuQ1BQL2hcQXRTaGFkZXJHbG9i
+YWxzLmhxI1UcLi9HZW5DUFAvaFxBdFRleHR1cmVIYW5kbGUuaHEkVRwuL0dlbkNQUC9oXEF0VGV4
+dHVyZVBhcmFtcy5ocSVVHS4vR2VuQ1BQL2hcQXRVc2VyUGFyYW1FbnRyeS5ocSZVIC4vR2VuQ1BQ
+L2hcQXRVc2VyUGFyYW1JdGVyYXRvci5ocSdVES4vR2VuQ1BQL2hcQm94Mi5ocShVES4vR2VuQ1BQ
+L2hcQm94My5ocSlVEi4vR2VuQ1BQL2hcQ29sb3IuaHEqVRIuL0dlbkNQUC9oXEV1bGVyLmhxK1Ua
+Li9HZW5DUFAvaFxGYWJyaWMyQXJub2xkLmhxLFUTLi9HZW5DUFAvaFxnbG9iYWwuaHEtVR0uL0dl
+bkNQUC9oXGdsb2JhbF9mdW5jdGlvbnMuaHEuVRIuL0dlbkNQUC9oXE1hdDIyLmhxL1USLi9HZW5D
+UFAvaFxNYXQzMy5ocTBVEi4vR2VuQ1BQL2hcTWF0NDQuaHExVREuL0dlbkNQUC9oXFF1YXQuaHEy
+VRAuL0dlbkNQUC9oXFJheS5ocTNVEC4vR2VuQ1BQL2hcUkdCLmhxNFURLi9HZW5DUFAvaFxSR0JB
+LmhxNVUaLi9HZW5DUFAvaFxSb3RhdGlvbk9yZGVyLmhxNlURLi9HZW5DUFAvaFxWZWMyLmhxN1UR
+Li9HZW5DUFAvaFxWZWMzLmhxOFUTLi9HZW5DUFAvaFxWZWMzX2QuaHE5VREuL0dlbkNQUC9oXFZl
+YzQuaHE6VRAuL0dlbkNQUC9oXFhmby5ocTtlVQxTb3VyY2UgRmlsZXNxPF1xPShVJy4vR2VuQ1BQ
+L2NwcFxBdFBhcmFtVmFsdWVfZnVuY3Rpb25zLmNwcHE+VRouL0dlbkNQUC9jcHBcZXh0ZW5zaW9u
+LmNwcHE/VSEuL0dlbkNQUC9jcHBcZ2xvYmFsX2Z1bmN0aW9ucy5jcHBxQGVVDlJlc291cmNlIEZp
+bGVzcUFddS4=
+-->

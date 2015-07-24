@@ -9,69 +9,69 @@
 alias String AtString;
 
 struct AtBucket {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtList {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtNode {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtNodeEntry {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtNodeMethods {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtParamIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtMetaDataIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtUserParamIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtTextureHandle {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtShaderGlobals {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtScrSample {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtNodeIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtNodeEntryIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtAOVIterator {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtParamEntry {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtUserParamEntry {
-  private Data _handle;
+  Data _handle;
 };
 
 struct AtMetaDataStore {
-  private Data _handle;
+  Data _handle;
 };

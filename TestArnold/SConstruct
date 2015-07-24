@@ -30,7 +30,16 @@ fabricBuildEnv.Append(LIBS = [
   ])
 
 cppFiles = glob.glob('./GenCPP/cpp/*.cpp')
-fabricBuildEnv.Extension(
+dll = fabricBuildEnv.Extension(
   'Fabric2Arnold',
   cppFiles
   )
+
+# Build a VS project to go along with this dll
+# We can use this for debugging the project later.
+hFiles = glob.glob('./GenCPP/h/*.h')
+fabricBuildEnv.MSVSProject(target = './GenCPP/Fabric2Arnold' + fabricBuildEnv['MSVSPROJECTSUFFIX'],
+                srcs = cppFiles,
+                incs = hFiles,
+                buildtarget = dll[0],
+                variant = 'Debug|x64')

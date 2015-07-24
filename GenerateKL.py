@@ -368,12 +368,13 @@ def generate_typemapping_header(full_json):
         cpp_type = val['ctype']
         sfrom = val['from']
         sto = val['to']
-        fh.write(
-            'inline bool %s(const Fabric::EDK::KL::%s & from, %s & to) {\n'
-            '  #pragma message("Implement Me")\n'
-            '  return true; \n'
-            '}\n\n' % (sfrom, kl_type, cpp_type)
-        )
+
+        from_fn = ( 'inline bool %s(const Fabric::EDK::KL::%s & from, %s & to) { \n'
+                    '  #pragma message("Implement Me")\n'
+                    '  return true;\n'
+                    '}\n\n' % (sfrom, kl_type, cpp_type))
+
+        fh.write(from_fn)
 
         # When passing pointer values by-reference, we need
         # to const the reference in order for the cast to const
@@ -382,12 +383,11 @@ def generate_typemapping_header(full_json):
         if '*' in cpp_type:
             cpp_type = cpp_type + ' const'
 
-        fh.write(
-            'inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
-            '  #pragma message("Implement Me")\n'
-            '  return true; \n'
-            '}\n\n' % (sto, cpp_type, kl_type)
-            )
+        to_fn = ('inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
+                '  #pragma message("Implement Me")\n'
+                '  return true; \n'
+                '}\n\n' % (sto, cpp_type, kl_type))
+        fh.write(to_fn)
 
 
 # For each opaque struct, we can auto-generate the C++ code
@@ -449,7 +449,7 @@ def generate_opaque_file():
         f.write(
             '\n'
             'struct ' + opaque_type + ' {\n'
-            '  private Data _handle;\n'
+            '  Data _handle;\n'
             '};\n'
         )
 
