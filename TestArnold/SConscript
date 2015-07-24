@@ -213,6 +213,12 @@ for subType in subTypes:
     if 'linkflags' in osSubFlags:
       fabricBuildEnv.Append( LINKFLAGS = osSubFlags['linkflags'] )
 
+# Produce one .PDB file per .OBJ when compiling, then merge them when linking.
+# Doing this enables parallel builds to work properly (the -j parameter).
+# See: http://www.scons.org/doc/HTML/scons-man.html section CCPDBFLAGS
+# 
+fabricBuildEnv['CCPDBFLAGS'] = '/Zi /Fd${TARGET}.pdb'
+
 def buildExtension(env, target, sources):
   env.Append(CPPPATH = [env.Dir('.')])
   
