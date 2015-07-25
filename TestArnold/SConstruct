@@ -13,16 +13,25 @@ except:
   print "You must set FABRIC_DIR in your environment."
   print "Refer to README.txt for more information."
   sys.exit(1)
+
+try:
+  arnoldPath = os.environ['ARNOLD_DIR']
+except:
+  print "You must set ARNOLD_DIR in your environment."
+  print "Refer to README.txt for more information."
+  sys.exit(1)
+
+
 SConscript('SConscript')
 Import('fabricBuildEnv')
 
 fabricBuildEnv.Append(CPPPATH = [
-  'E:/dev/Arnold SDK/Arnold-4.2.7.5/include',
+  arnoldPath + '/include',
   'GenCPP/h'
   ])
 
 fabricBuildEnv.Append(LIBPATH = [
-  "E:/dev/Arnold SDK/Arnold-4.2.7.5/lib",
+  arnoldPath + "/lib",
   ])
 
 fabricBuildEnv.Append(LIBS = [
@@ -36,13 +45,14 @@ dll = fabricBuildEnv.Extension(
   )
 
 # Copy relevant files into stage directory
-stage_dir = './stage'
+stage_dir = './stage/Fabric2Arnold'
 kl_files = glob.glob('./GenKL/*.kl')
 fpm_file = glob.glob('./GenKL/Fabric2Arnold.fpm.json')
 
 fabricBuildEnv.Install(stage_dir, dll)
 fabricBuildEnv.Install(stage_dir, kl_files)
 fabricBuildEnv.Install(stage_dir, fpm_file)
+fabricBuildEnv.Install(stage_dir, arnoldPath + '/bin/ai.dll')
 
 # set our file paths to be relative to the proj directory
 hFiles = glob.glob('./GenCPP/h/*.h')

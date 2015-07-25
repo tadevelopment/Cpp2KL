@@ -182,7 +182,7 @@ buildFlags = {
       'linkflags': [ ]
       },
     'Debug' : {
-      'ccflags': [ '/Od', '/Z7', '/MTd' ]
+      'ccflags': [ '/Od', '/Zi', '/MTd' ]
       },
     'Release' : {
       'ccflags': [ '/Ox', '/MT' ]
