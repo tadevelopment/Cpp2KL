@@ -451,6 +451,7 @@ def generate_opaque_file():
             'struct ' + opaque_type + ' {\n'
             '  Data _handle;\n'
             '};\n'
+            'Boolean ' + opaque_type + '.isValid() { return this._handle != Data(); }\n'
         )
 
     generate_opaque_cpp_conv()
