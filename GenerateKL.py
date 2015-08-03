@@ -471,6 +471,15 @@ def generate_fpm(processed_files):
     )
     for pf in processed_files:
         f.write('    "' + pf + '",\n')
+
+    # copy any custom KL files out of CustomKL,
+    # and add them to the FPM list
+    custom_files = glob.glob(custom_KL_dir + '/*.kl')
+    for file in custom_files:
+        copy_gen_file(file, output_dir)
+
+        f.write('    "' + os.path.basename(file) + '",\n')
+
     f.write('  ]\n')
     f.write('}')
 

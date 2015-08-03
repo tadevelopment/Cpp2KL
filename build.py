@@ -18,6 +18,7 @@ output_dir = os.path.join(root_dir, output_dir)
 output_h_dir = os.path.join(root_dir, output_h_dir)
 output_cpp_dir = os.path.join(root_dir, output_cpp_dir)
 custom_cpp_dir = os.path.join(root_dir, custom_cpp_dir)
+custom_KL_dir = os.path.join(root_dir, custom_KL_dir)
 script_path = os.path.dirname(os.path.realpath(__file__))
 
 def ensure_dir(d):
