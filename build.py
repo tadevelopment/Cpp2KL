@@ -17,8 +17,17 @@ root_dir = os.path.dirname(cfg_file)
 output_dir = os.path.join(root_dir, output_dir)
 output_h_dir = os.path.join(root_dir, output_h_dir)
 output_cpp_dir = os.path.join(root_dir, output_cpp_dir)
-custom_cpp_dir = os.path.join(root_dir, custom_cpp_dir)
-custom_KL_dir = os.path.join(root_dir, custom_KL_dir)
+if 'custom_cpp_dir' in globals():
+    custom_cpp_dir = os.path.join(root_dir, custom_cpp_dir)
+else:
+    custom_cpp_dir = ''
+
+if 'custom_KL_dir' in globals():
+    custom_KL_dir = os.path.join(root_dir, custom_KL_dir)
+else:
+    custom_KL_dir = ''
+
+print ('Custom CPP %s CustomKL %s' % (custom_cpp_dir, custom_KL_dir))
 script_path = os.path.dirname(os.path.realpath(__file__))
 
 def ensure_dir(d):
@@ -52,12 +61,18 @@ for file in old_files:
 execfile(os.path.join(script_path, 'GenerateKL.py'))
 
 # Copy existing header in
-custom_files = glob.glob(custom_cpp_dir + '/*.h')
-for file in custom_files:
-    copy_gen_file(file, output_h_dir)
-custom_files = glob.glob(custom_cpp_dir + '/*.cpp')
-for file in custom_files:
-    copy_gen_file(file, output_cpp_dir)
+if custom_cpp_dir:
+    custom_files = glob.glob(custom_cpp_dir + '/*.h')
+    for file in custom_files:
+        copy_gen_file(file, output_h_dir)
+    custom_files = glob.glob(custom_cpp_dir + '/*.cpp')
+    for file in custom_files:
+        copy_gen_file(file, output_cpp_dir)
+
+if custom_KL_dir:
+    custom_files = glob.glob(custom_KL_dir + '/*.kl')
+    for file in custom_files:
+        shutil.copy(file, output_dir)
 
 
 # Generate C++ Files from KL files

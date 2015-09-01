@@ -25,7 +25,6 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
     m = re.search(r'\b%s\b' % alias_fn, cpp_contents)
     if m:
       fn_start = m.start()
-      print(fn_start)
       cpp_contents_init = cpp_contents[:fn_start]
       cpp_contents_fin = cpp_contents[fn_start:]
 
