@@ -30,7 +30,10 @@ def copy_gen_file(f, out_dir):
     custom_filename = os.path.basename(f)
     custom_filename = os.path.join(out_dir, custom_filename)
     if os.path.isfile(custom_filename):
-        os.rename(custom_filename, custom_filename + '.gen')
+        rename_filename = custom_filename + '.gen'
+        if os.path.isfile(rename_filename):
+            os.remove(rename_filename)
+        os.rename(custom_filename, rename_filename)
 
     shutil.copy(f, out_dir)
 
