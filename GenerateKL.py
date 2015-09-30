@@ -241,7 +241,7 @@ def process_define(defineNode):
     return ''
 
 
-def process_function(functionNode):
+def process_function(functionNode, class_name=''):
     if (functionNode.attrib['prot'] != 'public'):
         return ''
 
@@ -259,7 +259,7 @@ def process_function(functionNode):
     if (fn_name in elementsToIgnore):
         return ''
 
-    fe_fn_tag = '_fe_'
+    fe_fn_tag = '_fe_' + class_name + "_"
     fe_fn_name = fe_fn_tag + fn_name
 
     # While building the line to write into the KL file
@@ -273,11 +273,15 @@ def process_function(functionNode):
     # Get KL type for return arg
     kl_returns = cpp_to_kl_type(cpp_returns)
 
+    kl_class_prefix = ' ';
+    if len(class_name) > 1:
+       kl_class_prefix = ' ' + class_name + "."
+
     klLine = ""
     if kl_returns:
-        klLine = 'function ' + kl_returns + ' ' + fn_name + '(';
+        klLine = 'function ' + kl_returns + kl_class_prefix + autogen_line;
     else:
-        klLine = 'function ' + fn_name + '(';
+        klLine = 'function' + kl_class_prefix + autogen_line;
 
     for i in range(len(fnArgs)):
         arg = fnArgs[i]
@@ -296,6 +300,9 @@ def process_function(functionNode):
 
         # get the KL type
         kl_type = cpp_to_kl_type(cpp_type, True, arArgsStr)
+        # some types (eg void) simply don't exist in KL
+        if not kl_type:
+            continue
 
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
@@ -333,7 +340,10 @@ def process_function(functionNode):
 
     # If we return, we need to create the return value parameter
     if kl_returns:
-        to_fn = json_codegen_typemapping[kl_returns]['to']
+        to_fn = ''
+        if kl_returns in json_codegen_typemapping:
+            to_fn = json_codegen_typemapping[kl_returns]['to']
+            
         res = '%s_result' % parameter_prefix
         if kl_returns in kl_pod_types:
             autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
@@ -375,13 +385,18 @@ def _process_struct(struct_node):
                 continue
 
             klLine += '  ' + stType + ' ' + stName + ';'
-            if (comment):
+            if comment and (len(comment) > 1):
                 klLine += ' // ' + comment
             klLine += '\n'
 
-    klLine += '};\n'
+    klLine += '};\n\n'
+
+    # once the struct is defined, add any/all functions to it.
+    for function in struct_node.iter('memberdef'):
+        if function.get('kind') == 'function':
+            klLine += process_function(function, name)
     print(klLine)
-    return klLine + '\n'
+    return klLine + '//////////////////////////////////////////\n'
 
 
 def process_class_or_struct(struct_or_class_node):
