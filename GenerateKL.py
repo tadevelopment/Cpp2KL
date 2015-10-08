@@ -23,6 +23,11 @@ json_codegen_functionbodies = {}
 # are converted to the correct C++ types
 functions_with_aliases = {}
 
+#
+# TODO
+#
+cpp_typedefs = {}
+
 def is_int(str):
     try:
         int(str, 0)
@@ -55,7 +60,49 @@ def get_str(node):
     #res = ET.tostring(node, encoding="us-ascii", method="text")
     return res
 
+#
+# parse out the MS Sal declaration
+#
+def parse_ms_sal(cpp_arg_type):
+    prefix = ''
+    postfix = ''
+    components = cpp_arg_type.split()
+    if len(components) > 1:
+
+        sal_decl = cpp_arg_type.split()[0]
+        if sal_decl.startswith('_In_'):
+            prefix = 'in '
+        if sal_decl.startswith('_Out_'):
+            prefix = 'out '
+        if sal_decl.startswith('_Inout_'):
+            prefix = 'io '
+        if sal_decl.startswith('_Outptr_'):
+            prefix = 'out '
+
+        # If we have a SAL declaration, does it specify
+        # an in/out array?
+        if prefix:
+            sal_decl = cpp_arg_type.split()[0]
+            if '_Opt_' in sal_decl:
+                prefix += '/*opt*/'
+            if not postfix:
+                if '_writes_' in sal_decl or '_reads_' in sal_decl or '_updates_' in sal_decl:
+                    postfix = '[]'
+    return (prefix,postfix)
+
+#
+# Make our best-guess if an argument is in/out.  Basically,
+# we assume that any non-const pointer is IO
+#
+def guess_sal(cpp_arg_type):
+    if not 'const' in cpp_arg_type:
+      if '*' in cpp_arg_type or '&' in cpp_arg_type:
+        return 'io '
+    return ''
+
+#
 # Create a regular expression  from the dictionary keys
+#
 s_rex = re.compile(r"(\b%s(?=\Z|\s|\*|\&))" % r"(?=\Z|\s|\*|\&)|\b".join(map(re.escape, cppToKLTypeMapping.keys())))
 def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
     # Now compact any pointer declarations, so that char * becomes char*
@@ -72,23 +119,30 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
 
     # Could this be used to return a value?  If so, mark it as IO
     prefix = ''
-    if apply_io and not 'const' in cpp_arg_type:
-      if '*' in cpp_arg_type or '&' in cpp_arg_type:
-        prefix = 'io '
+    postfix = ''
+    if use_ms_sal:
+        prefix,postfix = parse_ms_sal(cpp_arg_type)
+    if (not prefix) and apply_io:
+        prefix = guess_sal(cpp_arg_type)
+
     # Finally, remove any remaining * characters
-    kl_type = prefix + kl_type.replace('*', '')
+    kl_type = kl_type.replace('*', '')
 
-
-    # now process any array args
+    # We can (very) safely assume that only one of
+    # postfix or args_str is not-null.
     if args_str:
-      # So far, I've only encountered argsstr as array variables
-      if args_str[0] == '[':
-        # a char array maps to a string
+        postfix = args_str
+    # now process any array args
+    if postfix:
+      # So far, I've only encountered argsstr as array variables (eg, int var[10];)
+      if postfix[0] == '[':
         if kl_type == 'char':
-          kl_type = 'String'
-        else:
-          kl_type = kl_type + args_str # KL supports the same array decl
-    return kl_type
+            kl_type = 'String'
+        if kl_type == 'String':
+          # we assume if we have a char pointer, its always just a string
+          postfix = ''
+
+    return prefix + kl_type + postfix
 
 
 # split_name_type = re.compile(r'\s*(.*?)\s*([\w]+)\s*$')
@@ -212,7 +266,79 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
 #     print(klLine)
 #     return klLine
 
+#
+# We collect all typedef's, so when we are processing KL
+# we can know if any class we are processing has been typedeffed
+# Doxygen sorts elements into different sections, but we want/need to put
+# any typedef's after the class/enum being typedef'ed
+# We do this by pre-processing all typedef's and then
+# when each class/struct/enum is actually declared
+# we add the typedef (or alias in KL-speak) immediately after
+def preprocess_typedef(typedef_node):
+    name = typedef_node.find('name').text
+    if (name in elementsToIgnore):
+        return ''
 
+    # the alias type is the name, but we drop qualifieres
+    type = get_str(typedef_node.find('type'))
+    type = type.split()[-1]
+
+    # Skip redundant C-style definitions like:
+    # typedef interface IKinectSensor IKinectSensor
+    if type == name:
+        return
+
+    cpp_typedefs[type] = name
+
+#
+# if the named item is in our lists of alias's, append
+# the alias definition to the str list
+#
+def maybe_make_alias(type):
+    if type in kl_type_aliases:
+        return 'alias %s %s;\n' % (type, kl_type_aliases.pop(type))
+    if type in cpp_typedefs:
+        return 'alias %s %s;\n' % (type, cpp_typedefs.pop(type))
+    return ''
+
+def process_enum(enum_node):
+    name = enum_node.find('name').text
+    if (name in elementsToIgnore):
+        return ''
+
+    str = []
+    str.append('// Enum values for : %s ' % name)
+    # An enum is always aliased in KL
+    str.append('alias UInt32 %s;' % name)
+    
+    values = enum_node.findall('enumvalue')
+    last_val = 0
+    for v in values:
+        value_name = get_str(v.find('name'))
+        value_init = get_str(v.find('initializer'))
+        value_desc = get_str(v.find('briefdescription'))
+
+        if not value_init or len(value_init) <= 1:
+            value_init = last_val
+            last_val = last_val + 1
+        else:
+            # if a value is defined, save it
+            # so the next value can/will increment it
+            try:
+                last_val = int(value_init[1:], 0)
+            except ValueError:
+                print("Error casting: %s to integer" % value_init)
+        
+        if value_desc and len(value_desc) > 1:
+            value_desc = " // " + value_desc
+
+        str.append("const %s %s %s;%s" % (name, value_name, value_init, value_desc))
+
+    alias = maybe_make_alias(name)
+    if alias:
+        str.append(alias)
+
+    return "\n".join(str) + '\n\n'
 
 def process_define(defineNode):
     # Write out an equivalent define to the output file
@@ -259,7 +385,9 @@ def process_function(functionNode, class_name=''):
     if (fn_name in elementsToIgnore):
         return ''
 
-    fe_fn_tag = '_fe_' + class_name + "_"
+    fe_fn_tag = '_fe_'
+    if class_name:
+        fe_fn_tag += class_name + "_"
     fe_fn_name = fe_fn_tag + fn_name
 
     # While building the line to write into the KL file
@@ -358,8 +486,15 @@ def process_function(functionNode, class_name=''):
     print(klLine)
     return klLine
 
+# set first letter to lowercase
+# used to ensure all class/struct members have lower
+# case first letters.  Necessary on KinectSDK
+# because of the habit of naming variables
+# the same as their type
+def first_to_lower(s):
+    return s[:1].lower() + s[1:] if s else ''
 
-def _process_struct(struct_node):
+def _process_class_or_struct(struct_node, kl_type, default_member):
     klLine = '';
     # first, find docs
     desc_node = struct_node.find('detaileddescription')
@@ -371,7 +506,19 @@ def _process_struct(struct_node):
     if (name in elementsToIgnore):
       return ''
 
-    klLine += "struct " + name + " {\n"
+    # Has this class been alias'ed to a KL type?  If so, we only
+    # want to output the alias, not the whole type
+    alias_type = name
+    while alias_type in cpp_typedefs:
+        alias_type = cpp_typedefs[alias_type]
+    if alias_type in kl_type_aliases:
+        return 'alias %s %s;\n' % (kl_type_aliases[alias_type], alias_type)
+
+
+    klLine += kl_type + " " + name + " {\n"
+    if default_member:
+        klLine += "\t" + default_member + ";\n"
+
     for member in struct_node.iter('memberdef'):
         if member.get('kind') == 'variable':
             stType = get_str(member.find('type'))
@@ -384,6 +531,11 @@ def _process_struct(struct_node):
             if not stType:
                 continue
 
+            # C++ seems to allow naming variables the same as their types. we do not.
+            stName = first_to_lower(stName)
+            if stType == stName:
+                stName = '_%s' % stName
+
             klLine += '  ' + stType + ' ' + stName + ';'
             if comment and (len(comment) > 1):
                 klLine += ' // ' + comment
@@ -391,13 +543,14 @@ def _process_struct(struct_node):
 
     klLine += '};\n\n'
 
+    klLine += maybe_make_alias(name)
+
     # once the struct is defined, add any/all functions to it.
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
             klLine += process_function(function, name)
     print(klLine)
     return klLine + '//////////////////////////////////////////\n'
-
 
 def process_class_or_struct(struct_or_class_node):
     # if this is a reference, dereference it:
@@ -412,7 +565,9 @@ def process_class_or_struct(struct_or_class_node):
         for compound in compounds:
             if (compound.attrib['id'] == ref_id):
                 if (compound.attrib['kind'] == 'struct'):
-                    return _process_struct(compound)
+                    return _process_class_or_struct(compound, 'struct', False)
+                if (compound.attrib['kind'] == 'class'):
+                    return _process_class_or_struct(compound, 'object', 'private Data _native_handle')
     return ''
 
 
@@ -423,7 +578,32 @@ def process_file(override_name, infilename, outputfile):
 
     file_contents = []
 
+    # First, collect all the typedef's
+    for section_def in root.iter('sectiondef'):
+        for processElement in section_def.iter('memberdef'):
+            if processElement.attrib['kind'] == 'typedef':
+                preprocess_typedef(processElement)
+
+    # Our first pass through emits all the info we know
+    # doesn't depend on other things (enum's only?)
+    file_contents += ["//////////////////////////////////////////////////\n//  enumerated values\n"]
+    for section_def in root.iter('sectiondef'):
+        section_contents = ['\n']
+        for processElement in section_def.iter('memberdef'):
+            if processElement.attrib['kind'] == 'enum':
+                res = process_enum(processElement)
+                if res and len(res) > 0:
+                    section_contents.append(res)
+            elif processElement.attrib['kind'] == 'define':
+                res = process_define(processElement)
+                if res and len(res) > 0:
+                    section_contents.append(res)
+
+        if len(section_contents) > 1:
+            file_contents += section_contents
+
     # Always have class declarations at the top of the file
+    file_contents += ["//////////////////////////////////////////////////\n//  classes \n"]
     for class_element in root.iter('innerclass'):
         file_contents.append(process_class_or_struct(class_element))
 
@@ -432,25 +612,35 @@ def process_file(override_name, infilename, outputfile):
         file_contents.append(custom_add_to_file[override_name] + '\n\n')
 
 
-    # Should we process the sections first of
+    # Last we add in any file-scoped functions.  These are most likely to
+    # depend on the previous definitions.
+    file_contents += ["//////////////////////////////////////////////////\n//  global-scope functions \n"]
     for section_def in root.iter('sectiondef'):
         # for each section, get relevant docs
         docs = get_str(section_def.find('header')) + '\n'
         docs += get_str(section_def.find('description'))
-        section_contents = []
+        section_contents = ['\n']
         #file_contents.append('/**\n' + docs + '\n*/\n\n')
 
         for processElement in section_def.iter('memberdef'):
-            if processElement.attrib['kind'] == 'define':
-                res = process_define(processElement)
-                if res and len(res) > 0:
-                    section_contents.append(res)
-            elif processElement.attrib['kind'] == 'function':
+            #if processElement.attrib['kind'] == 'define':
+            #    res = process_define(processElement)
+            #    if res and len(res) > 0:
+            #        section_contents.append(res)
+            #elif processElement.attrib['kind'] == 'enum':
+            #    res = process_enum(processElement)
+            #    if res and len(res) > 0:
+            #        section_contents.append(res)
+            if processElement.attrib['kind'] == 'function':
                 res = process_function(processElement)
                 if res and len(res) > 0:
                     section_contents.append(res)
+            #elif processElement.attrib['kind'] == 'typedef':
+            #    res = process_typedef(processElement)
+            #    if res and len(res) > 0:
+            #        section_contents.append(res)
 
-        if len(section_contents) > 0:
+        if len(section_contents) > 1:
             # do we have any actual docs?
             if len(docs) > 2:
                 file_contents.append('/**\n' + docs + '\n*/\n\n')
@@ -562,6 +752,29 @@ def generate_opaque_cpp_conv():
             )
 
 #
+# We want to write out a file containing all aliases
+# These aliases can be manually set or be generated
+# from typedef's and enums
+#
+#def generate_alias_file():
+#    filename = kl_alias_file_name + '.kl'
+#    f = open(os.path.join(output_dir, filename), 'w')
+#    f.write(
+#        '/* \n'
+#        ' * This auto-generated file contains aliases for all\n'
+#        ' * type renamings in ' + project_name + '\n'
+#        ' *  - Do not modify this file, it is auto-generated\n'
+#        ' */\n\n'
+#    )
+
+    # we add in the aliases here (for lack of a better place)
+#    f.write('// Aliases help us differentiate the correct\n//return type when converting KL to C++ types later\n')
+#    for alias, kl_type in kl_type_aliases.iteritems():
+#        f.write(
+#            'alias %s %s;\n' % (kl_type, alias)
+#        )
+#    return filename
+#
 # Write out simple wrapper structs for opaque data types.
 # These structs are collected in a file that is written out
 # as the first file in a project (so that following files
@@ -576,10 +789,22 @@ def generate_opaque_file():
         ' *  - Do not modify this file, it will be overwritten\n'
         ' */\n\n'
     )
+    # Add in 'requires
+    for extn in extns_required:
+        f.write('require %s;\n' % extn)
 
     # we add in the aliases here (for lack of a better place)
     f.write('// Aliases help us differentiate the correct\n//return type when converting KL to C++ types later\n')
-    for alias, kl_type in kl_type_aliases.iteritems():
+    for alias, type in kl_type_aliases.iteritems():
+        kl_type = cpp_to_kl_type(type)
+        f.write(
+            'alias %s %s;\n' % (kl_type, alias)
+        )
+    for type, alias in cpp_typedefs.iteritems():
+        # We skip the alias if it has been output already
+        if alias in kl_type_aliases:
+            continue
+        kl_type = cpp_to_kl_type(type)
         f.write(
             'alias %s %s;\n' % (kl_type, alias)
         )
@@ -746,11 +971,6 @@ for doxyElement in root.iter('compound'):
 
 processed_files = []
 
-# first, generate our opaque datatypes
-if opaque_type_wrappers:
-    generate_opaque_file()
-    processed_files.append(opaque_file_name + '.kl')
-
 # Build conversion fn's
 json_codegen_typemapping = get_auto_codegen_typemapping();
 # We need the full conversion fn list (even manually spec ones)
@@ -775,6 +995,15 @@ for aFile in filesToProcess:
 
     if not processed:
         raise ValueError("File: '%s' not found in doxygen generated files'" % aFile)
+
+# last, generate our opaque datatypes
+if opaque_type_wrappers or kl_type_aliases:
+    generate_opaque_file()
+    processed_files = [opaque_file_name + '.kl'] + processed_files
+
+#if kl_type_aliases:
+#    alias_filename = generate_alias_file()
+#    processed_files = [alias_filename] + processed_files
 
 # Our last step, generate the FPM file from the converted files.
 generate_fpm(processed_files)

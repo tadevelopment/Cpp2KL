@@ -33,6 +33,9 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
         param_name = parameter_prefix + arg[1].capitalize()
         expr = r'\s*((.*) %s\b)(.*);' % param_name
         argm = re.search(expr, cpp_contents_fin)
+        if not argm:
+            print('warning: Aliased argument %s not found in %s' % (param_name,alias_fn))
+            continue
 
         # replace the type declaration.  Also strip initializer
         alias_type = arg[0]
