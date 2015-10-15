@@ -9,7 +9,10 @@ if not len(sys.argv) > 1:
     print ("Usage - please pass the config file as an argument to this script")
 
 cfg_file = sys.argv[1]
+script_path = os.path.dirname(os.path.realpath(__file__))
 
+# first, load our defaults, this will initialize all required variables
+execfile(os.path.join(script_path, 'Defaults.cfg.py'))
 # import the configuration file.
 execfile(cfg_file)
 # Use cfg file as the root of further path manips
@@ -28,7 +31,7 @@ else:
     custom_KL_dir = ''
 
 print ('Custom CPP %s CustomKL %s' % (custom_cpp_dir, custom_KL_dir))
-script_path = os.path.dirname(os.path.realpath(__file__))
+
 
 def ensure_dir(d):
     if not os.path.exists(d):
