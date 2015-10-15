@@ -28,6 +28,21 @@ functions_with_aliases = {}
 #
 cpp_typedefs = {}
 
+# we hold a list of all class definitions
+# that we can automatically cast to/from
+autogen_class_typemapping = []
+
+# Get KL version so we can support newer features
+def get_kl_version():
+    from subprocess import Popen, PIPE
+
+    p = Popen(['kl', '--version'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    output, err = p.communicate(b"input data that is passed to subprocess' stdin")
+    version = output.split()[-1]
+    return version.split('.')
+kl_version = get_kl_version()
+
+
 def is_int(str):
     try:
         int(str, 0)
@@ -67,17 +82,27 @@ def parse_ms_sal(cpp_arg_type):
     prefix = ''
     postfix = ''
     components = cpp_arg_type.split()
+
+    # FE2.0 added support for 'out' as a keyword
+    out_spec = 'io '
+    if int(kl_version[0]) >= 2:
+        out_spec = 'out '
+
     if len(components) > 1:
 
         sal_decl = cpp_arg_type.split()[0]
+        # Remove the _COM prefix, if it exists
+        if sal_decl.startswith('_COM_'):
+            sal_decl = sal_decl[4:]
+
         if sal_decl.startswith('_In_'):
             prefix = 'in '
         if sal_decl.startswith('_Out_'):
-            prefix = 'out '
+            prefix = out_spec
         if sal_decl.startswith('_Inout_'):
             prefix = 'io '
         if sal_decl.startswith('_Outptr_'):
-            prefix = 'out '
+            prefix = out_spec
 
         # If we have a SAL declaration, does it specify
         # an in/out array?
@@ -473,7 +498,8 @@ def process_function(functionNode, class_name=''):
             to_fn = json_codegen_typemapping[kl_returns]['to']
             
         res = '%s_result' % parameter_prefix
-        if kl_returns in kl_pod_types:
+        kl_base_returns = kl_type_aliases.get(kl_returns, kl_returns)
+        if kl_base_returns in kl_pod_types:
             autogen_line = '  %s %s = %s;\n  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n' % (cpp_returns, res, autogen_line, kl_returns, to_fn, res)
         else:
             autogen_line = '  %s %s = %s;\n  %s(%s, _result);' % (cpp_returns, res, autogen_line, to_fn, res)
@@ -494,7 +520,7 @@ def process_function(functionNode, class_name=''):
 def first_to_lower(s):
     return s[:1].lower() + s[1:] if s else ''
 
-def _process_class_or_struct(struct_node, kl_type, default_member):
+def _process_class_or_struct(struct_node, kl_type):
     klLine = '';
     # first, find docs
     desc_node = struct_node.find('detaileddescription')
@@ -514,10 +540,22 @@ def _process_class_or_struct(struct_node, kl_type, default_member):
     if alias_type in kl_type_aliases:
         return 'alias %s %s;\n' % (kl_type_aliases[alias_type], alias_type)
 
+    # begin defining our KL class.
 
     klLine += kl_type + " " + name + " {\n"
-    if default_member:
-        klLine += "\t" + default_member + ";\n"
+    # Now, test to see if this class/struct has any functions
+    # attached to it.  If it does (and there is no defined
+    # conversion function) we assume we will need to maintain
+    # a pointer to the native handle, and refer to this when
+    # calling functions
+    has_functions = False and kl_type != 'struct'
+    for function in struct_node.iter('memberdef'):
+        if function.get('kind') == 'function':
+            has_functions = True
+            autogen_class_typemapping.append(name)
+            break
+    if has_functions:
+        klLine += "\tData _handle;\n"
 
     for member in struct_node.iter('memberdef'):
         if member.get('kind') == 'variable':
@@ -546,9 +584,12 @@ def _process_class_or_struct(struct_node, kl_type, default_member):
     klLine += maybe_make_alias(name)
 
     # once the struct is defined, add any/all functions to it.
+    has_functions = False
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
+            has_functions = True
             klLine += process_function(function, name)
+
     print(klLine)
     return klLine + '//////////////////////////////////////////\n'
 
@@ -565,9 +606,9 @@ def process_class_or_struct(struct_or_class_node):
         for compound in compounds:
             if (compound.attrib['id'] == ref_id):
                 if (compound.attrib['kind'] == 'struct'):
-                    return _process_class_or_struct(compound, 'struct', False)
+                    return _process_class_or_struct(compound, 'struct')
                 if (compound.attrib['kind'] == 'class'):
-                    return _process_class_or_struct(compound, 'object', 'private Data _native_handle')
+                    return _process_class_or_struct(compound, 'object')
     return ''
 
 
@@ -697,11 +738,17 @@ def generate_typemapping_header(full_json):
         cpp_type = val['ctype']
         sfrom = val['from']
         sto = val['to']
+        
+        fn_body = '#pragma message("Implement Me")'
+        # for all POD conversions we can simply do an equals
+        kl_base_type = kl_type_aliases.get(kl_type, kl_type)
+        if kl_base_type in kl_pod_types:
+            fn_body = 'to = from;'
 
         from_fn = ( 'inline bool %s(const Fabric::EDK::KL::%s & from, %s & to) { \n'
-                    '  #pragma message("Implement Me")\n'
+                    '  %s\n'
                     '  return true;\n'
-                    '}\n\n' % (sfrom, kl_type, cpp_type))
+                    '}\n\n' % (sfrom, kl_type, cpp_type, fn_body))
 
         fh.write(from_fn)
 
@@ -713,9 +760,9 @@ def generate_typemapping_header(full_json):
             cpp_type = cpp_type + ' const'
 
         to_fn = ('inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
-                '  #pragma message("Implement Me")\n'
+                '  %s\n'
                 '  return true; \n'
-                '}\n\n' % (sto, cpp_type, kl_type))
+                '}\n\n' % (sto, cpp_type, kl_type, fn_body))
         fh.write(to_fn)
 
 
@@ -750,6 +797,25 @@ def generate_opaque_cpp_conv():
             '  return true; \n'
             '}\n\n' % (sto, opaque_type, opaque_type, opaque_type)
             )
+
+    for class_type in autogen_class_typemapping:
+        sfrom = 'KL' + class_type + '_to_CP' + class_type
+        sto = 'CP' + class_type + '_to_KL' + class_type
+        fh.write(
+            '#include "%s.h"\n'
+            'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
+            '  to = reinterpret_cast<%s>(from._handle); \n'
+            '  return true; \n'
+            '}\n\n' % (class_type, sfrom, class_type, class_type, class_type + '*')
+        )
+
+        fh.write(
+            'inline bool %s(const %s* const& from, Fabric::EDK::KL::%s & to) {\n'
+            '  to._handle = const_cast<%s*>(from); \n'
+            '  return true; \n'
+            '}\n\n' % (sto, class_type, class_type, class_type)
+            )
+        
 
 #
 # We want to write out a file containing all aliases
@@ -900,6 +966,16 @@ def get_auto_codegen_typemapping():
             'to' : 'CP' + opaque_type + '_to_KL' + opaque_type,
         })
         typemapping[opaque_type] = conversion
+
+    # Generate conversions for our classes.  This will
+    # be virtually identical to the opaque wrappers
+    for class_type in autogen_class_typemapping:
+        conversion = ( {
+            'ctype': class_type + '*',
+            'from' : 'KL' + class_type + '_to_CP' + class_type,
+            'to' : 'CP' + class_type + '_to_KL' + class_type,
+        })
+        typemapping[class_type] = conversion
 
     return typemapping
 
