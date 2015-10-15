@@ -336,6 +336,11 @@ def maybe_make_alias(type):
         return 'alias %s %s;\n' % (type, cpp_typedefs.pop(type))
     return ''
 
+# We store a list of all enums, because in the kl2edk code
+# the enums are converted to/from UINTs, and we need
+# to explicitly cast between.  We test params against
+# the enum types, and if it is an enum, do the cast
+all_enums = []
 def process_enum(enum_node):
     name = enum_node.find('name').text
     if (name in elementsToIgnore):
@@ -369,6 +374,7 @@ def process_enum(enum_node):
 
         str.append("const %s %s %s;%s" % (name, value_name, value_init, value_desc))
 
+    all_enums.append(cpp_typedefs.get(name, name))
     alias = maybe_make_alias(name)
     if alias:
         str.append(alias)
@@ -494,16 +500,26 @@ def process_function(functionNode, class_name=''):
 
         klLine += kl_type + ' ' + arName
 
+        # finally, add the name to the autogen line.
+        autogen_param_name = _param_name(arName)
+
         # If there are more '*' in the CPP type than we expect
         # (based on the ctype in our codegen) then we will need
         # to pass this parameter by address.
         
         if base_kl_type in json_codegen_typemapping:
             if cpp_type.count('*') > json_codegen_typemapping[base_kl_type]['ctype'].count('*'):
-                autogen_line += '&'
+                autogen_param_name = '&' + autogen_param_name
+        else:
+            if cpp_type.count('*') > 0:
+                autogen_param_name = '&' + autogen_param_name
 
-        # finally, add the name to the autogen line.
-        autogen_param_name = _param_name(arName)
+        # Damn enum's won't cast automatically in C++, and KL2EDK does not recognize their type
+        if base_kl_type in all_enums:
+            cpp_cast_type = 'static_cast<%s>' % base_kl_type
+            if '*' in cpp_type:
+                cpp_cast_type = 'reinterpret_cast<%s*>' % base_kl_type
+            autogen_param_name = '%s(%s)' % (cpp_cast_type, autogen_param_name)
         autogen_line += autogen_param_name
 
     klLine += ') = \'' + fe_fn_name + '\';\n'
