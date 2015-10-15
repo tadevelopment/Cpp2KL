@@ -30,7 +30,7 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
 
       # Replace current target types
       for arg in fn_args:
-        param_name = parameter_prefix + arg[1].capitalize()
+        param_name = _param_name(arg[1])
         expr = r'\s*((.*) %s\b)(.*);' % param_name
         argm = re.search(expr, cpp_contents_fin)
         if not argm:

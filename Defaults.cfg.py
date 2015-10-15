@@ -36,20 +36,6 @@ cppToKLTypeMapping = {
     'void*': 'Data',
     'void': '',
     'char*': 'String',
-
-    'WCHAR*' : 'String',
-    'BOOLEAN' : 'Boolean',
-    'BYTE' : 'UInt8',
-    'USHORT' : 'UInt16',
-    'SHORT' : 'SInt16',
-    'UINT16' : 'UInt16',
-    'INT16' : 'SInt16',
-    'UINT32' : 'UInt32',
-    'INT32' : 'SInt32',
-    'UINT64' : 'UInt64',
-    'INT64' : 'SInt64',
-    'DWORD' : 'UInt32',
-    'INT_PTR' : 'UInt64',
 }
 
 # Some API's (thanks MS) have additional semantics written
@@ -132,6 +118,9 @@ output_cpp_dir = 'GenCPP/cpp'
 
 # specify where custom CPP files (if any) are located
 custom_cpp_dir = 'CustomCPP'
+# specify where custom KL files (if any) are located
+custom_KL_dir = 'CustomKL'
+
 
 # Add extensions to be required.  Should
 # this be per-file?  Or common for the whole project?

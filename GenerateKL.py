@@ -302,7 +302,11 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
 def preprocess_typedef(typedef_node):
     name = typedef_node.find('name').text
     if (name in elementsToIgnore):
-        return ''
+        return
+
+    # if this name already has an explicit mapping leave it alone
+    if name in cppToKLTypeMapping:
+        return
 
     # the alias type is the name, but we drop qualifieres
     type = get_str(typedef_node.find('type'))
@@ -311,6 +315,12 @@ def preprocess_typedef(typedef_node):
     # Skip redundant C-style definitions like:
     # typedef interface IKinectSensor IKinectSensor
     if type == name:
+        return
+
+    # If this is a function-pointer typedef,
+    # we will figure out exactly how to handle
+    # this much much later...
+    if '(' in type:
         return
 
     cpp_typedefs[type] = name
@@ -391,6 +401,8 @@ def process_define(defineNode):
 
     return ''
 
+def _param_name(name):
+    return parameter_prefix + name[:1].capitalize() + name[1:]
 
 def process_function(functionNode, class_name=''):
     if (functionNode.attrib['prot'] != 'public'):
@@ -435,6 +447,8 @@ def process_function(functionNode, class_name=''):
         klLine = 'function ' + kl_returns + kl_class_prefix + autogen_line;
     else:
         klLine = 'function' + kl_class_prefix + autogen_line;
+    
+    kl_prefix = ''
 
     for i in range(len(fnArgs)):
         arg = fnArgs[i]
@@ -457,13 +471,16 @@ def process_function(functionNode, class_name=''):
         if not kl_type:
             continue
 
+        # remove in/out KL semantics
+        base_kl_type = kl_type.rsplit(None, 1)[-1]
+        
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
         # to fix up the conversion functions in MassageCPP
-        if kl_type in kl_type_aliases:
+        if base_kl_type in kl_type_aliases:
             if fe_fn_name not in functions_with_aliases:
                 functions_with_aliases[fe_fn_name] = []
-            functions_with_aliases[fe_fn_name].append([kl_type, arName])
+            functions_with_aliases[fe_fn_name].append([base_kl_type, arName])
 
         # if we had a C++ default val, indicate what it was
         # Perhaps we could generate 2 functions in this case, one which calls the other.
@@ -480,13 +497,14 @@ def process_function(functionNode, class_name=''):
         # If there are more '*' in the CPP type than we expect
         # (based on the ctype in our codegen) then we will need
         # to pass this parameter by address.
-        base_kl_type = kl_type.rsplit(None, 1)[-1]
+        
         if base_kl_type in json_codegen_typemapping:
             if cpp_type.count('*') > json_codegen_typemapping[base_kl_type]['ctype'].count('*'):
                 autogen_line += '&'
 
         # finally, add the name to the autogen line.
-        autogen_line += parameter_prefix + arName.capitalize()
+        autogen_param_name = _param_name(arName)
+        autogen_line += autogen_param_name
 
     klLine += ') = \'' + fe_fn_name + '\';\n'
     autogen_line += ')'
@@ -507,7 +525,7 @@ def process_function(functionNode, class_name=''):
         autogen_line = '  %s;\n' % autogen_line
 
     # We remember our auto-genned lined for later reference
-    json_codegen_functionbodies[fe_fn_name] = autogen_line
+    json_codegen_functionbodies[fe_fn_name] = kl_prefix + autogen_line
 
     print(klLine)
     return klLine
@@ -552,8 +570,14 @@ def _process_class_or_struct(struct_node, kl_type):
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
             has_functions = True
+
+            # Generate conversions for our classes.  This will
+            # be virtually identical to the opaque wrappers
+            conversion = _get_typemapping(name, name, True)
+            json_codegen_typemapping[name] = conversion
             autogen_class_typemapping.append(name)
             break
+
     if has_functions:
         klLine += "\tData _handle;\n"
 
@@ -711,8 +735,8 @@ def process_file(override_name, infilename, outputfile):
 ##################################################################################
 # Code-genning files
 
-def generate_typemapping_header(full_json):
-    fh = open(os.path.join(output_h_dir, '_typemapping.h'), 'w')
+def _generate_typemapping_header(full_json, filename, skip_kl_type, fn_body):
+    fh = open(os.path.join(output_h_dir, filename), 'w')
 
     fh.write(
     '/* \n'
@@ -732,6 +756,9 @@ def generate_typemapping_header(full_json):
         if kl_type in opaque_type_wrappers:
             continue
 
+        if skip_kl_type(kl_type):
+            continue
+
         if kl_type[-2:] == '[]':
             kl_type = 'VariableArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
 
@@ -739,12 +766,6 @@ def generate_typemapping_header(full_json):
         sfrom = val['from']
         sto = val['to']
         
-        fn_body = '#pragma message("Implement Me")'
-        # for all POD conversions we can simply do an equals
-        kl_base_type = kl_type_aliases.get(kl_type, kl_type)
-        if kl_base_type in kl_pod_types:
-            fn_body = 'to = from;'
-
         from_fn = ( 'inline bool %s(const Fabric::EDK::KL::%s & from, %s & to) { \n'
                     '  %s\n'
                     '  return true;\n'
@@ -756,14 +777,29 @@ def generate_typemapping_header(full_json):
         # to const the reference in order for the cast to const
         # to succeed.
         # https://stackoverflow.com/questions/2908244/why-no-implicit-conversion-from-pointer-to-reference-to-const-pointer
+        _fn_body = '' + fn_body
         if '*' in cpp_type:
+            # If we try to do a pointer assignment, then the const-ness 
+            # trips us up.  De-const all input pointers on assignment
+            _fn_body = _fn_body.replace('from', 'const_cast<%s>(from)' % cpp_type)
             cpp_type = cpp_type + ' const'
 
         to_fn = ('inline bool %s(const %s & from, Fabric::EDK::KL::%s & to) {\n'
                 '  %s\n'
                 '  return true; \n'
-                '}\n\n' % (sto, cpp_type, kl_type, fn_body))
+                '}\n\n' % (sto, cpp_type, kl_type, _fn_body))
         fh.write(to_fn)
+
+def skip_nonpod(kl_type):
+    # for all POD conversions we can simply do an equals
+    kl_base_type = kl_type_aliases.get(kl_type, kl_type)
+    if kl_base_type in kl_pod_types:
+        return False
+    return True;
+
+def generate_typemapping_header(full_json):
+    _generate_typemapping_header(full_json, '_pod_typemapping.h', skip_nonpod, 'to = from;')
+    _generate_typemapping_header(full_json, '_typemapping.h', lambda x: not skip_nonpod(x), '#pragma message("Implement Me")')
 
 
 # For each opaque struct, we can auto-generate the C++ code
@@ -804,14 +840,14 @@ def generate_opaque_cpp_conv():
         fh.write(
             '#include "%s.h"\n'
             'inline bool %s(const Fabric::EDK::KL::%s & from, %s* & to) {\n'
-            '  to = reinterpret_cast<%s>(from._handle); \n'
+            '  to = reinterpret_cast<%s>(from->_handle); \n'
             '  return true; \n'
             '}\n\n' % (class_type, sfrom, class_type, class_type, class_type + '*')
         )
 
         fh.write(
             'inline bool %s(const %s* const& from, Fabric::EDK::KL::%s & to) {\n'
-            '  to._handle = const_cast<%s*>(from); \n'
+            '  to->_handle = const_cast<%s*>(from); \n'
             '  return true; \n'
             '}\n\n' % (sto, class_type, class_type, class_type)
             )
@@ -915,6 +951,19 @@ def generate_fpm(processed_files):
 #
 # Build a code-gen compatible type mapping from our typemapping
 #
+def _get_typemapping(c_type, kl_type, is_pointer):
+    conversion = ( {
+            'ctype': c_type,
+            'from' : 'KL%s_to_CP%s' % (kl_type, c_type),
+            'to' : 'CP%s_to_KL%s' % (c_type, kl_type),
+        })
+    if is_pointer:
+        conversion['ctype'] = c_type + '*'
+        conversion['methodop'] = '->'
+    else:
+        conversion['methodop'] = '.'
+    return conversion
+
 def get_auto_codegen_typemapping():
     typemapping = {}
 
@@ -938,44 +987,25 @@ def get_auto_codegen_typemapping():
         else:
             conversion['methodop'] = '.'
 
+        conversion = _get_typemapping(cpp_raw_type, kl_raw_type, '*' in cpp_type)
+
         typemapping[kl_type] = conversion
 
     # generate conversions for alias'ed types
     # (We assume that an alias'ed type reflects
     # a C++ class)
     for alias_type, base_type in kl_type_aliases.iteritems():
-
-        conversion = ( {
-            'ctype': alias_type,
-            'from' : base_type + '_to_' + alias_type,
-            'to' : alias_type + '_to_' + base_type,
-
-        })
         # We cannot know if the type should be pointer-based,
         # but we can assume that most of the time it won't be
-        conversion['methodop'] = '.'
+        conversion = _get_typemapping(alias_type, base_type, False)
         typemapping[alias_type] = conversion
 
     # Generate conversions for our opaque wrappers
     #  This will be pretty simple - just wrapping the
     # returned pointer with a KL data member
     for opaque_type in opaque_type_wrappers:
-        conversion = ( {
-            'ctype': opaque_type + '*',
-            'from' : 'KL' + opaque_type + '_to_CP' + opaque_type,
-            'to' : 'CP' + opaque_type + '_to_KL' + opaque_type,
-        })
+        conversion = _get_typemapping(opaque_type, opaque_type, True)
         typemapping[opaque_type] = conversion
-
-    # Generate conversions for our classes.  This will
-    # be virtually identical to the opaque wrappers
-    for class_type in autogen_class_typemapping:
-        conversion = ( {
-            'ctype': class_type + '*',
-            'from' : 'KL' + class_type + '_to_CP' + class_type,
-            'to' : 'CP' + class_type + '_to_KL' + class_type,
-        })
-        typemapping[class_type] = conversion
 
     return typemapping
 
