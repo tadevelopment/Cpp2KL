@@ -4,6 +4,11 @@ import shutil
 from subprocess import call
 import sys
 
+# a small utility function to remove all brackets from a string
+import re
+def strip_brackets(str):
+    return re.sub('[\[\](){}<>]', '', str)
+
 # Pass in the cfg file of the extension to generate as an argument
 if not len(sys.argv) > 1:
     print ("Usage - please pass the config file as an argument to this script")
@@ -80,7 +85,8 @@ if custom_KL_dir:
 
 # Generate C++ Files from KL files
 klcmd = 'kl2edk "%s/%s.fpm.json" -o "%s" -c "%s"' % (output_dir, project_name, output_h_dir, output_cpp_dir)
-call(klcmd, shell=True)
+if call(klcmd, shell=True) != 0:
+    sys.exit("********************      kl2edk FAILURE         **************************")
 #kl2edk GenKL\Fabric2Arnold.fpm.json -o GenCPP\h -c GenCPP\cpp
 
 #REM Do any post-processing to get things as close as possible

@@ -509,7 +509,7 @@ def process_function(functionNode, class_name=''):
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
         # to fix up the conversion functions in MassageCPP
-        base_kl_type_no_brackets = re.sub('[\[\](){}<>]', '', base_kl_type)
+        base_kl_type_no_brackets = strip_brackets(base_kl_type)
         if base_kl_type_no_brackets in kl_type_aliases:
             if fe_fn_name not in functions_with_aliases:
                 functions_with_aliases[fe_fn_name] = []
