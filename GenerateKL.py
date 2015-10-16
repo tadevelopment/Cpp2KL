@@ -615,13 +615,15 @@ def _process_class_or_struct(struct_node, kl_type):
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
             has_functions = True
-
-            # Generate conversions for our classes.  This will
-            # be virtually identical to the opaque wrappers
-            conversion = _get_typemapping(name, name, True)
-            json_codegen_typemapping[name] = conversion
             autogen_class_typemapping.append(name)
             break
+
+    if not name in json_codegen_typemapping:
+        # Generate conversions for our classes.  This will
+        # be virtually identical to the opaque wrappers
+        conversion = _get_typemapping(name, name, has_functions)
+        json_codegen_typemapping[name] = conversion
+    
 
     if has_functions:
         klLine += "\tData _handle;\n"
