@@ -581,37 +581,39 @@ def process_function(functionNode, class_name=''):
 def first_to_lower(s):
     return s[:1].lower() + s[1:] if s else ''
 
-def _process_class_or_struct(struct_node, kl_type):
-    klLine = '';
-    # first, find docs
-    desc_node = struct_node.find('detaileddescription')
-    if (desc_node != None):
-        klLine = '/** {0}*/\n'.format(get_str(desc_node))
-
+# Get the name of the class, or '' if it should be ignored
+def _class_name(struct_node):
     # should this element be ignored?
     name = struct_node.find('compoundname').text
     if (name in elementsToIgnore):
         return ''
     if name in opaque_type_wrappers:
         return ''
+    return name
 
-    # Has this class been alias'ed to a KL type?  If so, we only
-    # want to output the alias, not the whole type
+# Has this class been alias'ed to a KL type?  If so, we only
+# want to output the alias, not the whole type    
+def _class_alias(name):
     alias_type = name
     while alias_type in cpp_typedefs:
         alias_type = cpp_typedefs[alias_type]
     if alias_type in kl_type_aliases:
         return 'alias %s %s;\n' % (kl_type_aliases[alias_type], alias_type)
 
-    # begin defining our KL class.
+# test to see if this class/struct has any functions
+# attached to it.  If it does (and there is no defined
+# conversion function) we assume we will need to maintain
+# a pointer to the native handle, and refer to this when
+# calling functions
+def _preprocess_class_or_struct_conversion(struct_node, kl_type):
+    name = _class_name(struct_node)
+    if not name:
+        return
 
-    klLine += kl_type + " " + name + " {\n"
-    # Now, test to see if this class/struct has any functions
-    # attached to it.  If it does (and there is no defined
-    # conversion function) we assume we will need to maintain
-    # a pointer to the native handle, and refer to this when
-    # calling functions
-    has_functions = False and kl_type != 'struct'
+    if _class_alias(name):
+        return
+
+    has_functions = False
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
             has_functions = True
@@ -623,8 +625,29 @@ def _process_class_or_struct(struct_node, kl_type):
         # be virtually identical to the opaque wrappers
         conversion = _get_typemapping(name, name, has_functions)
         json_codegen_typemapping[name] = conversion
-    
 
+
+def _process_class_or_struct(struct_node, kl_type):
+    name = _class_name(struct_node)
+    if not name:
+        return ''
+
+    alias = _class_alias(name)
+    if alias:
+        return alias
+
+    # begin defining our KL class.
+    klLine = '';
+    # first, find docs
+    desc_node = struct_node.find('detaileddescription')
+    if (desc_node != None):
+        klLine = '/** {0}*/\n'.format(get_str(desc_node))
+
+    # begin class
+    klLine += kl_type + " " + name + " {\n"
+
+    
+    has_functions = name in autogen_class_typemapping
     if has_functions:
         klLine += "\tData _handle;\n"
 
@@ -655,10 +678,8 @@ def _process_class_or_struct(struct_node, kl_type):
     klLine += maybe_make_alias(name)
 
     # once the struct is defined, add any/all functions to it.
-    has_functions = False
     for function in struct_node.iter('memberdef'):
         if function.get('kind') == 'function':
-            has_functions = True
             klLine += process_function(function, name)
 
     print(klLine)
@@ -669,7 +690,7 @@ def _process_class_or_struct(struct_node, kl_type):
 # fairly interchangable in C++, either type can go to
 # either a class or a struct in KL)
 # 
-def process_class_or_struct(struct_or_class_node):
+def process_class_or_struct(struct_or_class_node, proccessing_fn):
     # if this is a reference, dereference it:
     # name = structNode.find('name').text
     # refId = structNode.find('ref')
@@ -682,9 +703,9 @@ def process_class_or_struct(struct_or_class_node):
         for compound in compounds:
             if (compound.attrib['id'] == ref_id):
                 if (compound.attrib['kind'] == 'struct'):
-                    return _process_class_or_struct(compound, 'struct')
+                    return proccessing_fn(compound, 'struct')
                 if (compound.attrib['kind'] == 'class'):
-                    return _process_class_or_struct(compound, 'object')
+                    return proccessing_fn(compound, 'object')
     return ''
 
 #
@@ -722,8 +743,15 @@ def process_file(override_name, infilename, outputfile):
 
     # Always have class declarations at the top of the file
     file_contents += ["//////////////////////////////////////////////////\n//  classes \n"]
+
+    # first we pre-process the classes to get their conversions
+    # that is because we reference the conversions in class definitions,
+    # and if classes are defined out-of-order (which is legitimate in C++)
+    # we can generate incorrect C++ conversions in process_function
     for class_element in root.iter('innerclass'):
-        file_contents.append(process_class_or_struct(class_element))
+        process_class_or_struct(class_element, _preprocess_class_or_struct_conversion)
+    for class_element in root.iter('innerclass'):
+        file_contents.append(process_class_or_struct(class_element, _process_class_or_struct))
 
     # add in custom overrides after class declarations
     if override_name in custom_add_to_file:
