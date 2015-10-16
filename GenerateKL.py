@@ -75,13 +75,38 @@ def get_str(node):
     #res = ET.tostring(node, encoding="us-ascii", method="text")
     return res
 
+############################################################
 #
 # parse out the MS Sal declaration
 #
-def parse_ms_sal(cpp_arg_type):
+def _parse_sal_postfix(sal_decl, components, kl_type):
+    # is this a pointer based type?
+    num_ptrs = components[-1].count('*')
+    postfix = ''
+    if kl_type != 'String' or num_ptrs > 1:
+        fn_postfix = ''
+        if '_writes_' in sal_decl or '_reads_' in sal_decl or '_updates_' in sal_decl:
+            postfix = '[]'
+            fn_postfix = 'Ar'
+        elif sal_decl.startswith('_Outptr_result_buffer_'):
+            postfix = '<>'
+            fn_postfix = 'ExAr'
+                
+        if postfix:
+            # Auto-gen conversion fn's
+            full_kl_type = kl_type + postfix
+            if full_kl_type not in json_codegen_typemapping:
+                cpp_type = components[-1]
+                cpp_type = cpp_type.replace('*', '')
+                conversion = _get_typemapping(cpp_type, kl_type + fn_postfix, num_ptrs)
+                json_codegen_typemapping[full_kl_type] = conversion
+    return postfix
+
+
+def parse_ms_sal(cpp_arg_type, kl_type):
     prefix = ''
     postfix = ''
-    components = cpp_arg_type.split()
+    components = cpp_arg_type.replace(' *', '*').split()
 
     # FE2.0 added support for 'out' as a keyword
     out_spec = 'io '
@@ -90,7 +115,7 @@ def parse_ms_sal(cpp_arg_type):
 
     if len(components) > 1:
 
-        sal_decl = cpp_arg_type.split()[0]
+        sal_decl = components[0]
         # Remove the _COM prefix, if it exists
         if sal_decl.startswith('_COM_'):
             sal_decl = sal_decl[4:]
@@ -107,12 +132,12 @@ def parse_ms_sal(cpp_arg_type):
         # If we have a SAL declaration, does it specify
         # an in/out array?
         if prefix:
-            sal_decl = cpp_arg_type.split()[0]
             if '_Opt_' in sal_decl:
                 prefix += '/*opt*/'
+
             if not postfix:
-                if '_writes_' in sal_decl or '_reads_' in sal_decl or '_updates_' in sal_decl:
-                    postfix = '[]'
+                postfix = _parse_sal_postfix(sal_decl, components, kl_type)
+
     return (prefix,postfix)
 
 #
@@ -141,17 +166,16 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
 
     # we pick the last word as representing our KL type
     kl_type = sub_type.strip().split(' ')[-1]
+    # Finally, remove any remaining * characters
+    kl_type = kl_type.replace('*', '')
 
     # Could this be used to return a value?  If so, mark it as IO
     prefix = ''
     postfix = ''
     if use_ms_sal:
-        prefix,postfix = parse_ms_sal(cpp_arg_type)
+        prefix,postfix = parse_ms_sal(cpp_arg_type, kl_type)
     if (not prefix) and apply_io:
         prefix = guess_sal(cpp_arg_type)
-
-    # Finally, remove any remaining * characters
-    kl_type = kl_type.replace('*', '')
 
     # We can (very) safely assume that only one of
     # postfix or args_str is not-null.
@@ -485,7 +509,8 @@ def process_function(functionNode, class_name=''):
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
         # to fix up the conversion functions in MassageCPP
-        if base_kl_type in kl_type_aliases:
+        base_kl_type_no_brackets = re.sub('[\[\](){}<>]', '', base_kl_type)
+        if base_kl_type_no_brackets in kl_type_aliases:
             if fe_fn_name not in functions_with_aliases:
                 functions_with_aliases[fe_fn_name] = []
             functions_with_aliases[fe_fn_name].append([base_kl_type, arName])
@@ -566,7 +591,9 @@ def _process_class_or_struct(struct_node, kl_type):
     # should this element be ignored?
     name = struct_node.find('compoundname').text
     if (name in elementsToIgnore):
-      return ''
+        return ''
+    if name in opaque_type_wrappers:
+        return ''
 
     # Has this class been alias'ed to a KL type?  If so, we only
     # want to output the alias, not the whole type
@@ -781,6 +808,9 @@ def _generate_typemapping_header(full_json, filename, do_kl_type, to_fn_body, fr
 
         if kl_type[-2:] == '[]':
             kl_type = 'VariableArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
+        elif kl_type[-2:] == '<>':
+            kl_type = 'ExternalArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
+
 
         cpp_type = val['ctype']
         sfrom = val['from']
