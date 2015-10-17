@@ -165,9 +165,16 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
     sub_type = s_rex.sub(lambda mo: cppToKLTypeMapping[mo.string[mo.start():mo.end()]], kl_type)
 
     # we pick the last word as representing our KL type
-    kl_type = sub_type.strip().split(' ')[-1]
-    # Finally, remove any remaining * characters
-    kl_type = kl_type.replace('*', '')
+    cpp_base_type = sub_type.strip().split(' ')[-1]
+
+    # special case - for all string representations we want to use String
+    base_kl_type = kl_type_aliases.get(cpp_base_type, kl_type)
+    if base_kl_type == 'String':
+        kl_type = base_kl_type
+    else:
+        # Finally, remove any remaining * characters
+        kl_type = cpp_base_type.replace('*', '')
+        
 
     # Could this be used to return a value?  If so, mark it as IO
     prefix = ''
@@ -187,10 +194,10 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
       if postfix[0] == '[':
         if kl_type == 'char':
             kl_type = 'String'
-        if kl_type == 'String':
-          # we assume if we have a char pointer, its always just a string
-          postfix = ''
-
+        if kl_type_aliases.get(cpp_base_type, kl_type) == 'String':
+            # we assume if we have a char pointer, its always just a string
+            postfix = ''
+            kl_type = 'String'
     return prefix + kl_type + postfix
 
 
@@ -833,9 +840,16 @@ def _generate_typemapping_header(full_json, filename, do_kl_type, to_fn_body, fr
     for key, val in typemapping.iteritems():
         kl_type = key
 
+        # more String special case, we want all string types 
+        # to map to String explicitly (no using alias command)
+        alias_kl_type = kl_type_aliases.get(kl_type, kl_type)
+        if alias_kl_type == 'String':
+            kl_type = "String"
+
         if not do_kl_type(kl_type):
             continue
 
+        
         if kl_type[-2:] == '[]':
             kl_type = 'VariableArray< Fabric::EDK::KL::%s >' % kl_type[:-2]
         elif kl_type[-2:] == '<>':
@@ -918,6 +932,9 @@ def generate_opaque_file():
     f.write('// Aliases help us differentiate the correct\n//return type when converting KL to C++ types later\n')
     for alias, type in kl_type_aliases.iteritems():
         kl_type = cpp_to_kl_type(type)
+        # we do not write an explicit alias for String's
+        if kl_type == 'String':
+            continue
         f.write(
             'alias %s %s;\n' % (kl_type, alias)
         )
@@ -972,8 +989,8 @@ def generate_fpm(processed_files):
 def _get_typemapping(c_type, kl_type, is_pointer):
     conversion = ( {
             'ctype': c_type,
-            'from' : 'KL%s_to_CP%s' % (kl_type, c_type),
-            'to' : 'CP%s_to_KL%s' % (c_type, kl_type),
+            'from' : 'KL%s_to_CP%s' % (kl_type, c_type.replace('*', '')),
+            'to' : 'CP%s_to_KL%s' % (c_type.replace('*', ''), kl_type),
         })
     if is_pointer:
         conversion['ctype'] = c_type + '*'
