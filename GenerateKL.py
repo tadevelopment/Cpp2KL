@@ -110,8 +110,8 @@ def parse_ms_sal(cpp_arg_type, kl_type):
 
     # FE2.0 added support for 'out' as a keyword
     out_spec = 'io '
-    if int(kl_version[0]) >= 2:
-        out_spec = 'out '
+    #if int(kl_version[0]) >= 2:
+    #    out_spec = 'out '
 
     if len(components) > 1:
 

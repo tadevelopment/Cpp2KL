@@ -27,13 +27,14 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
       fn_start = m.start()
       cpp_contents_init = cpp_contents[:fn_start]
       cpp_contents_fin = cpp_contents[fn_start:]
-
+      
       # Replace current target types
       for arg in fn_args:
+        fn_return_idx = cpp_contents_fin.find('KINECT2_CATCH_STATEMENT')
         param_name = _param_name(arg[1])
         expr = r'\s*((.*) %s\b)(.*);' % param_name
         argm = re.search(expr, cpp_contents_fin)
-        if not argm:
+        if not argm or argm.start() > fn_return_idx:
             print('warning: Aliased argument %s not found in %s' % (param_name,alias_fn))
             continue
 
@@ -58,13 +59,22 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
         else:
             # replace the type declaration.  Also strip initializer
             cpp_contents_fin = cpp_contents_fin[:argm.start(2)] + ('%s %s' % (alias_type, param_name)) + cpp_contents_fin[argm.end(3):]
+            fn_return_idx = cpp_contents_fin.find('KINECT2_CATCH_STATEMENT')
+
             # What is the conversion function for this type?
             # Find it and replace it with the correct type
             base_kl_type = kl_type_aliases[alias_type]
             if base_kl_type in json_codegen_typemapping:
-              old_type_conv = json_codegen_typemapping[base_kl_type]['from']
-              new_type_conv = json_codegen_typemapping.get(alias_type, {'from':'TYPE_ERROR'})['from']
-              cpp_contents_fin = cpp_contents_fin.replace(old_type_conv, new_type_conv, 1)
+              old_type_conv = json_codegen_typemapping[base_kl_type]
+              new_type_conv = json_codegen_typemapping.get(alias_type, {'from':'TYPE_ERROR'})
+              conv_idx = cpp_contents_fin.find(old_type_conv['from'], 0, fn_return_idx)
+              if conv_idx > 0:
+                cpp_contents_fin = cpp_contents_fin.replace(old_type_conv['from'], new_type_conv['from'], 1)
+
+              # if the element is returned, then we will need to replace the return as well
+              conv_idx = cpp_contents_fin.find(old_type_conv['to'] + '(' + param_name, 0, fn_return_idx)
+              if conv_idx > 0:
+                  cpp_contents_fin = cpp_contents_fin.replace(old_type_conv['to'], new_type_conv['to'], 1)
 
       cpp_contents = cpp_contents_init + cpp_contents_fin
 
