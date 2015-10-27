@@ -2,6 +2,7 @@ import glob
 import re
 
 # This file should be run on the post kl2edk code
+fn_exit = json_codegen['functionexit']
 
 # So far, the only thing we can do is to try to fix
 # the missing return statements.  We guess 0 for any return type
@@ -30,7 +31,7 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
       
       # Replace current target types
       for arg in fn_args:
-        fn_return_idx = cpp_contents_fin.find('KINECT2_CATCH_STATEMENT')
+        fn_return_idx = cpp_contents_fin.find(fn_exit)
         param_name = _param_name(arg[1])
         expr = r'\s*((.*) %s\b)(.*);' % param_name
         argm = re.search(expr, cpp_contents_fin)
@@ -59,7 +60,7 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
         else:
             # replace the type declaration.  Also strip initializer
             cpp_contents_fin = cpp_contents_fin[:argm.start(2)] + ('%s %s' % (alias_type, param_name)) + cpp_contents_fin[argm.end(3):]
-            fn_return_idx = cpp_contents_fin.find('KINECT2_CATCH_STATEMENT')
+            fn_return_idx = cpp_contents_fin.find(fn_exit)
 
             # What is the conversion function for this type?
             # Find it and replace it with the correct type

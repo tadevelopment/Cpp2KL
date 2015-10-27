@@ -516,11 +516,11 @@ def process_function(functionNode, class_name=''):
         # if our KL type is alias'ed, then save the name
         # of this function.  This is because we will need
         # to fix up the conversion functions in MassageCPP
-        base_kl_type_no_brackets = strip_brackets(base_kl_type)
-        if base_kl_type_no_brackets in kl_type_aliases:
-            if fe_fn_name not in functions_with_aliases:
-                functions_with_aliases[fe_fn_name] = []
-            functions_with_aliases[fe_fn_name].append([base_kl_type, arName])
+        for key, val in kl_type_aliases.iteritems():
+            if key in cpp_type:
+                if fe_fn_name not in functions_with_aliases:
+                    functions_with_aliases[fe_fn_name] = []
+                functions_with_aliases[fe_fn_name].append([key, arName])
 
         # if we had a C++ default val, indicate what it was
         # Perhaps we could generate 2 functions in this case, one which calls the other.
@@ -887,6 +887,7 @@ def _generate_typemapping_header(full_json, filename, do_kl_type, to_fn_body, fr
                 '}\n\n' % (sto, cpp_type, kl_type, _fn_body))
         fh.write(to_fn)
 
+
 def do_pod(kl_type):
     # for all POD conversions we can simply do an equals
     kl_base_type = kl_type_aliases.get(kl_type, kl_type)
@@ -908,6 +909,23 @@ def generate_typemapping_header(full_json):
     _generate_typemapping_header(full_json, '_typemapping_opaque.h', do_opaque, 'to._handle = from;', 'to = reinterpret_cast<%s*>(from._handle);')
     _generate_typemapping_header(full_json, '_typemapping.h', do_others, '#pragma message("Implement Me")', '#pragma message("Implement Me")')
 
+########################################################################
+# Write out a header file defining the entry-exit macros used by the kl2edk
+
+def generate_define_header(full_json):
+    fh = open(os.path.join(output_h_dir, '_defines.h'), 'w')
+
+    fh.write(
+    '/* \n'
+    ' * This auto-generated file contains default macro definitions\n'
+    ' * added to every call to/from the C++ functions in this module\n'
+    ' *  - Do not modify this file, it will be overwritten\n'
+    ' */\n\n\n#pragma once\n'
+    ' \n'
+    '#define %s(x)\n'
+    '#define %s(x)\n'
+    '#define %s(x, y) return _result;\n'  % (full_json['functionentry'], full_json['functionexit'], full_json['functionexitreturn'])
+    )
 ########################################################################
 #
 # Write out simple wrapper structs for opaque data types.
@@ -1022,7 +1040,7 @@ def get_auto_codegen_typemapping():
         else:
             conversion['methodop'] = '.'
 
-        conversion = _get_typemapping(cpp_raw_type, kl_raw_type, '*' in cpp_type)
+        #conversion = _get_typemapping(cpp_raw_type, kl_raw_type, '*' in cpp_type)
 
         typemapping[kl_type] = conversion
 
@@ -1058,6 +1076,12 @@ def generate_auto_codegen():
     full_json['typemapping'] = json_codegen_typemapping
     full_json['functionbodies'] = json_codegen_functionbodies
 
+    # auto-define the fn entry/exit points
+    full_json["functionentry"] = parameter_prefix + "TRY_STATEMENT"
+    full_json["functionexit"] = parameter_prefix + "CATCH_STATEMENT"
+    full_json["functionexitreturn"] = parameter_prefix + "CATCH_STATEMENT_RETURN"
+
+
     # We don't have any parameterconversionstoskip or methodmapping - do we need 'em?
 
     json_filename = os.path.join(output_dir, project_name + '.auto.codegen.json')
@@ -1071,28 +1095,25 @@ def generate_auto_codegen():
 # merge with out own file.
 #
 def generate_codegen():
-    auto_codegen = generate_auto_codegen()
-
+    final_codegen = generate_auto_codegen()
+    
     # merge file is the users manually specified file
     final_file = os.path.join(output_dir, project_name + '.codegen.json')
-
     merge_file_path = os.path.join(root_dir, merge_codegen_file)
     if os.path.isfile(merge_file_path):
 
         with open(merge_file_path) as json_file:
             merge_codegen = json.load(json_file)
-            final_codegen = jsonmerge.merge(auto_codegen, merge_codegen)
+            final_codegen = jsonmerge.merge(final_codegen, merge_codegen)
 
-            # generate a header file for conversion functions
-            generate_typemapping_header(final_codegen)
+    # generate a header file for conversion functions
+    generate_typemapping_header(final_codegen)
+    generate_define_header(final_codegen)
 
-            # write out the result
-            with open(final_file, 'w') as outfile:
-                json.dump(final_codegen, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
-    else:
-        # with nothing to merge, write out the auto-file as the full codegen file
-        with open(final_file, 'w') as outfile:
-            json.dump(auto_codegen, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
+     # write out the result
+    with open(final_file, 'w') as outfile:
+        json.dump(final_codegen, outfile, sort_keys = True, indent = 4, ensure_ascii=False)
+        return final_codegen
 
 ####################################################################################################
 #
@@ -1148,4 +1169,4 @@ if opaque_type_wrappers or kl_type_aliases:
 
 # Our last step, generate the FPM file from the converted files.
 generate_fpm(processed_files)
-generate_codegen()
+json_codegen = generate_codegen()
