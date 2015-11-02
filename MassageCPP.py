@@ -4,6 +4,8 @@ import re
 # This file should be run on the post kl2edk code
 fn_exit = json_codegen['functionexit']
 
+remove_def_comments = re.compile("^// Defined at.*$\n", re.MULTILINE)
+
 # So far, the only thing we can do is to try to fix
 # the missing return statements.  We guess 0 for any return type
 for afile in glob.glob(output_cpp_dir + '/*.cpp'):
@@ -79,7 +81,20 @@ for afile in glob.glob(output_cpp_dir + '/*.cpp'):
 
       cpp_contents = cpp_contents_init + cpp_contents_fin
 
+  # Get rid of that super-annoying message telling us where a function is defined
+  # Those lines change every time we re-compile and make it difficult to see
+  # down where actual changes have occured in Git
+  cpp_contents = remove_def_comments.sub("", cpp_contents)
+
   # once done, write back
   with open(afile, 'w') as _file:
     _file.write(cpp_contents)
 
+# Strip all junk messages from headers as well
+for afile in glob.glob(output_h_dir + '/*.h'):
+  h_contents = ''
+  with open(afile, 'r') as _file:
+    h_contents = _file.read()
+  h_contents = remove_def_comments.sub("", h_contents)
+  with open(afile, 'w') as _file:
+    _file.write(h_contents)
