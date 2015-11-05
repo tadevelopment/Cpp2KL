@@ -60,7 +60,6 @@ use_ms_sal = False
 #
 kl_alias_file_name = '_aliases'
 kl_type_aliases = {
-    'HRESULT' : 'UInt32'
 }
 
 # C-Style API's often use typedef's
