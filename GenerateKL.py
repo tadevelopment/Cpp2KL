@@ -1,4 +1,4 @@
-from __future__ import nested_scopes
+﻿from __future__ import nested_scopes
 import shutil
 import xml.etree.ElementTree as ET
 import re
@@ -748,6 +748,11 @@ def process_file(override_name, infilename, outputfile):
         if len(section_contents) > 1:
             file_contents += section_contents
 
+    # Put in overrides first, as these are things we can ensure are declared.
+    file_contents += ["//////////////////////////////////////////////////\n//  overrides \n"]
+    if override_name in custom_add_to_file:
+        file_contents.append(custom_add_to_file[override_name] + '\n\n')
+
     # Always have class declarations at the top of the file
     file_contents += ["//////////////////////////////////////////////////\n//  classes \n"]
 
@@ -759,11 +764,6 @@ def process_file(override_name, infilename, outputfile):
         process_class_or_struct(class_element, _preprocess_class_or_struct_conversion)
     for class_element in root.iter('innerclass'):
         file_contents.append(process_class_or_struct(class_element, _process_class_or_struct))
-
-    # add in custom overrides after class declarations
-    if override_name in custom_add_to_file:
-        file_contents.append(custom_add_to_file[override_name] + '\n\n')
-
 
     # Last we add in any file-scoped functions.  These are most likely to
     # depend on the previous definitions.
@@ -989,14 +989,23 @@ def generate_fpm(processed_files):
         '  "code" : [\n'
     )
     for pf in processed_files:
-        f.write('    "' + pf + '",\n')
+        if not pf in fpm_enforced_order:
+            f.write('    "' + pf + '",\n') 
 
     # For any custom KL files,
     # add them to the FPM list
     if custom_KL_dir:
         custom_files = glob.glob(custom_KL_dir + '/*.kl')
         for file in custom_files:
-            f.write('    "' + os.path.basename(file) + '",\n')
+            filename = os.path.basename(file)
+            if not filename in fpm_enforced_order:
+                f.write('    "' + filename + '",\n')
+
+    # Finally, add in the files in the enforced order
+    # This can be used to ensure that files are added 
+    # to the FPM appropriately
+    for filename in fpm_enforced_order:
+        f.write('    "' + filename + '",\n')
 
     f.write('  ]\n')
     f.write('}')
