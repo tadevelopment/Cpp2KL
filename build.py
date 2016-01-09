@@ -1,7 +1,7 @@
 import os
 import glob
 import shutil
-from subprocess import call
+from subprocess import check_call
 import sys
 
 # a small utility function to remove all brackets from a string
@@ -52,8 +52,10 @@ def copy_gen_file(f, out_dir):
             os.remove(rename_filename)
         os.rename(custom_filename, rename_filename)
 
-    shutil.copy(f, out_dir)
+    # TODO - Make this multi-platform!
+    check_call('mklink /H "%s" "%s"' % (custom_filename, f), shell=True)
 
+###############################################################
 # make these directories if necessary
 ensure_dir(output_dir)
 ensure_dir(output_h_dir)
@@ -80,12 +82,12 @@ if custom_cpp_dir:
 if custom_KL_dir:
     custom_files = glob.glob(custom_KL_dir + '/*.kl')
     for file in custom_files:
-        shutil.copy(file, output_dir)
+        copy_gen_file(file, output_dir)
 
 
 # Generate C++ Files from KL files
 klcmd = 'kl2edk "%s/%s.fpm.json" -o "%s" -c "%s"' % (output_dir, project_name, output_h_dir, output_cpp_dir)
-if call(klcmd, shell=True) != 0:
+if check_call(klcmd, shell=True) != 0:
     sys.exit("********************      kl2edk FAILURE         **************************")
 #kl2edk GenKL\Fabric2Arnold.fpm.json -o GenCPP\h -c GenCPP\cpp
 
