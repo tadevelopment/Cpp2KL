@@ -146,7 +146,7 @@ def parse_ms_sal(cpp_arg_type, kl_type):
 #
 def guess_sal(cpp_arg_type):
     if not 'const' in cpp_arg_type:
-      if '*' in cpp_arg_type or '&' in cpp_arg_type:
+      if '*' in cpp_arg_type or '&' in cpp_arg_type or cpp_arg_type in force_io_types:
         return 'io '
     return ''
 

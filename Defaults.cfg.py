@@ -38,6 +38,14 @@ cppToKLTypeMapping = {
     'char*': 'String',
 }
 
+#
+# Add a C++ typename here to force it to be always be
+# treated as an IO type.  This is useful for types that
+# that are typedef'ed from pointers, eg 
+# typedef float[3] Vector
+force_io_types = [
+]
+
 # Some API's (thanks MS) have additional semantics written
 # into them to describe how functino parameters are meant
 # to be used.  If this info exists, we can attempt to infer
