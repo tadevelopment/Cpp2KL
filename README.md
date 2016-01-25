@@ -10,6 +10,13 @@ Do not modify this file, instead create a new py file to overwrite-extend any ne
 
 Next, run build.py with the path to the projects config path specified.
 
+SAMPLES:
+
+The most complete sample is the wrapping of the Arnold API:
+https://github.com/tadevelopment/fabric2arnold
+
+This is a good place to check out a sample Doxygen config file and Cpp2KL config.py.
+
 DEPENDENCIES:
 
 We depend on the output of Doxygen and a valid setup of Fabric Engine.  Before running the project the environment from Fabric should loaded using prompt.bat
