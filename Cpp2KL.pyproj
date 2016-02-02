@@ -13,7 +13,7 @@
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId />
     <InterpreterVersion />
-    <CommandLineArguments>"C:\src\HordeSoftware\Fabric2Arnold\Fabric2Arnold.cfg.py"</CommandLineArguments>
+    <CommandLineArguments>"C:\src\Hybride\HybrideEXR\HybrideEXR.cfg.py"</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />

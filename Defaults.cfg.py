@@ -18,6 +18,7 @@ filesToProcess = [
 
 # Any elements named in this list will not be exported
 elementsToIgnore = [
+    'operator='  # By default, do not export copy constructors
 ]
 
 #
@@ -37,6 +38,21 @@ cppToKLTypeMapping = {
     'void': '',
     'char*': 'String',
 }
+
+#
+# Allow renaming functions 
+# Mainly used to turn overloaded fn's into
+# something usable in KL
+#
+rename_cpp_fns = {
+    'operator[]' : '_get',
+    'operator==' : '_compare'
+}
+#
+# C++ types can be organized into namespaces.  Unfortunately,
+# KL types cannot.  Strip the given namespaces (or maybe just
+# strip all namespaces?
+#
 
 #
 # Add a C++ typename here to force it to be always be
