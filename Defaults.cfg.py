@@ -47,7 +47,7 @@ force_io_types = [
 ]
 
 # Some API's (thanks MS) have additional semantics written
-# into them to describe how functino parameters are meant
+# into them to describe how function parameters are meant
 # to be used.  If this info exists, we can attempt to infer
 # the correct usage of a parameter (in, out, array etc)
 # from these additional semantics
@@ -91,6 +91,12 @@ convert_typedef_to_alias = True;
 #
 opaque_file_name = '_opaque_types'
 opaque_type_wrappers = [
+]
+
+# If you need to manually set any ordering, specify the files
+# in this list and they will be added to the FPM last, in ther
+# order specified here.
+fpm_enforced_order = [
 ]
 
 #
