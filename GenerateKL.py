@@ -23,6 +23,17 @@ json_codegen_functionbodies = {}
 # are converted to the correct C++ types
 functions_with_aliases = {}
 
+# We store a list of all processed fns.
+# This allows us to detect when we are exporting
+# duplicated functions (ie, when multiple 
+# C++ overloads map to a single KL output)
+all_kl_fn_definitions = []
+
+# Store a list of all C++ fn names
+# This is to ensure unique names for 
+# cpp fn's even if the KL fn is overloaded
+all_cpp_lib_fn_names = []
+
 #
 # TODO
 #
@@ -158,6 +169,8 @@ def cpp_to_kl_type(cpp_arg_type, apply_io=False, args_str=None):
     # Now compact any pointer declarations, so that char * becomes char*
     # We maintain these values as part of the type mainly to differentiat char* from char
     kl_type = cpp_arg_type.replace(" *", "*")
+    # Strip the namespace (if any)
+    kl_type = kl_type.split('::')[-1]
     # Just remove &, as it does not change type
     kl_type = kl_type.replace("&", "")
     # convert to the KL version of this type
@@ -377,10 +390,10 @@ def process_enum(enum_node):
     if (name in elementsToIgnore):
         return ''
 
-    str = []
-    str.append('// Enum values for : %s ' % name)
+    return_string = []
+    return_string.append('// Enum values for : %s ' % name)
     # An enum is always aliased in KL
-    str.append('alias UInt32 %s;' % name)
+    return_string.append('alias UInt32 %s;' % name)
     
     values = enum_node.findall('enumvalue')
     last_val = 0
@@ -390,8 +403,8 @@ def process_enum(enum_node):
         value_desc = get_str(v.find('briefdescription'))
 
         if not value_init or len(value_init) <= 1:
-            value_init = last_val
             last_val = last_val + 1
+            value_init = "= " + str(last_val)
         else:
             # if a value is defined, save it
             # so the next value can/will increment it
@@ -403,14 +416,14 @@ def process_enum(enum_node):
         if value_desc and len(value_desc) > 1:
             value_desc = " // " + value_desc
 
-        str.append("const %s %s %s;%s" % (name, value_name, value_init, value_desc))
+        return_string.append("const %s %s %s;%s" % (name, value_name, value_init, value_desc))
 
     all_enums.append(cpp_typedefs.get(name, name))
     alias = maybe_make_alias(name)
     if alias:
-        str.append(alias)
+        return_string.append(alias)
 
-    return "\n".join(str) + '\n\n'
+    return "\n".join(return_string) + '\n\n'
 
 def process_define(defineNode):
     # Write out an equivalent define to the output file
@@ -438,9 +451,48 @@ def process_define(defineNode):
 
     return ''
 
+#
+# Recreate the parameter naming algo of kl2edk binary
+#
 def _param_name(name):
     return parameter_prefix + name[:1].capitalize() + name[1:]
 
+def _make_cpp_fn_name(fn_name, class_name):
+    fe_fn_tag = '_fe_'
+    if class_name:
+        fe_fn_tag += class_name + "_"
+    fe_lib_fn_name = fe_fn_tag + fn_name.replace('~', 'destructor_')
+
+    counter = 0
+    while fe_lib_fn_name in all_cpp_lib_fn_names:
+        counter += 1
+        fe_lib_fn_name = fe_fn_tag + fn_name.replace('~', 'destructor_') + str(counter)
+
+    return fe_lib_fn_name
+
+#
+# Return true if this function should be exported,
+# and handles recording details for later use
+#
+def _should_export_fn(kl_line, fe_lib_fn_name):
+    if kl_line in all_kl_fn_definitions:
+        # If we are not exporting this function, ensure
+        # we do not record it anywhere
+        if fe_lib_fn_name in functions_with_aliases:
+            del functions_with_aliases[fe_lib_fn_name]
+        return False
+
+    # We are going to use this function - ensure we remember
+    # its name in order to not export duplicates
+    all_kl_fn_definitions.append(kl_line)
+    all_cpp_lib_fn_names.append(fe_lib_fn_name)
+    return True
+
+#
+#
+# Create a KL/CPP function pair to expose an API call
+#
+#
 def process_function(functionNode, class_name=''):
     if (functionNode.attrib['prot'] != 'public'):
         return ''
@@ -456,13 +508,19 @@ def process_function(functionNode, class_name=''):
     fn_name = functionNode.find('name').text
     fnArgs = functionNode.findall('param')
 
-    if (fn_name in elementsToIgnore):
+    kl_class_prefix = '';
+    if class_name:
+        # Constructors and destructors do not have a class prefix in Kl
+        if class_name != fn_name and fn_name[0] != '~':
+            kl_class_prefix = class_name + "."
+
+    if (kl_class_prefix + fn_name) in elementsToIgnore:
         return ''
 
-    fe_fn_tag = '_fe_'
-    if class_name:
-        fe_fn_tag += class_name + "_"
-    fe_fn_name = fe_fn_tag + fn_name
+
+    fn_name = rename_cpp_fns.get(fn_name, fn_name)
+
+    fe_fn_name = _make_cpp_fn_name(fn_name, class_name)
 
     # While building the line to write into the KL file
     # we also build the line we'll add to the autogen file
@@ -477,15 +535,12 @@ def process_function(functionNode, class_name=''):
     # Get KL type for return arg
     kl_returns = cpp_to_kl_type(cpp_returns)
 
-    kl_class_prefix = ' ';
-    if len(class_name) > 1:
-       kl_class_prefix = ' ' + class_name + "."
 
     klLine = ""
     if kl_returns:
-        klLine = 'function ' + kl_returns + kl_class_prefix + fn_name + '(';
+        klLine = 'function ' + kl_returns + ' ' + kl_class_prefix + fn_name + '(';
     else:
-        klLine = 'function' + kl_class_prefix + fn_name + '(';
+        klLine = 'function ' + kl_class_prefix + fn_name + '(';
     
     kl_prefix = ''
 
@@ -494,6 +549,8 @@ def process_function(functionNode, class_name=''):
         cpp_type = get_str(arg.find('type'))
         arName = get_str(arg.find('declname'))
         arArgsStr = get_str(arg.find('argsstring'))
+        if not arArgsStr:
+            arArgsStr = get_str(arg.find('array'))
 
         # skip varargs
         if cpp_type == '...':
@@ -503,6 +560,10 @@ def process_function(functionNode, class_name=''):
         # (its legal c++ syntax to define void f(char* )
         if not arName:
             arName = '_val'
+
+        # (const char* v) and (const charv[]) are
+        # semantically equivalent in C++.  We don't care
+        # though, ensure there is only one type
 
         # get the KL type
         kl_type = cpp_to_kl_type(cpp_type, True, arArgsStr)
@@ -556,6 +617,13 @@ def process_function(functionNode, class_name=''):
             autogen_param_name = '%s(%s)' % (cpp_cast_type, autogen_param_name)
         autogen_line += autogen_param_name
 
+    # Before closing things out, we check to make sure this
+    # function signature has not already been exported 
+    # This can happen if multiple C++ functions map to the
+    # same KL function
+    if not _should_export_fn(klLine, fe_fn_name):
+        return ''
+
     klLine += ') = \'' + fe_fn_name + '\';\n'
     autogen_line += ')'
 
@@ -592,6 +660,8 @@ def first_to_lower(s):
 def _class_name(struct_node):
     # should this element be ignored?
     name = struct_node.find('compoundname').text
+    # Replace namespaces with something KL friendly
+    name = name.replace("::", "__");
     if (name in elementsToIgnore):
         return ''
     if name in opaque_type_wrappers:
@@ -659,7 +729,7 @@ def _process_class_or_struct(struct_node, kl_type):
         klLine += "\tData _handle;\n"
 
     for member in struct_node.iter('memberdef'):
-        if member.get('kind') == 'variable':
+        if member.get('kind') == 'variable' and member.get('prot') != 'private':
             stType = get_str(member.find('type'))
             stName = member.find('name').text
             stArgsStr = get_str(member.find('argsstring'))
@@ -1148,9 +1218,10 @@ json_codegen_typemapping = get_auto_codegen_typemapping();
 # This is because when auto-genning fn's we need the conv fns
 # for building the return values
 merge_file_path = os.path.join(root_dir, merge_codegen_file)
-with open(merge_file_path) as json_file:
-    merge_codegen = json.load(json_file)
-    json_codegen_typemapping = jsonmerge.merge(json_codegen_typemapping, merge_codegen['typemapping'])
+if os.path.exists(merge_file_path):
+    with open(merge_file_path) as json_file:
+        merge_codegen = json.load(json_file)
+        json_codegen_typemapping = jsonmerge.merge(json_codegen_typemapping, merge_codegen['typemapping'])
 
 for aFile in filesToProcess:
     # find the xml file for this header
