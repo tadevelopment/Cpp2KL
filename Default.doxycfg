@@ -2,6 +2,16 @@
 
 # This file contains all the non-standard options used by Cpp2KL
 
+# NOTE 
+# 
+#   The important tags to modify for an individual project are:
+#   PROJECT_NAME
+#   INPUT - location of API to be wrapped
+#   PREDEFINED - A list of defines to be passed to Clang
+#   EXPAND_AS_DEFINED - A list of defines that should be expanded
+#                       according to the definition in the source
+#
+
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------

@@ -48,7 +48,24 @@ rename_cpp_fns = {
     'operator[]' : '_get',
     'operator==' : '_compare'
 }
+
 #
+# if no SAL annotations are present, the most frequent issue
+# we fail on is the declaration of a C-style array in
+# function arguments, eg
+#  void aFunction(float* indices, int numIndices);
+#
+# In the following array we can define parameter pairs that
+# are converted from C-array + arrayLength to a KL array
+#
+# The declaration format is
+# 'C Array name' = ['C Array Type', 'C Array length type', 'C Array length name']
+#
+c_array_to_kl_array = {
+    
+}
+
+
 # C++ types can be organized into namespaces.  Unfortunately,
 # KL types cannot.  Strip the given namespaces (or maybe just
 # strip all namespaces?
