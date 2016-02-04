@@ -1308,7 +1308,8 @@ merge_file_path = os.path.join(root_dir, merge_codegen_file)
 if os.path.exists(merge_file_path):
     with open(merge_file_path) as json_file:
         merge_codegen = json.load(json_file)
-        json_codegen_typemapping = jsonmerge.merge(json_codegen_typemapping, merge_codegen['typemapping'])
+        if 'typemapping' in merge_codegen:
+            json_codegen_typemapping = jsonmerge.merge(json_codegen_typemapping, merge_codegen['typemapping'])
 
 for aFile in filesToProcess:
     # find the xml file for this header
