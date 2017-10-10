@@ -27,6 +27,7 @@ elementsToIgnore = [
 # 
 cppToKLTypeMapping = {
     'unsigned int': 'UInt32',
+    'uint32_t': 'UInt32',
     'int': 'SInt32',
     'float': 'Float32',
     'double': 'Float64',

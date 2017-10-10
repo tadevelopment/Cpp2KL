@@ -355,12 +355,17 @@ def preprocess_typedef(typedef_node):
 
     # the alias type is the name, but we drop qualifieres
     type = get_str(typedef_node.find('type'))
-    type = type.split()[-1]
+    split_type = type.split()
+    type = split_type[-1]
 
     # Skip redundant C-style definitions like:
     # typedef interface IKinectSensor IKinectSensor
     if type == name:
         return
+
+    # Re-concatenate pointer types
+    if type == "*":
+        type = split_type[-2] + type
 
     # If this is a function-pointer typedef,
     # we will figure out exactly how to handle
@@ -557,6 +562,9 @@ def _build_cpp_fn_imp(kl_returns, cpp_fn_prefix, cpp_returns, fn_name, class_nam
                 cpp_fn_call = '%s  Fabric::EDK::KL::%s _result;\n  %s(%s, _result);\n' % (cpp_fn_call, kl_returns, to_fn, res)
             elif to_fn:
                 cpp_fn_call = '%s  %s(%s, _result);' % (cpp_fn_call, to_fn, res)
+                # For some reason, our return values are no longer pre-constructed for us (Fabric 2.5)
+                if kl_base_returns in opaque_type_wrappers:
+                    cpp_fn_call = '  _result = ::Fabric::EDK::KL::%s::Create();\n%s' % (kl_returns, cpp_fn_call)
     else:
         cpp_fn_call = '  %s(%s);\n' % (cpp_fn_call, cpp_fn_args_imp)
 
@@ -674,7 +682,13 @@ def process_function(functionNode, class_name=''):
                 autogen_param_name += ", %s" % next_arg_name
                 cpp_fn_prefix = arr_code + len_code + cpp_fn_prefix
             else:
-                throw("NOT IMPLEMENTED (YET)")
+
+                conv_func = _get_typemapping(cpp_type, base_kl_type, False)['from']
+                len_code = "  %s %s = %s.size();\n" % (next_cpp_type, next_arg_name, arg_name)
+                vec_alloc = "  std::vector<%s> %sHolder( %s );\n" % (cpp_type, arg_name, next_arg_name)
+                vec_assign = "  for (int i = 0; i < %s; i++)  { %s( %s[i], %sHolder[i] );  }\n" % (next_arg_name, conv_func, arg_name, arg_name)
+                arr_code = "  %s %s = &%sHolder[0];\n" % (cpp_type, autogen_param_name, arg_name)
+                cpp_fn_prefix = len_code + vec_alloc + vec_assign + arr_code + cpp_fn_prefix
 
             # skip the next parameter
 
@@ -1052,7 +1066,7 @@ def do_others(kl_type):
 def generate_typemapping_header(full_json):
     _generate_typemapping_header(full_json, '_typemapping_pod.h', do_pod, 'to = from;', 'to = from;')
     _generate_typemapping_header(full_json, '_typemapping_class.h', do_class, 'to->_handle = from;', 'to = reinterpret_cast<%s*>(from->_handle);')
-    _generate_typemapping_header(full_json, '_typemapping_opaque.h', do_opaque, 'to._handle = from;', 'to = reinterpret_cast<%s*>(from._handle);')
+    _generate_typemapping_header(full_json, '_typemapping_opaque.h', do_opaque, 'to->_handle = from;', 'to = reinterpret_cast<%s*>(from->_handle);')
     _generate_typemapping_header(full_json, '_typemapping.h', do_others, '#pragma message("Implement Me")', '#pragma message("Implement Me")')
 
 ########################################################################
@@ -1107,19 +1121,24 @@ def generate_opaque_file():
         # We skip the alias if it has been output already
         if alias in kl_type_aliases:
             continue
+        if alias in opaque_type_wrappers:
+            continue
         kl_type = cpp_to_kl_type(type)
         f.write(
-            'alias %s %s;\n' % (kl_type, alias)
+            'alias %s %s;\n' % (kl_type[1], alias)
         )
 
     for opaque_type in opaque_type_wrappers:
         f.write(
             '\n'
-            'struct ' + opaque_type + ' {\n'
+            'object ' + opaque_type + ' {\n'
             '  Data _handle;\n'
             '};\n'
             'Boolean ' + opaque_type + '.isValid() { return this._handle != Data(); }\n'
         )
+
+    if opaque_file_name in custom_add_to_file:
+        f.write("\n// Custom Additions \n\n" + custom_add_to_file[opaque_file_name] + '\n\n')
 
 ########################################################################
 #

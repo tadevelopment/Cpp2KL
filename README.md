@@ -36,6 +36,9 @@ DEPENDENCIES:
 
 We depend on the output of Doxygen and a valid setup of Fabric Engine.  Before running the project the environment from Fabric should loaded using prompt.bat
 
+The script also requires jsonmerge to be installed.
+"pip install jsonmerge" 
+
 SUPPORTED OS:
 
 This project has beeen used on Windows & Linux/
